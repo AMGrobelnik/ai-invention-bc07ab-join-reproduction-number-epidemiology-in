@@ -1,0 +1,269 @@
+{
+  "title": "RelBench & JRN",
+  "summary": "Comprehensive survey of all 11 RelBench datasets (7 v1 + 4 v2) with complete schemas including tables, foreign keys, estimated cardinality distributions, and 51 predictive tasks with metrics. Includes structured comparison of 6 related per-join importance methods (ESNR, MPS-GNN, RelGNN, over-squashing, Relatron, Database Views) against the proposed JRN concept, identifying that no existing method provides pre-training per-FK-join threshold-based diagnostics for heterogeneous relational graphs. Provides tiered dataset ranking for JRN experiments with specific FK joins identified for threshold testing.",
+  "answer": "## Complete Survey of RelBench Schemas, Tasks, and Related Work on Per-Join Importance Metrics\n\n### 1. RelBench v1 Dataset Schemas (7 Datasets)\n\nRelBench v1 provides 7 realistic relational databases spanning e-commerce, social, medical, and sports domains, totaling 103,466,370 rows across 489 columns [1, 4]. The benchmark was published at the NeurIPS 2024 Datasets and Benchmarks Track [1]. Each database consists of tables connected via primary-foreign key relationships, with tables categorized as either fact (event-driven, timestamped) or dimension (contextual, relatively static) [1].\n\n**rel-amazon** (E-commerce): 3 tables (product, user, review), 15,000,713 rows, 15 columns [1]. Simple star schema centered on the review table. FK relationships: review.product_id→product and review.user_id→user. With ~14M reviews across ~500K products and ~500K users, the estimated fan-out is ~28 reviews per product and ~28 reviews per user. This symmetric structure means both FK joins should carry similar signal, making it a good baseline for uniform JRN [1].\n\n**rel-hm** (E-commerce): 3 tables (customer, article, transaction), 16,664,809 rows, 37 columns [1]. Star schema with transaction as the central fact table. FK relationships: transaction.customer_id→customer (~11 fan-out given ~1.4M customers) and transaction.article_id→article (~144 fan-out given only ~105K articles). The asymmetric fan-out is notable: the article join aggregates ~14x more child rows than the customer join, creating a natural test case for whether high aggregation dilutes signal [1].\n\n**rel-avito** (E-commerce): 8 tables, 20,679,117 rows, 42 columns [1]. Complex star schema modeling the Avito ad marketplace. Eight tables include users, ads, search_info, visits_stream, search_stream, category, location, and phone_request_stream. FK relationships span a wide cardinality spectrum: ads.category_id→category has extreme fan-out (~40K ads per category) while phone_request_stream.ad_id→ads has very low fan-out (~0.5). This diversity makes rel-avito excellent for testing JRN sensitivity across cardinality ranges [1].\n\n**rel-stack** (Social Q&A): 7 tables (users, posts, comments, votes, badges, postLinks, tags), 4,247,264 rows, 52 columns [1]. Snowflake schema modeling StackOverflow activity. FK relationships include: posts.owner_user_id→users (~3 fan-out), comments.post_id→posts (~2.5), comments.user_id→users (~7.5), votes.post_id→posts (~2.5), votes.user_id→users (~7.5), badges.user_id→users (~1.5), and postLinks connecting posts to related posts (~0.08 fan-out). The well-understood Q&A semantics make it easy to reason about which joins carry task-relevant signal [1].\n\n**rel-event** (Social/Events): 5 tables (users, events, attendance, friends, event_attendees), 41,328,337 rows, 128 columns [1]. Star schema with extremely high cardinalities. The attendance.user_id→users join has fan-out ~875 (the highest in all of RelBench), while attendance.event_id→events has ~12. The 128-column feature space (largest per-column count in v1) combined with extreme fan-outs creates a stress test for information compression during aggregation [1].\n\n**rel-f1** (Sports): 9 tables (drivers, constructors, circuits, races, results, qualifying, constructor_results, constructor_standings, driver_standings), 74,063 rows, 67 columns [1]. Complex snowflake schema with 13 FK relationships. Key bridge tables: results connects drivers, races, and constructors with fan-outs of 29, 23, and 119 respectively. qualifying similarly bridges drivers, races, and constructors. races.circuit_id→circuits has fan-out ~14. This is the dataset where RelGNN achieves its largest improvements (up to 25%), suggesting the bridge-node structure creates significant information flow patterns that per-join analysis could illuminate [1, 7].\n\n**rel-trial** (Medical/Clinical): 15 tables centered on studies, 5,434,924 rows, 140 columns [1]. Deepest snowflake schema in RelBench. Central studies table is connected to 14 satellite tables: conditions (~1.75 per study), interventions (~1.5), outcomes (~1.25), facilities (~2.0), sponsors (~1.5), eligibilities (~1.0), reported_events (~1.25), designs (~1.0), outcomes_analysis (→outcomes, ~0.4), drop_withdrawals (~0.375), browse_conditions (~0.5), browse_interventions (~0.5), outcome_counts (→outcomes, ~0.3), and outcome_measurements (→outcomes, ~0.6). The two-level hierarchy (studies→outcomes→outcome_measurements) enables multi-hop JRN compounding tests. The relatively low fan-outs (mostly 0.3-2.0) contrast sharply with e-commerce datasets [1].\n\n### 2. RelBench v2 Dataset Schemas (4 New Datasets)\n\nRelBench v2 introduces 4 additional datasets and the autocomplete task paradigm, bringing the total to 11 datasets [2]. Autocomplete tasks predict existing columns within tables at specified timestamps while preventing information leakage through careful column dropping [2].\n\n**rel-salt** (Enterprise ERP): 4 tables (sales_doc_header, sales_doc_item, customer_master, address_master), 4,257,145 rows, 31 columns [2]. Linear chain schema representing end-to-end business transactions from an ERP system. FK chain: address_master←customer_master←sales_doc_header←sales_doc_item. Estimated fan-outs: ~5 items per header, ~2 headers per customer, ~0.25 customers per address. All 8 tasks are autocomplete (accuracy metric), predicting fields like plant, shipping point, Incoterms, sales office, and payment terms [2].\n\n**rel-arxiv** (Academic): 6 tables (papers, authors, paper_author, citations, categories, paper_category), 2,146,112 rows, 21 columns [2]. Many-to-many network modeling the scholarly citation ecosystem with 222K papers, 143K authors, and 1.5M directed citation links across 53 physics categories [2]. FK relationships: paper_author bridges papers and authors (~3.2 papers per author, ~4.9 authors per paper), citations link papers (~6.8 citations per paper), paper_category assigns categories (~1.3 categories per paper but ~5,300 papers per category). The extreme asymmetry in the category join fan-out makes it a candidate for low JRN [2]. Tasks span AUROC, accuracy, R², and MAP metrics [2].\n\n**rel-ratebeer** (Consumer): 13 tables, 13,787,005 rows, 221 columns [2]. The richest schema in v2, with tables for beers, users, brewers, places, ratings, reviews, favorites, beer_style, brewer_beer, place_brewer, user_place_rating, beer_tag, and seasonal data [2]. Over 30 columns of multi-modal features including text, categorical, and temporal data [2]. High-cardinality joins: ratings.beer_id→beers (~80 fan-out), ratings.user_id→users (~160 fan-out). Cross-domain joins like user_place_rating link user preferences to geographic places. 8 tasks span autocomplete regression (R²), forecasting classification (AUROC), forecasting regression (R²), and recommendation (MAP) [2].\n\n**rel-mimic** (Medical EHR): 6 tables (patients, admissions, icu_stays, lab_events, prescriptions, procedures), 2,424,751 rows, 54 columns [2]. Hierarchical chain from MIMIC-IV clinical data: patients←admissions←(icu_stays, lab_events, prescriptions, procedures). Uses a 20K patient subset by default [2]. Requires PhysioNet credentials for access [2]. Single forecasting task: predict ICU stays lasting ≥3 days (AUROC) [2]. The hierarchical chain with high fan-out on lab_events (~30 per admission) creates a multi-hop aggregation challenge.\n\n### 3. Complete Task Catalog\n\nAcross all 11 datasets, RelBench defines 51 predictive tasks [1, 2]:\n\n**v1 Tasks (30 total):**\n- rel-amazon: 7 tasks (user-churn AUROC, item-churn AUROC, user-ltv MAE, item-ltv MAE, user-item-purchase MAP, user-item-rate MAP, user-item-review MAP) [1]\n- rel-hm: 3 tasks (user-churn AUROC, item-sales MAE, user-item-purchase MAP) [1]\n- rel-avito: 4 tasks (ad-ctr MAE, user-clicks AUROC, user-visits AUROC, user-ad-visit MAP) [1]\n- rel-stack: 5 tasks (user-engagement AUROC, user-badge AUROC, post-votes MAE, user-post-comment MAP, post-post-related MAP) [1]\n- rel-event: 3 tasks (user-attendance MAE, user-repeat AUROC, user-ignore AUROC) [1]\n- rel-f1: 3 tasks (driver-dnf AUROC, driver-top3 AUROC, driver-position MAE) [1]\n- rel-trial: 5 tasks (study-outcome AUROC, study-adverse MAE, site-success MAE, condition-sponsor-run MAP, site-sponsor-run MAP) [1]\n\n**v2 Tasks (21 total):**\n- rel-salt: 8 autocomplete tasks (all accuracy) [2]\n- rel-arxiv: 4 tasks (paper-citation AUROC, author-category accuracy, author-publication R², paper-paper-cocitation MAP) [2]\n- rel-ratebeer: 8 tasks (beer_ratings-total_score R², beer-churn AUROC, user-churn AUROC, brewer-dormant AUROC, user-count R², user-beer-favorite MAP, user-beer-liked MAP, user-place-liked MAP) [2]\n- rel-mimic: 1 task (patient-iculengthofstay AUROC) [2]\n\n**Task type distribution:** 12 entity classification, 7 entity regression, 11 recommendation, 9 autocomplete, 5 forecasting classification, 3 forecasting regression, 1 autocomplete regression. **Metrics used:** AUROC, MAE, MAP@K, accuracy, R² [1, 2].\n\n### 4. Related Work: Six Methods Compared to JRN\n\n#### 4.1 ESNR (Dong et al., ICML 2023)\n\nThe Effective Structural Noise Ratio uses random matrix theory, specifically the spiked Wigner model, to estimate whether a graph's signal can be recovered from its noisy adjacency structure [5]. The core insight is the BBP (Baik-Ben Arous-Péché) phase transition: when the signal eigenvalue λ_signal exceeds σ²(1+√(d/n)), GNN learning is possible; below this threshold, structural noise overwhelms the signal [5]. ESNR is computationally cheap (pre-training, closed-form) but fundamentally limited for relational databases because it operates on the WHOLE homogeneous graph — it cannot distinguish signal quality across different FK join types [5]. Code is available at github.com/MingzeDong/ESNR [5].\n\n**Relevance to JRN:** ESNR's BBP phase transition is the closest existing analog to JRN's threshold concept, but operates at graph level rather than per-join level. JRN can be seen as decomposing the ESNR concept into per-FK-join components for heterogeneous relational graphs [5].\n\n#### 4.2 MPS-GNN (Ferrini et al., 2024)\n\nMeta-Path Scoring GNN greedily extends meta-paths during training to discover informative join chains in heterogeneous relational graphs [6]. At each training step, candidate meta-path extensions are evaluated by aggregate statistics over their realizations, and the most informative paths are retained [6]. An extended version provides self-explainability for relational deep learning by exposing which meta-paths contribute most to predictions [12]. The method produces indirect per-join importance scores as a byproduct of meta-path selection — if a join appears in many selected meta-paths, it is implicitly deemed important [6, 12].\n\n**Relevance to JRN:** MPS-GNN's meta-path importance is conceptually related to JRN but is computed DURING training (high cost) rather than as a pre-training diagnostic. It also operates at the meta-path level, not individual join level [6].\n\n#### 4.3 RelGNN (Chen et al., ICML 2025)\n\nRelGNN introduces composite message passing for relational deep learning [7]. It categorizes tables into single-FK (direct edge formation) and multi-FK (bridge/hub) tables, then applies a FUSE operation: FUSE(h_mid, h_src) = W₁h_mid + W₂h_src, which creates single-hop shortcuts bypassing intermediate bridge/hub nodes [7]. This achieves SOTA on 27/30 v1 tasks, with the largest gains on complex schemas — rel-f1 shows up to 25% improvement while simple star schemas like rel-amazon and rel-hm show modest gains [7]. Code is available at github.com/snap-stanford/RelGNN [7].\n\n**Relevance to JRN:** RelGNN's key limitation is that it applies blanket bypass to ALL bridge/hub nodes without per-join discrimination [7]. The observation that gains are schema-dependent (large on rel-f1, small on rel-amazon) strongly suggests that per-join analysis could identify WHICH bridges benefit from bypass and which do not. JRN could provide the missing per-join diagnostic that makes RelGNN's bypass strategy adaptive rather than uniform [7].\n\n#### 4.4 Over-Squashing (Topping et al., ICLR 2022; Black et al., ICML 2023)\n\nTwo complementary approaches address information bottlenecks in GNNs. Topping et al. use combinatorial Ollivier-Ricci curvature on edges: negatively-curved edges are identified as bottlenecks causing over-squashing, and curvature-based rewiring (adding edges at bottlenecks) alleviates the problem [8]. Black et al. use effective resistance between node pairs as the bottleneck metric: high effective resistance means information must traverse many alternative paths, causing signal degradation [9].\n\n**Relevance to JRN:** Both curvature and effective resistance are per-edge metrics computable pre-training, making them the closest structural analogs to JRN [8, 9]. However, they are designed for HOMOGENEOUS graphs and are computationally expensive (O(n³) for effective resistance). They measure structural bottlenecks without considering feature-based signal quality, whereas JRN measures actual signal-to-noise ratio per FK join [8, 9].\n\n#### 4.5 Relatron (2025)\n\nRelatron automates the decision of whether to use Relational Deep Learning (RDL) or traditional Deep Feature Synthesis (DFS) for a given relational task [10]. It defines RDB-task homophily H(G;m) = 1/|E_m| Σ K(ŷ_u, ŷ_v) averaged over metapath edges, and uses training-free affinity embeddings (path affinity via random GraphSAGE, feature affinity via TabPFN, temporal affinity) to estimate this without training [10]. It reports Spearman ρ = -0.43 between adjusted homophily and the RDL-DFS performance gap [10].\n\n**Relevance to JRN:** Relatron operates at WHOLE-TASK granularity and makes a binary RDL-vs-DFS decision, whereas JRN operates per-FK-join and guides WITHIN-RDL architecture configuration [10]. The modest correlation (ρ = -0.43) suggests whole-task metrics miss important per-join variation. JRN could explain the remaining variance by decomposing task-level homophily into per-join components [10].\n\n#### 4.6 Database Views as Explanations (Rissaki et al., 2025)\n\nThis approach applies learnable masks on GNN edges and features to identify which FK joins and columns are most important for predictions [11]. View definitions operate at column-level, FK-level, and row-group-level granularity, producing interpretable database views as explanations [11].\n\n**Relevance to JRN:** Database Views provide the closest per-FK granularity to JRN but are POST-HOC: they require full model training and explain learned behavior rather than predicting it [11]. JRN aims to be a PRE-TRAINING diagnostic that predicts which joins will be important before any training occurs. Database Views results could serve as ground truth for validating JRN predictions [11].\n\n### 5. Comparison Table: Related Methods vs. JRN\n\n| Method | Granularity | When Computed | Per-Join Metric? | Threshold Behavior? | Architecture Guidance? | Cost | Graph Type |\n|--------|-------------|---------------|------------------|---------------------|----------------------|------|------------|\n| ESNR [5] | Whole graph | Pre-training | No | BBP transition | No | Low | Homogeneous |\n| MPS-GNN [6] | Meta-path | During training | Indirect | No | Implicit | High | Heterogeneous |\n| RelGNN [7] | Bridge/hub nodes | Architecture design | No | No | Blanket bypass | Medium | Heterogeneous |\n| Over-squashing [8, 9] | Per-edge | Pre-training | Curvature/resistance | No | Rewiring | High | Homogeneous |\n| Relatron [10] | Whole task | Pre-training | No | No | RDL vs DFS | Low | Heterogeneous |\n| DB Views [11] | Per-FK/column | Post-training | Mask weights | No | No | High | Heterogeneous |\n| **JRN (proposed)** | **Per-FK join** | **Pre-training (probe)** | **Yes** | **Yes (JRN≈1)** | **Yes (adaptive)** | **Low** | **Heterogeneous** |\n\nThe key gap: no existing method simultaneously achieves (a) per-FK-join granularity, (b) pre-training computation, (c) threshold-based diagnostics, and (d) heterogeneous graph support [5, 6, 7, 8, 9, 10, 11]. JRN uniquely targets this intersection.\n\n### 6. Dataset Ranking for JRN Experiments\n\n**Tier 1 — Most Informative (complex schemas, diverse join types):**\n\n- **rel-trial** (15 tables) [1]: Best for multiplicative compounding test. The deep snowflake with studies as the central hub and 14 satellite tables at varying distances enables testing whether JRN compounds across multi-hop FK chains (e.g., studies→outcomes→outcome_measurements). Expected high-JRN joins: outcomes→studies, reported_events→studies, drop_withdrawals→studies. Expected medium-JRN: browse_conditions→studies, browse_interventions→studies. The two-level hierarchy provides the clearest multi-hop test case.\n\n- **rel-f1** (9 tables) [1, 7]: Best for threshold behavior test. RelGNN's 25% improvement on this dataset (vs. modest gains on simple schemas) implies join-level variation in informativeness [7]. Expected high-JRN: results→drivers (race results directly predict driver performance), qualifying→drivers. Expected medium-JRN: races→circuits, constructor_standings→constructors. The bridge table structure (results connects drivers, races, constructors) is the canonical test case for per-join bypass decisions.\n\n- **rel-ratebeer** (13 tables) [2]: Best for cardinality-JRN correlation test. The wide range of fan-outs (from 0.67 to 500) across 13+ FK relationships provides the most data points for correlating cardinality with JRN. Expected high-JRN: ratings→beers, ratings→users. Expected low-JRN: beers→beer_style (fan-out ~500), paper_category→categories-like broad categorization joins.\n\n**Tier 2 — Good Contrasts (simpler but informative schemas):**\n\n- **rel-stack** (7 tables) [1]: Well-understood Q&A semantics make it easy to validate JRN against domain knowledge. Expected contrast: votes→posts (high JRN, direct quality signal) vs. postLinks→posts (low JRN, sparse and indirect).\n\n- **rel-avito** (8 tables) [1]: Widest cardinality spectrum of any dataset. Expected contrast: phone_request_stream→ads (high JRN, strong purchase intent signal) vs. ads→category (low JRN, extreme ~40K fan-out).\n\n- **rel-arxiv** (6 tables) [2]: Clear signal/noise distinction. Expected contrast: citations→papers (high JRN) vs. paper_category→categories (low JRN, ~5,300 fan-out).\n\n**Tier 3 — Baselines (simple schemas):**\n\n- **rel-amazon** (3 tables) [1]: Expected uniform moderate-high JRN across both symmetric FK joins. Null hypothesis: JRN should not vary significantly in a simple symmetric star schema.\n\n- **rel-hm** (3 tables) [1]: Asymmetric fan-out test. transaction→customer (~11 fan-out) vs. transaction→article (~144 fan-out) provides a minimal pair for testing whether higher aggregation reduces JRN.\n\n**Note on rel-mimic:** While its hierarchical chain is interesting for multi-hop tests, PhysioNet credential requirements and the 20K-patient subset limitation may reduce experimental accessibility and statistical power [2]. Recommend deferring to Phase 2.\n\n**Note on rel-event:** The extreme fan-out on attendance→users (~875) makes it a useful outlier test case, but the relatively simple 5-table schema limits the number of join comparisons possible [1].\n\n### 7. Confidence Assessment and Limitations\n\n**High confidence:** Dataset schemas, table counts, total row/column counts, task names and metrics are directly from the RelBench papers [1, 2].\n\n**Medium confidence:** Per-table row counts and FK fan-out estimates are derived from total row counts and reasonable assumptions about data distributions. The actual cardinality distributions may be highly skewed (power-law), which would affect JRN estimation. Exact numbers should be verified from the GitHub source code [3].\n\n**Lower confidence:** The expected JRN values for specific joins are hypothetical, based on domain reasoning about signal relevance. These predictions should be treated as hypotheses to test, not established facts.\n\n**Potential contradicting evidence:** Relatron's modest correlation (ρ = -0.43) between homophily and RDL performance could suggest that per-join signal metrics have limited predictive power overall [10]. However, this could also reflect the limitation of whole-task-level analysis rather than per-join analysis.",
+  "sources": [
+    {
+      "index": 1,
+      "url": "https://arxiv.org/html/2407.20060v1",
+      "title": "RelBench: A Benchmark for Deep Learning on Relational Databases (NeurIPS 2024)",
+      "summary": "Primary source for all 7 v1 dataset schemas (rel-amazon, rel-hm, rel-avito, rel-stack, rel-event, rel-f1, rel-trial), table structures, foreign key relationships, row/column counts, and 30 predictive tasks with evaluation metrics."
+    },
+    {
+      "index": 2,
+      "url": "https://arxiv.org/html/2602.12606v1",
+      "title": "RelBench v2: A Large-Scale Benchmark and Repository for Relational Data",
+      "summary": "Source for 4 new v2 datasets (rel-salt, rel-arxiv, rel-ratebeer, rel-mimic), the autocomplete task paradigm, and 21 additional tasks with their metrics and target tables."
+    },
+    {
+      "index": 3,
+      "url": "https://github.com/snap-stanford/relbench",
+      "title": "RelBench GitHub Repository",
+      "summary": "Official code repository containing programmatic dataset definitions with make_db() methods specifying FK relationships, table constructions, and data loading logic."
+    },
+    {
+      "index": 4,
+      "url": "https://relbench.stanford.edu/",
+      "title": "RelBench Official Website",
+      "summary": "Benchmark website with dataset descriptions, leaderboard for tracking model performance, standardized evaluation framework, and documentation for data loading."
+    },
+    {
+      "index": 5,
+      "url": "https://proceedings.mlr.press/v202/dong23a/dong23a.pdf",
+      "title": "ESNR: Towards Understanding and Reducing Graph Structural Noise for GNNs (ICML 2023)",
+      "summary": "Introduces the Effective Structural Noise Ratio using random matrix theory and the BBP phase transition to estimate whether graph structure aids or hinders GNN learning. Whole-graph metric for homogeneous graphs only."
+    },
+    {
+      "index": 6,
+      "url": "https://proceedings.mlr.press/v231/ferrini24a/ferrini24a.pdf",
+      "title": "MPS-GNN: Meta-Path Learning for Multi-relational Graph Neural Networks",
+      "summary": "Proposes greedy meta-path extension during training to discover informative join chains in heterogeneous relational graphs, providing indirect per-join importance via path selection."
+    },
+    {
+      "index": 7,
+      "url": "https://arxiv.org/abs/2502.06784",
+      "title": "RelGNN: Composite Message Passing for Relational Deep Learning (ICML 2025)",
+      "summary": "Introduces composite message passing that bypasses bridge/hub nodes in relational graphs. Achieves SOTA on 27/30 v1 tasks with largest gains on complex schemas like rel-f1 (up to 25% improvement)."
+    },
+    {
+      "index": 8,
+      "url": "https://arxiv.org/abs/2111.14522",
+      "title": "Understanding over-squashing and bottlenecks on graphs via curvature (ICLR 2022)",
+      "summary": "Uses combinatorial Ollivier-Ricci curvature on edges to identify over-squashing bottlenecks in GNNs. Proposes curvature-based rewiring as mitigation. Per-edge metric but designed for homogeneous graphs."
+    },
+    {
+      "index": 9,
+      "url": "https://proceedings.mlr.press/v202/black23a",
+      "title": "Understanding oversquashing in GNNs through effective resistance (ICML 2023)",
+      "summary": "Uses effective resistance between node pairs as an information bottleneck metric. High effective resistance indicates over-squashing. Computationally expensive (O(n^3)) and designed for homogeneous graphs."
+    },
+    {
+      "index": 10,
+      "url": "https://arxiv.org/abs/2602.22552",
+      "title": "Relatron: Automating Relational Machine Learning over Relational Databases (2025)",
+      "summary": "Defines RDB-task homophily and training-free affinity embeddings to decide between RDL and DFS. Reports Spearman rho=-0.43 at whole-task granularity, not per-join level."
+    },
+    {
+      "index": 11,
+      "url": "https://arxiv.org/abs/2509.09482",
+      "title": "Database Views as Explanations for GNN Predictions (Rissaki et al., 2025)",
+      "summary": "Applies learnable post-hoc masks on GNN edges/features to identify important FK joins and columns. Per-FK granularity but requires full model training, making it post-hoc rather than pre-training diagnostic."
+    },
+    {
+      "index": 12,
+      "url": "https://arxiv.org/abs/2412.00521",
+      "title": "A Self-Explainable Heterogeneous GNN for Relational Deep Learning",
+      "summary": "Extended MPS-GNN work providing self-explainability for heterogeneous relational graphs by exposing which meta-paths contribute most to predictions."
+    }
+  ],
+  "follow_up_questions": [
+    "What are the exact per-table row counts and empirical cardinality distributions for each FK join in rel-trial and rel-f1, extractable from the GitHub source code make_db() methods or by loading the datasets programmatically?",
+    "Which specific FK joins in rel-f1 account for the 25% improvement observed with RelGNN's composite message passing, and could per-join JRN estimation predict which bridge nodes benefit most from bypass versus which should retain two-hop message passing?",
+    "How do access restrictions for rel-mimic (PhysioNet credentials) and the availability of only a 20K patient subset affect JRN estimation reliability, and should rel-mimic be deferred to later experimental phases in favor of unrestricted datasets like rel-ratebeer and rel-arxiv?"
+  ],
+  "datasets": {
+    "v1": {
+      "rel-amazon": {
+        "domain": "E-commerce",
+        "tables": 3,
+        "total_rows": 15000713,
+        "total_columns": 15,
+        "table_details": {
+          "product": {"estimated_rows": 500000, "description": "Book products with price, category"},
+          "user": {"estimated_rows": 500000, "description": "Users with profile information"},
+          "review": {"estimated_rows": 14000000, "description": "Reviews with ratings, text, timestamps"}
+        },
+        "foreign_keys": [
+          {"child": "review", "fk_col": "product_id", "parent": "product", "estimated_fanout": 28},
+          {"child": "review", "fk_col": "user_id", "parent": "user", "estimated_fanout": 28}
+        ],
+        "schema_type": "star",
+        "tasks": [
+          {"name": "user-churn", "type": "entity_classification", "metric": "AUROC", "target_table": "user"},
+          {"name": "item-churn", "type": "entity_classification", "metric": "AUROC", "target_table": "product"},
+          {"name": "user-ltv", "type": "entity_regression", "metric": "MAE", "target_table": "user"},
+          {"name": "item-ltv", "type": "entity_regression", "metric": "MAE", "target_table": "product"},
+          {"name": "user-item-purchase", "type": "recommendation", "metric": "MAP", "target_table": "user-product"},
+          {"name": "user-item-rate", "type": "recommendation", "metric": "MAP", "target_table": "user-product"},
+          {"name": "user-item-review", "type": "recommendation", "metric": "MAP", "target_table": "user-product"}
+        ]
+      },
+      "rel-hm": {
+        "domain": "E-commerce",
+        "tables": 3,
+        "total_rows": 16664809,
+        "total_columns": 37,
+        "table_details": {
+          "customer": {"estimated_rows": 1400000, "description": "Customer biographical data"},
+          "article": {"estimated_rows": 105000, "description": "Fashion articles with attributes"},
+          "transaction": {"estimated_rows": 15100000, "description": "Purchase transactions with timestamps"}
+        },
+        "foreign_keys": [
+          {"child": "transaction", "fk_col": "customer_id", "parent": "customer", "estimated_fanout": 11},
+          {"child": "transaction", "fk_col": "article_id", "parent": "article", "estimated_fanout": 144}
+        ],
+        "schema_type": "star"
+      },
+      "rel-avito": {
+        "domain": "E-commerce",
+        "tables": 8,
+        "total_rows": 20679117,
+        "total_columns": 42,
+        "foreign_keys": [
+          {"child": "ads", "fk_col": "user_id", "parent": "users", "estimated_fanout": 4},
+          {"child": "ads", "fk_col": "category_id", "parent": "category", "estimated_fanout": 40000},
+          {"child": "ads", "fk_col": "location_id", "parent": "location", "estimated_fanout": 400},
+          {"child": "search_info", "fk_col": "user_id", "parent": "users", "estimated_fanout": 10},
+          {"child": "visits_stream", "fk_col": "user_id", "parent": "users", "estimated_fanout": 20},
+          {"child": "visits_stream", "fk_col": "ad_id", "parent": "ads", "estimated_fanout": 5},
+          {"child": "search_stream", "fk_col": "search_id", "parent": "search_info", "estimated_fanout": 1},
+          {"child": "phone_request_stream", "fk_col": "ad_id", "parent": "ads", "estimated_fanout": 0.5}
+        ],
+        "schema_type": "complex_star"
+      },
+      "rel-stack": {
+        "domain": "Social_QA",
+        "tables": 7,
+        "total_rows": 4247264,
+        "total_columns": 52,
+        "foreign_keys": [
+          {"child": "posts", "fk_col": "owner_user_id", "parent": "users", "estimated_fanout": 3},
+          {"child": "comments", "fk_col": "post_id", "parent": "posts", "estimated_fanout": 2.5},
+          {"child": "comments", "fk_col": "user_id", "parent": "users", "estimated_fanout": 7.5},
+          {"child": "votes", "fk_col": "post_id", "parent": "posts", "estimated_fanout": 2.5},
+          {"child": "votes", "fk_col": "user_id", "parent": "users", "estimated_fanout": 7.5},
+          {"child": "badges", "fk_col": "user_id", "parent": "users", "estimated_fanout": 1.5},
+          {"child": "postLinks", "fk_col": "post_id", "parent": "posts", "estimated_fanout": 0.08},
+          {"child": "postLinks", "fk_col": "related_post_id", "parent": "posts", "estimated_fanout": 0.08}
+        ],
+        "schema_type": "snowflake"
+      },
+      "rel-event": {
+        "domain": "Social_Events",
+        "tables": 5,
+        "total_rows": 41328337,
+        "total_columns": 128,
+        "foreign_keys": [
+          {"child": "attendance", "fk_col": "user_id", "parent": "users", "estimated_fanout": 875},
+          {"child": "attendance", "fk_col": "event_id", "parent": "events", "estimated_fanout": 12},
+          {"child": "friends", "fk_col": "user_id", "parent": "users", "estimated_fanout": 75},
+          {"child": "events", "fk_col": "user_id", "parent": "users", "estimated_fanout": 75}
+        ],
+        "schema_type": "star"
+      },
+      "rel-f1": {
+        "domain": "Sports",
+        "tables": 9,
+        "total_rows": 74063,
+        "total_columns": 67,
+        "foreign_keys": [
+          {"child": "results", "fk_col": "driver_id", "parent": "drivers", "estimated_fanout": 29},
+          {"child": "results", "fk_col": "race_id", "parent": "races", "estimated_fanout": 23},
+          {"child": "results", "fk_col": "constructor_id", "parent": "constructors", "estimated_fanout": 119},
+          {"child": "qualifying", "fk_col": "driver_id", "parent": "drivers", "estimated_fanout": 11},
+          {"child": "qualifying", "fk_col": "race_id", "parent": "races", "estimated_fanout": 9},
+          {"child": "qualifying", "fk_col": "constructor_id", "parent": "constructors", "estimated_fanout": 45},
+          {"child": "races", "fk_col": "circuit_id", "parent": "circuits", "estimated_fanout": 14},
+          {"child": "constructor_results", "fk_col": "constructor_id", "parent": "constructors", "estimated_fanout": 57},
+          {"child": "constructor_results", "fk_col": "race_id", "parent": "races", "estimated_fanout": 11},
+          {"child": "constructor_standings", "fk_col": "constructor_id", "parent": "constructors", "estimated_fanout": 62},
+          {"child": "constructor_standings", "fk_col": "race_id", "parent": "races", "estimated_fanout": 12},
+          {"child": "driver_standings", "fk_col": "driver_id", "parent": "drivers", "estimated_fanout": 14},
+          {"child": "driver_standings", "fk_col": "race_id", "parent": "races", "estimated_fanout": 11}
+        ],
+        "schema_type": "complex_snowflake"
+      },
+      "rel-trial": {
+        "domain": "Medical",
+        "tables": 15,
+        "total_rows": 5434924,
+        "total_columns": 140,
+        "foreign_keys": [
+          {"child": "conditions", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.75},
+          {"child": "interventions", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.5},
+          {"child": "outcomes", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.25},
+          {"child": "facilities", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 2.0},
+          {"child": "sponsors", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.5},
+          {"child": "eligibilities", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.0},
+          {"child": "reported_events", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.25},
+          {"child": "designs", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 1.0},
+          {"child": "outcomes_analysis", "fk_col": "outcome_id", "parent": "outcomes", "estimated_fanout": 0.4},
+          {"child": "drop_withdrawals", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 0.375},
+          {"child": "browse_conditions", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 0.5},
+          {"child": "browse_interventions", "fk_col": "nct_id", "parent": "studies", "estimated_fanout": 0.5},
+          {"child": "outcome_counts", "fk_col": "outcome_id", "parent": "outcomes", "estimated_fanout": 0.3},
+          {"child": "outcome_measurements", "fk_col": "outcome_id", "parent": "outcomes", "estimated_fanout": 0.6}
+        ],
+        "schema_type": "deep_snowflake"
+      }
+    },
+    "v2": {
+      "rel-salt": {
+        "domain": "Enterprise_ERP",
+        "tables": 4,
+        "total_rows": 4257145,
+        "total_columns": 31,
+        "schema_type": "chain"
+      },
+      "rel-arxiv": {
+        "domain": "Academic",
+        "tables": 6,
+        "total_rows": 2146112,
+        "total_columns": 21,
+        "schema_type": "many_to_many_network"
+      },
+      "rel-ratebeer": {
+        "domain": "Consumer",
+        "tables": 13,
+        "total_rows": 13787005,
+        "total_columns": 221,
+        "schema_type": "complex_many_to_many"
+      },
+      "rel-mimic": {
+        "domain": "Medical_EHR",
+        "tables": 6,
+        "total_rows": 2424751,
+        "total_columns": 54,
+        "schema_type": "hierarchical_chain",
+        "access_restriction": "Requires PhysioNet credentials"
+      }
+    }
+  },
+  "comparison_table": {
+    "columns": ["Method", "Granularity", "When_Computed", "Per_Join_Metric", "Threshold_Behavior", "Architecture_Guidance", "Cost", "Graph_Type"],
+    "rows": [
+      ["ESNR", "Whole graph", "Pre-training", "No", "BBP transition", "No", "Low", "Homogeneous"],
+      ["MPS-GNN", "Meta-path", "During training", "Indirect", "No", "Implicit", "High", "Heterogeneous"],
+      ["RelGNN", "Bridge/hub nodes", "Architecture design", "No", "No", "Blanket bypass", "Medium", "Heterogeneous"],
+      ["Over-squashing", "Per-edge", "Pre-training", "Curvature/resistance", "No", "Rewiring", "High", "Homogeneous"],
+      ["Relatron", "Whole task", "Pre-training", "No", "No", "RDL vs DFS", "Low", "Heterogeneous"],
+      ["DB Views", "Per-FK/column", "Post-training", "Mask weights", "No", "No", "High", "Heterogeneous"],
+      ["JRN (proposed)", "Per-FK join", "Pre-training (probe)", "Yes", "Yes (JRN approx 1)", "Yes (adaptive)", "Low", "Heterogeneous"]
+    ]
+  },
+  "dataset_ranking_for_JRN": {
+    "tier1_most_informative": ["rel-trial (15 tables)", "rel-f1 (9 tables)", "rel-ratebeer (13 tables)"],
+    "tier2_good_contrasts": ["rel-stack (7 tables)", "rel-avito (8 tables)", "rel-arxiv (6 tables)"],
+    "tier3_baselines": ["rel-amazon (3 tables)", "rel-hm (3 tables)"]
+  }
+}

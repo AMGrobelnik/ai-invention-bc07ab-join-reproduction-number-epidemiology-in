@@ -1,0 +1,178 @@
+\begin{thebibliography}{22}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Borenstein et~al.(2017)Borenstein, Higgins, Hedges, and
+  Rothstein]{Borenstein2017}
+Michael Borenstein, Julian P.~T. Higgins, Larry~V. Hedges, and Hannah~R.
+  Rothstein.
+\newblock Basics of meta-analysis: {I}-squared is not an absolute measure of
+  heterogeneity.
+\newblock \emph{Research Synthesis Methods}, 8:\penalty0 5--18, 2017.
+\newblock \doi{10.1002/jrsm.1230}.
+
+\bibitem[Chen et~al.(2025)Chen, Kanatsoulis, and Leskovec]{Chen2025}
+Tianlang Chen, Charilaos~I. Kanatsoulis, and Jure Leskovec.
+\newblock Relgnn: Composite message passing for relational deep learning.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}, pages 8296--8312, 2025.
+\newblock \doi{10.48550/arXiv.2502.06784}.
+
+\bibitem[Chen et~al.(2026)Chen, Xie, Zhang, Tang, Song, and Rangwala]{Chen2026}
+Zhikai Chen, Han Xie, Jian Zhang, Jiliang Tang, Xiang Song, and Huzefa
+  Rangwala.
+\newblock Relatron: Automating relational machine learning over relational
+  databases.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2026.
+
+\bibitem[Corso et~al.(2020)Corso, Cavalleri, Beaini, Li\`{o}, and
+  Veli\v{c}kovi\'{c}]{Corso2020}
+Gabriele Corso, Luca Cavalleri, Dominique Beaini, Pietro Li\`{o}, and Petar
+  Veli\v{c}kovi\'{c}.
+\newblock Principal neighbourhood aggregation for graph nets.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2020.
+
+\bibitem[Dong and Kluger(2023)]{Dong2023}
+Mingze Dong and Yuval Kluger.
+\newblock Towards understanding and reducing graph structural noise for {GNNs}.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}, pages 8202--8226, 2023.
+
+\bibitem[Dwivedi et~al.(2025)Dwivedi, Kanatsoulis, Huang, and
+  Leskovec]{Dwivedi2025}
+Vijay~Prakash Dwivedi, Charilaos~I. Kanatsoulis, Shenyang Huang, and Jure
+  Leskovec.
+\newblock Relational deep learning: Challenges, foundations and next-generation
+  architectures.
+\newblock In \emph{Proceedings of the 31st ACM SIGKDD Conference on Knowledge
+  Discovery and Data Mining}, 2025.
+\newblock \doi{10.1145/3711896.3736558}.
+
+\bibitem[Ferrini et~al.(2024{\natexlab{a}})Ferrini, Longa, Passerini, and
+  Jaeger]{Ferrini2024a}
+Francesco Ferrini, Antonio Longa, Andrea Passerini, and Manfred Jaeger.
+\newblock Meta-path learning for multi-relational graph neural networks.
+\newblock In \emph{Proceedings of the Second Learning on Graphs Conference
+  (LoG)}, 2024{\natexlab{a}}.
+\newblock \doi{10.48550/arXiv.2309.17113}.
+
+\bibitem[Ferrini et~al.(2024{\natexlab{b}})Ferrini, Longa, Passerini, and
+  Jaeger]{Ferrini2024b}
+Francesco Ferrini, Antonio Longa, Andrea Passerini, and Manfred Jaeger.
+\newblock A self-explainable heterogeneous {GNN} for relational deep learning.
+\newblock \emph{Transactions on Machine Learning Research}, 2024{\natexlab{b}}.
+\newblock \doi{10.48550/arXiv.2412.00521}.
+
+\bibitem[Fey et~al.(2024)Fey, Hu, Huang, Lenssen, Ranjan, Robinson, Ying, You,
+  and Leskovec]{Fey2023}
+Matthias Fey, Weihua Hu, Kexin Huang, J.~E. Lenssen, Rishabh Ranjan, Joshua
+  Robinson, Rex Ying, Jiaxuan You, and J.~Leskovec.
+\newblock Relational deep learning: Graph representation learning on relational
+  databases.
+\newblock \emph{ArXiv}, abs/2312.04615, 2024.
+\newblock \doi{10.48550/arXiv.2312.04615}.
+
+\bibitem[Fey et~al.(2025)Fey, Kocijan, L\'{o}pez, Lenssen, and
+  Leskovec]{Fey2025}
+Matthias Fey, Vid Kocijan, Federico L\'{o}pez, Jan~Eric Lenssen, and Jure
+  Leskovec.
+\newblock {KumoRFM}: A foundation model for in-context learning on relational
+  data.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem[Giovanni et~al.(2023)Giovanni, Giusti, Barbero, Luise, Li\`{o}, and
+  Bronstein]{DiGiovanni2023}
+Francesco~Di Giovanni, Lorenzo Giusti, Federico Barbero, Giulia Luise, Pietro
+  Li\`{o}, and Michael~M. Bronstein.
+\newblock On over-squashing in message passing neural networks: The impact of
+  width, depth, and topology.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}, pages 7865--7885, 2023.
+\newblock \doi{10.48550/arXiv.2302.02941}.
+
+\bibitem[Hamilton et~al.(2017)Hamilton, Ying, and Leskovec]{Hamilton2017}
+William~L. Hamilton, Zhitao Ying, and Jure Leskovec.
+\newblock Inductive representation learning on large graphs.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2017.
+
+\bibitem[Hu et~al.(2020)Hu, Dong, Wang, and Sun]{Hu2020}
+Ziniu Hu, Yuxiao Dong, Kuansan Wang, and Yizhou Sun.
+\newblock Heterogeneous graph transformer.
+\newblock In \emph{Proceedings of The Web Conference (WWW)}, 2020.
+\newblock \doi{10.1145/3366423.3380027}.
+
+\bibitem[Kanter and Veeramachaneni(2015)]{Kanter2015}
+James~Max Kanter and Kalyan Veeramachaneni.
+\newblock Deep feature synthesis: Towards automating data science endeavors.
+\newblock In \emph{IEEE International Conference on Data Science and Advanced
+  Analytics (DSAA)}, pages 1--10, 2015.
+\newblock \doi{10.1109/DSAA.2015.7344858}.
+
+\bibitem[Karl et~al.(2024)Karl, Kemeter, Dax, and Sierak]{Karl2024}
+Florian Karl, Lukas~Malte Kemeter, Gabriel Dax, and Paulina Sierak.
+\newblock Position: Embracing negative results in machine learning.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}, pages 23256--23265, 2024.
+\newblock \doi{10.48550/arXiv.2406.03980}.
+
+\bibitem[Ke et~al.(2017)Ke, Meng, Finley, Wang, Chen, Ma, Ye, and Liu]{Ke2017}
+Guolin Ke, Qi~Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei
+  Ye, and Tie-Yan Liu.
+\newblock {LightGBM}: A highly efficient gradient boosting decision tree.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, pages 3146--3154, 2017.
+
+\bibitem[Rissaki et~al.(2025)Rissaki, Fountalis, Gatterbauer, and
+  Kimelfeld]{Rissaki2025}
+Agapi Rissaki, Ilias Fountalis, Wolfgang Gatterbauer, and Benny Kimelfeld.
+\newblock Database views as explanations for relational deep learning.
+\newblock \emph{arXiv preprint arXiv:2509.09482}, 2025.
+\newblock \doi{10.48550/arXiv.2509.09482}.
+
+\bibitem[Robinson et~al.(2024)Robinson, Ranjan, Hu, Huang, Han, Dobles, Fey,
+  Lenssen, Yuan, Zhang, He, and Leskovec]{Robinson2024}
+Joshua Robinson, Rishabh Ranjan, Weihua Hu, Kexin Huang, Jiaqi Han, Alejandro
+  Dobles, Matthias Fey, J.~E. Lenssen, Yiwen Yuan, Zecheng Zhang, Xinwei He,
+  and J.~Leskovec.
+\newblock Relbench: A benchmark for deep learning on relational databases.
+\newblock In \emph{Neural Information Processing Systems}, 2024.
+\newblock \doi{10.48550/arXiv.2407.20060}.
+
+\bibitem[Schneckenreiter et~al.(2024)Schneckenreiter, Freinschlag, Sestak,
+  Brandstetter, Klambauer, and Mayr]{Schneckenreiter2024}
+Lisa Schneckenreiter, Richard Freinschlag, Florian Sestak, Johannes
+  Brandstetter, G\"{u}nter Klambauer, and Andreas Mayr.
+\newblock {GNN-VPA}: A variance-preserving aggregation strategy for graph
+  neural networks.
+\newblock In \emph{Tiny Papers @ ICLR}, 2024.
+\newblock \doi{10.48550/arXiv.2403.04747}.
+
+\bibitem[Topping et~al.(2022)Topping, Giovanni, Chamberlain, Dong, and
+  Bronstein]{Topping2022}
+Jake Topping, Francesco~Di Giovanni, Benjamin~P. Chamberlain, Xiaowen Dong, and
+  Michael~M. Bronstein.
+\newblock Understanding over-squashing and bottlenecks on graphs via curvature.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Veli\v{c}kovi\'{c} et~al.(2018)Veli\v{c}kovi\'{c}, Cucurull, Casanova,
+  Romero, Li\`{o}, and Bengio]{Velickovic2018}
+Petar Veli\v{c}kovi\'{c}, Guillem Cucurull, Arantxa Casanova, Adriana Romero,
+  Pietro Li\`{o}, and Yoshua Bengio.
+\newblock Graph attention networks.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2018.
+
+\bibitem[Xu et~al.(2019)Xu, Hu, Leskovec, and Jegelka]{Xu2019}
+Keyulu Xu, Weihua Hu, Jure Leskovec, and Stefanie Jegelka.
+\newblock How powerful are graph neural networks?
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2019.
+
+\end{thebibliography}
