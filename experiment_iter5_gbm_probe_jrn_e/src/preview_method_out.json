@@ -1,0 +1,75 @@
+{
+  "metadata": {
+    "method_name": "GBM-Probe JRN Estimation",
+    "dataset": "rel-hm",
+    "description": "JRN estimation on rel-hm (H&M) dataset using LightGBM probes. Covers 2 tasks (user-churn classification, item-sales regression), 5 aggregation types, fan-out stratification, FK-shuffling decomposition...",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "probe_config": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "full_config": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "num_leaves": 127,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "agg_types": [
+      "mean",
+      "sum",
+      "max"
+    ],
+    "tasks": [
+      "user-churn",
+      "item-sales"
+    ],
+    "total_runtime_seconds": 64.6
+  },
+  "datasets": [
+    {
+      "dataset": "rel-hm",
+      "examples": [
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"mean\", \"n_agg_features\"...",
+          "output": "{\"jrn\": 0.905116, \"baseline_score\": 0.620946, \"augmented_score\": 0.562029, \"baseline_std\": 0.001485, \"augmented_std\": 0.001411, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join impr...",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.905116, \"score\": 0.562029}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "mean"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"sum\", \"n_agg_features\":...",
+          "output": "{\"jrn\": 0.930317, \"baseline_score\": 0.620946, \"augmented_score\": 0.577677, \"baseline_std\": 0.001485, \"augmented_std\": 0.006932, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join impr...",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.930317, \"score\": 0.577677}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "sum"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"max\", \"n_agg_features\":...",
+          "output": "{\"jrn\": 0.934568, \"baseline_score\": 0.620946, \"augmented_score\": 0.580317, \"baseline_std\": 0.001485, \"augmented_std\": 0.004233, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join impr...",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.934568, \"score\": 0.580317}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "max"
+        }
+      ]
+    }
+  ]
+}

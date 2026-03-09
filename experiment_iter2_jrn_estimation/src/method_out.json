@@ -1,0 +1,387 @@
+{
+  "metadata": {
+    "title": "JRN Estimation & Multiplicative Compounding on rel-stack",
+    "summary": "Estimated JRN for 16 (join, task) pairs using MLP probe method (hidden=32, layers=2, epochs=10, seeds=3). Validated multiplicative compounding on 14 multi-hop chains (R\u00b2=0.8283). Join classifications: 13 high-value, 3 critical, 0 low-value.",
+    "experiment_config": {
+      "dataset": "rel-stack",
+      "hidden_dim": 32,
+      "n_layers": 2,
+      "epochs": 10,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "batch_size": 512,
+      "lr": 0.001,
+      "max_train_samples": 50000,
+      "max_val_samples": 10000,
+      "aggregation": "mean"
+    },
+    "phase1_summary": {
+      "jrn_matrix": {
+        "comments.UserId -> users.Id": {
+          "user-engagement": 1.559715533758994,
+          "user-badge": 1.3970752241147837
+        },
+        "badges.UserId -> users.Id": {
+          "user-engagement": 1.5263403165898162,
+          "user-badge": 1.5522037269853568
+        },
+        "postHistory.UserId -> users.Id": {
+          "user-engagement": 1.606679916795472,
+          "user-badge": 1.4808357651414934
+        },
+        "votes.UserId -> users.Id": {
+          "user-engagement": 1.1548844688401319,
+          "user-badge": 1.024286008541145
+        },
+        "posts.OwnerUserId -> users.Id": {
+          "user-engagement": 1.5715837937983221,
+          "user-badge": 1.4635480094733837
+        },
+        "comments.PostId -> posts.Id": {
+          "post-votes": 1.0146737172734865
+        },
+        "postLinks.PostId -> posts.Id": {
+          "post-votes": 1.0720461029321458
+        },
+        "postLinks.RelatedPostId -> posts.Id": {
+          "post-votes": 1.1768266656233832
+        },
+        "postHistory.PostId -> posts.Id": {
+          "post-votes": 1.022553281599242
+        },
+        "votes.PostId -> posts.Id": {
+          "post-votes": 1.275040235453607
+        },
+        "posts.ParentId -> posts.Id": {
+          "post-votes": 1.1215078066786173
+        }
+      },
+      "n_measurements": 16,
+      "n_high_value": 13,
+      "n_critical": 3,
+      "n_low_value": 0
+    },
+    "phase3_summary": {
+      "n_chains_tested": 14,
+      "r_squared": 0.828332168788979,
+      "mean_absolute_deviation": 0.012766373188826468,
+      "compounding_holds": true
+    },
+    "domain_validation": {
+      "votes_posts_for_postvotes": {
+        "expected": "JRN > 1 (votes directly predict popularity)",
+        "actual_jrn": 1.275040235453607,
+        "passed": 1.0,
+        "note": "corrected JRN (inverted for neg_MAE so >1 = improvement)"
+      },
+      "badges_users_for_userbadge": {
+        "expected": "JRN > 1 (badges predict future badges)",
+        "actual_jrn": 1.5522037269853568,
+        "passed": 1.0
+      },
+      "posts_users_for_engagement": {
+        "expected": "JRN > 1 (posting activity predicts engagement)",
+        "actual_jrn": 1.5715837937983221,
+        "passed": 1.0
+      },
+      "votes_stronger_than_postlinks": {
+        "expected": "votes JRN > postLinks JRN for post-votes",
+        "votes_jrn": 1.275040235453607,
+        "postlinks_jrn": 1.0720461029321458,
+        "passed": 1.0
+      }
+    },
+    "key_findings": [
+      "JRN range: [1.0147, 1.6067], spread=0.5920",
+      "Votes->Posts corrected JRN for post-votes = 1.2750 (confirms domain expectation)",
+      "Badges->Users JRN for user-badge = 1.5522 (confirms domain expectation)",
+      "Multiplicative compounding: R\u00b2=0.8283 across 14 chains"
+    ],
+    "hypothesis_support": {
+      "jrn_is_informative": true,
+      "compounding_holds": true,
+      "domain_expectations_met": true
+    },
+    "runtime_seconds": 443.5802438259125
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"relative_improvement\": 0.5597155337589941, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.026325491595155, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0033696757953382834, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"badges.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"badges\", \"question\": \"What is the JRN for join 'badges.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"relative_improvement\": 0.5263403165898161, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0402822864853776, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0032657671667489724, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"relative_improvement\": 0.6066799167954718, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0438406087765821, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.002779502797543129, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postHistory.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.1548844688401319, \"M_base\": 0.5677848659631978, \"M_join\": 0.6557259233433731, \"relative_improvement\": 0.15488446884013182, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0005587842298822, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.1548844688401319, \"M_base\": 0.5677848659631978, \"M_join\": 0.6557259233433731, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.00798305859780369, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "votes.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.OwnerUserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.OwnerUserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.5715837937983221, \"M_base\": 0.5677848659631978, \"M_join\": 0.8923214937117142, \"relative_improvement\": 0.5715837937983221, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0262085687289557, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.5715837937983221, \"M_base\": 0.5677848659631978, \"M_join\": 0.8923214937117142, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.011970312390169924, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "posts.OwnerUserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.3970752241147837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8254505933707188, \"relative_improvement\": 0.39707522411478363, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.026325491595155, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.3970752241147837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8254505933707188, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0004240844434138495, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"badges.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"badges\", \"question\": \"What is the JRN for join 'badges.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.5522037269853568, \"M_base\": 0.5908419096715009, \"M_join\": 0.9171070142512492, \"relative_improvement\": 0.5522037269853568, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0402822864853776, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.5522037269853568, \"M_base\": 0.5908419096715009, \"M_join\": 0.9171070142512492, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0033752660422254744, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.4808357651414934, \"M_base\": 0.5908419096715009, \"M_join\": 0.8749398313860581, \"relative_improvement\": 0.48083576514149345, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0438406087765821, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.4808357651414934, \"M_base\": 0.5908419096715009, \"M_join\": 0.8749398313860581, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.00040036655676607447, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postHistory.UserId -> users.Id",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.024286008541145, \"M_base\": 0.5908419096715009, \"M_join\": 0.6051911013362493, \"relative_improvement\": 0.02428600854114495, \"classification\": \"critical_threshold\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0005587842298822, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.024286008541145, \"M_base\": 0.5908419096715009, \"M_join\": 0.6051911013362493, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.000317268158837631, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "votes.UserId -> users.Id",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.OwnerUserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.OwnerUserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.4635480094733837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8647255008131779, \"relative_improvement\": 0.46354800947338376, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0262085687289557, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.4635480094733837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8647255008131779, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0008681889584644095, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "posts.OwnerUserId -> users.Id",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.0146737172734865, \"M_base\": -0.132974311709404, \"M_join\": -0.13105130195617676, \"relative_improvement\": 0.014461513118636717, \"classification\": \"critical_threshold\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0411339372565396, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.0146737172734865, \"M_base\": -0.132974311709404, \"M_join\": -0.13105130195617676, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.002090274735387019, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "comments.PostId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postLinks.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postLinks\", \"question\": \"What is the JRN for join 'postLinks.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.0720461029321458, \"M_base\": -0.132974311709404, \"M_join\": -0.12403786679108937, \"relative_improvement\": 0.06720429535175125, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0054493593520395, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.0720461029321458, \"M_base\": -0.132974311709404, \"M_join\": -0.12403786679108937, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.005115368489437064, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postLinks.PostId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postLinks.RelatedPostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postLinks\", \"question\": \"What is the JRN for join 'postLinks.RelatedPostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.1768266656233832, \"M_base\": -0.132974311709404, \"M_join\": -0.11299396554629008, \"relative_improvement\": 0.15025718807086624, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0051979876013584, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.1768266656233832, \"M_base\": -0.132974311709404, \"M_join\": -0.11299396554629008, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.0029897002634590073, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postLinks.RelatedPostId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.022553281599242, \"M_base\": -0.132974311709404, \"M_join\": -0.1300414502620697, \"relative_improvement\": 0.022055849807620223, \"classification\": \"critical_threshold\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.075427741183449, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.022553281599242, \"M_base\": -0.132974311709404, \"M_join\": -0.1300414502620697, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.004612824027354812, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postHistory.PostId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.275040235453607, \"M_base\": -0.132974311709404, \"M_join\": -0.10429028669993083, \"relative_improvement\": 0.2157110244883833, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0693795480521002, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.275040235453607, \"M_base\": -0.132974311709404, \"M_join\": -0.10429028669993083, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.0021159079402851004, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "votes.PostId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.ParentId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.ParentId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+          "output": "{\"JRN\": 1.1215078066786173, \"M_base\": -0.132974311709404, \"M_join\": -0.11856744190057118, \"relative_improvement\": 0.10834325535233397, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0154851255270487, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.1215078066786173, \"M_base\": -0.132974311709404, \"M_join\": -0.11856744190057118, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.003939878596423651, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "posts.ParentId -> posts.Id",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"comments.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | comments.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5415293664711094, \"M_chain\": 0.875257044720132, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.03005442732721275}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0684205676071759, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5415293664711094, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.03005442732721275, \"ratio\": 0.9808763443312336, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | comments.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"comments.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | comments.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4643104798075126, \"M_chain\": 0.8651760002414625, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0007624703341289063}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0684205676071759, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4643104798075126, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0007624703341289063, \"ratio\": 1.0005209739135263, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | comments.PostId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"votes.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | votes.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5534312324000572, \"M_chain\": 0.8820147440713116, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.018152561398264933}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0974064554345633, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5534312324000572, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.018152561398264933, \"ratio\": 0.9884495109520107, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | votes.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"votes.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | votes.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.47676737607626, \"M_chain\": 0.8725360566214689, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.01321936660287637}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0974064554345633, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.47676737607626, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.01321936660287637, \"ratio\": 1.0090324106331388, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | votes.PostId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postLinks.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postLinks.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5499360168228442, \"M_chain\": 0.8800302135632913, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.021647776975477928}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.031800747990102, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5499360168228442, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.021647776975477928, \"ratio\": 0.9862255025402381, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | postLinks.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postLinks.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postLinks.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4635971448547973, \"M_chain\": 0.8647545320557647, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 4.9135381413600854e-05}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.031800747990102, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4635971448547973, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 4.9135381413600854e-05, \"ratio\": 1.000033572784149, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | postLinks.PostId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postHistory.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postHistory.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5713236781209614, \"M_chain\": 0.892173803966709, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.00026011567736072827}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.103613163051281, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5713236781209614, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.00026011567736072827, \"ratio\": 0.9998344881905838, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | postHistory.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postHistory.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postHistory.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4652086622702643, \"M_chain\": 0.865706684082988, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0016606527968805462}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.103613163051281, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4652086622702643, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0016606527968805462, \"ratio\": 1.0011346759970505, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | postHistory.PostId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5591239279619682, \"M_chain\": 0.8852469704579006, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.012459865836353945}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0420995372326567, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5591239279619682, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.012459865836353945, \"ratio\": 0.9920717776007094, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4637998411255142, \"M_chain\": 0.8648742935074384, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0002518316521304964}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0420995372326567, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4637998411255142, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0002518316521304964, \"ratio\": 1.0001720692799283, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"comments.PostId -> posts\"], \"depth\": 3, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.5285633817231068, \"M_chain\": 0.8678951548079065, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.04302041207521534}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0849651942122538, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5285633817231068, \"individual_jrns\": [1.5715837937983221, 1.0, 1.0], \"deviation\": -0.04302041207521534, \"ratio\": 0.9726260780717009, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"comments.PostId -> posts\"], \"depth\": 3, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4577304418614576, \"M_chain\": 0.8612882380557044, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": -0.005817567611926089}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.0849651942122538, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4577304418614576, \"individual_jrns\": [1.4635480094733837, 1.0, 1.0], \"deviation\": -0.005817567611926089, \"ratio\": 0.9960250244103578, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"votes.PostId -> posts\"], \"depth\": 3, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.54987134325279, \"M_chain\": 0.8799934928889867, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.02171245054553217}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.1143999321511613, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.54987134325279, \"individual_jrns\": [1.5715837937983221, 1.0, 1.0], \"deviation\": -0.02171245054553217, \"ratio\": 0.9861843506969132, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"votes.PostId -> posts\"], \"depth\": 3, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+          "output": "{\"actual_chain_jrn\": 1.4732085999021804, \"M_chain\": 0.8704333825106824, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.009660590428796745}",
+          "predict_baseline": "{\"predicted_chain_jrn\": 1.1143999321511613, \"method\": \"fan_out_heuristic_product\"}",
+          "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4732085999021804, \"individual_jrns\": [1.4635480094733837, 1.0, 1.0], \"deviation\": 0.009660590428796745, \"ratio\": 1.006600801863871, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+          "metadata_phase": "phase3",
+          "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts",
+          "metadata_task": "user-badge"
+        }
+      ]
+    }
+  ]
+}

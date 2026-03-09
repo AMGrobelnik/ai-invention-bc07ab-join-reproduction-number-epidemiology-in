@@ -1,0 +1,455 @@
+{
+  "metadata": {
+    "dataset": "rel-avito",
+    "num_tables": 8,
+    "num_fk_joins": 11,
+    "num_tasks_tested": 3,
+    "tasks_excluded": [
+      "rel-avito/user-ad-visit (link_prediction - requires specialized approach)"
+    ],
+    "probe_config": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "full_config": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "num_leaves": 127,
+      "n_jobs": 4
+    },
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "max_train_rows": 200000,
+    "agg_types_tested": [
+      "mean",
+      "sum",
+      "max",
+      "std",
+      "all_combined"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"AdsInfo.LocationID->Location\", \"join_idx\": 0, \"direction\": \"forward\", \"fanout_mean\": 1765.0336009515313, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 0,
+          "metadata_join_key": "AdsInfo.LocationID->Location",
+          "metadata_direction": "forward"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"AdsInfo.CategoryID->Category\", \"join_idx\": 1, \"direction\": \"forward\", \"fanout_mean\": 114625.5, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 0.999371, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047954}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047954, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 1,
+          "metadata_join_key": "AdsInfo.CategoryID->Category",
+          "metadata_direction": "forward"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"join_idx\": 2, \"direction\": \"none\", \"fanout_mean\": 35.35468175592878, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 2,
+          "metadata_join_key": "SearchInfo.UserID->UserInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchInfo.LocationID->Location\", \"join_idx\": 3, \"direction\": \"none\", \"fanout_mean\": 1093.0440044004401, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 3,
+          "metadata_join_key": "SearchInfo.LocationID->Location",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchInfo.CategoryID->Category\", \"join_idx\": 4, \"direction\": \"none\", \"fanout_mean\": 50952.717948717946, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 4,
+          "metadata_join_key": "SearchInfo.CategoryID->Category",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchStream.SearchID->SearchInfo\", \"join_idx\": 5, \"direction\": \"none\", \"fanout_mean\": 3.6226693994098538, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 5,
+          "metadata_join_key": "SearchStream.SearchID->SearchInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchStream.AdID->AdsInfo\", \"join_idx\": 6, \"direction\": \"reverse\", \"fanout_mean\": 3.489904366459713, \"subsampled_fanout\": 0.01273289183222958}",
+          "output": "{\"jrn\": 1.337354, \"best_agg_type\": \"sum\", \"agg_sensitivity\": 0.022345, \"agg_scores\": {\"mean\": 0.037854, \"sum\": 0.035834, \"max\": 0.036505, \"std\": 0.037459, \"all_combined\": 0.035883}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.035834, \"best_agg_type\": \"sum\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 6,
+          "metadata_join_key": "SearchStream.AdID->AdsInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"VisitStream.UserID->UserInfo\", \"join_idx\": 7, \"direction\": \"none\", \"fanout_mean\": 89.71674918900462, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 7,
+          "metadata_join_key": "VisitStream.UserID->UserInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"VisitStream.AdID->AdsInfo\", \"join_idx\": 8, \"direction\": \"reverse\", \"fanout_mean\": 1.6664257162840894, \"subsampled_fanout\": 0.007964679911699779}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923, \"sum\": 0.047923, \"max\": 0.047923, \"std\": 0.047923, \"all_combined\": 0.047923}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 8,
+          "metadata_join_key": "VisitStream.AdID->AdsInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"join_idx\": 9, \"direction\": \"none\", \"fanout_mean\": 8.058765105115047, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 9,
+          "metadata_join_key": "PhoneRequestsStream.UserID->UserInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"join_idx\": 10, \"direction\": \"reverse\", \"fanout_mean\": 1.1793874668678779, \"subsampled_fanout\": 0.0005827814569536423}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923, \"sum\": 0.047923, \"max\": 0.047923, \"std\": 0.047923, \"all_combined\": 0.047923}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 10,
+          "metadata_join_key": "PhoneRequestsStream.AdID->AdsInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"AdsInfo.LocationID->Location\", \"join_idx\": 0, \"direction\": \"none\", \"fanout_mean\": 1765.0336009515313, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 0,
+          "metadata_join_key": "AdsInfo.LocationID->Location",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"AdsInfo.CategoryID->Category\", \"join_idx\": 1, \"direction\": \"none\", \"fanout_mean\": 114625.5, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 1,
+          "metadata_join_key": "AdsInfo.CategoryID->Category",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"join_idx\": 2, \"direction\": \"reverse\", \"fanout_mean\": 35.35468175592878, \"subsampled_fanout\": 0.202}",
+          "output": "{\"jrn\": 1.272233, \"best_agg_type\": \"sum\", \"agg_sensitivity\": 0.046593, \"agg_scores\": {\"mean\": 0.58797, \"sum\": 0.637456, \"max\": 0.63726, \"std\": 0.593412, \"all_combined\": 0.56692}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.637456, \"best_agg_type\": \"sum\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 2,
+          "metadata_join_key": "SearchInfo.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"SearchInfo.LocationID->Location\", \"join_idx\": 3, \"direction\": \"none\", \"fanout_mean\": 1093.0440044004401, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 3,
+          "metadata_join_key": "SearchInfo.LocationID->Location",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"SearchInfo.CategoryID->Category\", \"join_idx\": 4, \"direction\": \"none\", \"fanout_mean\": 50952.717948717946, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 4,
+          "metadata_join_key": "SearchInfo.CategoryID->Category",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"SearchStream.SearchID->SearchInfo\", \"join_idx\": 5, \"direction\": \"none\", \"fanout_mean\": 3.6226693994098538, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 5,
+          "metadata_join_key": "SearchStream.SearchID->SearchInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"SearchStream.AdID->AdsInfo\", \"join_idx\": 6, \"direction\": \"none\", \"fanout_mean\": 3.489904366459713, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 6,
+          "metadata_join_key": "SearchStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"VisitStream.UserID->UserInfo\", \"join_idx\": 7, \"direction\": \"reverse\", \"fanout_mean\": 89.71674918900462, \"subsampled_fanout\": 0.614}",
+          "output": "{\"jrn\": 1.221315, \"best_agg_type\": \"max\", \"agg_sensitivity\": 0.014566, \"agg_scores\": {\"mean\": 0.605776, \"sum\": 0.607072, \"max\": 0.611944, \"std\": 0.587377, \"all_combined\": 0.596358}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.611944, \"best_agg_type\": \"max\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 7,
+          "metadata_join_key": "VisitStream.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"VisitStream.AdID->AdsInfo\", \"join_idx\": 8, \"direction\": \"none\", \"fanout_mean\": 1.6664257162840894, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 8,
+          "metadata_join_key": "VisitStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"join_idx\": 9, \"direction\": \"reverse\", \"fanout_mean\": 8.058765105115047, \"subsampled_fanout\": 0.028}",
+          "output": "{\"jrn\": 1.02039, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.005451, \"agg_scores\": {\"mean\": 0.51127, \"sum\": 0.507895, \"max\": 0.507131, \"std\": 0.503249, \"all_combined\": 0.510081}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.51127, \"best_agg_type\": \"mean\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 9,
+          "metadata_join_key": "PhoneRequestsStream.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-clicks\", \"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"join_idx\": 10, \"direction\": \"none\", \"fanout_mean\": 1.1793874668678779, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.501053, \"std\": 2.3e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.501053, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-clicks",
+          "metadata_join_idx": 10,
+          "metadata_join_key": "PhoneRequestsStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"AdsInfo.LocationID->Location\", \"join_idx\": 0, \"direction\": \"none\", \"fanout_mean\": 1765.0336009515313, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 0,
+          "metadata_join_key": "AdsInfo.LocationID->Location",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"AdsInfo.CategoryID->Category\", \"join_idx\": 1, \"direction\": \"none\", \"fanout_mean\": 114625.5, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 1,
+          "metadata_join_key": "AdsInfo.CategoryID->Category",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"join_idx\": 2, \"direction\": \"reverse\", \"fanout_mean\": 35.35468175592878, \"subsampled_fanout\": 0.202}",
+          "output": "{\"jrn\": 1.154005, \"best_agg_type\": \"max\", \"agg_sensitivity\": 0.024601, \"agg_scores\": {\"mean\": 0.5756, \"sum\": 0.577466, \"max\": 0.577672, \"std\": 0.541935, \"all_combined\": 0.57703}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.577672, \"best_agg_type\": \"max\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 2,
+          "metadata_join_key": "SearchInfo.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"SearchInfo.LocationID->Location\", \"join_idx\": 3, \"direction\": \"none\", \"fanout_mean\": 1093.0440044004401, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 3,
+          "metadata_join_key": "SearchInfo.LocationID->Location",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"SearchInfo.CategoryID->Category\", \"join_idx\": 4, \"direction\": \"none\", \"fanout_mean\": 50952.717948717946, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 4,
+          "metadata_join_key": "SearchInfo.CategoryID->Category",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"SearchStream.SearchID->SearchInfo\", \"join_idx\": 5, \"direction\": \"none\", \"fanout_mean\": 3.6226693994098538, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 5,
+          "metadata_join_key": "SearchStream.SearchID->SearchInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"SearchStream.AdID->AdsInfo\", \"join_idx\": 6, \"direction\": \"none\", \"fanout_mean\": 3.489904366459713, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 6,
+          "metadata_join_key": "SearchStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"VisitStream.UserID->UserInfo\", \"join_idx\": 7, \"direction\": \"reverse\", \"fanout_mean\": 89.71674918900462, \"subsampled_fanout\": 0.614}",
+          "output": "{\"jrn\": 1.360667, \"best_agg_type\": \"all_combined\", \"agg_sensitivity\": 0.033367, \"agg_scores\": {\"mean\": 0.670622, \"sum\": 0.67863, \"max\": 0.672007, \"std\": 0.621028, \"all_combined\": 0.681123}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.681123, \"best_agg_type\": \"all_combined\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 7,
+          "metadata_join_key": "VisitStream.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"VisitStream.AdID->AdsInfo\", \"join_idx\": 8, \"direction\": \"none\", \"fanout_mean\": 1.6664257162840894, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 8,
+          "metadata_join_key": "VisitStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"join_idx\": 9, \"direction\": \"reverse\", \"fanout_mean\": 8.058765105115047, \"subsampled_fanout\": 0.028}",
+          "output": "{\"jrn\": 1.034646, \"best_agg_type\": \"max\", \"agg_sensitivity\": 0.010859, \"agg_scores\": {\"mean\": 0.51763, \"sum\": 0.517606, \"max\": 0.517923, \"std\": 0.503692, \"all_combined\": 0.517499}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.517923, \"best_agg_type\": \"max\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 9,
+          "metadata_join_key": "PhoneRequestsStream.UserID->UserInfo",
+          "metadata_direction": "reverse"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/user-visits\", \"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"join_idx\": 10, \"direction\": \"none\", \"fanout_mean\": 1.1793874668678779, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.50058, \"std\": 7.5e-05, \"metric\": \"AUROC\"}",
+          "predict_our_method": "{\"score\": 0.50058, \"best_agg_type\": \"none\", \"metric\": \"AUROC\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_join_idx": 10,
+          "metadata_join_key": "PhoneRequestsStream.AdID->AdsInfo",
+          "metadata_direction": "none"
+        },
+        {
+          "input": "{\"analysis\": \"training_free_proxy_correlations\", \"proxies\": [\"fanout\", \"pearson_r\", \"mutual_info\", \"cond_entropy_reduction\"], \"n_connected_joins\": 11}",
+          "output": "{\"fanout_vs_jrn\": {\"rho\": -0.009237899924561553, \"pval\": 0.9784943752852245}, \"pearson_vs_jrn\": {\"rho\": 0.9259259259259258, \"pval\": 4.3072723499719164e-05}, \"mutual_info_vs_jrn\": {\"rho\": 0.754040920726602, \"pval\": 0.007343804318153985}, \"cond_entropy_vs_jrn\": {\"rho\": 0.8425925925925924, \"pval\": 0.00113022046124412}}",
+          "predict_baseline": "{\"note\": \"no proxy baseline\"}",
+          "predict_our_method": "{\"fanout_vs_jrn\": {\"rho\": -0.009237899924561553, \"pval\": 0.9784943752852245}, \"pearson_vs_jrn\": {\"rho\": 0.9259259259259258, \"pval\": 4.3072723499719164e-05}, \"mutual_info_vs_jrn\": {\"rho\": 0.754040920726602, \"pval\": 0.007343804318153985}, \"cond_entropy_vs_jrn\": {\"rho\": 0.8425925925925924, \"pval\": 0.00113022046124412}}",
+          "metadata_measurement_type": "proxy_correlations"
+        },
+        {
+          "input": "{\"analysis\": \"probe_to_full_validation\", \"probe_config\": {\"n_estimators\": 200, \"max_depth\": 6, \"learning_rate\": 0.05, \"subsample\": 0.8, \"colsample_bytree\": 0.8, \"verbose\": -1, \"n_jobs\": 4}, \"full_config\": {\"n_estimators\": 500, \"max_depth\": 8, \"learning_rate\": 0.05, \"subsample\": 0.8, \"colsample_bytree\": 0.8, \"verbose\": -1, \"num_leaves\": 127, \"n_jobs\": 4}, \"n_pairs\": 8}",
+          "output": "{\"spearman_rho\": 0.825, \"spearman_pval\": 0.0117, \"probe_jrns\": [0.9994, 1.0, 1.0, 1.0, 1.2213, 1.2722, 1.3374, 1.3607], \"full_jrns\": [1.0005, 1.0, 1.0, 1.0, 1.1408, 1.0282, 1.3054, 1.3509]}",
+          "predict_baseline": "{\"probe_config\": {\"n_estimators\": 200, \"max_depth\": 6, \"learning_rate\": 0.05, \"subsample\": 0.8, \"colsample_bytree\": 0.8, \"verbose\": -1, \"n_jobs\": 4}}",
+          "predict_our_method": "{\"full_config\": {\"n_estimators\": 500, \"max_depth\": 8, \"learning_rate\": 0.05, \"subsample\": 0.8, \"colsample_bytree\": 0.8, \"verbose\": -1, \"num_leaves\": 127, \"n_jobs\": 4}}",
+          "metadata_measurement_type": "probe_to_full"
+        },
+        {
+          "input": "{\"analysis\": \"jrn_matrix_summary\", \"joins\": [\"AdsInfo.LocationID->Location\", \"AdsInfo.CategoryID->Category\", \"SearchInfo.UserID->UserInfo\", \"SearchInfo.LocationID->Location\", \"SearchInfo.CategoryID->Category\", \"SearchStream.SearchID->SearchInfo\", \"SearchStream.AdID->AdsInfo\", \"VisitStream.UserID->UserInfo\", \"VisitStream.AdID->AdsInfo\", \"PhoneRequestsStream.UserID->UserInfo\", \"PhoneRequestsStream.AdID->AdsInfo\"], \"tasks\": [\"rel-avito/ad-ctr\", \"rel-avito/user-clicks\", \"rel-avito/user-visits\"]}",
+          "output": "{\"jrn_matrix\": [[1.0, 1.0, 1.0], [0.9994, 1.0, 1.0], [1.0, 1.2722, 1.154], [1.0, 1.0, 1.0], [1.0, 1.0, 1.0], [1.0, 1.0, 1.0], [1.3374, 1.0, 1.0], [1.0, 1.2213, 1.3607], [1.0, 1.0, 1.0], [1.0, 1.0204, 1.0346], [1.0, 1.0, 1.0]], \"joins\": [\"AdsInfo.LocationID->Location\", \"AdsInfo.CategoryID->Category\", \"SearchInfo.UserID->UserInfo\", \"SearchInfo.LocationID->Location\", \"SearchInfo.CategoryID->Category\", \"SearchStream.SearchID->SearchInfo\", \"SearchStream.AdID->AdsInfo\", \"VisitStream.UserID->UserInfo\", \"VisitStream.AdID->AdsInfo\", \"PhoneRequestsStream.UserID->UserInfo\", \"PhoneRequestsStream.AdID->AdsInfo\"], \"tasks\": [\"rel-avito/ad-ctr\", \"rel-avito/user-clicks\", \"rel-avito/user-visits\"], \"connected_joins_per_task\": {\"rel-avito/ad-ctr\": 5, \"rel-avito/user-clicks\": 3, \"rel-avito/user-visits\": 3}}",
+          "predict_baseline": "{\"note\": \"all JRN=1.0 (no joins)\"}",
+          "predict_our_method": "{\"note\": \"JRN matrix with probe model\"}",
+          "metadata_measurement_type": "jrn_matrix"
+        },
+        {
+          "input": "{\"analysis\": \"extreme_cardinality_analysis\"}",
+          "output": "{\"joins_by_fanout\": [{\"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"fanout_mean\": 1.1793874668678779, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"VisitStream.AdID->AdsInfo\", \"fanout_mean\": 1.6664257162840894, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"SearchStream.AdID->AdsInfo\", \"fanout_mean\": 3.489904366459713, \"jrn\": 1.3374, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"fanout_mean\": 8.058765105115047, \"jrn\": 1.0204, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"fanout_mean\": 8.058765105115047, \"jrn\": 1.0346, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"SearchInfo.UserID->UserInfo\", \"fanout_mean\": 35.35468175592878, \"jrn\": 1.2722, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"SearchInfo.UserID->UserInfo\", \"fanout_mean\": 35.35468175592878, \"jrn\": 1.154, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"VisitStream.UserID->UserInfo\", \"fanout_mean\": 89.71674918900462, \"jrn\": 1.2213, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"VisitStream.UserID->UserInfo\", \"fanout_mean\": 89.71674918900462, \"jrn\": 1.3607, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"AdsInfo.LocationID->Location\", \"fanout_mean\": 1765.0336009515313, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"AdsInfo.CategoryID->Category\", \"fanout_mean\": 114625.5, \"jrn\": 0.9994, \"task\": \"rel-avito/ad-ctr\"}], \"jrn_vs_fanout_spearman\": -0.0092}",
+          "predict_baseline": "{\"note\": \"no cardinality baseline\"}",
+          "predict_our_method": "{\"joins_by_fanout\": [{\"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"fanout_mean\": 1.1793874668678779, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"VisitStream.AdID->AdsInfo\", \"fanout_mean\": 1.6664257162840894, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"SearchStream.AdID->AdsInfo\", \"fanout_mean\": 3.489904366459713, \"jrn\": 1.3374, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"fanout_mean\": 8.058765105115047, \"jrn\": 1.0204, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"fanout_mean\": 8.058765105115047, \"jrn\": 1.0346, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"SearchInfo.UserID->UserInfo\", \"fanout_mean\": 35.35468175592878, \"jrn\": 1.2722, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"SearchInfo.UserID->UserInfo\", \"fanout_mean\": 35.35468175592878, \"jrn\": 1.154, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"VisitStream.UserID->UserInfo\", \"fanout_mean\": 89.71674918900462, \"jrn\": 1.2213, \"task\": \"rel-avito/user-clicks\"}, {\"join_key\": \"VisitStream.UserID->UserInfo\", \"fanout_mean\": 89.71674918900462, \"jrn\": 1.3607, \"task\": \"rel-avito/user-visits\"}, {\"join_key\": \"AdsInfo.LocationID->Location\", \"fanout_mean\": 1765.0336009515313, \"jrn\": 1.0, \"task\": \"rel-avito/ad-ctr\"}, {\"join_key\": \"AdsInfo.CategoryID->Category\", \"fanout_mean\": 114625.5, \"jrn\": 0.9994, \"task\": \"rel-avito/ad-ctr\"}], \"jrn_vs_fanout_spearman\": -0.0092}",
+          "metadata_measurement_type": "extreme_cardinality"
+        },
+        {
+          "input": "{\"analysis\": \"aggregation_sensitivity\"}",
+          "output": "{\"data\": [{\"task\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchStream.AdID->AdsInfo\", \"jrn\": 1.3374, \"agg_sensitivity\": 0.022345, \"agg_scores\": {\"mean\": 0.037854, \"sum\": 0.035834, \"max\": 0.036505, \"std\": 0.037459, \"all_combined\": 0.035883}}, {\"task\": \"rel-avito/ad-ctr\", \"join_key\": \"VisitStream.AdID->AdsInfo\", \"jrn\": 1.0, \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923, \"sum\": 0.047923, \"max\": 0.047923, \"std\": 0.047923, \"all_combined\": 0.047923}}, {\"task\": \"rel-avito/ad-ctr\", \"join_key\": \"PhoneRequestsStream.AdID->AdsInfo\", \"jrn\": 1.0, \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923, \"sum\": 0.047923, \"max\": 0.047923, \"std\": 0.047923, \"all_combined\": 0.047923}}, {\"task\": \"rel-avito/user-clicks\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"jrn\": 1.2722, \"agg_sensitivity\": 0.046593, \"agg_scores\": {\"mean\": 0.58797, \"sum\": 0.637456, \"max\": 0.63726, \"std\": 0.593412, \"all_combined\": 0.56692}}, {\"task\": \"rel-avito/user-clicks\", \"join_key\": \"VisitStream.UserID->UserInfo\", \"jrn\": 1.2213, \"agg_sensitivity\": 0.014566, \"agg_scores\": {\"mean\": 0.605776, \"sum\": 0.607072, \"max\": 0.611944, \"std\": 0.587377, \"all_combined\": 0.596358}}, {\"task\": \"rel-avito/user-clicks\", \"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"jrn\": 1.0204, \"agg_sensitivity\": 0.005451, \"agg_scores\": {\"mean\": 0.51127, \"sum\": 0.507895, \"max\": 0.507131, \"std\": 0.503249, \"all_combined\": 0.510081}}, {\"task\": \"rel-avito/user-visits\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"jrn\": 1.154, \"agg_sensitivity\": 0.024601, \"agg_scores\": {\"mean\": 0.5756, \"sum\": 0.577466, \"max\": 0.577672, \"std\": 0.541935, \"all_combined\": 0.57703}}, {\"task\": \"rel-avito/user-visits\", \"join_key\": \"VisitStream.UserID->UserInfo\", \"jrn\": 1.3607, \"agg_sensitivity\": 0.033367, \"agg_scores\": {\"mean\": 0.670622, \"sum\": 0.67863, \"max\": 0.672007, \"std\": 0.621028, \"all_combined\": 0.681123}}, {\"task\": \"rel-avito/user-visits\", \"join_key\": \"PhoneRequestsStream.UserID->UserInfo\", \"jrn\": 1.0346, \"agg_sensitivity\": 0.010859, \"agg_scores\": {\"mean\": 0.51763, \"sum\": 0.517606, \"max\": 0.517923, \"std\": 0.503692, \"all_combined\": 0.517499}}], \"summary\": \"Aggregation sensitivity across joins and tasks\"}",
+          "predict_baseline": "{\"note\": \"single aggregation baseline\"}",
+          "predict_our_method": "{\"note\": \"multi-aggregation JRN analysis\"}",
+          "metadata_measurement_type": "aggregation_sensitivity"
+        },
+        {
+          "input": "{\"analysis\": \"cross_dataset_comparison\", \"note\": \"Compare with rel-f1 rho=0.960 from prior experiments\"}",
+          "output": "{\"rel_avito_proxy_rho\": {\"fanout_vs_jrn\": {\"rho\": -0.009237899924561553, \"pval\": 0.9784943752852245}, \"pearson_vs_jrn\": {\"rho\": 0.9259259259259258, \"pval\": 4.3072723499719164e-05}, \"mutual_info_vs_jrn\": {\"rho\": 0.754040920726602, \"pval\": 0.007343804318153985}, \"cond_entropy_vs_jrn\": {\"rho\": 0.8425925925925924, \"pval\": 0.00113022046124412}}, \"rel_avito_probe_to_full_rho\": 0.825, \"note\": \"Cross-dataset validation: rel-f1 showed proxy-JRN rho=0.960. rel-avito results here provide independent validation at extreme cardinality scales.\"}",
+          "predict_baseline": "{\"note\": \"single-dataset analysis\"}",
+          "predict_our_method": "{\"note\": \"cross-dataset JRN validation\"}",
+          "metadata_measurement_type": "cross_dataset"
+        }
+      ]
+    }
+  ]
+}

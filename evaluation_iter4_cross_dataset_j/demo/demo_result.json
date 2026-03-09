@@ -1,0 +1,13 @@
+{
+  "id": "eval_id5_it4__opus",
+  "type": "code",
+  "title": "Cross-Dataset JRN Consolidation: Probe Validity, Join-Selector Diagnostic, and Paper-Ready Tables",
+  "summary": "Demo notebook consolidating JRN evaluation across 4 RelBench datasets. Demonstrates Fisher z meta-analytic probe validity (weighted rho=0.876), JRN as binary join selector (ROC-AUC with bootstrap CI), aggregation sensitivity reanalysis, JRN distribution analysis with KDE modes, multiplicative compounding (R\u00b2=0.828), and hypothesis scorecard. Includes 4-panel visualization: forest plot, distribution histogram, compounding scatter, and scorecard heatmap. Uses 118 curated examples from the full evaluation output.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_4/gen_art/eval_id5_it4__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id5_it4__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id5_it4__opus/eval_code_demo.ipynb"
+}

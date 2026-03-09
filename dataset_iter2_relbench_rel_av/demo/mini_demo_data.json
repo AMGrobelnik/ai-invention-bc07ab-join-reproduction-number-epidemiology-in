@@ -1,0 +1,861 @@
+[
+  {
+    "type": "dataset_metadata",
+    "metadata_fold": "full",
+    "dataset_name": "rel-avito",
+    "source": "RelBench (Stanford, NeurIPS 2024)",
+    "license": "CC-BY-4.0",
+    "paper": "arXiv:2407.20060",
+    "url": "https://relbench.stanford.edu/databases/avito/",
+    "val_timestamp": "2015-05-08T00:00:00",
+    "test_timestamp": "2015-05-14T00:00:00",
+    "num_tables": 8,
+    "table_names": [
+      "AdsInfo",
+      "SearchInfo",
+      "UserInfo",
+      "Location",
+      "SearchStream",
+      "VisitStream",
+      "PhoneRequestsStream",
+      "Category"
+    ],
+    "table_summary": {
+      "AdsInfo": {
+        "num_rows": 5960558,
+        "num_cols": 6,
+        "pkey": "AdID",
+        "time_col": null,
+        "fkeys": {
+          "LocationID": "Location",
+          "CategoryID": "Category"
+        }
+      },
+      "SearchInfo": {
+        "num_rows": 1987156,
+        "num_cols": 8,
+        "pkey": "SearchID",
+        "time_col": "SearchDate",
+        "fkeys": {
+          "UserID": "UserInfo",
+          "LocationID": "Location",
+          "CategoryID": "Category"
+        }
+      },
+      "UserInfo": {
+        "num_rows": 98250,
+        "num_cols": 5,
+        "pkey": "UserID",
+        "time_col": null,
+        "fkeys": {}
+      },
+      "Location": {
+        "num_rows": 3512,
+        "num_cols": 4,
+        "pkey": "LocationID",
+        "time_col": null,
+        "fkeys": {}
+      },
+      "SearchStream": {
+        "num_rows": 7107277,
+        "num_cols": 7,
+        "pkey": null,
+        "time_col": "SearchDate",
+        "fkeys": {
+          "SearchID": "SearchInfo",
+          "AdID": "AdsInfo"
+        }
+      },
+      "VisitStream": {
+        "num_rows": 5277861,
+        "num_cols": 4,
+        "pkey": null,
+        "time_col": "ViewDate",
+        "fkeys": {
+          "UserID": "UserInfo",
+          "AdID": "AdsInfo"
+        }
+      },
+      "PhoneRequestsStream": {
+        "num_rows": 244435,
+        "num_cols": 4,
+        "pkey": null,
+        "time_col": "PhoneRequestDate",
+        "fkeys": {
+          "UserID": "UserInfo",
+          "AdID": "AdsInfo"
+        }
+      },
+      "Category": {
+        "num_rows": 68,
+        "num_cols": 4,
+        "pkey": "CategoryID",
+        "time_col": null,
+        "fkeys": {}
+      }
+    },
+    "num_fk_relationships": 11,
+    "task_names": [
+      "ad-ctr",
+      "user-clicks",
+      "user-visits",
+      "user-ad-visit"
+    ],
+    "total_rows_across_tables": 20679117
+  },
+  {
+    "type": "table_data",
+    "table_name": "AdsInfo",
+    "metadata_fold": "full",
+    "primary_key_col": "AdID",
+    "time_col": null,
+    "foreign_keys": {
+      "LocationID": "Location",
+      "CategoryID": "Category"
+    },
+    "num_rows": 5960558,
+    "num_cols": 6,
+    "columns": [
+      "AdID",
+      "LocationID",
+      "CategoryID",
+      "Price",
+      "Title",
+      "IsContext"
+    ],
+    "column_dtypes": {
+      "AdID": "Int64",
+      "LocationID": "Int64",
+      "CategoryID": "Int64",
+      "Price": "float64",
+      "Title": "object",
+      "IsContext": "float64"
+    },
+    "missing_rates": {
+      "AdID": 0.0,
+      "LocationID": 0.004152295808546784,
+      "CategoryID": 5.3686248837776596e-06,
+      "Price": 1.0569480239937268e-05,
+      "Title": 0.0,
+      "IsContext": 0.0
+    },
+    "column_stats": {
+      "AdID": {
+        "dtype": "Int64",
+        "missing_rate": 0.0,
+        "num_unique": 5960558,
+        "type": "numeric",
+        "mean": 2980278.5,
+        "std": 1720665.02724775,
+        "min": 0.0,
+        "25pct": 1490139.25,
+        "50pct": 2980278.5,
+        "75pct": 4470417.75,
+        "max": 5960557.0
+      },
+      "LocationID": {
+        "dtype": "Int64",
+        "missing_rate": 0.004152295808546784,
+        "num_unique": 3363,
+        "type": "numeric",
+        "mean": 346.7322526267696,
+        "std": 276.21109910061114,
+        "min": 1.0,
+        "25pct": 175.0,
+        "50pct": 334.0,
+        "75pct": 495.0,
+        "max": 3443.0
+      },
+      "CategoryID": {
+        "dtype": "Int64",
+        "missing_rate": 5.3686248837776596e-06,
+        "num_unique": 52,
+        "type": "numeric",
+        "mean": 38.373036037423546,
+        "std": 15.160186219017186,
+        "min": 2.0,
+        "25pct": 29.0,
+        "50pct": 41.0,
+        "75pct": 47.0,
+        "max": 67.0
+      },
+      "Price": {
+        "dtype": "float64",
+        "missing_rate": 1.0569480239937268e-05,
+        "num_unique": 65562,
+        "type": "numeric",
+        "mean": 5451130.026839298,
+        "std": 1433889525.377698,
+        "min": 0.0,
+        "25pct": 700.0,
+        "50pct": 4400.0,
+        "75pct": 40000.0,
+        "max": 999999999999.0
+      },
+      "Title": {
+        "dtype": "object",
+        "missing_rate": 0.0,
+        "num_unique": 3246389,
+        "type": "categorical",
+        "value_counts_top10": {
+          "\u041f\u043b\u0430\u0442\u044c\u0435": 10782,
+          "\u0422\u0443\u0444\u043b\u0438": 8416,
+          "\u0423\u0447\u0430\u0441\u0442\u043e\u043a 10 \u0441\u043e\u0442. (\u0418\u0416\u0421)": 6337,
+          "\u0421\u0432\u0430\u0434\u0435\u0431\u043d\u043e\u0435 \u043f\u043b\u0430\u0442\u044c\u0435": 5674,
+          "\u041f\u0440\u043e\u0434\u0430\u043c": 5424,
+          "\u0414\u0438\u0432\u0430\u043d": 5329,
+          "\u0412\u0435\u043b\u043e\u0441\u0438\u043f\u0435\u0434": 5261,
+          "\u041a\u043e\u043b\u044f\u0441\u043a\u0430": 4990,
+          "\u0411\u043e\u0441\u043e\u043d\u043e\u0436\u043a\u0438": 4680,
+          "\u0423\u0447\u0430\u0441\u0442\u043e\u043a 15 \u0441\u043e\u0442. (\u0418\u0416\u0421)": 4623
+        }
+      },
+      "IsContext": {
+        "dtype": "float64",
+        "missing_rate": 0.0,
+        "num_unique": 2,
+        "type": "numeric",
+        "mean": 0.004150953652325839,
+        "std": 0.06429404272259595,
+        "min": 0.0,
+        "25pct": 0.0,
+        "50pct": 0.0,
+        "75pct": 0.0,
+        "max": 1.0
+      }
+    },
+    "subsampled": true,
+    "subsample_size": 56625,
+    "full_size": 5960558,
+    "data": [
+      {
+        "AdID": 326665,
+        "LocationID": 497,
+        "CategoryID": 26,
+        "Price": 25000.0,
+        "Title": "\u0423\u0441\u0438\u043b\u0438\u0442\u0435\u043b\u044c Cambridge Audio Asur 351A (\u0441\u0435\u0440\u0435\u0431\u0440\u043e)",
+        "IsContext": 0.0
+      },
+      {
+        "AdID": 4950471,
+        "LocationID": 411,
+        "CategoryID": 42,
+        "Price": 4085000.0,
+        "Title": "\u0414\u043e\u043c 124 \u043c\u00b2 \u043d\u0430 \u0443\u0447\u0430\u0441\u0442\u043a\u0435 8 \u0441\u043e\u0442.",
+        "IsContext": 0.0
+      },
+      {
+        "AdID": 1176115,
+        "LocationID": 191,
+        "CategoryID": 50,
+        "Price": 0.0,
+        "Title": "\u0427\u0435\u0440\u043d\u043e\u0437\u0435\u043c \u043d\u0435 \u0434\u043e\u0440\u043e\u0433\u043e",
+        "IsContext": 0.0
+      }
+    ]
+  },
+  {
+    "type": "table_data",
+    "table_name": "SearchInfo",
+    "metadata_fold": "full",
+    "primary_key_col": "SearchID",
+    "time_col": "SearchDate",
+    "foreign_keys": {
+      "UserID": "UserInfo",
+      "LocationID": "Location",
+      "CategoryID": "Category"
+    },
+    "num_rows": 1987156,
+    "num_cols": 8,
+    "columns": [
+      "UserID",
+      "SearchID",
+      "SearchDate",
+      "IPID",
+      "IsUserLoggedOn",
+      "SearchQuery",
+      "LocationID",
+      "CategoryID"
+    ],
+    "column_dtypes": {
+      "UserID": "Int64",
+      "SearchID": "Int64",
+      "SearchDate": "datetime64[ns]",
+      "IPID": "float64",
+      "IsUserLoggedOn": "float64",
+      "SearchQuery": "object",
+      "LocationID": "Int64",
+      "CategoryID": "Int64"
+    },
+    "missing_rates": {
+      "UserID": 0.012708614723755961,
+      "SearchID": 0.0,
+      "SearchDate": 0.0,
+      "IPID": 0.0,
+      "IsUserLoggedOn": 0.0,
+      "SearchQuery": 0.8465762124362657,
+      "LocationID": 1.0064635086525669e-06,
+      "CategoryID": 0.0
+    },
+    "column_stats": {
+      "UserID": {
+        "dtype": "Int64",
+        "missing_rate": 0.012708614723755961,
+        "num_unique": 55492,
+        "type": "numeric",
+        "mean": 48485.966986628286,
+        "std": 28511.730660030746,
+        "min": 2.0,
+        "25pct": 23774.0,
+        "50pct": 48233.0,
+        "75pct": 73198.0,
+        "max": 98240.0
+      },
+      "SearchID": {
+        "dtype": "Int64",
+        "missing_rate": 0.0,
+        "num_unique": 1987156,
+        "type": "numeric",
+        "mean": 993577.5,
+        "std": 573642.6700984391,
+        "min": 0.0,
+        "25pct": 496788.75,
+        "50pct": 993577.5,
+        "75pct": 1490366.25,
+        "max": 1987155.0
+      },
+      "SearchDate": {
+        "dtype": "datetime64[ns]",
+        "missing_rate": 0.0,
+        "num_unique": 1023336,
+        "type": "datetime",
+        "min": "2015-04-25T00:00:01",
+        "max": "2015-05-13T23:59:59"
+      },
+      "IPID": {
+        "dtype": "float64",
+        "missing_rate": 0.0,
+        "num_unique": 72399,
+        "type": "numeric",
+        "mean": 1140375.2114821384,
+        "std": 658524.2853250542,
+        "min": 44.0,
+        "25pct": 568118.0,
+        "50pct": 1151502.0,
+        "75pct": 1710757.0,
+        "max": 2266681.0
+      },
+      "IsUserLoggedOn": {
+        "dtype": "float64",
+        "missing_rate": 0.0,
+        "num_unique": 2,
+        "type": "numeric",
+        "mean": 0.3381672098214735,
+        "std": 0.4730858914102841,
+        "min": 0.0,
+        "25pct": 0.0,
+        "50pct": 0.0,
+        "75pct": 1.0,
+        "max": 1.0
+      },
+      "SearchQuery": {
+        "dtype": "object",
+        "missing_rate": 0.8465762124362657,
+        "num_unique": 13209,
+        "type": "categorical",
+        "value_counts_top10": {
+          "\u0432\u0435\u043b\u043e\u0441\u0438\u043f\u0435\u0434": 9293,
+          "\u043a\u043e\u043b\u044f\u0441\u043a\u0430": 4910,
+          "\u0434\u0438\u0432\u0430\u043d": 4597,
+          "\u043f\u043b\u0430\u0442\u044c\u0435": 4383,
+          "\u0434\u0435\u0442\u0441\u043a\u0438\u0435 \u043a\u043e\u043b\u044f\u0441\u043a\u0438": 3656,
+          "\u0441\u0443\u043c\u043a\u0430": 3033,
+          "\u0445\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a": 2667,
+          "\u0442\u0443\u0444\u043b\u0438": 2545,
+          "\u0448\u043a\u0430\u0444": 2506,
+          "\u043e\u0442\u0434\u0430\u043c": 2477
+        }
+      },
+      "LocationID": {
+        "dtype": "Int64",
+        "missing_rate": 1.0064635086525669e-06,
+        "num_unique": 1818,
+        "type": "numeric",
+        "mean": 304.77669269719405,
+        "std": 197.29062003169443,
+        "min": 0.0,
+        "25pct": 165.0,
+        "50pct": 330.0,
+        "75pct": 428.0,
+        "max": 3347.0
+      },
+      "CategoryID": {
+        "dtype": "Int64",
+        "missing_rate": 0.0,
+        "num_unique": 39,
+        "type": "numeric",
+        "mean": 29.524815867501093,
+        "std": 17.52703305292772,
+        "min": 0.0,
+        "25pct": 15.0,
+        "50pct": 34.0,
+        "75pct": 41.0,
+        "max": 67.0
+      }
+    },
+    "subsampled": true,
+    "subsample_size": 18878,
+    "full_size": 1987156,
+    "data": [
+      {
+        "UserID": 366,
+        "SearchID": 1355173,
+        "SearchDate": "2015-05-08T16:21:02",
+        "IPID": 1290814.0,
+        "IsUserLoggedOn": 0.0,
+        "SearchQuery": null,
+        "LocationID": 497,
+        "CategoryID": 22
+      },
+      {
+        "UserID": 2472,
+        "SearchID": 1145262,
+        "SearchDate": "2015-05-06T20:36:51",
+        "IPID": 2179018.0,
+        "IsUserLoggedOn": 0.0,
+        "SearchQuery": null,
+        "LocationID": 136,
+        "CategoryID": 60
+      },
+      {
+        "UserID": 16533,
+        "SearchID": 438839,
+        "SearchDate": "2015-04-29T19:54:51",
+        "IPID": 684666.0,
+        "IsUserLoggedOn": 0.0,
+        "SearchQuery": null,
+        "LocationID": 459,
+        "CategoryID": 27
+      }
+    ]
+  },
+  {
+    "type": "table_data",
+    "table_name": "Category",
+    "metadata_fold": "full",
+    "primary_key_col": "CategoryID",
+    "time_col": null,
+    "foreign_keys": {},
+    "num_rows": 68,
+    "num_cols": 4,
+    "columns": [
+      "CategoryID",
+      "Level",
+      "ParentCategoryID",
+      "SubcategoryID"
+    ],
+    "column_dtypes": {
+      "CategoryID": "Int64",
+      "Level": "int64",
+      "ParentCategoryID": "int64",
+      "SubcategoryID": "int64"
+    },
+    "missing_rates": {
+      "CategoryID": 0.0,
+      "Level": 0.0,
+      "ParentCategoryID": 0.0,
+      "SubcategoryID": 0.0
+    },
+    "column_stats": {
+      "CategoryID": {
+        "dtype": "Int64",
+        "missing_rate": 0.0,
+        "num_unique": 68,
+        "type": "numeric",
+        "mean": 33.5,
+        "std": 19.77371993328519,
+        "min": 0.0,
+        "25pct": 16.75,
+        "50pct": 33.5,
+        "75pct": 50.25,
+        "max": 67.0
+      },
+      "Level": {
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "num_unique": 3,
+        "type": "numeric",
+        "mean": 2.8088235294117645,
+        "std": 0.43218821705420396,
+        "min": 1.0,
+        "25pct": 3.0,
+        "50pct": 3.0,
+        "75pct": 3.0,
+        "max": 3.0
+      },
+      "ParentCategoryID": {
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "num_unique": 12,
+        "type": "numeric",
+        "mean": 6.632352941176471,
+        "std": 3.4851686259326464,
+        "min": 1.0,
+        "25pct": 4.0,
+        "50pct": 6.0,
+        "75pct": 9.0,
+        "max": 12.0
+      },
+      "SubcategoryID": {
+        "dtype": "int64",
+        "missing_rate": 0.0,
+        "num_unique": 57,
+        "type": "numeric",
+        "mean": 31.58823529411765,
+        "std": 16.294157266285275,
+        "min": 1.0,
+        "25pct": 17.75,
+        "50pct": 34.5,
+        "75pct": 45.0,
+        "max": 57.0
+      }
+    },
+    "subsampled": false,
+    "subsample_size": 68,
+    "full_size": 68,
+    "data": [
+      {
+        "CategoryID": 0,
+        "Level": 1,
+        "ParentCategoryID": 10,
+        "SubcategoryID": 45
+      },
+      {
+        "CategoryID": 1,
+        "Level": 2,
+        "ParentCategoryID": 9,
+        "SubcategoryID": 45
+      },
+      {
+        "CategoryID": 2,
+        "Level": 3,
+        "ParentCategoryID": 12,
+        "SubcategoryID": 5
+      }
+    ]
+  },
+  {
+    "type": "fk_join_metadata",
+    "metadata_fold": "full",
+    "source_table": "AdsInfo",
+    "source_fk_col": "LocationID",
+    "target_table": "Location",
+    "target_pk_col": "LocationID",
+    "num_edges": 5935808,
+    "num_unique_parents_referenced": 3363,
+    "num_total_parents": 3512,
+    "join_coverage": 0.9575740318906606,
+    "cardinality_ratio": 1697.1976082004555,
+    "fanout_min": 1,
+    "fanout_median": 31.0,
+    "fanout_mean": 1765.0336009515313,
+    "fanout_max": 929887,
+    "fanout_std": 20527.957998874856,
+    "fanout_p25": 7.0,
+    "fanout_p75": 167.0,
+    "fanout_p95": 3237.6999999999953
+  },
+  {
+    "type": "fk_join_metadata",
+    "metadata_fold": "full",
+    "source_table": "SearchStream",
+    "source_fk_col": "SearchID",
+    "target_table": "SearchInfo",
+    "target_pk_col": "SearchID",
+    "num_edges": 7107268,
+    "num_unique_parents_referenced": 1961887,
+    "num_total_parents": 1987156,
+    "join_coverage": 0.9872838367999291,
+    "cardinality_ratio": 3.5766074731928446,
+    "fanout_min": 1,
+    "fanout_median": 4.0,
+    "fanout_mean": 3.6226693994098538,
+    "fanout_max": 6,
+    "fanout_std": 1.4142099046253094,
+    "fanout_p25": 2.0,
+    "fanout_p75": 5.0,
+    "fanout_p95": 5.0
+  },
+  {
+    "type": "fk_join_metadata",
+    "metadata_fold": "full",
+    "source_table": "VisitStream",
+    "source_fk_col": "UserID",
+    "target_table": "UserInfo",
+    "target_pk_col": "UserID",
+    "num_edges": 5254710,
+    "num_unique_parents_referenced": 58570,
+    "num_total_parents": 98250,
+    "join_coverage": 0.5961323155216285,
+    "cardinality_ratio": 53.71868702290077,
+    "fanout_min": 1,
+    "fanout_median": 31.0,
+    "fanout_mean": 89.71674918900462,
+    "fanout_max": 6493,
+    "fanout_std": 180.98716215139302,
+    "fanout_p25": 9.0,
+    "fanout_p75": 93.0,
+    "fanout_p95": 371.0
+  },
+  {
+    "type": "task_split",
+    "metadata_fold": "train",
+    "task_name": "rel-avito/ad-ctr",
+    "task_type": "regression",
+    "num_samples": 5100,
+    "columns": [
+      "AdID",
+      "timestamp",
+      "num_click"
+    ],
+    "entity_table": "AdsInfo",
+    "entity_col": "AdID",
+    "target_col": "num_click",
+    "time_col": "timestamp",
+    "timedelta_days": 4,
+    "num_eval_timestamps": 1,
+    "target_stats": {
+      "count": 5100.0,
+      "mean": 0.04456519150977653,
+      "std": 0.09567494340715577,
+      "min": 0.0005165289256198347,
+      "25%": 0.00819672131147541,
+      "50%": 0.017857142857142856,
+      "75%": 0.041666666666666664,
+      "max": 1.0
+    },
+    "timestamp_min": "2015-04-26T00:00:00",
+    "timestamp_max": "2015-05-04T00:00:00",
+    "data": [
+      {
+        "AdID": 411934,
+        "timestamp": "2015-05-04T00:00:00",
+        "num_click": 0.09090909090909091
+      },
+      {
+        "AdID": 424884,
+        "timestamp": "2015-04-26T00:00:00",
+        "num_click": 0.02054794520547945
+      },
+      {
+        "AdID": 435123,
+        "timestamp": "2015-05-04T00:00:00",
+        "num_click": 0.015267175572519083
+      }
+    ]
+  },
+  {
+    "type": "task_split",
+    "metadata_fold": "train",
+    "task_name": "rel-avito/user-clicks",
+    "task_type": "binary_classification",
+    "num_samples": 59454,
+    "columns": [
+      "UserID",
+      "timestamp",
+      "num_click"
+    ],
+    "entity_table": "UserInfo",
+    "entity_col": "UserID",
+    "target_col": "num_click",
+    "time_col": "timestamp",
+    "timedelta_days": 4,
+    "num_eval_timestamps": 1,
+    "positive_rate": 0.038719009654522824,
+    "label_counts": {
+      "False": 57152,
+      "True": 2302
+    },
+    "timestamp_min": "2015-04-26T00:00:00",
+    "timestamp_max": "2015-05-04T00:00:00",
+    "subsampled": true,
+    "subsample_size": 50000,
+    "full_size": 59454,
+    "data": [
+      {
+        "UserID": 75550,
+        "timestamp": "2015-04-30T00:00:00",
+        "num_click": false
+      },
+      {
+        "UserID": 52142,
+        "timestamp": "2015-04-26T00:00:00",
+        "num_click": false
+      },
+      {
+        "UserID": 3882,
+        "timestamp": "2015-05-04T00:00:00",
+        "num_click": false
+      }
+    ]
+  },
+  {
+    "type": "task_split",
+    "metadata_fold": "train",
+    "task_name": "rel-avito/user-visits",
+    "task_type": "binary_classification",
+    "num_samples": 86619,
+    "columns": [
+      "UserID",
+      "timestamp",
+      "num_click"
+    ],
+    "entity_table": "UserInfo",
+    "entity_col": "UserID",
+    "target_col": "num_click",
+    "time_col": "timestamp",
+    "timedelta_days": 4,
+    "num_eval_timestamps": 1,
+    "positive_rate": 0.9058866992230342,
+    "label_counts": {
+      "True": 78467,
+      "False": 8152
+    },
+    "timestamp_min": "2015-04-26T00:00:00",
+    "timestamp_max": "2015-05-04T00:00:00",
+    "subsampled": true,
+    "subsample_size": 50000,
+    "full_size": 86619,
+    "data": [
+      {
+        "UserID": 63838,
+        "timestamp": "2015-04-26T00:00:00",
+        "num_click": true
+      },
+      {
+        "UserID": 40227,
+        "timestamp": "2015-05-04T00:00:00",
+        "num_click": true
+      },
+      {
+        "UserID": 25001,
+        "timestamp": "2015-04-30T00:00:00",
+        "num_click": true
+      }
+    ]
+  },
+  {
+    "type": "task_split",
+    "metadata_fold": "train",
+    "task_name": "rel-avito/user-ad-visit",
+    "task_type": "link_prediction",
+    "num_samples": 86616,
+    "columns": [
+      "UserID",
+      "timestamp",
+      "AdID"
+    ],
+    "time_col": "timestamp",
+    "timedelta_days": 4,
+    "num_eval_timestamps": 1,
+    "timestamp_min": "2015-04-26T00:00:00",
+    "timestamp_max": "2015-05-04T00:00:00",
+    "subsampled": true,
+    "subsample_size": 50000,
+    "full_size": 86616,
+    "data": [
+      {
+        "UserID": 69179,
+        "timestamp": "2015-05-04T00:00:00",
+        "AdID": [
+          1271712,
+          5045411,
+          5543059,
+          4910709,
+          4400415,
+          2833039,
+          5063929,
+          3929004,
+          2138111,
+          4617333,
+          4710026,
+          1511807,
+          1276583,
+          2196830,
+          5387795,
+          2601146,
+          1474794,
+          3525971,
+          606301,
+          3879490,
+          994525,
+          4863396,
+          2796962,
+          4040663,
+          425513,
+          594998,
+          3414744,
+          4345204,
+          795716,
+          301958,
+          2254224,
+          1735664,
+          366914,
+          2593662,
+          3641190,
+          322862,
+          2406606,
+          4250009,
+          469450,
+          4350077,
+          3947325,
+          1213973,
+          5928829,
+          2876801,
+          3937053,
+          1490997,
+          3657486,
+          3602294,
+          5735867,
+          1810504,
+          4245366,
+          4181248,
+          891587,
+          5737842,
+          5753108,
+          492895,
+          5014197,
+          5252698,
+          1307574,
+          5324760,
+          1667975,
+          3381630,
+          3230428
+        ]
+      },
+      {
+        "UserID": 36663,
+        "timestamp": "2015-05-04T00:00:00",
+        "AdID": [
+          4659454,
+          392880,
+          1326942,
+          1147348,
+          2261195,
+          4167830,
+          1754216
+        ]
+      },
+      {
+        "UserID": 24036,
+        "timestamp": "2015-04-30T00:00:00",
+        "AdID": [
+          5235830,
+          3073006,
+          5262898,
+          1707245
+        ]
+      }
+    ]
+  }
+]

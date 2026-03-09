@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "title": "JRN Estimation & Multiplicative Compounding on rel-stack",
+    "summary": "Estimated JRN for 16 (join, task) pairs using MLP probe method (hidden=32, layers=2, epochs=10, seeds=3). Validated multiplicative compounding on 14 multi-hop chains (R²=0.8283). Join classifications:...",
+    "experiment_config": {
+      "dataset": "rel-stack",
+      "hidden_dim": 32,
+      "n_layers": 2,
+      "epochs": 10,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "batch_size": 512,
+      "lr": 0.001,
+      "max_train_samples": 50000,
+      "max_val_samples": 10000,
+      "aggregation": "mean"
+    },
+    "phase1_summary": {
+      "jrn_matrix": {
+        "comments.UserId -> users.Id": {
+          "user-engagement": 1.559715533758994,
+          "user-badge": 1.3970752241147837
+        },
+        "badges.UserId -> users.Id": {
+          "user-engagement": 1.5263403165898162,
+          "user-badge": 1.5522037269853568
+        },
+        "postHistory.UserId -> users.Id": {
+          "user-engagement": 1.606679916795472,
+          "user-badge": 1.4808357651414934
+        },
+        "votes.UserId -> users.Id": {
+          "user-engagement": 1.1548844688401319,
+          "user-badge": 1.024286008541145
+        },
+        "posts.OwnerUserId -> users.Id": {
+          "user-engagement": 1.5715837937983221,
+          "user-badge": 1.4635480094733837
+        },
+        "comments.PostId -> posts.Id": {
+          "post-votes": 1.0146737172734865
+        },
+        "postLinks.PostId -> posts.Id": {
+          "post-votes": 1.0720461029321458
+        },
+        "postLinks.RelatedPostId -> posts.Id": {
+          "post-votes": 1.1768266656233832
+        },
+        "postHistory.PostId -> posts.Id": {
+          "post-votes": 1.022553281599242
+        },
+        "votes.PostId -> posts.Id": {
+          "post-votes": 1.275040235453607
+        },
+        "posts.ParentId -> posts.Id": {
+          "post-votes": 1.1215078066786173
+        }
+      },
+      "n_measurements": 16,
+      "n_high_value": 13,
+      "n_critical": 3,
+      "n_low_value": 0
+    },
+    "phase3_summary": {
+      "n_chains_tested": 14,
+      "r_squared": 0.828332168788979,
+      "mean_absolute_deviation": 0.012766373188826468,
+      "compounding_holds": true
+    },
+    "domain_validation": {
+      "votes_posts_for_postvotes": {
+        "expected": "JRN > 1 (votes directly predict popularity)",
+        "actual_jrn": 1.275040235453607,
+        "passed": 1.0,
+        "note": "corrected JRN (inverted for neg_MAE so >1 = improvement)"
+      },
+      "badges_users_for_userbadge": {
+        "expected": "JRN > 1 (badges predict future badges)",
+        "actual_jrn": 1.5522037269853568,
+        "passed": 1.0
+      },
+      "posts_users_for_engagement": {
+        "expected": "JRN > 1 (posting activity predicts engagement)",
+        "actual_jrn": 1.5715837937983221,
+        "passed": 1.0
+      },
+      "votes_stronger_than_postlinks": {
+        "expected": "votes JRN > postLinks JRN for post-votes",
+        "votes_jrn": 1.275040235453607,
+        "postlinks_jrn": 1.0720461029321458,
+        "passed": 1.0
+      }
+    },
+    "key_findings": [
+      "JRN range: [1.0147, 1.6067], spread=0.5920",
+      "Votes->Posts corrected JRN for post-votes = 1.2750 (confirms domain expectation)",
+      "Badges->Users JRN for user-badge = 1.5522 (confirms domain expectation)"
+    ],
+    "hypothesis_support": {
+      "jrn_is_informative": true,
+      "compounding_holds": true,
+      "domain_expectations_met": true
+    },
+    "runtime_seconds": 443.5802438259125
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments...",
+          "output": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"relative_improvement\": 0.5597155337589941, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.026325491595155, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0033696757953382834, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"badges.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"badges\", \"question\": \"What is the JRN for join 'badges.UserI...",
+          "output": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"relative_improvement\": 0.5263403165898161, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0402822864853776, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0032657671667489724, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'po...",
+          "output": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"relative_improvement\": 0.6066799167954718, \"classification\": \"high_value\"}",
+          "predict_baseline": "{\"heuristic_jrn\": 1.0438406087765821, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+          "predict_our_method": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.002779502797543129, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+          "metadata_phase": "phase1",
+          "metadata_join": "postHistory.UserId -> users.Id",
+          "metadata_task": "user-engagement"
+        }
+      ]
+    }
+  ]
+}

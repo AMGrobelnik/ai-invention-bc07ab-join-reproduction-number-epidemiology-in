@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "method_name": "Phase 2 GBM-Based Aggregation Sensitivity and JRN Estimation",
+    "dataset": "rel-f1",
+    "description": "GBM probe-based estimation of Join Reproduction Number (JRN) and aggregation sensitivity analysis across 5 statistical aggregation strategies on the RelBench rel-f1 (Formula 1) relational database.",
+    "num_testable_pairs": 65,
+    "num_total_models_trained": 1365,
+    "num_failed_pairs": 0,
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "agg_types": [
+      "mean",
+      "sum",
+      "max",
+      "std",
+      "all_combined"
+    ],
+    "tasks": [
+      "driver-dnf",
+      "driver-top3",
+      "driver-position",
+      "results-position",
+      "qualifying-position"
+    ],
+    "quadratic_fit": {
+      "beta0": 0.284033,
+      "beta1": -0.211595,
+      "beta2": 0.045867,
+      "beta2_pvalue": 0.000136,
+      "r_squared": 0.229633,
+      "peak_jrn": null,
+      "inverted_u_confirmed": false
+    },
+    "piecewise_fit": {
+      "best_breakpoint": 0.87,
+      "slope_before": 0.211861,
+      "slope_after": 0.071131,
+      "inverted_v_confirmed": false
+    },
+    "probe_gt_correlation": {
+      "spearman_rho": 0.439661,
+      "spearman_pvalue": 0.000248,
+      "n_pairs": 65
+    },
+    "jrn_sensitivity_correlation": {
+      "spearman_rho": -0.018719,
+      "spearman_pvalue": 0.882344
+    },
+    "kruskal_wallis": {
+      "statistic": 0.078969,
+      "pvalue": 0.961285
+    },
+    "per_join_summary": [
+      {
+        "join_idx": 0,
+        "join_name": "races->circuits",
+        "fk_col": "circuitId",
+        "fanout_mean": 12.424242424242424,
+        "mean_jrn": 1.1557,
+        "std_jrn": 0.1782,
+        "mean_sensitivity": 0.0,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 1,
+        "join_name": "constructor_standings->races",
+        "fk_col": "raceId",
+        "fanout_mean": 13.452380952380953,
+        "mean_jrn": 1.1227,
+        "std_jrn": 0.1796,
+        "mean_sensitivity": 0.0986,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 2,
+        "join_name": "constructor_standings->constructors",
+        "fk_col": "constructorId",
+        "fanout_mean": 69.18367346938776,
+        "mean_jrn": 1.1175,
+        "std_jrn": 0.4163,
+        "mean_sensitivity": 0.0959,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 3,
+        "join_name": "standings->races",
+        "fk_col": "raceId",
+        "fanout_mean": 34.28658536585366,
+        "mean_jrn": 1.1742,
+        "std_jrn": 0.1494,
+        "mean_sensitivity": 0.0975,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 4,
+        "join_name": "standings->drivers",
+        "fk_col": "driverId",
+        "fanout_mean": 35.187734668335416,
+        "mean_jrn": 1.1612,
+        "std_jrn": 0.5651,
+        "mean_sensitivity": 0.0462,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 5,
+        "join_name": "constructor_results->races",
+        "fk_col": "raceId",
+        "fanout_mean": 12.428005284015851,
+        "mean_jrn": 1.3858,
+        "std_jrn": 0.3473,
+        "mean_sensitivity": 0.1343,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 6,
+        "join_name": "constructor_results->constructors",
+        "fk_col": "constructorId",
+        "fanout_mean": 57.717791411042946,
+        "mean_jrn": 1.1173,
+        "std_jrn": 0.4196,
+        "mean_sensitivity": 0.1304,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 7,
+        "join_name": "qualifying->races",
+        "fk_col": "raceId",
+        "fanout_mean": 21.597883597883598,
+        "mean_jrn": 1.8896,
+        "std_jrn": 1.3821,
+        "mean_sensitivity": 0.0839,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 8,
+        "join_name": "qualifying->drivers",
+        "fk_col": "driverId",
+        "fanout_mean": 34.888888888888886,
+        "mean_jrn": 1.1307,
+        "std_jrn": 0.5897,
+        "mean_sensitivity": 0.099,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 9,
+        "join_name": "qualifying->constructors",
+        "fk_col": "constructorId",
+        "fanout_mean": 127.5625,
+        "mean_jrn": 1.1466,
+        "std_jrn": 0.4097,
+        "mean_sensitivity": 0.1852,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 10,
+        "join_name": "results->races",
+        "fk_col": "raceId",
+        "fanout_mean": 24.784146341463416,
+        "mean_jrn": 1.1508,
+        "std_jrn": 0.1618,
+        "mean_sensitivity": 0.1451,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 11,
+        "join_name": "results->drivers",
+        "fk_col": "driverId",
+        "fanout_mean": 25.214640198511166,
+        "mean_jrn": 1.3214,
+        "std_jrn": 0.6228,
+        "mean_sensitivity": 0.1422,
+        "n_tasks": 5
+      },
+      {
+        "join_idx": 12,
+        "join_name": "results->constructors",
+        "fk_col": "constructorId",
+        "fanout_mean": 102.12562814070351,
+        "mean_jrn": 1.1011,
+        "std_jrn": 0.4754,
+        "mean_sensitivity": 0.1607,
+        "n_tasks": 5
+      }
+    ],
+    "winning_agg_by_jrn_bin": {
+      "low": {
+        "mean": 10,
+        "all_combined": 2,
+        "max": 5,
+        "sum": 3,
+        "std": 2
+      },
+      "mid": {
+        "all_combined": 5,
+        "std": 5,
+        "max": 6,
+        "sum": 3,
+        "mean": 2
+      },
+      "high": {
+        "mean": 10,
+        "std": 4,
+        "sum": 3,
+        "max": 2,
+        "all_combined": 3
+      }
+    },
+    "figures": [
+      "jrn_phase2_results.png"
+    ],
+    "conclusion": "Phase 2 analysis on 65 join-task pairs does NOT confirm inverted-U shape. Quadratic beta2=0.0459 (p=0.0001), monotonic rho=-0.019. The JRN-sensitivity relationship appears flat/weak. Probe-GT correlation: rho=0.440."
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"join_idx\": 0, \"join_name\": \"races->circuits\", \"fk_col\": \"circuitId\", \"task_name\": \"driver-dnf\"}",
+          "output": "{\"jrn\": 1.0984, \"sensitivity_cov\": 0.0, \"baseline_perf\": 0.5, \"best_agg_perf\": 0.5492, \"winning_agg\": \"mean\", \"gt_jrn\": 1.1207, \"agg_perfs\": {\"mean\": 0.5492, \"sum\": 0.5492, \"max\": 0.5492, \"std\": 0.5492, \"all_combined\": 0.5492}}",
+          "predict_jrn": "1.0984",
+          "predict_sensitivity": "0.0",
+          "predict_winning_agg": "mean",
+          "metadata_join_idx": "0",
+          "metadata_task_name": "driver-dnf",
+          "metadata_jrn": "1.0984",
+          "metadata_sensitivity": "0.0",
+          "metadata_winning_agg": "mean"
+        },
+        {
+          "input": "{\"join_idx\": 1, \"join_name\": \"constructor_standings->races\", \"fk_col\": \"raceId\", \"task_name\": \"driver-dnf\"}",
+          "output": "{\"jrn\": 1.3028, \"sensitivity_cov\": 0.0756, \"baseline_perf\": 0.5, \"best_agg_perf\": 0.6514, \"winning_agg\": \"all_combined\", \"gt_jrn\": 1.3416, \"agg_perfs\": {\"mean\": 0.537, \"sum\": 0.5409, \"max\": 0.5595, \"std\": 0.6061, \"all_combined\": 0.6514}}",
+          "predict_jrn": "1.3028",
+          "predict_sensitivity": "0.0756",
+          "predict_winning_agg": "all_combined",
+          "metadata_join_idx": "1",
+          "metadata_task_name": "driver-dnf",
+          "metadata_jrn": "1.3028",
+          "metadata_sensitivity": "0.0756",
+          "metadata_winning_agg": "all_combined"
+        },
+        {
+          "input": "{\"join_idx\": 2, \"join_name\": \"constructor_standings->constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"driver-dnf\"}",
+          "output": "{\"jrn\": 1.4014, \"sensitivity_cov\": 0.0674, \"baseline_perf\": 0.5, \"best_agg_perf\": 0.7007, \"winning_agg\": \"mean\", \"gt_jrn\": 1.2347, \"agg_perfs\": {\"mean\": 0.7007, \"sum\": 0.6085, \"max\": 0.5726, \"std\": 0.6147, \"all_combined\": 0.6306}}",
+          "predict_jrn": "1.4014",
+          "predict_sensitivity": "0.0674",
+          "predict_winning_agg": "mean",
+          "metadata_join_idx": "2",
+          "metadata_task_name": "driver-dnf",
+          "metadata_jrn": "1.4014",
+          "metadata_sensitivity": "0.0674",
+          "metadata_winning_agg": "mean"
+        }
+      ]
+    }
+  ]
+}

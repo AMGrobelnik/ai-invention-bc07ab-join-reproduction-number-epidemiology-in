@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "title": "Cross-Dataset JRN Consolidation",
+    "n_experiments_consolidated": 4,
+    "n_datasets": 3,
+    "total_jrn_measurements": 139,
+    "analysis_date": "2026-03-09"
+  },
+  "metrics_agg": {
+    "total_jrn_measurements": 139,
+    "pooled_mlp_jrn_mean": 1.174300760812181,
+    "pooled_mlp_jrn_std": 0.38866610640447546,
+    "dip_test_pooled_p_value": 0.06937376208428636,
+    "fraction_near_threshold_mlp": 0.47058823529411764,
+    "kendalls_W_rel_f1": 0.13142857142857142,
+    "kendalls_W_rel_stack": 0.7,
+    "gbm_probe_spearman_rho": 0.9596136962247587,
+    "mlp_probe_spearman_rho": -0.06669592568350946,
+    "gbm_probe_p_value": 8.56504989950266e-11,
+    "mlp_probe_p_value": 0.7861712279616262,
+    "entropy_proxy_spearman_rho": 0.9451514731728905,
+    "fanout_proxy_spearman_rho": 0.6440305194114924,
+    "compounding_r_squared": 0.828332168788979,
+    "compounding_r2_ci_lower": 0.5616285394071503,
+    "compounding_r2_ci_upper": 0.9461867294144181,
+    "loo_r_squared": 0.9222480125821053,
+    "n_metric_corrections_needed": 9,
+    "scorecard_n_supported": 2,
+    "scorecard_n_inconclusive": 3,
+    "scorecard_n_disconfirmed": 0
+  },
+  "datasets": [
+    {
+      "dataset": "cross_dataset_jrn_consolidation",
+      "examples": [
+        {
+          "input": "Analysis A: JRN Distribution & Threshold Testing",
+          "output": "{\"pooled_stats\": {\"name\": \"pooled MLP probe\", \"n\": 68, \"mean\": 1.174300760812181, \"median\": 1.0424321178631428, \"std\": 0.38866610640447546, \"min\": 0.625281, \"max\": 3.833333, \"iqr\": 0.3157932222364275, \"skewness\": 4.803237133343547, \"kurtosis\": 30.39793737421217}, \"per_dataset_stats\": {\"exp1_rel_f1_mlp\": {\"name\": \"rel-f1 MLP probe\", \"n\": 50, \"mean\": 1.0874807432325786, \"median\": 1.0252511212470756, \"std\": 0.16226916658448617, \"min\": 0.7941970081400174, \"max\": 1.4130308013864232, \"iqr\": 0.22751544439977767, \"skewness\": 0.6638877010540549, \"kurtosis\": -0.6563506811361814}, \"exp2_rel_stack_mlp\": {\"name\": \"rel-stack MLP probe\", \"n\": 16, \"mean\": 1.3137375358499612, \"median\": 1.3360577297841953, \"std\": 0.22672073070887386, \"min\": 1.0146737172734865, \"max\": 1.606679916795472, \"iqr\": 0.42366378844670205, \"skewness\": -0.08626290562817347, \"kurtosis\": -1.6535186065928849}, \"exp3_rel_hm_global\": {\"name\": \"rel-hm global\", \"n\": 2, \"mean\": 2.229307, \"median\": 2.229307, \"std\": 2.2684353235990664, \"min\": 0.625281, \"max\": 3.833333, \"iqr\": 1.604026, \"skewness\": 0.0, \"kurtosis\": 0.0}, \"exp3_rel_hm_bucket\": {\"name\": \"rel-hm bucket-level\", \"n\": 14, \"mean\": 1.6890047142857143, \"median\": 1.042354, \"std\": 1.4656518095888746, \"min\": 0.291051, \"max\": 5.631058, \"iqr\": 1.4172994999999997, \"skewness\": 1.6234819652131427, \"kurtosis\": 1.834267234196175}, \"exp4_rel_f1_gt\": {\"name\": \"rel-f1 ground-truth\", \"n\": 19, \"mean\": 1.4429446646787303, \"median\": 1.095304863392356, \"std\": 0.6552628412572085, \"min\": 0.998424346060388, \"max\": 2.6666549710859875, \"iqr\": 0.704417179185576, \"skewness\": 1.1251289184612892, \"kurtosis\": -0.60226104138034}, \"exp4_rel_f1_gbm\": {\"name\": \"rel-f1 GBM probe\", \"n\": 19, \"mean\": 1.4096282585882018, \"median\": 1.1253891932369053, \"std\": 0.5733125451860129, \"min\": 0.9984438870759762, \"max\": 2.816013517161887, \"iqr\": 0.5819799912366483, \"skewness\": 1.2567877512326053, \"kurtosis\": 0.07601754199647326}, \"exp4_rel_f1_mlp\": {\"name\": \"rel-f1 MLP probe (exp4)\", \"n\": 19, \"mean\": 1.3032545133954778, \"median\": 1.1854769704647792, \"std\": 0.2938765570642003, \"min\": 0.9505820484788426, \"max\": 1.9664636545331504, \"iqr\": 0.3893019695196216, \"skewness\": 0.980810001316617, \"kurtosis\": -0.1490584536933679}}, \"dip_test_pooled_mlp\": {\"statistic\": 0.059074324956909306, \"p_value\": 0.06937376208428636}, \"dip_test_gt_jrn\": {\"statistic\": 0.09391743822016074, \"p_value\": 0.15962020111190767}, \"fraction_near_threshold_mlp\": 0.47058823529411764, \"fraction_near_threshold_gt\": 0.3157894736842105, \"kde_modes\": [1.0529076933867731, 3.835787773547093], \"per_dataset_range\": {\"exp1_rel_f1\": {\"min\": 0.7941970081400174, \"max\": 1.4130308013864232, \"range\": 0.6188337932464059, \"has_below_threshold\": true, \"has_above_threshold\": true}, \"exp2_rel_stack\": {\"min\": 1.0146737172734865, \"max\": 1.606679916795472, \"range\": 0.5920061995219854, \"has_below_threshold\": false, \"has_above_threshold\": true}, \"exp3_global\": {\"min\": 0.625281, \"max\": 3.833333, \"range\": 3.2080520000000003, \"has_below_threshold\": true, \"has_above_threshold\": true}, \"exp3_bucket\": {\"min\": 0.291051, \"max\": 5.631058, \"range\": 5.340007, \"has_below_threshold\": true, \"has_above_threshold\": true}, \"exp4_gt\": {\"min\": 0.998424346060388, \"max\": 2.6666549710859875, \"range\": 1.6682306250255996, \"has_below_threshold\": true, \"has_above_threshold\": true}}, \"total_jrn_measurements\": 139}",
+          "metadata_analysis_code": "A",
+          "metadata_analysis_name": "JRN Distribution & Threshold Testing",
+          "eval_dip_test_p_value": 0.06937376208428636
+        },
+        {
+          "input": "Analysis B: Task Stability (Kendall's W)",
+          "output": "{\"kendalls_W_rel_f1\": {\"W\": 0.13142857142857142, \"chi2\": 7.885714285714285, \"p_value\": 0.7939964375807903, \"n_joins\": 13, \"n_tasks\": 5, \"interpretation\": \"Poor concordance \\u2014 JRN is task-specific\"}, \"kendalls_W_rel_stack\": {\"W\": 0.7, \"chi2\": 5.6, \"p_value\": 0.23107823797582827, \"n_joins\": 5, \"n_tasks\": 2, \"interpretation\": \"Moderate concordance\"}, \"task_pair_correlations_rel_f1\": {\"rel-f1/driver-dnf vs rel-f1/driver-position\": {\"spearman_rho\": -0.35465116279069764, \"p_value\": 0.23443409878179985}, \"rel-f1/driver-dnf vs rel-f1/driver-top3\": {\"spearman_rho\": 0.9476744186046511, \"p_value\": 8.635179929416541e-07}, \"rel-f1/driver-dnf vs rel-f1/qualifying-position\": {\"spearman_rho\": -0.011303946105083808, \"p_value\": 0.970763432748004}, \"rel-f1/driver-dnf vs rel-f1/results-position\": {\"spearman_rho\": -0.062171703577960945, \"p_value\": 0.840096782407677}, \"rel-f1/driver-position vs rel-f1/driver-top3\": {\"spearman_rho\": -0.5348837209302325, \"p_value\": 0.059641283848204905}, \"rel-f1/driver-position vs rel-f1/qualifying-position\": {\"spearman_rho\": -0.46911376336097804, \"p_value\": 0.10584022233845891}, \"rel-f1/driver-position vs rel-f1/results-position\": {\"spearman_rho\": -0.16955919157625712, \"p_value\": 0.5797223203608379}, \"rel-f1/driver-top3 vs rel-f1/qualifying-position\": {\"spearman_rho\": 0.005651973052541904, \"p_value\": 0.9853796149220515}, \"rel-f1/driver-top3 vs rel-f1/results-position\": {\"spearman_rho\": -0.10738748799829619, \"p_value\": 0.7269470087683857}, \"rel-f1/qualifying-position vs rel-f1/results-position\": {\"spearman_rho\": -0.03846153846153846, \"p_value\": 0.9007243023389339}}}",
+          "metadata_analysis_code": "B",
+          "metadata_analysis_name": "Task Stability (Kendall's W)",
+          "eval_kendalls_W_rel_f1": 0.13142857142857142
+        },
+        {
+          "input": "Analysis C: Probe Type Comparison (MLP vs GBM)",
+          "output": "{\"gbm_vs_gt_spearman\": {\"rho\": 0.9596136962247587, \"p_value\": 8.56504989950266e-11, \"ci_95\": [0.8958933853275326, 0.9846486524738514]}, \"mlp_vs_gt_spearman\": {\"rho\": -0.06669592568350946, \"p_value\": 0.7861712279616262, \"ci_95\": [-0.5055889466370918, 0.3996193942018593]}, \"mlp_range_analysis\": {\"min\": 0.9505820484788426, \"max\": 1.9664636545331504, \"range\": 1.0158816060543079, \"std\": 0.2938765570642003, \"cv\": 0.22549437124030297}, \"gbm_range_analysis\": {\"min\": 0.9984438870759762, \"max\": 2.816013517161887, \"range\": 1.8175696300859108, \"std\": 0.5733125451860129, \"cv\": 0.40671187009276333}, \"gt_range_analysis\": {\"min\": 0.998424346060388, \"max\": 2.6666549710859875, \"range\": 1.6682306250255996, \"std\": 0.6552628412572085, \"cv\": 0.45411501722632025}, \"task_stratified\": {\"rel-f1/driver-dnf\": {\"n\": 3, \"gbm_spearman_rho\": 0.5, \"gbm_p_value\": 0.6666666666666666, \"mlp_spearman_rho\": 1.0, \"mlp_p_value\": 0.0}, \"rel-f1/driver-position\": {\"n\": 3, \"gbm_spearman_rho\": 0.5, \"gbm_p_value\": 0.6666666666666666, \"mlp_spearman_rho\": 1.0, \"mlp_p_value\": 0.0}, \"rel-f1/driver-top3\": {\"n\": 3, \"gbm_spearman_rho\": 0.5, \"gbm_p_value\": 0.6666666666666666, \"mlp_spearman_rho\": 0.5, \"mlp_p_value\": 0.6666666666666666}, \"ss_constructors\": {\"n\": 4, \"gbm_spearman_rho\": 1.0, \"gbm_p_value\": 0.0, \"mlp_spearman_rho\": -0.39999999999999997, \"mlp_p_value\": 0.6}, \"ss_races\": {\"n\": 5, \"gbm_spearman_rho\": 1.0, \"gbm_p_value\": 0.0, \"mlp_spearman_rho\": 0.5642880936468347, \"mlp_p_value\": 0.3217233358243003}}, \"rank_displacement_summary\": {\"mean_gbm_displacement\": 1.0526315789473684, \"mean_mlp_displacement\": 6.421052631578948, \"max_gbm_displacement\": 4, \"max_mlp_displacement\": 17}, \"rank_displacements_top5_worst_mlp\": [{\"join\": \"constructor_standings\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"gt_rank\": 19, \"gbm_rank\": 18, \"mlp_rank\": 2, \"gbm_displacement\": 1, \"mlp_displacement\": 17}, {\"join\": \"constructor_results\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"gt_rank\": 17, \"gbm_rank\": 16, \"mlp_rank\": 3, \"gbm_displacement\": 1, \"mlp_displacement\": 14}, {\"join\": \"qualifying\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"gt_rank\": 16, \"gbm_rank\": 15, \"mlp_rank\": 4, \"gbm_displacement\": 1, \"mlp_displacement\": 12}, {\"join\": \"results\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"gt_rank\": 18, \"gbm_rank\": 17, \"mlp_rank\": 6, \"gbm_displacement\": 1, \"mlp_displacement\": 12}, {\"join\": \"standings\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"gt_rank\": 9, \"gbm_rank\": 12, \"mlp_rank\": 18, \"gbm_displacement\": 3, \"mlp_displacement\": 9}], \"cross_config_stability\": {\"n_overlapping\": 9, \"spearman_rho\": 0.8333333333333333, \"p_value\": 0.005265691029161747, \"exp1_config\": \"hidden=32, epochs=10\", \"exp4_config\": \"hidden=[32,16], epochs=50\"}}",
+          "metadata_analysis_code": "C",
+          "metadata_analysis_name": "Probe Type Comparison (MLP vs GBM)",
+          "eval_gbm_spearman_rho": 0.9596136962247587
+        }
+      ]
+    }
+  ]
+}

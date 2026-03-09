@@ -1,0 +1,182 @@
+{
+  "metrics_agg": {
+    "n_paper_tables": 9.0,
+    "n_total_measurements": 454.0,
+    "n_datasets": 2.0,
+    "n_tasks": 8.0,
+    "n_fk_joins": 24.0,
+    "n_hypothesis_claims": 7.0,
+    "n_claims_grade_A": 1.0,
+    "n_claims_grade_B": 3.0,
+    "n_claims_grade_C": 2.0,
+    "n_claims_grade_D": 1.0,
+    "pooled_probe_validity_rho": 0.671839,
+    "pooled_structural_cohens_d": 0.667277,
+    "best_compounding_R2": 0.826176,
+    "mean_cost_ratio_jrn_vs_greedy": 0.073567,
+    "same_entity_transfer_rho": 0.845137,
+    "t1_n_measurements": 158.0,
+    "t1_mean_jrn": 1.081445,
+    "t2_I_squared": 85.8724,
+    "t3_convergence_rate": 0.9062,
+    "t4_pooled_t_p_value": 8e-06,
+    "t4_structural_dominant_pct": 7.2727,
+    "t6_mean_perf_ratio": 0.977822,
+    "t8_mean_W": 0.365228
+  },
+  "datasets": [
+    {
+      "dataset": "paper_table_1_jrn_matrix",
+      "examples": [
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=standings.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1679 [1.1585, 1.1772], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1679",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.167861,
+          "eval_jrn_std": 0.008236,
+          "eval_jrn_ci_lo": 1.158541,
+          "eval_jrn_ci_hi": 1.177182,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        },
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=qualifying.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1558 [1.1509, 1.1606], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1558",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.155771,
+          "eval_jrn_std": 0.004294,
+          "eval_jrn_ci_lo": 1.150911,
+          "eval_jrn_ci_hi": 1.16063,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        },
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=results.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1786 [1.1666, 1.1906], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1786",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.178613,
+          "eval_jrn_std": 0.010609,
+          "eval_jrn_ci_lo": 1.166607,
+          "eval_jrn_ci_hi": 1.190618,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_2_probe_validity",
+      "examples": [
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-dnf, source=convergence_cheapest",
+          "output": "Spearman rho=0.9779, Fisher_z=2.2471, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9779",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.977901,
+          "eval_fisher_z": 2.247119,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        },
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-top3, source=convergence_cheapest",
+          "output": "Spearman rho=0.9779, Fisher_z=2.2471, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9779",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.977901,
+          "eval_fisher_z": 2.247119,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        },
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-position, source=convergence_cheapest",
+          "output": "Spearman rho=0.9061, Fisher_z=1.5052, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9061",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.906077,
+          "eval_fisher_z": 1.505166,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_3_cost_efficiency",
+      "examples": [
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.1}",
+          "output": "{\"mean_spearman_rho\": 0.954, \"mean_kendall_tau\": 0.8772, \"wall_clock_seconds\": 0.953}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9540",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.954,
+          "eval_mean_kendall_tau": 0.8772,
+          "eval_wall_clock_seconds": 0.953,
+          "eval_converged": 1
+        },
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.3}",
+          "output": "{\"mean_spearman_rho\": 0.9374, \"mean_kendall_tau\": 0.8246, \"wall_clock_seconds\": 1.344}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9374",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.9374,
+          "eval_mean_kendall_tau": 0.8246,
+          "eval_wall_clock_seconds": 1.344,
+          "eval_converged": 1
+        },
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.5}",
+          "output": "{\"mean_spearman_rho\": 0.9337, \"mean_kendall_tau\": 0.8246, \"wall_clock_seconds\": 1.715}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9337",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.9337,
+          "eval_mean_kendall_tau": 0.8246,
+          "eval_wall_clock_seconds": 1.715,
+          "eval_converged": 1
+        }
+      ]
+    }
+  ]
+}

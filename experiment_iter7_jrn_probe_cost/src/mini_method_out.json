@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "experiment": "jrn_probe_cost_efficiency_rel_stack",
+    "dataset": "rel-stack",
+    "tasks": [
+      "user-engagement",
+      "user-badge",
+      "post-votes"
+    ],
+    "num_fk_joins": 11,
+    "budget_grid": {
+      "n_estimators": [
+        50,
+        200
+      ],
+      "max_depth": [
+        3,
+        6
+      ],
+      "subsample": [
+        0.1,
+        0.5,
+        1.0
+      ]
+    },
+    "num_configs": 12,
+    "num_seeds": 3,
+    "max_train_rows": 50000,
+    "max_val_rows": 30000,
+    "total_elapsed_seconds": 340.02481150627136,
+    "convergence_summary": {
+      "user-engagement": {
+        "frac_rho_gt_0.9": 0.4166666666666667,
+        "frac_rho_gt_0.95": 0.4166666666666667,
+        "median_rho": 0.8999999999999998,
+        "min_rho": 0.6,
+        "max_rho": 0.9999999999999999
+      },
+      "user-badge": {
+        "frac_rho_gt_0.9": 0.3333333333333333,
+        "frac_rho_gt_0.95": 0.3333333333333333,
+        "median_rho": 0.8999999999999998,
+        "min_rho": 0.8999999999999998,
+        "max_rho": 0.9999999999999999
+      },
+      "post-votes": {
+        "frac_rho_gt_0.9": 0.6666666666666666,
+        "frac_rho_gt_0.95": 0.16666666666666666,
+        "median_rho": 0.942857142857143,
+        "min_rho": -1.0,
+        "max_rho": 1.0
+      }
+    },
+    "cost_efficiency_summary": {
+      "user-engagement": {
+        "num_reachable_joins": 5,
+        "greedy_models": 15,
+        "greedy_expected_models": 15,
+        "jrn_probe_models": 18,
+        "jrn_selection_models": 5,
+        "jrn_total_models": 23,
+        "cost_ratio": 1.5333333333333334,
+        "performance_ratio_pct": 99.55384720864362,
+        "speedup_factor": 0.6521739130434783,
+        "breakeven_J": 8
+      },
+      "user-badge": {
+        "num_reachable_joins": 5,
+        "greedy_models": 15,
+        "greedy_expected_models": 15,
+        "jrn_probe_models": 18,
+        "jrn_selection_models": 5,
+        "jrn_total_models": 23,
+        "cost_ratio": 1.5333333333333334,
+        "performance_ratio_pct": 100.0,
+        "speedup_factor": 0.6521739130434783,
+        "breakeven_J": 8
+      },
+      "post-votes": {
+        "num_reachable_joins": 6,
+        "greedy_models": 21,
+        "greedy_expected_models": 21,
+        "jrn_probe_models": 21,
+        "jrn_selection_models": 6,
+        "jrn_total_models": 27,
+        "cost_ratio": 1.2857142857142858,
+        "performance_ratio_pct": 98.7625129922655,
+        "speedup_factor": 0.7777777777777778,
+        "breakeven_J": 8
+      }
+    },
+    "cross_dataset_comparison": {
+      "rel_f1_reference": {
+        "cost_ratio_range": "0.05-0.11",
+        "performance_ratio_range": "96-99%",
+        "speedup_range": "10-20x"
+      },
+      "rel_stack_measured": {
+        "cost_ratios": {
+          "user-engagement": 1.5333333333333334,
+          "user-badge": 1.5333333333333334,
+          "post-votes": 1.2857142857142858
+        },
+        "performance_ratios": {
+          "user-engagement": 99.55384720864362,
+          "user-badge": 100.0,
+          "post-votes": 98.7625129922655
+        },
+        "speedup_factors": {
+          "user-engagement": 0.6521739130434783,
+          "user-badge": 0.6521739130434783,
+          "post-votes": 0.7777777777777778
+        }
+      },
+      "pattern_replicates": "False",
+      "avg_speedup": 0.6940418679549114,
+      "avg_performance_ratio_pct": 99.43878673363638
+    },
+    "reference_jrn_values": {
+      "user-engagement": {
+        "comments.UserId": 10.741782827353015,
+        "badges.UserId": 8.824750496736616,
+        "postHistory.UserId": 10.89200763943102,
+        "votes.UserId": 3.3044482043138372,
+        "posts.OwnerUserId": 10.945652231071547
+      },
+      "user-badge": {
+        "comments.UserId": 6.635336097508616,
+        "badges.UserId": 9.253716419693742,
+        "postHistory.UserId": 6.895118116297144,
+        "votes.UserId": 2.4553201991177214,
+        "posts.OwnerUserId": 7.091479026402876
+      },
+      "post-votes": {
+        "comments.PostId": 1.1642161091076464,
+        "postLinks.PostId": 1.1455061085829321,
+        "postLinks.RelatedPostId": 1.2749310353109466,
+        "postHistory.PostId": 1.2057863593150913,
+        "votes.PostId": 1.4392202064875097,
+        "posts.ParentId": 1.2625407934079675
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"task_name\": \"user-engagement\", \"task_type\": \"binary\", \"entity_table\": \"users\", \"metric\": \"average_precision\", \"dataset\": \"rel-stack\", \"num_fk_joins\": 11}",
+          "output": "{\"convergence\": {\"frac_rho_gt_0.9\": 0.4166666666666667, \"frac_rho_gt_0.95\": 0.4166666666666667, \"median_rho\": 0.8999999999999998, \"min_rho\": 0.6, \"max_rho\": 0.9999999999999999}, \"reference_jrn\": {\"comments.UserId\": 10.741782827353015, \"badges.UserId\": 8.824750496736616, \"postHistory.UserId\": 10.89200763943102, \"votes.UserId\": 3.3044482043138372, \"posts.OwnerUserId\": 10.945652231071547}, \"greedy\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.35633275618468874, \"join_added\": \"posts.OwnerUserId\"}, {\"k\": 2, \"score\": 0.39023392676434526, \"join_added\": \"comments.UserId\"}, {\"k\": 3, \"score\": 0.39091562490233084, \"join_added\": \"votes.UserId\"}, {\"k\": 4, \"score\": 0.39212540289355813, \"join_added\": \"badges.UserId\"}, {\"k\": 5, \"score\": 0.3758645996882122, \"join_added\": \"postHistory.UserId\"}], \"total_models_trained\": 15, \"best_score\": 0.39212540289355813, \"join_order\": [\"posts.OwnerUserId\", \"comments.UserId\", \"votes.UserId\", \"badges.UserId\", \"postHistory.UserId\"], \"elapsed_seconds\": 7.6501851081848145}, \"jrn_selection\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.35633275618468874, \"joins\": [\"posts.OwnerUserId\"]}, {\"k\": 2, \"score\": 0.3519366779587715, \"joins\": [\"posts.OwnerUserId\", \"postHistory.UserId\"]}, {\"k\": 3, \"score\": 0.38590322697677876, \"joins\": [\"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\"]}, {\"k\": 4, \"score\": 0.39037592446293107, \"joins\": [\"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"badges.UserId\"]}, {\"k\": 5, \"score\": 0.3758417035717292, \"joins\": [\"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"badges.UserId\", \"votes.UserId\"]}], \"total_models_trained\": 5, \"best_score\": 0.39037592446293107, \"join_ranking\": [\"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"badges.UserId\", \"votes.UserId\"], \"elapsed_seconds\": 3.7197964191436768}, \"random_baseline\": {\"mean_curve\": [0.27985425708576966, 0.3623752993293836, 0.3717248684737229, 0.3884243472734368, 0.3758826921827274], \"std_curve\": [0.11280437732869372, 0.016336905004362967, 0.011728056480497517, 0.007958094184749683, 3.01955699041433e-05], \"n_orderings\": 10, \"total_models_trained\": 50, \"elapsed_seconds\": 26.566742420196533}, \"cost_efficiency\": {\"num_reachable_joins\": 5, \"greedy_models\": 15, \"greedy_expected_models\": 15, \"jrn_probe_models\": 18, \"jrn_selection_models\": 5, \"jrn_total_models\": 23, \"cost_ratio\": 1.5333333333333334, \"performance_ratio_pct\": 99.55384720864362, \"speedup_factor\": 0.6521739130434783, \"breakeven_J\": 8}}",
+          "metadata_task_name": "user-engagement",
+          "metadata_task_type": "binary",
+          "metadata_entity_table": "users",
+          "predict_jrn_ranking": "[\"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"badges.UserId\", \"votes.UserId\"]",
+          "predict_greedy_ranking": "[\"posts.OwnerUserId\", \"comments.UserId\", \"votes.UserId\", \"badges.UserId\", \"postHistory.UserId\"]"
+        },
+        {
+          "input": "{\"task_name\": \"user-badge\", \"task_type\": \"binary\", \"entity_table\": \"users\", \"metric\": \"average_precision\", \"dataset\": \"rel-stack\", \"num_fk_joins\": 11}",
+          "output": "{\"convergence\": {\"frac_rho_gt_0.9\": 0.3333333333333333, \"frac_rho_gt_0.95\": 0.3333333333333333, \"median_rho\": 0.8999999999999998, \"min_rho\": 0.8999999999999998, \"max_rho\": 0.9999999999999999}, \"reference_jrn\": {\"comments.UserId\": 6.635336097508616, \"badges.UserId\": 9.253716419693742, \"postHistory.UserId\": 6.895118116297144, \"votes.UserId\": 2.4553201991177214, \"posts.OwnerUserId\": 7.091479026402876}, \"greedy\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.35164735882487963, \"join_added\": \"badges.UserId\"}, {\"k\": 2, \"score\": 0.3479727413176491, \"join_added\": \"votes.UserId\"}, {\"k\": 3, \"score\": 0.3410834888363734, \"join_added\": \"comments.UserId\"}, {\"k\": 4, \"score\": 0.3343599244496664, \"join_added\": \"postHistory.UserId\"}, {\"k\": 5, \"score\": 0.3313321485303547, \"join_added\": \"posts.OwnerUserId\"}], \"total_models_trained\": 15, \"best_score\": 0.35164735882487963, \"join_order\": [\"badges.UserId\", \"votes.UserId\", \"comments.UserId\", \"postHistory.UserId\", \"posts.OwnerUserId\"], \"elapsed_seconds\": 7.075526475906372}, \"jrn_selection\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.35164735882487963, \"joins\": [\"badges.UserId\"]}, {\"k\": 2, \"score\": 0.32782073967447606, \"joins\": [\"badges.UserId\", \"posts.OwnerUserId\"]}, {\"k\": 3, \"score\": 0.323446873183248, \"joins\": [\"badges.UserId\", \"posts.OwnerUserId\", \"postHistory.UserId\"]}, {\"k\": 4, \"score\": 0.33160908795789484, \"joins\": [\"badges.UserId\", \"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\"]}, {\"k\": 5, \"score\": 0.3314930695791985, \"joins\": [\"badges.UserId\", \"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"votes.UserId\"]}], \"total_models_trained\": 5, \"best_score\": 0.35164735882487963, \"join_ranking\": [\"badges.UserId\", \"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"votes.UserId\"], \"elapsed_seconds\": 3.296393632888794}, \"random_baseline\": {\"mean_curve\": [0.21092247151290516, 0.27072189761019716, 0.3185724954272004, 0.33297014341139514, 0.331394740654798], \"std_curve\": [0.07719596794127147, 0.024740610669345683, 0.027216020694572664, 0.0015206714931757905, 7.160831536614833e-05], \"n_orderings\": 10, \"total_models_trained\": 50, \"elapsed_seconds\": 23.577357530593872}, \"cost_efficiency\": {\"num_reachable_joins\": 5, \"greedy_models\": 15, \"greedy_expected_models\": 15, \"jrn_probe_models\": 18, \"jrn_selection_models\": 5, \"jrn_total_models\": 23, \"cost_ratio\": 1.5333333333333334, \"performance_ratio_pct\": 100.0, \"speedup_factor\": 0.6521739130434783, \"breakeven_J\": 8}}",
+          "metadata_task_name": "user-badge",
+          "metadata_task_type": "binary",
+          "metadata_entity_table": "users",
+          "predict_jrn_ranking": "[\"badges.UserId\", \"posts.OwnerUserId\", \"postHistory.UserId\", \"comments.UserId\", \"votes.UserId\"]",
+          "predict_greedy_ranking": "[\"badges.UserId\", \"votes.UserId\", \"comments.UserId\", \"postHistory.UserId\", \"posts.OwnerUserId\"]"
+        },
+        {
+          "input": "{\"task_name\": \"post-votes\", \"task_type\": \"regression\", \"entity_table\": \"posts\", \"metric\": \"r2\", \"dataset\": \"rel-stack\", \"num_fk_joins\": 11}",
+          "output": "{\"convergence\": {\"frac_rho_gt_0.9\": 0.6666666666666666, \"frac_rho_gt_0.95\": 0.16666666666666666, \"median_rho\": 0.942857142857143, \"min_rho\": -1.0, \"max_rho\": 1.0}, \"reference_jrn\": {\"comments.PostId\": 1.1642161091076464, \"postLinks.PostId\": 1.1455061085829321, \"postLinks.RelatedPostId\": 1.2749310353109466, \"postHistory.PostId\": 1.2057863593150913, \"votes.PostId\": 1.4392202064875097, \"posts.ParentId\": 1.2625407934079675}, \"greedy\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.43991430849244717, \"join_added\": \"votes.PostId\"}, {\"k\": 2, \"score\": 0.44542640235055453, \"join_added\": \"postLinks.PostId\"}, {\"k\": 3, \"score\": 0.4440475495375312, \"join_added\": \"comments.PostId\"}, {\"k\": 4, \"score\": 0.4289439174051274, \"join_added\": \"postLinks.RelatedPostId\"}, {\"k\": 5, \"score\": 0.41905539381930645, \"join_added\": \"postHistory.PostId\"}, {\"k\": 6, \"score\": 0.41705096951585796, \"join_added\": \"posts.ParentId\"}], \"total_models_trained\": 21, \"best_score\": 0.44542640235055453, \"join_order\": [\"votes.PostId\", \"postLinks.PostId\", \"comments.PostId\", \"postLinks.RelatedPostId\", \"postHistory.PostId\", \"posts.ParentId\"], \"elapsed_seconds\": 8.913788080215454}, \"jrn_selection\": {\"performance_curve\": [{\"k\": 1, \"score\": 0.43991430849244717, \"joins\": [\"votes.PostId\"]}, {\"k\": 2, \"score\": 0.43088697334528925, \"joins\": [\"votes.PostId\", \"postLinks.RelatedPostId\"]}, {\"k\": 3, \"score\": 0.4222090894938464, \"joins\": [\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\"]}, {\"k\": 4, \"score\": 0.4219670406248327, \"joins\": [\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\", \"postHistory.PostId\"]}, {\"k\": 5, \"score\": 0.41390654608335953, \"joins\": [\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\", \"postHistory.PostId\", \"comments.PostId\"]}, {\"k\": 6, \"score\": 0.41705096951585796, \"joins\": [\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\", \"postHistory.PostId\", \"comments.PostId\", \"postLinks.PostId\"]}], \"total_models_trained\": 6, \"best_score\": 0.43991430849244717, \"join_ranking\": [\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\", \"postHistory.PostId\", \"comments.PostId\", \"postLinks.PostId\"], \"elapsed_seconds\": 3.5449464321136475}, \"random_baseline\": {\"mean_curve\": [0.296294388278458, 0.3465379347490252, 0.38977131419611033, 0.3910142992268885, 0.3977156876848164, 0.41705096951585796], \"std_curve\": [0.09948916400729103, 0.05808836613962381, 0.04951187236398677, 0.03997815793685017, 0.03377884968701624, 0.0], \"n_orderings\": 10, \"total_models_trained\": 60, \"elapsed_seconds\": 25.524125576019287}, \"cost_efficiency\": {\"num_reachable_joins\": 6, \"greedy_models\": 21, \"greedy_expected_models\": 21, \"jrn_probe_models\": 21, \"jrn_selection_models\": 6, \"jrn_total_models\": 27, \"cost_ratio\": 1.2857142857142858, \"performance_ratio_pct\": 98.7625129922655, \"speedup_factor\": 0.7777777777777778, \"breakeven_J\": 8}}",
+          "metadata_task_name": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_entity_table": "posts",
+          "predict_jrn_ranking": "[\"votes.PostId\", \"postLinks.RelatedPostId\", \"posts.ParentId\", \"postHistory.PostId\", \"comments.PostId\", \"postLinks.PostId\"]",
+          "predict_greedy_ranking": "[\"votes.PostId\", \"postLinks.PostId\", \"comments.PostId\", \"postLinks.RelatedPostId\", \"postHistory.PostId\", \"posts.ParentId\"]"
+        }
+      ]
+    }
+  ]
+}

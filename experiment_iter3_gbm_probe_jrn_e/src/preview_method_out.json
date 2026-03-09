@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "method_name": "GBM Probe JRN Estimation",
+    "description": "LightGBM-based JRN estimation for rel-stack FK joins. Computes JRN as ratio of with-join to without-join predictive performance across 3 tasks and 5 aggregation strategies.",
+    "dataset": "rel-stack",
+    "n_tasks": 3,
+    "n_joins": 11,
+    "n_agg_types": 5,
+    "probe_params": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "random_state": 42
+    },
+    "full_params": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.03,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "random_state": 42
+    },
+    "seeds": [
+      42,
+      123,
+      456
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"mean\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.352204331257203, \"base_score\": 0.6813001171916616, \"join_score\": 0.9212569693526048, \"relative_improvement\": 0.3522043260876115}",
+          "predict_gbm_probe": "1.352204331257203",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "mean",
+          "metadata_jrn": 1.352204331257203
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"sum\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3331750477245878, \"base_score\": 0.6813001171916616, \"join_score\": 0.9082923162517608, \"relative_improvement\": 0.33317504283430477}",
+          "predict_gbm_probe": "1.3331750477245878",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "sum",
+          "metadata_jrn": 1.3331750477245878
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"max\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3617801762130612, \"base_score\": 0.6813001171916616, \"join_score\": 0.9277809936432403, \"relative_improvement\": 0.36178017090291736}",
+          "predict_gbm_probe": "1.3617801762130612",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "max",
+          "metadata_jrn": 1.3617801762130612
+        }
+      ]
+    }
+  ]
+}

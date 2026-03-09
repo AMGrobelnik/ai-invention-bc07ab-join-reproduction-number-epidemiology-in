@@ -1,0 +1,13 @@
+{
+  "id": "exp_id2_it6__opus",
+  "type": "code",
+  "title": "JRN Multiplicative Compounding: 2\u00d72 Probe Grid on rel-f1 with Alternative Compounding Models",
+  "summary": "Demo notebook measuring Join Reproduction Number (JRN) across 13 foreign-key joins in the RelBench rel-f1 (Formula 1) relational database. It computes individual, enrichment, and chain JRN using MLP and GBM probes, then compares four compounding models (multiplicative, additive, bottleneck, log-linear) to predict multi-hop chain JRN from single-hop values. The mini data file contains a curated subset of the rel-f1 schema (9 tables, 6 tasks) with sample rows and metadata.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_6/gen_art/exp_id2_it6__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it6__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it6__opus/method_code_demo.ipynb"
+}

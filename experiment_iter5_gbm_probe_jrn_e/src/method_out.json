@@ -1,0 +1,218 @@
+{
+  "metadata": {
+    "method_name": "GBM-Probe JRN Estimation",
+    "dataset": "rel-hm",
+    "description": "JRN estimation on rel-hm (H&M) dataset using LightGBM probes. Covers 2 tasks (user-churn classification, item-sales regression), 5 aggregation types, fan-out stratification, FK-shuffling decomposition, and JRN-guided architecture comparison. CRITICAL FIX: uses JRN = baseline_MAE / augmented_MAE for regression so JRN > 1 always means improvement.",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "probe_config": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "full_config": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "num_leaves": 127,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "agg_types": [
+      "mean",
+      "sum",
+      "max",
+      "std",
+      "all_combined"
+    ],
+    "tasks": [
+      "user-churn",
+      "item-sales"
+    ],
+    "total_runtime_seconds": 64.6
+  },
+  "datasets": [
+    {
+      "dataset": "rel-hm",
+      "examples": [
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"mean\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.905116, \"baseline_score\": 0.620946, \"augmented_score\": 0.562029, \"baseline_std\": 0.001485, \"augmented_std\": 0.001411, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.905116, \"score\": 0.562029}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "mean"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"sum\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.930317, \"baseline_score\": 0.620946, \"augmented_score\": 0.577677, \"baseline_std\": 0.001485, \"augmented_std\": 0.006932, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.930317, \"score\": 0.577677}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "sum"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"max\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.934568, \"baseline_score\": 0.620946, \"augmented_score\": 0.580317, \"baseline_std\": 0.001485, \"augmented_std\": 0.004233, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.934568, \"score\": 0.580317}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "max"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"std\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 1.000759, \"baseline_score\": 0.620946, \"augmented_score\": 0.621418, \"baseline_std\": 0.001485, \"augmented_std\": 0.010247, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 1.000759, \"score\": 0.621418}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "std"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"user-churn\", \"task_type\": \"classification\", \"metric\": \"AUROC\", \"join\": \"transactions.customer_id -> customers\", \"aggregation\": \"all_combined\", \"n_agg_features\": 11, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.968271, \"baseline_score\": 0.620946, \"augmented_score\": 0.601244, \"baseline_std\": 0.001485, \"augmented_std\": 0.004405, \"higher_is_better\": true, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.620946}",
+          "predict_our_method": "{\"jrn\": 0.968271, \"score\": 0.601244}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "user-churn",
+          "metadata_aggregation": "all_combined"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"item-sales\", \"task_type\": \"regression\", \"metric\": \"MAE\", \"join\": \"transactions.article_id -> articles\", \"aggregation\": \"mean\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.545842, \"baseline_score\": 0.107584, \"augmented_score\": 0.197098, \"baseline_std\": 0.000222, \"augmented_std\": 0.000182, \"higher_is_better\": false, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.107584}",
+          "predict_our_method": "{\"jrn\": 0.545842, \"score\": 0.197098}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "item-sales",
+          "metadata_aggregation": "mean"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"item-sales\", \"task_type\": \"regression\", \"metric\": \"MAE\", \"join\": \"transactions.article_id -> articles\", \"aggregation\": \"sum\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.541436, \"baseline_score\": 0.107584, \"augmented_score\": 0.198701, \"baseline_std\": 0.000222, \"augmented_std\": 0.000232, \"higher_is_better\": false, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.107584}",
+          "predict_our_method": "{\"jrn\": 0.541436, \"score\": 0.198701}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "item-sales",
+          "metadata_aggregation": "sum"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"item-sales\", \"task_type\": \"regression\", \"metric\": \"MAE\", \"join\": \"transactions.article_id -> articles\", \"aggregation\": \"max\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.568321, \"baseline_score\": 0.107584, \"augmented_score\": 0.189302, \"baseline_std\": 0.000222, \"augmented_std\": 0.000234, \"higher_is_better\": false, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.107584}",
+          "predict_our_method": "{\"jrn\": 0.568321, \"score\": 0.189302}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "item-sales",
+          "metadata_aggregation": "max"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"item-sales\", \"task_type\": \"regression\", \"metric\": \"MAE\", \"join\": \"transactions.article_id -> articles\", \"aggregation\": \"std\", \"n_agg_features\": 3, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.573383, \"baseline_score\": 0.107584, \"augmented_score\": 0.18763, \"baseline_std\": 0.000222, \"augmented_std\": 0.000247, \"higher_is_better\": false, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.107584}",
+          "predict_our_method": "{\"jrn\": 0.573383, \"score\": 0.18763}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "item-sales",
+          "metadata_aggregation": "std"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_measurement\", \"task\": \"item-sales\", \"task_type\": \"regression\", \"metric\": \"MAE\", \"join\": \"transactions.article_id -> articles\", \"aggregation\": \"all_combined\", \"n_agg_features\": 11, \"seeds\": [42, 123, 456]}",
+          "output": "{\"jrn\": 0.542045, \"baseline_score\": 0.107584, \"augmented_score\": 0.198478, \"baseline_std\": 0.000222, \"augmented_std\": 9e-05, \"higher_is_better\": false, \"jrn_direction_note\": \"JRN > 1 means join improves prediction (corrected for MAE)\"}",
+          "predict_baseline": "{\"score\": 0.107584}",
+          "predict_our_method": "{\"jrn\": 0.542045, \"score\": 0.198478}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task": "item-sales",
+          "metadata_aggregation": "all_combined"
+        },
+        {
+          "input": "{\"measurement_type\": \"jrn_matrix\", \"description\": \"JRN values across 2 tasks x 5 aggregation types\"}",
+          "output": "{\"user-churn\": {\"baseline\": 0.620946, \"jrn_by_agg\": {\"mean\": 0.905116, \"sum\": 0.930317, \"max\": 0.934568, \"std\": 1.000759, \"all_combined\": 0.968271}, \"best_agg\": \"std\"}, \"item-sales\": {\"baseline\": 0.107584, \"jrn_by_agg\": {\"mean\": 0.545842, \"sum\": 0.541436, \"max\": 0.568321, \"std\": 0.573383, \"all_combined\": 0.542045}, \"best_agg\": \"std\"}}",
+          "predict_baseline": "{\"description\": \"No JRN estimation (baseline only)\"}",
+          "predict_our_method": "{\"user-churn\": {\"baseline\": 0.620946, \"jrn_by_agg\": {\"mean\": 0.905116, \"sum\": 0.930317, \"max\": 0.934568, \"std\": 1.000759, \"all_combined\": 0.968271}, \"best_agg\": \"std\"}, \"item-sales\": {\"baseline\": 0.107584, \"jrn_by_agg\": {\"mean\": 0.545842, \"sum\": 0.541436, \"max\": 0.568321, \"std\": 0.573383, \"all_combined\": 0.542045}, \"best_agg\": \"std\"}}",
+          "metadata_measurement_type": "jrn_matrix"
+        },
+        {
+          "input": "{\"measurement_type\": \"fanout_stratification\", \"task\": \"user-churn\", \"n_buckets\": 5, \"bucket_ranges\": [\"1-5\", \"6-20\", \"21-50\", \"51-200\", \"201-inf\"]}",
+          "output": "{\"buckets\": [{\"bucket\": \"1-5\", \"lo\": 1, \"hi\": 5, \"midpoint\": 3.0, \"n_train\": 3930, \"n_val\": 73, \"baseline\": 0.5492248062015505, \"augmented\": 0.5147286821705427, \"jrn\": 0.9371912491178546, \"skipped\": false}, {\"bucket\": \"6-20\", \"lo\": 6, \"hi\": 20, \"midpoint\": 13.0, \"n_train\": 3525, \"n_val\": 12, \"baseline\": 0.40625, \"augmented\": 0.2604166666666667, \"jrn\": 0.6410256410256411, \"skipped\": false}, {\"bucket\": \"21-50\", \"n_train\": 1950, \"n_val\": 1, \"skipped\": true}, {\"bucket\": \"51-200\", \"n_train\": 1265, \"n_val\": 0, \"skipped\": true}, {\"bucket\": \"200+\", \"n_train\": 80, \"n_val\": 0, \"skipped\": true}], \"spearman_rho\": null, \"spearman_pval\": null}",
+          "predict_baseline": "{\"description\": \"No fan-out stratification analysis\"}",
+          "predict_our_method": "{\"spearman_rho\": null, \"n_valid_buckets\": 2}",
+          "metadata_measurement_type": "fanout_stratification",
+          "metadata_task": "user-churn"
+        },
+        {
+          "input": "{\"measurement_type\": \"fanout_stratification\", \"task\": \"item-sales\", \"n_buckets\": 5, \"bucket_ranges\": [\"1-5\", \"6-20\", \"21-50\", \"51-200\", \"201-inf\"]}",
+          "output": "{\"buckets\": [{\"bucket\": \"1-5\", \"lo\": 1, \"hi\": 5, \"midpoint\": 3.0, \"n_train\": 272, \"n_val\": 14, \"baseline\": 0.01535903854663992, \"augmented\": 0.011461373079390968, \"jrn\": 1.3400696792827953, \"skipped\": false}, {\"bucket\": \"6-20\", \"lo\": 6, \"hi\": 20, \"midpoint\": 13.0, \"n_train\": 1421, \"n_val\": 65, \"baseline\": 0.020081082506254552, \"augmented\": 0.007886375170767188, \"jrn\": 2.5463006858575636, \"skipped\": false}, {\"bucket\": \"21-50\", \"lo\": 21, \"hi\": 50, \"midpoint\": 35.5, \"n_train\": 3132, \"n_val\": 133, \"baseline\": 0.02169540215072838, \"augmented\": 0.007763368262436045, \"jrn\": 2.7945862436674673, \"skipped\": false}, {\"bucket\": \"51-200\", \"lo\": 51, \"hi\": 200, \"midpoint\": 125.5, \"n_train\": 11960, \"n_val\": 539, \"baseline\": 0.028495170716958274, \"augmented\": 0.025065945192486228, \"jrn\": 1.1368081473943377, \"skipped\": false}, {\"bucket\": \"200+\", \"lo\": 201, \"hi\": 99999, \"midpoint\": 350.5, \"n_train\": 28503, \"n_val\": 1713, \"baseline\": 0.14558280343838378, \"augmented\": 0.31574147033971883, \"jrn\": 0.4610823002811301, \"skipped\": false}], \"spearman_rho\": -0.6, \"spearman_pval\": 0.28475697986529386}",
+          "predict_baseline": "{\"description\": \"No fan-out stratification analysis\"}",
+          "predict_our_method": "{\"spearman_rho\": -0.6, \"n_valid_buckets\": 5}",
+          "metadata_measurement_type": "fanout_stratification",
+          "metadata_task": "item-sales"
+        },
+        {
+          "input": "{\"measurement_type\": \"fk_shuffling\", \"task\": \"user-churn\", \"n_permutations\": 5}",
+          "output": "{\"actual_jrn\": 0.905116, \"structural_jrn\": 0.958798, \"feature_jrn\": 0.946319, \"shuffled_jrns\": [0.982845, 0.896311, 0.960984, 0.953697, 1.000152], \"interpretation\": \"structural_jrn captures improvement from adding ANY aggregated features (regularization/more features effect). feature_jrn captures the actual FK-link predictive signal beyond random features.\"}",
+          "predict_baseline": "{\"description\": \"No confound decomposition\"}",
+          "predict_our_method": "{\"actual_jrn\": 0.905116, \"structural_jrn\": 0.958798, \"feature_jrn\": 0.946319}",
+          "metadata_measurement_type": "fk_shuffling",
+          "metadata_task": "user-churn"
+        },
+        {
+          "input": "{\"measurement_type\": \"fk_shuffling\", \"task\": \"item-sales\", \"n_permutations\": 5}",
+          "output": "{\"actual_jrn\": 0.545842, \"structural_jrn\": 0.562304, \"feature_jrn\": 0.983538, \"shuffled_jrns\": [0.561988, 0.563722, 0.562763, 0.560821, 0.562227], \"interpretation\": \"structural_jrn captures improvement from adding ANY aggregated features (regularization/more features effect). feature_jrn captures the actual FK-link predictive signal beyond random features.\"}",
+          "predict_baseline": "{\"description\": \"No confound decomposition\"}",
+          "predict_our_method": "{\"actual_jrn\": 0.545842, \"structural_jrn\": 0.562304, \"feature_jrn\": 0.983538}",
+          "metadata_measurement_type": "fk_shuffling",
+          "metadata_task": "item-sales"
+        },
+        {
+          "input": "{\"measurement_type\": \"aggregation_sensitivity\", \"task\": \"user-churn\", \"agg_types\": [\"mean\", \"sum\", \"max\", \"std\", \"all_combined\"]}",
+          "output": "{\"jrn_per_agg\": {\"mean\": 0.905116, \"sum\": 0.930317, \"max\": 0.934568, \"std\": 1.000759, \"all_combined\": 0.968271}, \"score_per_agg\": {\"mean\": 0.562029, \"sum\": 0.577677, \"max\": 0.580317, \"std\": 0.621418, \"all_combined\": 0.601244}, \"cov\": 0.035076, \"jrn_spread\": 0.095643, \"best_agg\": \"std\", \"worst_agg\": \"mean\"}",
+          "predict_baseline": "{\"description\": \"No aggregation sensitivity analysis\"}",
+          "predict_our_method": "{\"cov\": 0.035076, \"best_agg\": \"std\"}",
+          "metadata_measurement_type": "aggregation_sensitivity",
+          "metadata_task": "user-churn"
+        },
+        {
+          "input": "{\"measurement_type\": \"aggregation_sensitivity\", \"task\": \"item-sales\", \"agg_types\": [\"mean\", \"sum\", \"max\", \"std\", \"all_combined\"]}",
+          "output": "{\"jrn_per_agg\": {\"mean\": 0.545842, \"sum\": 0.541436, \"max\": 0.568321, \"std\": 0.573383, \"all_combined\": 0.542045}, \"score_per_agg\": {\"mean\": 0.197098, \"sum\": 0.198701, \"max\": 0.189302, \"std\": 0.18763, \"all_combined\": 0.198478}, \"cov\": 0.024844, \"jrn_spread\": 0.031947, \"best_agg\": \"std\", \"worst_agg\": \"sum\"}",
+          "predict_baseline": "{\"description\": \"No aggregation sensitivity analysis\"}",
+          "predict_our_method": "{\"cov\": 0.024844, \"best_agg\": \"std\"}",
+          "metadata_measurement_type": "aggregation_sensitivity",
+          "metadata_task": "item-sales"
+        },
+        {
+          "input": "{\"measurement_type\": \"architecture_comparison\", \"task\": \"user-churn\", \"strategies\": [\"uniform_mean\", \"uniform_rich\", \"jrn_guided\"]}",
+          "output": "{\"strategy_results\": {\"uniform_mean\": {\"score_mean\": 0.54506, \"score_std\": 0.00795}, \"uniform_rich\": {\"score_mean\": 0.589932, \"score_std\": 0.004454}, \"jrn_guided\": {\"score_mean\": 0.589932, \"score_std\": 0.004454, \"chosen_agg\": \"all_combined\", \"guidance\": \"threshold_use_rich\"}}, \"best_strategy\": \"uniform_rich\", \"metric\": \"AUROC\", \"higher_is_better\": true}",
+          "predict_baseline": "{\"strategy\": \"uniform_mean\", \"score\": 0.54506}",
+          "predict_our_method": "{\"strategy\": \"jrn_guided\", \"score\": 0.589932}",
+          "metadata_measurement_type": "architecture_comparison",
+          "metadata_task": "user-churn"
+        },
+        {
+          "input": "{\"measurement_type\": \"architecture_comparison\", \"task\": \"item-sales\", \"strategies\": [\"uniform_mean\", \"uniform_rich\", \"jrn_guided\"]}",
+          "output": "{\"strategy_results\": {\"uniform_mean\": {\"score_mean\": 0.19689, \"score_std\": 0.000214}, \"uniform_rich\": {\"score_mean\": 0.197636, \"score_std\": 0.000359}, \"jrn_guided\": {\"score_mean\": 0.112169, \"score_std\": 0.000313, \"chosen_agg\": null, \"guidance\": \"weak_signal_prune\"}}, \"best_strategy\": \"jrn_guided\", \"metric\": \"MAE\", \"higher_is_better\": false}",
+          "predict_baseline": "{\"strategy\": \"uniform_mean\", \"score\": 0.19689}",
+          "predict_our_method": "{\"strategy\": \"jrn_guided\", \"score\": 0.112169}",
+          "metadata_measurement_type": "architecture_comparison",
+          "metadata_task": "item-sales"
+        },
+        {
+          "input": "{\"measurement_type\": \"summary\", \"dataset\": \"rel-hm\"}",
+          "output": "{\"dataset\": \"rel-hm\", \"n_tables\": 3, \"n_joins\": 2, \"tasks\": {\"user-churn\": {\"baseline\": 0.620946, \"best_jrn\": 1.000759, \"best_agg\": \"std\", \"join_helpful\": true, \"structural_jrn\": 0.958798, \"feature_jrn\": 0.946319}, \"item-sales\": {\"baseline\": 0.107584, \"best_jrn\": 0.573383, \"best_agg\": \"std\", \"join_helpful\": false, \"structural_jrn\": 0.562304, \"feature_jrn\": 0.983538}}, \"total_runtime_seconds\": 64.6, \"n_seeds\": 3, \"n_agg_types\": 5, \"jrn_direction_fix\": \"For MAE (lower=better), JRN = baseline_MAE / augmented_MAE so JRN > 1 always means improvement\"}",
+          "predict_baseline": "{\"description\": \"No JRN analysis performed\"}",
+          "predict_our_method": "{\"dataset\": \"rel-hm\", \"n_tables\": 3, \"n_joins\": 2, \"tasks\": {\"user-churn\": {\"baseline\": 0.620946, \"best_jrn\": 1.000759, \"best_agg\": \"std\", \"join_helpful\": true, \"structural_jrn\": 0.958798, \"feature_jrn\": 0.946319}, \"item-sales\": {\"baseline\": 0.107584, \"best_jrn\": 0.573383, \"best_agg\": \"std\", \"join_helpful\": false, \"structural_jrn\": 0.562304, \"feature_jrn\": 0.983538}}, \"total_runtime_seconds\": 64.6, \"n_seeds\": 3, \"n_agg_types\": 5, \"jrn_direction_fix\": \"For MAE (lower=better), JRN = baseline_MAE / augmented_MAE so JRN > 1 always means improvement\"}",
+          "metadata_measurement_type": "summary"
+        }
+      ]
+    }
+  ]
+}

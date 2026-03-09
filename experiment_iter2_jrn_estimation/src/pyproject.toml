@@ -1,0 +1,15 @@
+[project]
+name = "jrn-experiment"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "relbench==2.1.1",
+    "torch==2.10.0+cpu",
+    "numpy==2.2.6",
+    "pandas==2.3.3",
+    "scikit-learn==1.6.1",
+    "loguru==0.7.3",
+]
+
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cpu"]

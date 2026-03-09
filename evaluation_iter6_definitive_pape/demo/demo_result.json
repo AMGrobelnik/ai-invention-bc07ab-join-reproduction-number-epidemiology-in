@@ -1,0 +1,13 @@
+{
+  "id": "eval_id4_it6__opus",
+  "type": "code",
+  "title": "Definitive Paper-Ready Consolidation: JRN Hypothesis Scorecard & 8 Paper Tables",
+  "summary": "Demo notebook that loads pre-computed evaluation results from 16 experiments across 4 relational datasets (rel-f1, rel-stack, rel-avito, rel-hm) and demonstrates 8 paper-ready statistical tables plus a hypothesis scorecard. Includes Fisher z random-effects meta-analysis, Cohen's d paired effect sizes, Wilcoxon tests, sign tests with binomial CIs, and training-free proxy rankings. The notebook processes 60 curated examples from 284 total, computes 63 aggregate metrics, grades 6 hypothesis claims (A/B/C/D), and produces a 4-panel visualization showing the scorecard, key metrics, FK-shuffling decomposition, and chain compounding predicted vs measured JRN values.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_6/gen_art/eval_id4_it6__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id4_it6__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id4_it6__opus/eval_code_demo.ipynb"
+}

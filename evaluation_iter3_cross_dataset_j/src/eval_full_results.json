@@ -1,0 +1,762 @@
+{
+  "metadata": {
+    "title": "Cross-Dataset JRN Consolidation",
+    "n_experiments_consolidated": 4,
+    "n_datasets": 3,
+    "total_jrn_measurements": 139,
+    "analysis_date": "2026-03-09"
+  },
+  "analysis_A": {
+    "pooled_stats": {
+      "name": "pooled MLP probe",
+      "n": 68,
+      "mean": 1.174300760812181,
+      "median": 1.0424321178631428,
+      "std": 0.38866610640447546,
+      "min": 0.625281,
+      "max": 3.833333,
+      "iqr": 0.3157932222364275,
+      "skewness": 4.803237133343547,
+      "kurtosis": 30.39793737421217
+    },
+    "per_dataset_stats": {
+      "exp1_rel_f1_mlp": {
+        "name": "rel-f1 MLP probe",
+        "n": 50,
+        "mean": 1.0874807432325786,
+        "median": 1.0252511212470756,
+        "std": 0.16226916658448617,
+        "min": 0.7941970081400174,
+        "max": 1.4130308013864232,
+        "iqr": 0.22751544439977767,
+        "skewness": 0.6638877010540549,
+        "kurtosis": -0.6563506811361814
+      },
+      "exp2_rel_stack_mlp": {
+        "name": "rel-stack MLP probe",
+        "n": 16,
+        "mean": 1.3137375358499612,
+        "median": 1.3360577297841953,
+        "std": 0.22672073070887386,
+        "min": 1.0146737172734865,
+        "max": 1.606679916795472,
+        "iqr": 0.42366378844670205,
+        "skewness": -0.08626290562817347,
+        "kurtosis": -1.6535186065928849
+      },
+      "exp3_rel_hm_global": {
+        "name": "rel-hm global",
+        "n": 2,
+        "mean": 2.229307,
+        "median": 2.229307,
+        "std": 2.2684353235990664,
+        "min": 0.625281,
+        "max": 3.833333,
+        "iqr": 1.604026,
+        "skewness": 0.0,
+        "kurtosis": 0.0
+      },
+      "exp3_rel_hm_bucket": {
+        "name": "rel-hm bucket-level",
+        "n": 14,
+        "mean": 1.6890047142857143,
+        "median": 1.042354,
+        "std": 1.4656518095888746,
+        "min": 0.291051,
+        "max": 5.631058,
+        "iqr": 1.4172994999999997,
+        "skewness": 1.6234819652131427,
+        "kurtosis": 1.834267234196175
+      },
+      "exp4_rel_f1_gt": {
+        "name": "rel-f1 ground-truth",
+        "n": 19,
+        "mean": 1.4429446646787303,
+        "median": 1.095304863392356,
+        "std": 0.6552628412572085,
+        "min": 0.998424346060388,
+        "max": 2.6666549710859875,
+        "iqr": 0.704417179185576,
+        "skewness": 1.1251289184612892,
+        "kurtosis": -0.60226104138034
+      },
+      "exp4_rel_f1_gbm": {
+        "name": "rel-f1 GBM probe",
+        "n": 19,
+        "mean": 1.4096282585882018,
+        "median": 1.1253891932369053,
+        "std": 0.5733125451860129,
+        "min": 0.9984438870759762,
+        "max": 2.816013517161887,
+        "iqr": 0.5819799912366483,
+        "skewness": 1.2567877512326053,
+        "kurtosis": 0.07601754199647326
+      },
+      "exp4_rel_f1_mlp": {
+        "name": "rel-f1 MLP probe (exp4)",
+        "n": 19,
+        "mean": 1.3032545133954778,
+        "median": 1.1854769704647792,
+        "std": 0.2938765570642003,
+        "min": 0.9505820484788426,
+        "max": 1.9664636545331504,
+        "iqr": 0.3893019695196216,
+        "skewness": 0.980810001316617,
+        "kurtosis": -0.1490584536933679
+      }
+    },
+    "dip_test_pooled_mlp": {
+      "statistic": 0.059074324956909306,
+      "p_value": 0.06937376208428636
+    },
+    "dip_test_gt_jrn": {
+      "statistic": 0.09391743822016074,
+      "p_value": 0.15962020111190767
+    },
+    "fraction_near_threshold_mlp": 0.47058823529411764,
+    "fraction_near_threshold_gt": 0.3157894736842105,
+    "kde_modes": [
+      1.0529076933867731,
+      3.835787773547093
+    ],
+    "per_dataset_range": {
+      "exp1_rel_f1": {
+        "min": 0.7941970081400174,
+        "max": 1.4130308013864232,
+        "range": 0.6188337932464059,
+        "has_below_threshold": true,
+        "has_above_threshold": true
+      },
+      "exp2_rel_stack": {
+        "min": 1.0146737172734865,
+        "max": 1.606679916795472,
+        "range": 0.5920061995219854,
+        "has_below_threshold": false,
+        "has_above_threshold": true
+      },
+      "exp3_global": {
+        "min": 0.625281,
+        "max": 3.833333,
+        "range": 3.2080520000000003,
+        "has_below_threshold": true,
+        "has_above_threshold": true
+      },
+      "exp3_bucket": {
+        "min": 0.291051,
+        "max": 5.631058,
+        "range": 5.340007,
+        "has_below_threshold": true,
+        "has_above_threshold": true
+      },
+      "exp4_gt": {
+        "min": 0.998424346060388,
+        "max": 2.6666549710859875,
+        "range": 1.6682306250255996,
+        "has_below_threshold": true,
+        "has_above_threshold": true
+      }
+    },
+    "total_jrn_measurements": 139
+  },
+  "analysis_B": {
+    "kendalls_W_rel_f1": {
+      "W": 0.13142857142857142,
+      "chi2": 7.885714285714285,
+      "p_value": 0.7939964375807903,
+      "n_joins": 13,
+      "n_tasks": 5,
+      "interpretation": "Poor concordance \u2014 JRN is task-specific"
+    },
+    "kendalls_W_rel_stack": {
+      "W": 0.7,
+      "chi2": 5.6,
+      "p_value": 0.23107823797582827,
+      "n_joins": 5,
+      "n_tasks": 2,
+      "interpretation": "Moderate concordance"
+    },
+    "task_pair_correlations_rel_f1": {
+      "rel-f1/driver-dnf vs rel-f1/driver-position": {
+        "spearman_rho": -0.35465116279069764,
+        "p_value": 0.23443409878179985
+      },
+      "rel-f1/driver-dnf vs rel-f1/driver-top3": {
+        "spearman_rho": 0.9476744186046511,
+        "p_value": 8.635179929416541e-07
+      },
+      "rel-f1/driver-dnf vs rel-f1/qualifying-position": {
+        "spearman_rho": -0.011303946105083808,
+        "p_value": 0.970763432748004
+      },
+      "rel-f1/driver-dnf vs rel-f1/results-position": {
+        "spearman_rho": -0.062171703577960945,
+        "p_value": 0.840096782407677
+      },
+      "rel-f1/driver-position vs rel-f1/driver-top3": {
+        "spearman_rho": -0.5348837209302325,
+        "p_value": 0.059641283848204905
+      },
+      "rel-f1/driver-position vs rel-f1/qualifying-position": {
+        "spearman_rho": -0.46911376336097804,
+        "p_value": 0.10584022233845891
+      },
+      "rel-f1/driver-position vs rel-f1/results-position": {
+        "spearman_rho": -0.16955919157625712,
+        "p_value": 0.5797223203608379
+      },
+      "rel-f1/driver-top3 vs rel-f1/qualifying-position": {
+        "spearman_rho": 0.005651973052541904,
+        "p_value": 0.9853796149220515
+      },
+      "rel-f1/driver-top3 vs rel-f1/results-position": {
+        "spearman_rho": -0.10738748799829619,
+        "p_value": 0.7269470087683857
+      },
+      "rel-f1/qualifying-position vs rel-f1/results-position": {
+        "spearman_rho": -0.03846153846153846,
+        "p_value": 0.9007243023389339
+      }
+    }
+  },
+  "analysis_C": {
+    "gbm_vs_gt_spearman": {
+      "rho": 0.9596136962247587,
+      "p_value": 8.56504989950266e-11,
+      "ci_95": [
+        0.8958933853275326,
+        0.9846486524738514
+      ]
+    },
+    "mlp_vs_gt_spearman": {
+      "rho": -0.06669592568350946,
+      "p_value": 0.7861712279616262,
+      "ci_95": [
+        -0.5055889466370918,
+        0.3996193942018593
+      ]
+    },
+    "mlp_range_analysis": {
+      "min": 0.9505820484788426,
+      "max": 1.9664636545331504,
+      "range": 1.0158816060543079,
+      "std": 0.2938765570642003,
+      "cv": 0.22549437124030297
+    },
+    "gbm_range_analysis": {
+      "min": 0.9984438870759762,
+      "max": 2.816013517161887,
+      "range": 1.8175696300859108,
+      "std": 0.5733125451860129,
+      "cv": 0.40671187009276333
+    },
+    "gt_range_analysis": {
+      "min": 0.998424346060388,
+      "max": 2.6666549710859875,
+      "range": 1.6682306250255996,
+      "std": 0.6552628412572085,
+      "cv": 0.45411501722632025
+    },
+    "task_stratified": {
+      "rel-f1/driver-dnf": {
+        "n": 3,
+        "gbm_spearman_rho": 0.5,
+        "gbm_p_value": 0.6666666666666666,
+        "mlp_spearman_rho": 1.0,
+        "mlp_p_value": 0.0
+      },
+      "rel-f1/driver-position": {
+        "n": 3,
+        "gbm_spearman_rho": 0.5,
+        "gbm_p_value": 0.6666666666666666,
+        "mlp_spearman_rho": 1.0,
+        "mlp_p_value": 0.0
+      },
+      "rel-f1/driver-top3": {
+        "n": 3,
+        "gbm_spearman_rho": 0.5,
+        "gbm_p_value": 0.6666666666666666,
+        "mlp_spearman_rho": 0.5,
+        "mlp_p_value": 0.6666666666666666
+      },
+      "ss_constructors": {
+        "n": 4,
+        "gbm_spearman_rho": 1.0,
+        "gbm_p_value": 0.0,
+        "mlp_spearman_rho": -0.39999999999999997,
+        "mlp_p_value": 0.6
+      },
+      "ss_races": {
+        "n": 5,
+        "gbm_spearman_rho": 1.0,
+        "gbm_p_value": 0.0,
+        "mlp_spearman_rho": 0.5642880936468347,
+        "mlp_p_value": 0.3217233358243003
+      }
+    },
+    "rank_displacement_summary": {
+      "mean_gbm_displacement": 1.0526315789473684,
+      "mean_mlp_displacement": 6.421052631578948,
+      "max_gbm_displacement": 4,
+      "max_mlp_displacement": 17
+    },
+    "rank_displacements_top5_worst_mlp": [
+      {
+        "join": "constructor_standings\u2192constructors via constructorId",
+        "task": "ss_constructors",
+        "gt_rank": 19,
+        "gbm_rank": 18,
+        "mlp_rank": 2,
+        "gbm_displacement": 1,
+        "mlp_displacement": 17
+      },
+      {
+        "join": "constructor_results\u2192constructors via constructorId",
+        "task": "ss_constructors",
+        "gt_rank": 17,
+        "gbm_rank": 16,
+        "mlp_rank": 3,
+        "gbm_displacement": 1,
+        "mlp_displacement": 14
+      },
+      {
+        "join": "qualifying\u2192constructors via constructorId",
+        "task": "ss_constructors",
+        "gt_rank": 16,
+        "gbm_rank": 15,
+        "mlp_rank": 4,
+        "gbm_displacement": 1,
+        "mlp_displacement": 12
+      },
+      {
+        "join": "results\u2192constructors via constructorId",
+        "task": "ss_constructors",
+        "gt_rank": 18,
+        "gbm_rank": 17,
+        "mlp_rank": 6,
+        "gbm_displacement": 1,
+        "mlp_displacement": 12
+      },
+      {
+        "join": "standings\u2192drivers via driverId",
+        "task": "rel-f1/driver-dnf",
+        "gt_rank": 9,
+        "gbm_rank": 12,
+        "mlp_rank": 18,
+        "gbm_displacement": 3,
+        "mlp_displacement": 9
+      }
+    ],
+    "cross_config_stability": {
+      "n_overlapping": 9,
+      "spearman_rho": 0.8333333333333333,
+      "p_value": 0.005265691029161747,
+      "exp1_config": "hidden=32, epochs=10",
+      "exp4_config": "hidden=[32,16], epochs=50"
+    }
+  },
+  "analysis_D": {
+    "rel_f1_proxy_correlations": {
+      "proxy_fanout": {
+        "spearman_rho": 0.6440305194114924,
+        "p_value": 0.00292131632895416
+      },
+      "proxy_correlation": {
+        "spearman_rho": 0.34255602776500416,
+        "p_value": 0.15109819483997478
+      },
+      "proxy_MI": {
+        "spearman_rho": 0.4905660849616025,
+        "p_value": 0.032963661350543454
+      },
+      "proxy_entropy_reduction": {
+        "spearman_rho": 0.9451514731728905,
+        "p_value": 1.0993720583767862e-09
+      },
+      "proxy_homophily": {
+        "spearman_rho": -0.002632733908559584,
+        "p_value": 0.9914654436895748
+      },
+      "predict_jrn_probe_gbm": {
+        "spearman_rho": 0.9596136962247587,
+        "p_value": 8.56504989950266e-11
+      },
+      "predict_jrn_probe_mlp": {
+        "spearman_rho": -0.06669592568350946,
+        "p_value": 0.7861712279616262
+      }
+    },
+    "rel_stack_fanout_vs_mlp": {
+      "spearman_rho": 0.2022153988649884,
+      "p_value": 0.45261650607017667,
+      "n": 16,
+      "note": "heuristic JRN (fan-out-based) vs MLP-probe JRN"
+    },
+    "rel_hm_fanout_vs_jrn": {
+      "user-churn": {
+        "spearman_rho": 0.9429,
+        "p_value": 0.0048,
+        "n_buckets": 6
+      },
+      "item-sales": {
+        "spearman_rho": -0.4286,
+        "p_value": 0.2894,
+        "n_buckets": 8
+      }
+    },
+    "cross_dataset_fanout_summary": {
+      "rel_f1_fanout_vs_gt": {
+        "spearman_rho": 0.6440305194114924,
+        "p_value": 0.00292131632895416
+      },
+      "rel_stack_heuristic_vs_mlp": {
+        "spearman_rho": 0.2022153988649884,
+        "p_value": 0.45261650607017667,
+        "n": 16,
+        "note": "heuristic JRN (fan-out-based) vs MLP-probe JRN"
+      },
+      "rel_hm_user_churn": {
+        "spearman_rho": 0.9429,
+        "p_value": 0.0048,
+        "n_buckets": 6
+      },
+      "rel_hm_item_sales": {
+        "spearman_rho": -0.4286,
+        "p_value": 0.2894,
+        "n_buckets": 8
+      }
+    },
+    "mi_ratio_comparison": {
+      "user_churn": {
+        "MI_ratio": 10.404598,
+        "JRN": 3.833333
+      },
+      "item_sales": {
+        "MI_ratio": 4.414493,
+        "JRN": 0.625281
+      },
+      "higher_MI_higher_JRN": true,
+      "note": "Higher MI_ratio corresponds to higher JRN for this pair"
+    },
+    "proxy_ranking": [
+      {
+        "proxy": "proxy_entropy_reduction",
+        "abs_rho_rel_f1": 0.9451514731728905
+      },
+      {
+        "proxy": "proxy_fanout",
+        "abs_rho_rel_f1": 0.6440305194114924
+      },
+      {
+        "proxy": "proxy_MI",
+        "abs_rho_rel_f1": 0.4905660849616025
+      },
+      {
+        "proxy": "proxy_correlation",
+        "abs_rho_rel_f1": 0.34255602776500416
+      },
+      {
+        "proxy": "proxy_homophily",
+        "abs_rho_rel_f1": 0.002632733908559584
+      }
+    ]
+  },
+  "analysis_E": {
+    "n_chains": 14,
+    "bootstrap_r2": {
+      "original": 0.828332168788979,
+      "mean": 0.8022425665124057,
+      "ci_95": [
+        0.5616285394071503,
+        0.9461867294144181
+      ],
+      "n_bootstrap": 1000
+    },
+    "by_chain_length": {
+      "2": {
+        "n": 10,
+        "mean_abs_deviation": 0.009851820398210021,
+        "std_deviation": 0.010874533022282331
+      },
+      "3": {
+        "n": 4,
+        "mean_abs_deviation": 0.020052755165367586,
+        "std_deviation": 0.016742217149839096
+      }
+    },
+    "residual_analysis": {
+      "shapiro_wilk": {
+        "statistic": 0.9379007173540312,
+        "p_value": 0.39208592678858745,
+        "is_normal": true
+      },
+      "heteroscedasticity": {
+        "spearman_rho_abs_residual_vs_predicted": 0.655612168542959,
+        "p_value": 0.010909475266392788,
+        "significant": true
+      },
+      "systematic_bias": {
+        "mean_residual": -0.009108652160794086,
+        "t_statistic": -2.1317908382409745,
+        "p_value": 0.052677321449891734,
+        "has_bias": false
+      }
+    },
+    "hub_node_analysis": {
+      "n_with_hub": 14,
+      "n_without_hub": 0,
+      "mean_deviation_with_hub": 0.012766373188826468,
+      "mean_deviation_without_hub": 0.0
+    },
+    "loo_r2": 0.9222480125821053
+  },
+  "analysis_F": {
+    "metric_inventory": [
+      {
+        "experiment": "exp1 (rel-f1)",
+        "dataset": "rel-f1",
+        "metric": "MAE for regression, R\u00b2 for classification (via MLP probe)",
+        "direction": "lower=better for MAE",
+        "jrn_formula": "enriched_perf / baseline_perf",
+        "correction_applied": "None documented \u2014 JRN>1 when enriched > baseline",
+        "potential_issue": "For MAE tasks, JRN>1 means HIGHER error = WORSE. But exp1 uses a custom metric that may already account for this."
+      },
+      {
+        "experiment": "exp2 (rel-stack)",
+        "dataset": "rel-stack",
+        "metric": "neg_MAE",
+        "direction": "higher=better (negated MAE)",
+        "jrn_formula": "M_join / M_base (on neg_MAE)",
+        "correction_applied": "YES \u2014 uses neg_MAE so JRN>1 = improvement",
+        "potential_issue": "None \u2014 properly corrected"
+      },
+      {
+        "experiment": "exp3 (rel-hm)",
+        "dataset": "rel-hm",
+        "metric": "AUROC for user-churn (higher=better), MAE for item-sales (lower=better)",
+        "direction": "mixed",
+        "jrn_formula": "join_metric / base_metric",
+        "correction_applied": "None \u2014 raw ratio used",
+        "potential_issue": "item-sales: base_MAE=8.94, join_MAE=5.59 \u2192 JRN=0.625. Lower MAE is BETTER, so join actually HELPS. But JRN<1 is reported as 'join hurts'. THIS IS A METRIC DIRECTION BUG."
+      },
+      {
+        "experiment": "exp4 (rel-f1)",
+        "dataset": "rel-f1",
+        "metric": "Ground-truth model performance (various)",
+        "direction": "task-dependent",
+        "jrn_formula": "M_join_gt / M_base_gt with direction correction",
+        "correction_applied": "YES \u2014 explicit correction for metric direction",
+        "potential_issue": "None \u2014 properly handled"
+      }
+    ],
+    "corrections_needed": [
+      {
+        "experiment": "exp3",
+        "task": "item-sales",
+        "join": "J2_txn_to_article",
+        "reported_jrn": 0.625281,
+        "corrected_jrn": 1.599280952483137,
+        "reason": "MAE is lower=better; JRN = base_MAE/join_MAE to make JRN>1 = improvement",
+        "base_metric": 8.943371,
+        "join_metric": 5.59212,
+        "original_interpretation": "join hurts (JRN < 1)",
+        "corrected_interpretation": "join HELPS (corrected JRN = 1.599 > 1)"
+      }
+    ],
+    "corrected_values": {
+      "item_sales_corrected_jrn": 1.599280952483137,
+      "item_sales_bucket_corrections": {
+        "item-sales_1": {
+          "reported_jrn": 5.631058,
+          "corrected_jrn": 0.1775865347533211,
+          "base_mae": 13.632994,
+          "join_mae": 76.768174
+        },
+        "item-sales_2-5": {
+          "reported_jrn": 0.681046,
+          "corrected_jrn": 1.4683289094572918,
+          "base_mae": 72.885787,
+          "join_mae": 49.638597
+        },
+        "item-sales_6-10": {
+          "reported_jrn": 2.024729,
+          "corrected_jrn": 0.4938933370828824,
+          "base_mae": 48.940398,
+          "join_mae": 99.091027
+        },
+        "item-sales_11-50": {
+          "reported_jrn": 2.287452,
+          "corrected_jrn": 0.43716755412713854,
+          "base_mae": 21.280294,
+          "join_mae": 48.677661
+        },
+        "item-sales_51-100": {
+          "reported_jrn": 3.79718,
+          "corrected_jrn": 0.2633532937339753,
+          "base_mae": 11.896003,
+          "join_mae": 45.171271
+        },
+        "item-sales_101-500": {
+          "reported_jrn": 2.331374,
+          "corrected_jrn": 0.42893167213915245,
+          "base_mae": 9.782045,
+          "join_mae": 22.805602
+        },
+        "item-sales_501-1000": {
+          "reported_jrn": 1.046791,
+          "corrected_jrn": 0.9553007745231292,
+          "base_mae": 7.992095,
+          "join_mae": 8.366051
+        },
+        "item-sales_1001+": {
+          "reported_jrn": 0.291051,
+          "corrected_jrn": 3.4358204281706963,
+          "base_mae": 6.60554,
+          "join_mae": 1.922551
+        }
+      }
+    },
+    "n_values_affected": 9,
+    "impact_on_conclusions": "Found 9 JRN values with metric direction issue (all in exp3 item-sales). The item-sales global JRN changes from 0.625 (interpreted as 'join hurts') to 1.599 (join helps \u2014 MAE decreased from 8.94 to 5.59). This REVERSES the conclusion for item-sales: the join is beneficial, not harmful. Both joins in rel-hm now show JRN>1 (user-churn=3.83, item-sales corrected=1.60), which changes the narrative from 'mixed results' to 'consistent improvement'."
+  },
+  "analysis_G": [
+    {
+      "prediction": "JRN is a meaningful per-join metric (probe-GT rho > 0.6)",
+      "rating": "Moderate Support",
+      "evidence_summary": "GBM probe achieves \u03c1=0.960 (strong), but MLP probe fails with \u03c1=-0.067. This shows JRN CAN be measured accurately but is method-dependent, not universal. Fan-out heuristic \u03c1=0.644 provides a simpler alternative.",
+      "key_numbers": {
+        "gbm_probe_rho": 0.9596136962247587,
+        "mlp_probe_rho": -0.06669592568350946,
+        "fanout_rho": 0.6440305194114924
+      },
+      "caveats": [
+        "Only tested on rel-f1 dataset",
+        "MLP probe (the originally proposed method) fails completely",
+        "GBM success may depend on specific hyperparameters"
+      ],
+      "suggested_next_steps": [
+        "Test GBM probes on rel-stack and rel-hm",
+        "Ablation study on GBM hyperparameters",
+        "Investigate why MLP fails (convergence, architecture, data)"
+      ]
+    },
+    {
+      "prediction": "Inverted-U: aggregation innovation impact peaks near JRN\u22481",
+      "rating": "Inconclusive",
+      "evidence_summary": "Exp1 quadratic regression \u03b2\u2082=-0.82 with p=0.071 (marginal). Peak at JRN\u22481.13. Only tested on one dataset (rel-f1) with MLP probes which have low correlation with ground truth (\u03c1=-0.067). The marginal p-value combined with unreliable MLP probes makes this inconclusive.",
+      "key_numbers": {
+        "beta_2": -0.82,
+        "p_value": 0.071,
+        "peak_jrn": 1.13
+      },
+      "caveats": [
+        "Marginal p-value (0.071 > 0.05)",
+        "Only one dataset",
+        "MLP probes unreliable (\u03c1=-0.067 with GT)",
+        "Quadratic fit may be spurious"
+      ],
+      "suggested_next_steps": [
+        "Repeat with GBM-probe JRN values",
+        "Test on rel-stack and rel-hm",
+        "Use ground-truth JRN from exp4 instead of MLP probe"
+      ]
+    },
+    {
+      "prediction": "Multiplicative compounding holds (R\u00b2 > 0.5)",
+      "rating": "Moderate Support",
+      "evidence_summary": "R\u00b2=0.828 on 14 chains from rel-stack. Bootstrap 95% CI: [0.562, 0.946]. LOO-CV R\u00b2=0.922. Strong R\u00b2 but small sample and single dataset.",
+      "key_numbers": {
+        "r_squared": 0.828332168788979,
+        "bootstrap_ci_lower": 0.5616285394071503,
+        "bootstrap_ci_upper": 0.9461867294144181,
+        "loo_r2": 0.9222480125821053,
+        "n_chains": 14
+      },
+      "caveats": [
+        "Only 14 chains (small sample)",
+        "Single dataset (rel-stack)",
+        "Independence assumption may be violated for hub-node chains"
+      ],
+      "suggested_next_steps": [
+        "Test compounding on rel-f1 multi-hop joins",
+        "Test on rel-hm chain paths",
+        "Increase chain diversity and depth"
+      ]
+    },
+    {
+      "prediction": "JRN is join-intrinsic (stable across tasks)",
+      "rating": "Inconclusive",
+      "evidence_summary": "Kendall's W on rel-f1: W=0.131 (p=0.7940). Kendall's W on rel-stack: W=0.700 (p=0.2311). Poor concordance \u2014 JRN is task-specific.",
+      "key_numbers": {
+        "kendalls_W_rel_f1": 0.13142857142857142,
+        "kendalls_W_rel_stack": 0.7,
+        "p_value_rel_f1": 0.7939964375807903,
+        "p_value_rel_stack": 0.23107823797582827
+      },
+      "caveats": [
+        "Using MLP-probe JRN which may not reflect true JRN",
+        "rel-stack user-entity joins have only 2 user tasks",
+        "Missing complete task coverage for some joins"
+      ],
+      "suggested_next_steps": [
+        "Repeat with GBM-probe or GT JRN",
+        "Add more diverse tasks per dataset",
+        "Test cross-dataset join stability"
+      ]
+    },
+    {
+      "prediction": "Training-free proxies can substitute for probes",
+      "rating": "Inconclusive",
+      "evidence_summary": "Conditional entropy achieves \u03c1=0.945 on rel-f1 (strong), but only tested on one dataset. Fan-out shows mixed results across datasets (rel-f1: \u03c1=0.644, rel-hm user-churn: \u03c1=0.94, rel-hm item-sales: \u03c1=-0.43). Cannot confirm generalization without more cross-dataset testing.",
+      "key_numbers": {
+        "entropy_reduction_rho_rel_f1": 0.9451514731728905,
+        "fanout_rho_rel_f1": 0.6440305194114924
+      },
+      "caveats": [
+        "Conditional entropy only tested on rel-f1",
+        "Fan-out correlation varies wildly across datasets",
+        "No cross-dataset validation of best proxy (entropy)"
+      ],
+      "suggested_next_steps": [
+        "Compute conditional entropy on rel-stack and rel-hm",
+        "Test MI ratio as proxy across all datasets",
+        "Compare proxy rankings across datasets"
+      ]
+    },
+    {
+      "prediction": "JRN-guided architecture outperforms uniform",
+      "rating": "Not Yet Testable",
+      "evidence_summary": "Phase 4 (JRN-guided architecture selection) has not been implemented. No experimental evidence available to test this prediction.",
+      "key_numbers": {},
+      "caveats": [
+        "Requires Phase 4 implementation",
+        "Would need comparison with uniform architecture baselines"
+      ],
+      "suggested_next_steps": [
+        "Implement JRN-guided aggregation strategy selection",
+        "Compare JRN-guided vs uniform on all 3 datasets",
+        "Test on downstream task performance"
+      ]
+    }
+  ],
+  "overall_assessment": {
+    "hypothesis_viability": "Cautiously promising \u2014 some support but gaps remain",
+    "ratings_summary": {
+      "strong_support": 0,
+      "moderate_support": 2,
+      "inconclusive": 3,
+      "moderate_disconfirmation": 0,
+      "strong_disconfirmation": 0,
+      "not_yet_testable": 1
+    },
+    "strongest_evidence": "GBM probe-GT correlation (\u03c1=0.960) demonstrates that JRN is a valid, measurable quantity. Multiplicative compounding R\u00b2=0.83 on rel-stack shows composability.",
+    "weakest_link": "MLP probe failure (\u03c1=-0.067) undermines the 'lightweight probe' claim. The inverted-U relationship is only marginally significant and based on unreliable MLP probes. Metric direction bug in exp3 item-sales affects cross-dataset comparisons.",
+    "critical_next_experiments": [
+      "1. Validate GBM probes on rel-stack and rel-hm (currently only tested on rel-f1)",
+      "2. Diagnose MLP probe failure \u2014 test convergence, architecture, hyperparameters",
+      "3. Test conditional entropy proxy across all 3 datasets",
+      "4. Fix metric direction in rel-hm and re-run fan-out bucket analysis",
+      "5. Implement Phase 4: JRN-guided architecture selection vs uniform baseline",
+      "6. Increase sample sizes \u2014 14 chains and 19 join-task pairs limit statistical power"
+    ]
+  }
+}

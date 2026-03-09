@@ -1,0 +1,16 @@
+[project]
+name = "relbench-rel-f1-dataset"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+description = "RelBench rel-f1 (Formula 1) relational database extraction for JRN estimation experiments"
+dependencies = [
+    "relbench==2.1.1",
+    "loguru==0.7.3",
+    "pandas==2.3.3",
+    "numpy==2.2.6",
+    "psutil==7.2.2",
+    "pooch==1.9.0",
+    "duckdb==1.4.4",
+    "scikit-learn==1.6.1",
+    "datasets==4.6.1",
+]

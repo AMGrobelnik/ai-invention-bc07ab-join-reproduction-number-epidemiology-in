@@ -1,0 +1,13 @@
+{
+  "id": "exp_id2_it7__opus",
+  "type": "code",
+  "title": "JRN Probe Cost-Efficiency Replication on rel-stack (11 FK Joins, 3 Tasks)",
+  "summary": "Demo notebook replicating Join Reproduction Number (JRN) probe cost-efficiency analysis on the RelBench rel-stack dataset (Stack Exchange, 7 tables, 11 FK joins, 4.2M rows). Evaluates convergence of cheap probes vs full-budget models, compares JRN-based join selection against greedy forward selection and random baselines across 3 tasks (user-engagement, user-badge, post-votes). Key finding: JRN selection achieves 98.8\u2013100% of greedy performance but with only 5\u20136 direct joins the speedup remains below 1\u00d7, validating the theoretical breakeven at J\u22488. Mini data JSON contains per-task convergence stats, JRN values, greedy/JRN/random performance curves, and cost-efficiency metrics.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_7/gen_art/exp_id2_it7__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it7__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it7__opus/method_code_demo.ipynb"
+}

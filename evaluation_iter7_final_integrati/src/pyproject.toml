@@ -1,0 +1,9 @@
+[project]
+name = "eval-id1-it7-opus"
+version = "1.0.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy==2.2.6",
+    "scipy==1.15.3",
+    "loguru==0.7.3",
+]

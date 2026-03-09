@@ -1,0 +1,209 @@
+{
+  "metadata": {
+    "source": "H&M Personalized Fashion Recommendations (Kaggle / RelBench rel-hm)",
+    "huggingface_id": "einrafh/hnm-fashion-recommendations-data",
+    "relbench_id": "rel-hm",
+    "description": "Relational dataset with 3 tables (customers, articles, transactions) and 2 FK joins exhibiting extreme cardinality variation. Stratified subsample preserving natural fan-out distribution for JRN estim...",
+    "tables": {
+      "customers": {
+        "rows_full": 1371980,
+        "rows_subsample": 10836,
+        "columns": [
+          "customer_id",
+          "FN",
+          "Active"
+        ],
+        "primary_key": "customer_id"
+      },
+      "articles": {
+        "rows_full": 105542,
+        "rows_subsample": 47752,
+        "columns": [
+          "article_id",
+          "product_code",
+          "prod_name"
+        ],
+        "primary_key": "article_id"
+      },
+      "transactions": {
+        "rows_full": 31788324,
+        "rows_subsample": 249172,
+        "columns": [
+          "t_dat",
+          "customer_id",
+          "article_id"
+        ],
+        "primary_key": null,
+        "foreign_keys": {
+          "customer_id": "customers",
+          "article_id": "articles"
+        },
+        "time_column": "t_dat"
+      }
+    },
+    "join_statistics_full_dataset": {
+      "customer_join": {
+        "join": "transactions.customer_id → customers",
+        "child_rows": 31788324,
+        "unique_fk_values": 1362281,
+        "parent_rows": 1371980,
+        "fan_out": {
+          "min": 1.0,
+          "max": 1895.0,
+          "mean": 23.33,
+          "median": 9.0,
+          "std": 39.24,
+          "p25": 3.0,
+          "p75": 27.0,
+          "p90": 60.0,
+          "p95": 91.0,
+          "p99": 187.0
+        },
+        "coverage": 0.9929,
+        "cardinality_ratio": 23.33,
+        "fan_out_histogram": {
+          "1": 131514,
+          "2-5": 369844,
+          "6-10": 219141,
+          "11-50": 470540,
+          "51-100": 115126,
+          "101-500": 55642,
+          "501-1000": 454,
+          "1001+": 20
+        }
+      },
+      "article_join": {
+        "join": "transactions.article_id → articles",
+        "child_rows": 31788324,
+        "unique_fk_values": 104547,
+        "parent_rows": 105542,
+        "fan_out": {
+          "min": 1.0,
+          "max": 50287.0,
+          "mean": 304.06,
+          "median": 65.0,
+          "std": 791.27,
+          "p25": 14.0,
+          "p75": 286.0,
+          "p90": 793.0,
+          "p95": 1318.0,
+          "p99": 3185.08
+        },
+        "coverage": 0.9906,
+        "cardinality_ratio": 304.06,
+        "fan_out_histogram": {
+          "1": 4491,
+          "2-5": 10178,
+          "6-10": 7808,
+          "11-50": 25374,
+          "51-100": 12230,
+          "101-500": 27549,
+          "501-1000": 9113,
+          "1001+": 7804
+        }
+      }
+    },
+    "subsample": {
+      "customers": 10836,
+      "articles": 47752,
+      "transactions": 249172,
+      "customer_fan_out_histogram": {
+        "1": 1027,
+        "2-5": 2976,
+        "6-10": 1747,
+        "11-50": 3741,
+        "51-100": 907,
+        "101-500": 435,
+        "501-1000": 3,
+        "1001+": 0
+      }
+    },
+    "time_splits": {
+      "val_start": "2020-09-08 00:00:00",
+      "test_start": "2020-09-15 00:00:00",
+      "max_date": "2020-09-22 00:00:00"
+    },
+    "tasks": {
+      "user-churn": {
+        "type": "classification",
+        "table": "customers",
+        "metric": "AUROC"
+      },
+      "item-sales": {
+        "type": "regression",
+        "table": "articles",
+        "metric": "MAE"
+      },
+      "transactions-price": {
+        "type": "regression",
+        "table": "transactions",
+        "metric": "MAE"
+      },
+      "user-item-purchase": {
+        "type": "link_prediction",
+        "tables": [
+          "customers",
+          "articles"
+        ],
+        "metric": "MAP"
+      }
+    },
+    "fold_map": {
+      "0": "train",
+      "1": "val",
+      "2": "test"
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-hm",
+      "examples": [
+        {
+          "input": "{\"table\": \"transactions\", \"row_id\": 2835, \"features\": {\"t_dat\": \"2018-09-27\", \"customer_id\": \"81771418dcac00550d56ae8681d4e94c51d8d4cd7a3a0053a1310712a800593f\", \"article_id\": 538699001, \"price\": 0.008...",
+          "output": "{\"transactions-price\": 0.0085}",
+          "metadata_fold": 0,
+          "metadata_table": "transactions",
+          "metadata_task_type": "regression",
+          "metadata_feature_names": [
+            "t_dat",
+            "customer_id",
+            "article_id"
+          ],
+          "metadata_fan_out": 33,
+          "metadata_fan_out_bucket": "11-50",
+          "metadata_row_index": 2835
+        },
+        {
+          "input": "{\"table\": \"transactions\", \"row_id\": 2836, \"features\": {\"t_dat\": \"2018-09-27\", \"customer_id\": \"81771418dcac00550d56ae8681d4e94c51d8d4cd7a3a0053a1310712a800593f\", \"article_id\": 538699001, \"price\": 0.008...",
+          "output": "{\"transactions-price\": 0.0085}",
+          "metadata_fold": 0,
+          "metadata_table": "transactions",
+          "metadata_task_type": "regression",
+          "metadata_feature_names": [
+            "t_dat",
+            "customer_id",
+            "article_id"
+          ],
+          "metadata_fan_out": 33,
+          "metadata_fan_out_bucket": "11-50",
+          "metadata_row_index": 2836
+        },
+        {
+          "input": "{\"table\": \"transactions\", \"row_id\": 2837, \"features\": {\"t_dat\": \"2018-09-27\", \"customer_id\": \"828e00b48fe3036797ba979e0116f9144fba5832235da28f744c8d3ef65e981f\", \"article_id\": 627302004, \"price\": 0.032...",
+          "output": "{\"transactions-price\": 0.0322}",
+          "metadata_fold": 0,
+          "metadata_table": "transactions",
+          "metadata_task_type": "regression",
+          "metadata_feature_names": [
+            "t_dat",
+            "customer_id",
+            "article_id"
+          ],
+          "metadata_fan_out": 182,
+          "metadata_fan_out_bucket": "101-500",
+          "metadata_row_index": 2837
+        }
+      ]
+    }
+  ]
+}

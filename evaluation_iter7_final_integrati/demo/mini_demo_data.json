@@ -1,0 +1,540 @@
+{
+  "metrics_agg": {
+    "n_paper_tables": 9.0,
+    "n_total_measurements": 454.0,
+    "n_datasets": 2.0,
+    "n_tasks": 8.0,
+    "n_fk_joins": 24.0,
+    "n_hypothesis_claims": 7.0,
+    "n_claims_grade_A": 1.0,
+    "n_claims_grade_B": 3.0,
+    "n_claims_grade_C": 2.0,
+    "n_claims_grade_D": 1.0,
+    "pooled_probe_validity_rho": 0.671839,
+    "pooled_structural_cohens_d": 0.667277,
+    "best_compounding_R2": 0.826176,
+    "mean_cost_ratio_jrn_vs_greedy": 0.073567,
+    "same_entity_transfer_rho": 0.845137,
+    "t1_n_measurements": 158.0,
+    "t1_mean_jrn": 1.081445,
+    "t2_I_squared": 85.8724,
+    "t3_convergence_rate": 0.9062,
+    "t4_pooled_t_p_value": 8e-06,
+    "t4_structural_dominant_pct": 7.2727,
+    "t6_mean_perf_ratio": 0.977822,
+    "t8_mean_W": 0.365228
+  },
+  "datasets": [
+    {
+      "dataset": "paper_table_1_jrn_matrix",
+      "examples": [
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=standings.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1679 [1.1585, 1.1772], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1679",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.167861,
+          "eval_jrn_std": 0.008236,
+          "eval_jrn_ci_lo": 1.158541,
+          "eval_jrn_ci_hi": 1.177182,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        },
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=qualifying.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1558 [1.1509, 1.1606], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1558",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.155771,
+          "eval_jrn_std": 0.004294,
+          "eval_jrn_ci_lo": 1.150911,
+          "eval_jrn_ci_hi": 1.16063,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        },
+        {
+          "input": "JRN measurement: dataset=rel-f1, join=results.driverId->drivers, task=driver-dnf",
+          "output": "JRN=1.1786 [1.1666, 1.1906], category=high",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_task": "driver-dnf",
+          "metadata_hop_distance": 1.0,
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "1.1786",
+          "predict_baseline_uniform": "1.0",
+          "eval_jrn_mean": 1.178613,
+          "eval_jrn_std": 0.010609,
+          "eval_jrn_ci_lo": 1.166607,
+          "eval_jrn_ci_hi": 1.190618,
+          "eval_jrn_above_threshold": 1,
+          "eval_jrn_category_high": 1,
+          "eval_jrn_category_critical": 0,
+          "eval_jrn_category_low": 0
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_2_probe_validity",
+      "examples": [
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-dnf, source=convergence_cheapest",
+          "output": "Spearman rho=0.9779, Fisher_z=2.2471, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9779",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.977901,
+          "eval_fisher_z": 2.247119,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        },
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-top3, source=convergence_cheapest",
+          "output": "Spearman rho=0.9779, Fisher_z=2.2471, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9779",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.977901,
+          "eval_fisher_z": 2.247119,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        },
+        {
+          "input": "Probe validity: dataset=rel-f1, task=driver-position, source=convergence_cheapest",
+          "output": "Spearman rho=0.9061, Fisher_z=1.5052, var=0.1000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_source": "exp_id4_it5_convergence",
+          "predict_jrn_probe": "0.9061",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.906077,
+          "eval_fisher_z": 1.505166,
+          "eval_fisher_z_var": 0.1,
+          "eval_probe_valid": 1,
+          "eval_n_joins": 13
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_3_cost_efficiency",
+      "examples": [
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.1}",
+          "output": "{\"mean_spearman_rho\": 0.954, \"mean_kendall_tau\": 0.8772, \"wall_clock_seconds\": 0.953}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9540",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.954,
+          "eval_mean_kendall_tau": 0.8772,
+          "eval_wall_clock_seconds": 0.953,
+          "eval_converged": 1
+        },
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.3}",
+          "output": "{\"mean_spearman_rho\": 0.9374, \"mean_kendall_tau\": 0.8246, \"wall_clock_seconds\": 1.344}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9374",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.9374,
+          "eval_mean_kendall_tau": 0.8246,
+          "eval_wall_clock_seconds": 1.344,
+          "eval_converged": 1
+        },
+        {
+          "input": "{\"experiment\": \"convergence_analysis\", \"n_estimators\": 25, \"max_depth\": 3, \"n_seeds\": 1, \"subsample_frac\": 0.5}",
+          "output": "{\"mean_spearman_rho\": 0.9337, \"mean_kendall_tau\": 0.8246, \"wall_clock_seconds\": 1.715}",
+          "metadata_task": "convergence",
+          "metadata_method": "jrn_probe",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9337",
+          "predict_baseline_uniform": "1.0",
+          "eval_mean_spearman_rho": 0.9337,
+          "eval_mean_kendall_tau": 0.8246,
+          "eval_wall_clock_seconds": 1.715,
+          "eval_converged": 1
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_4_fk_shuffling",
+      "examples": [
+        {
+          "input": "FK-shuffling: dataset=rel-f1, join=races->circuits, task=driver-dnf",
+          "output": "normal_JRN=1.2753, shuffled_JRN=1.2549, structural=0.0204, feature=0.2549",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "races->circuits",
+          "metadata_task": "driver-dnf",
+          "metadata_source": "exp_id4_it4",
+          "predict_jrn_probe": "1.2753",
+          "predict_baseline_uniform": "1.2549",
+          "eval_normal_jrn": 1.2753,
+          "eval_shuffled_jrn": 1.2549,
+          "eval_structural_component": 0.0204,
+          "eval_feature_component": 0.2549,
+          "eval_structural_fraction": 0.0742,
+          "eval_structural_dominant": 0
+        },
+        {
+          "input": "FK-shuffling: dataset=rel-f1, join=races->circuits, task=driver-top3",
+          "output": "normal_JRN=1.3342, shuffled_JRN=1.2813, structural=0.0529, feature=0.2813",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "races->circuits",
+          "metadata_task": "driver-top3",
+          "metadata_source": "exp_id4_it4",
+          "predict_jrn_probe": "1.3342",
+          "predict_baseline_uniform": "1.2813",
+          "eval_normal_jrn": 1.3342,
+          "eval_shuffled_jrn": 1.2813,
+          "eval_structural_component": 0.0529,
+          "eval_feature_component": 0.2813,
+          "eval_structural_fraction": 0.1583,
+          "eval_structural_dominant": 0
+        },
+        {
+          "input": "FK-shuffling: dataset=rel-f1, join=races->circuits, task=driver-position",
+          "output": "normal_JRN=1.1345, shuffled_JRN=1.1702, structural=-0.0357, feature=0.1702",
+          "metadata_dataset": "rel-f1",
+          "metadata_join": "races->circuits",
+          "metadata_task": "driver-position",
+          "metadata_source": "exp_id4_it4",
+          "predict_jrn_probe": "1.1345",
+          "predict_baseline_uniform": "1.1702",
+          "eval_normal_jrn": 1.1345,
+          "eval_shuffled_jrn": 1.1702,
+          "eval_structural_component": -0.0357,
+          "eval_feature_component": 0.1702,
+          "eval_structural_fraction": -0.1734,
+          "eval_structural_dominant": 0
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_5_proxies",
+      "examples": [
+        {
+          "input": "Proxy: LightGBM cheapest config (25 trees, depth 3, 10% subsample), dataset=rel-f1",
+          "output": "rho=0.9540, tau=0.8772, time=0.953s",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy_method": "lgbm_cheapest",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.9540",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho_vs_reference": 0.954,
+          "eval_kendall_tau_vs_reference": 0.8772,
+          "eval_wall_clock_seconds": 0.953,
+          "eval_cost_normalized": 0.066629
+        },
+        {
+          "input": "Proxy: LightGBM full budget (100 trees, depth 5, 100% data), dataset=rel-f1",
+          "output": "rho=1.0 (reference), time=14.303s",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy_method": "lgbm_reference",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "1.0000",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho_vs_reference": 1.0,
+          "eval_kendall_tau_vs_reference": 1.0,
+          "eval_wall_clock_seconds": 14.303,
+          "eval_cost_normalized": 1.0
+        },
+        {
+          "input": "Proxy: MLP probe (log-linear compounding), dataset=rel-f1",
+          "output": "Compounding Spearman r=0.5266",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy_method": "mlp_probe",
+          "metadata_source": "exp_id2_it6",
+          "predict_jrn_probe": "0.5266",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho_vs_reference": 0.526584,
+          "eval_kendall_tau_vs_reference": 0.0,
+          "eval_wall_clock_seconds": 0.0,
+          "eval_cost_normalized": 0.0
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_6_architecture",
+      "examples": [
+        {
+          "input": "Architecture: dataset=rel-f1, task=driver-dnf, comparison=jrn_vs_greedy",
+          "output": "JRN perf=0.750005, greedy perf=0.777796, ratio=0.9643",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_method_pair": "jrn_vs_greedy",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.750005",
+          "predict_baseline_uniform": "0.777796",
+          "eval_jrn_perf": 0.750005,
+          "eval_baseline_perf": 0.777796,
+          "eval_jrn_wins": 0,
+          "eval_perf_difference": -0.027791,
+          "eval_perf_ratio": 0.96427
+        },
+        {
+          "input": "Architecture: dataset=rel-f1, task=driver-dnf, comparison=jrn_vs_random",
+          "output": "JRN perf=0.750005, random perf=0.773968",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_method_pair": "jrn_vs_random",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.750005",
+          "predict_baseline_uniform": "0.773968",
+          "eval_jrn_perf": 0.750005,
+          "eval_baseline_perf": 0.773968,
+          "eval_jrn_wins": 0,
+          "eval_perf_difference": -0.023963,
+          "eval_perf_ratio": 0.969039
+        },
+        {
+          "input": "Architecture: dataset=rel-f1, task=driver-dnf, comparison=jrn_vs_exhaustive",
+          "output": "JRN perf=0.750005, exhaustive perf=0.776000",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_method_pair": "jrn_vs_exhaustive",
+          "metadata_source": "exp_id4_it5",
+          "predict_jrn_probe": "0.750005",
+          "predict_baseline_uniform": "0.776000",
+          "eval_jrn_perf": 0.750005,
+          "eval_baseline_perf": 0.776,
+          "eval_jrn_wins": 0,
+          "eval_perf_difference": -0.025995,
+          "eval_perf_ratio": 0.966501
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_7_compounding",
+      "examples": [
+        {
+          "input": "Compounding: dataset=rel-f1, probe=MLP, model=multiplicative",
+          "output": "R2=-4.1963, Spearman=0.5560, MAE=0.0721, RMSE=0.1602",
+          "metadata_dataset": "rel-f1",
+          "metadata_probe": "MLP",
+          "metadata_compounding_model": "multiplicative",
+          "metadata_source": "exp_id2_it6",
+          "predict_jrn_probe": "-4.1963",
+          "predict_baseline_uniform": "0.0",
+          "eval_r_squared": -4.196336,
+          "eval_spearman_r": 0.555996,
+          "eval_mae": 0.072089,
+          "eval_rmse": 0.160219,
+          "eval_n_chains": 12
+        },
+        {
+          "input": "Compounding: dataset=rel-f1, probe=MLP, model=additive",
+          "output": "R2=-4.2165, Spearman=0.5628, MAE=0.0734, RMSE=0.1605",
+          "metadata_dataset": "rel-f1",
+          "metadata_probe": "MLP",
+          "metadata_compounding_model": "additive",
+          "metadata_source": "exp_id2_it6",
+          "predict_jrn_probe": "-4.2165",
+          "predict_baseline_uniform": "0.0",
+          "eval_r_squared": -4.21649,
+          "eval_spearman_r": 0.562784,
+          "eval_mae": 0.073417,
+          "eval_rmse": 0.16053,
+          "eval_n_chains": 12
+        },
+        {
+          "input": "Compounding: dataset=rel-f1, probe=MLP, model=bottleneck",
+          "output": "R2=-17.4075, Spearman=-0.4444, MAE=0.2760, RMSE=0.3016",
+          "metadata_dataset": "rel-f1",
+          "metadata_probe": "MLP",
+          "metadata_compounding_model": "bottleneck",
+          "metadata_source": "exp_id2_it6",
+          "predict_jrn_probe": "-17.4075",
+          "predict_baseline_uniform": "0.0",
+          "eval_r_squared": -17.407512,
+          "eval_spearman_r": -0.444373,
+          "eval_mae": 0.275997,
+          "eval_rmse": 0.301553,
+          "eval_n_chains": 12
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_8_transfer",
+      "examples": [
+        {
+          "input": "Transfer summary: dataset=rel-f1",
+          "output": "Kendall's W=0.5244, same_entity_rho=0.8721, cross_entity_rho=0.2437, gap=14.4%",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "dataset_summary",
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "0.5244",
+          "predict_baseline_uniform": "0.0",
+          "eval_kendalls_W": 0.524396,
+          "eval_mean_transfer_rho": 0.373367,
+          "eval_same_entity_mean_rho": 0.872093,
+          "eval_cross_entity_mean_rho": 0.24375,
+          "eval_universal_vs_pertask_gap_pct": 14.4281
+        },
+        {
+          "input": "Pairwise transfer: dataset=rel-f1, pair=driver-dnf_vs_driver-top3",
+          "output": "Spearman rho=0.8488, same_entity=1",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "pairwise_transfer",
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "0.8488",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.848837,
+          "eval_same_entity": 1
+        },
+        {
+          "input": "Pairwise transfer: dataset=rel-f1, pair=driver-dnf_vs_driver-position",
+          "output": "Spearman rho=0.9302, same_entity=1",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "pairwise_transfer",
+          "metadata_source": "exp_id1_it6",
+          "predict_jrn_probe": "0.9302",
+          "predict_baseline_uniform": "0.0",
+          "eval_spearman_rho": 0.930233,
+          "eval_same_entity": 1
+        }
+      ]
+    },
+    {
+      "dataset": "paper_table_9_guidelines",
+      "examples": [
+        {
+          "input": "Scenario: Schema with >10 FK joins",
+          "output": "Recommendation: Use JRN probe to rank joins before feature engineering (6.5x speedup vs greedy on rel-f1 with 13 joins)",
+          "metadata_evidence_grade": "B",
+          "metadata_source": "synthesis",
+          "predict_jrn_probe": "0.0736",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 3,
+          "eval_supporting_datasets": 1,
+          "eval_effect_size": 0.0736
+        },
+        {
+          "input": "Scenario: Same-entity prediction tasks",
+          "output": "Recommendation: Universal JRN ranking is viable (same-entity rho=0.82-0.87); compute JRN once and reuse across tasks",
+          "metadata_evidence_grade": "B",
+          "metadata_source": "synthesis",
+          "predict_jrn_probe": "0.8451",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 3,
+          "eval_supporting_datasets": 2,
+          "eval_effect_size": 0.8451
+        },
+        {
+          "input": "Scenario: Cross-entity prediction tasks",
+          "output": "Recommendation: Compute per-task JRN rankings (cross-entity rho=0.24 to -0.70); universal rankings fail across entity boundaries",
+          "metadata_evidence_grade": "B",
+          "metadata_source": "synthesis",
+          "predict_jrn_probe": "-0.2259",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 3,
+          "eval_supporting_datasets": 2,
+          "eval_effect_size": -0.2259
+        }
+      ]
+    },
+    {
+      "dataset": "scorecard_v5",
+      "examples": [
+        {
+          "input": "Claim 1: JRN as valid per-join metric",
+          "output": "Grade: A (strong). Probe rho>0.9 (exp_id4_it5), structural signal significant p=0.0001 d=0.69 (rel-f1), p=0.024 d=0.63 (rel-stack)",
+          "metadata_claim_id": 1,
+          "metadata_claim": "JRN as valid per-join metric",
+          "metadata_source": "scorecard_v5",
+          "predict_jrn_probe": "0.6718",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 4,
+          "eval_effect_size": 0.671839,
+          "eval_ci_lo": -0.779003,
+          "eval_ci_hi": 0.990473,
+          "eval_n_datasets": 2,
+          "eval_claim_supported": 1
+        },
+        {
+          "input": "Claim 2: Threshold behavior (non-monotonic variance near JRN~1)",
+          "output": "Grade: D (absent). No direct aggregation-strategy variance experiment was run. Cannot evaluate peak near JRN=1.",
+          "metadata_claim_id": 2,
+          "metadata_claim": "Threshold behavior (non-monotonic variance near JRN~1)",
+          "metadata_source": "scorecard_v5",
+          "predict_jrn_probe": "0.0000",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 1,
+          "eval_effect_size": 0.0,
+          "eval_ci_lo": 0.0,
+          "eval_ci_hi": 0.0,
+          "eval_n_datasets": 0,
+          "eval_claim_supported": 0
+        },
+        {
+          "input": "Claim 3: Cost-efficiency of JRN probes",
+          "output": "Grade: B (strong). 5.5-18x speedup vs greedy, 96-99% performance. Single dataset (rel-f1).",
+          "metadata_claim_id": 3,
+          "metadata_claim": "Cost-efficiency of JRN probes",
+          "metadata_source": "scorecard_v5",
+          "predict_jrn_probe": "0.0736",
+          "predict_baseline_uniform": "0.0",
+          "eval_evidence_grade": 3,
+          "eval_effect_size": 0.073567,
+          "eval_ci_lo": 0.05,
+          "eval_ci_hi": 0.11,
+          "eval_n_datasets": 1,
+          "eval_claim_supported": 1
+        }
+      ]
+    },
+    {
+      "dataset": "statistical_summary",
+      "examples": [
+        {
+          "input": "Statistic: total_dependency_examples",
+          "output": "total_dependency_examples = 395",
+          "metadata_statistic_name": "total_dependency_examples",
+          "metadata_source": "statistical_summary",
+          "predict_jrn_probe": "395.000000",
+          "predict_baseline_uniform": "0.0",
+          "eval_statistic_value": 395.0
+        },
+        {
+          "input": "Statistic: n_datasets",
+          "output": "n_datasets = 2",
+          "metadata_statistic_name": "n_datasets",
+          "metadata_source": "statistical_summary",
+          "predict_jrn_probe": "2.000000",
+          "predict_baseline_uniform": "0.0",
+          "eval_statistic_value": 2.0
+        },
+        {
+          "input": "Statistic: n_tasks",
+          "output": "n_tasks = 8",
+          "metadata_statistic_name": "n_tasks",
+          "metadata_source": "statistical_summary",
+          "predict_jrn_probe": "8.000000",
+          "predict_baseline_uniform": "0.0",
+          "eval_statistic_value": 8.0
+        }
+      ]
+    }
+  ]
+}

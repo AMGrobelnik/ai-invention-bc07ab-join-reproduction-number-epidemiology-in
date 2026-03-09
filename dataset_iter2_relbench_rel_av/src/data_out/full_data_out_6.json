@@ -1,0 +1,1556 @@
+{
+  "metadata": {
+    "source": "RelBench rel-avito (Avito ad marketplace) relational database",
+    "paper": "arXiv:2407.20060",
+    "license": "CC-BY-4.0",
+    "relbench_version": "1.0.0",
+    "val_timestamp": "2015-05-08T00:00:00",
+    "test_timestamp": "2015-05-14T00:00:00",
+    "num_tables": 8,
+    "num_fk_relationships": 11,
+    "num_tasks": 4,
+    "table_names": [
+      "AdsInfo",
+      "SearchInfo",
+      "UserInfo",
+      "Location",
+      "SearchStream",
+      "VisitStream",
+      "PhoneRequestsStream",
+      "Category"
+    ],
+    "task_names": [
+      "rel-avito/ad-ctr",
+      "rel-avito/user-ad-visit",
+      "rel-avito/user-clicks",
+      "rel-avito/user-visits"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 80137, \"AdID\": [800776]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35977
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 22483, \"AdID\": [2178809]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35978
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 70483, \"AdID\": [4211741, 5861076]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35979
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 14533, \"AdID\": [2094240]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35980
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 95868, \"AdID\": [3966570]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35981
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 32778, \"AdID\": [1222145]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35982
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 47146, \"AdID\": [1885054]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35983
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 11411, \"AdID\": [5563278]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35984
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 86936, \"AdID\": [1744275]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35985
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 17117, \"AdID\": [4525987]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35986
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 64006, \"AdID\": [1504455]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35987
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 35318, \"AdID\": [804839]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35988
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 53356, \"AdID\": [5115200]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35989
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 1865, \"AdID\": [5849699]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35990
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 59355, \"AdID\": [5849347]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35991
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83550, \"AdID\": [5440423]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35992
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 18663, \"AdID\": [5167348]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35993
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 73951, \"AdID\": [17721]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35994
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 44679, \"AdID\": [3763676]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35995
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 84414, \"AdID\": [2324807, 5722345]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35996
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 94954, \"AdID\": [5432540]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35997
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 70154, \"AdID\": [1691012]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35998
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 44163, \"AdID\": [3812208]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 35999
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 40802, \"AdID\": [5419695]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36000
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 79957, \"AdID\": [2457752, 3014292]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36001
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 71883, \"AdID\": [3956952]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36002
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 86751, \"AdID\": [5918815, 5229645]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36003
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83218, \"AdID\": [1992516, 1715517]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36004
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 21230, \"AdID\": [693028, 1216376]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36005
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 95615, \"AdID\": [5169664]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36006
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 70566, \"AdID\": [5820437, 977815]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36007
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 58822, \"AdID\": [2639478, 618202]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36008
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 41034, \"AdID\": [1074551]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36009
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 69783, \"AdID\": [677285]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36010
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 9591, \"AdID\": [4309575]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36011
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 48375, \"AdID\": [1276389, 4458802]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36012
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 94620, \"AdID\": [5593469]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36013
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 91224, \"AdID\": [2036407]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36014
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 48201, \"AdID\": [4173683, 970033]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36015
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 15748, \"AdID\": [67563]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36016
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 42625, \"AdID\": [501118]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36017
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 38388, \"AdID\": [5710710]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36018
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 65917, \"AdID\": [2648923]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36019
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 11383, \"AdID\": [5548166, 2098806, 2504839]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36020
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 25277, \"AdID\": [5545402]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36021
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 92675, \"AdID\": [4193463, 4167457]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36022
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 97318, \"AdID\": [112003]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36023
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 9447, \"AdID\": [18681, 5558493]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36024
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 42565, \"AdID\": [2975147, 3790361]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36025
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 69413, \"AdID\": [5287819]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36026
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83393, \"AdID\": [3806597]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36027
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83993, \"AdID\": [3526711]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36028
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 84044, \"AdID\": [5206503, 1758747, 2357374]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36029
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 16454, \"AdID\": [364377]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36030
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 16197, \"AdID\": [5376422, 4896582, 3755221]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36031
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 24306, \"AdID\": [80009]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36032
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 72466, \"AdID\": [1476418, 4592353]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36033
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 9207, \"AdID\": [3051906]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36034
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 62747, \"AdID\": [4251405, 2707883, 917086]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36035
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 91172, \"AdID\": [481667]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36036
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 60342, \"AdID\": [2095467, 5563218]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36037
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 10123, \"AdID\": [4330894, 5800012]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36038
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 71146, \"AdID\": [4566607, 659843]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36039
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 94314, \"AdID\": [4148067]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36040
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 77163, \"AdID\": [599735]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36041
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 34769, \"AdID\": [3842775]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36042
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 77009, \"AdID\": [646724]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36043
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 5418, \"AdID\": [3297710]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36044
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 58478, \"AdID\": [4739861, 3239460, 1318814]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36045
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 68009, \"AdID\": [961291]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36046
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 63412, \"AdID\": [5450262]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36047
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 20107, \"AdID\": [5870879]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36048
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 66412, \"AdID\": [386250]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36049
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 6792, \"AdID\": [1727716]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36050
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 66753, \"AdID\": [914875]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36051
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 46376, \"AdID\": [4416470]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36052
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 42635, \"AdID\": [5138781]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36053
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 75102, \"AdID\": [5676184]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36054
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 49799, \"AdID\": [561097]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36055
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 47556, \"AdID\": [4464084]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36056
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 72881, \"AdID\": [5127884]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36057
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 43050, \"AdID\": [5637287]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36058
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 1386, \"AdID\": [1727049]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36059
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 38633, \"AdID\": [1980034]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36060
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 78054, \"AdID\": [5756759]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36061
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 33016, \"AdID\": [709526]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36062
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 59762, \"AdID\": [2568914, 5836155]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36063
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 47068, \"AdID\": [502277]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36064
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 9708, \"AdID\": [848491]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36065
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 41427, \"AdID\": [5059412, 1030818]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36066
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 13393, \"AdID\": [2817686]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36067
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 1343, \"AdID\": [5575310]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36068
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 82950, \"AdID\": [2658807]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36069
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 59520, \"AdID\": [898706]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36070
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 24648, \"AdID\": [3977631, 426445]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36071
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 25514, \"AdID\": [690156]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36072
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 13746, \"AdID\": [4139588]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36073
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 14256, \"AdID\": [1946901]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36074
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 84290, \"AdID\": [5847962]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36075
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 3726, \"AdID\": [5066981, 2586698, 3150335]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36076
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 36928, \"AdID\": [5185190]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36077
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 59526, \"AdID\": [4049089, 3257208]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36078
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83784, \"AdID\": [1054867]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36079
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 96454, \"AdID\": [3034399]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36080
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 77479, \"AdID\": [1122131]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36081
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 50923, \"AdID\": [3180373]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36082
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 86532, \"AdID\": [3482250]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36083
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 86291, \"AdID\": [3446747]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36084
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 79594, \"AdID\": [82947]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36085
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 84907, \"AdID\": [2774164]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36086
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 70691, \"AdID\": [4225074]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36087
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 73968, \"AdID\": [1869678]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36088
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 79781, \"AdID\": [1730909, 4598928]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36089
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 48896, \"AdID\": [5047070]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36090
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 5827, \"AdID\": [3079691]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36091
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 29337, \"AdID\": [881125]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36092
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 55442, \"AdID\": [2586467]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36093
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 26189, \"AdID\": [3188454]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36094
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 25612, \"AdID\": [199681]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36095
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 67144, \"AdID\": [2766253]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36096
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 83942, \"AdID\": [1130824]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36097
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 96300, \"AdID\": [2342832]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36098
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 67981, \"AdID\": [1111299]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36099
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 20822, \"AdID\": [4789023]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36100
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 52709, \"AdID\": [2556248, 3444682]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36101
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 30590, \"AdID\": [502897]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36102
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 51726, \"AdID\": [271945]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36103
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 37560, \"AdID\": [667005]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36104
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 28008, \"AdID\": [1650245]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36105
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 91097, \"AdID\": [1050265]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36106
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 277, \"AdID\": [5865988]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36107
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 8925, \"AdID\": [4373357]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36108
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 24826, \"AdID\": [2742380]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36109
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 34541, \"AdID\": [5034192]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36110
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 8750, \"AdID\": [2521038]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36111
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 46686, \"AdID\": [1369613]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36112
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 18374, \"AdID\": [4738169]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36113
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 50602, \"AdID\": [3062056]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36114
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 60289, \"AdID\": [3382005]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36115
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 86307, \"AdID\": [217986]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36116
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 42370, \"AdID\": [1993554]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36117
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 38385, \"AdID\": [5224962]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36118
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 68892, \"AdID\": [2034555]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36119
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 93382, \"AdID\": [3437773]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36120
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 58830, \"AdID\": [3537378]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36121
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 1604, \"AdID\": [3862578]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36122
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 22264, \"AdID\": [5547807]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36123
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 47532, \"AdID\": [4548607]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36124
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 1124, \"AdID\": [1560880]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36125
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 63489, \"AdID\": [2229236]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36126
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 54584, \"AdID\": [5196152]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36127
+        },
+        {
+          "input": "{\"timestamp\": \"2015-05-14T00:00:00\", \"UserID\": 4697, \"AdID\": [3764300]}",
+          "output": "masked",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 2,
+          "metadata_fold_name": "test",
+          "metadata_task_name": "rel-avito/user-ad-visit",
+          "metadata_task_type": "link_prediction",
+          "metadata_row_index": 36128
+        }
+      ]
+    }
+  ]
+}

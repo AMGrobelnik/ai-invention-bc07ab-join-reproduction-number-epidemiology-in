@@ -1,0 +1,13 @@
+{
+  "id": "data_id3_it1__opus",
+  "type": "code",
+  "title": "RelBench rel-f1 Dataset Preparation for JRN Estimation",
+  "summary": "Demonstrates the RelBench rel-f1 (Formula 1) relational database preparation pipeline for Join Reproduction Number (JRN) estimation. The notebook loads raw RelBench rel-f1 data including 9 tables, 13 foreign-key relationships, and 6 prediction tasks, then transforms each record type into a unified example format with input/output strings and metadata fields. The mini demo data JSON contains a curated subset of the rel-f1 dataset with table rows, FK join metadata entries, and prediction task samples from Stanford RelBench v2.1.1.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_1/gen_art/data_id3_it1__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id3_it1__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id3_it1__opus/data_code_demo.ipynb"
+}

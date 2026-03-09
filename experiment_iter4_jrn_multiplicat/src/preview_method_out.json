@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "method_name": "JRN Multiplicative Compounding + Entropy vs Probe Architecture",
+    "description": "Tests multiplicative compounding of JRN along multi-hop chains and compares entropy-based vs GBM-probe-based architecture guidance on rel-f1",
+    "dataset": "rel-f1",
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "n_joins": 13,
+    "n_chains": 21,
+    "n_tasks": 3
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"analysis\": \"Part A - Individual JRN values for all 13 FK joins across 3 driver tasks + local proxy\", \"method\": \"GBM probe (LightGBM n_estimators=200, 3 seeds) + local proxy-target JRN\", \"joins_teste...",
+          "output": "{\"FK0\": {\"source\": \"races\", \"target\": \"circuits\", \"rel-f1/driver-dnf\": {\"jrn\": 1.1211023574511756, \"baseline\": 0.5008163265306123, \"augmented\": 0.5614663643235072}, \"rel-f1/driver-top3\": {\"jrn\": 1.057...",
+          "metadata_result_type": "individual_jrn",
+          "predict_jrn_probe": "{\"FK0\": {\"source\": \"races\", \"target\": \"circuits\", \"rel-f1/driver-dnf\": {\"jrn\": 1.1211023574511756, \"baseline\": 0.5008163265306123, \"augmented\": 0.5614663643235072}, \"rel-f1/driver-top3\": {\"jrn\": 1.057..."
+        },
+        {
+          "input": "{\"analysis\": \"Part A - Multiplicative compounding of JRN along multi-hop chains\", \"hypothesis\": \"Chain JRN = product of individual JRNs\", \"metric\": \"R^2 between predicted (product) and measured chain ...",
+          "output": "{\"chains\": [{\"chain_id\": \"chain_results_races_circuits\", \"chain_desc\": \"results->races->circuits\", \"task\": \"rel-f1/driver-dnf\", \"predicted_jrn\": 1.324592130635558, \"measured_jrn\": 1.3233300129795647},...",
+          "metadata_result_type": "chain_compounding",
+          "predict_compounding": "{\"chains\": [{\"chain_id\": \"chain_results_races_circuits\", \"chain_desc\": \"results->races->circuits\", \"task\": \"rel-f1/driver-dnf\", \"predicted_jrn\": 1.324592130635558, \"measured_jrn\": 1.3233300129795647},..."
+        },
+        {
+          "input": "{\"analysis\": \"Part B - Entropy-based JRN proxy vs GBM probe correlation\", \"method\": \"Conditional entropy reduction H(Y)-H(Y|agg_features) with 10-bin discretization\", \"metric\": \"Spearman rho between e...",
+          "output": "{\"per_task_spearman\": {\"rel-f1/driver-dnf\": {\"rho\": 0.0, \"p_value\": 1.0, \"n\": 8}, \"rel-f1/driver-top3\": {\"rho\": -0.2661641852202807, \"p_value\": 0.524011181027633, \"n\": 8}, \"rel-f1/driver-position\": {\"...",
+          "metadata_result_type": "entropy_vs_probe",
+          "predict_entropy_proxy": "{\"per_task_spearman\": {\"rel-f1/driver-dnf\": {\"rho\": 0.0, \"p_value\": 1.0, \"n\": 8}, \"rel-f1/driver-top3\": {\"rho\": -0.2661641852202807, \"p_value\": 0.524011181027633, \"n\": 8}, \"rel-f1/driver-position\": {\"..."
+        }
+      ]
+    }
+  ]
+}

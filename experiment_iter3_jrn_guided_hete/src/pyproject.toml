@@ -1,0 +1,22 @@
+[project]
+name = "jrn-guided-heterogeneous-architecture"
+version = "1.0.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "attrs==25.4.0",
+    "joblib==1.5.3",
+    "jsonschema==4.26.0",
+    "jsonschema-specifications==2025.9.1",
+    "lightgbm==4.6.0",
+    "loguru==0.7.3",
+    "numpy==2.4.2",
+    "pandas==3.0.1",
+    "python-dateutil==2.9.0.post0",
+    "referencing==0.37.0",
+    "rpds-py==0.30.0",
+    "scikit-learn==1.8.0",
+    "scipy==1.17.1",
+    "six==1.17.0",
+    "threadpoolctl==3.6.0",
+    "typing-extensions==4.15.0",
+]

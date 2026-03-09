@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "title": "JRN Multiplicative Compounding: 2x2 Probe Grid on rel-f1",
+    "description": "Self-contained experiment measuring individual JRN for 13 FK joins using MLP and GBM probes, chain JRN for 12 multi-hop chains, and comparing 4 compounding models on the rel-f1 Formula 1 dataset.",
+    "dataset": "rel-f1",
+    "num_fk_joins": 13,
+    "num_chains": 12,
+    "probes": [
+      "MLP",
+      "GBM"
+    ],
+    "seeds": [
+      42,
+      123,
+      7
+    ],
+    "compounding_models": [
+      "multiplicative",
+      "additive",
+      "bottleneck",
+      "log_linear"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "Measure individual JRN for FK join: races.circuitId->circuits.circuitId, task: ss_circuits_lat, probe: MLP",
+          "output": "JRN = 1.0714 +/- 0.0730 (M_base=0.0291, M_join=0.0312)",
+          "metadata_measurement_type": "individual_jrn",
+          "metadata_join_idx": 0,
+          "metadata_join_label": "races.circuitId->circuits.circuitId",
+          "metadata_task": "ss_circuits_lat",
+          "metadata_task_type": "regression",
+          "metadata_probe": "MLP",
+          "metadata_parent_table": "circuits",
+          "metadata_jrn_mean": 1.0713994693367235,
+          "metadata_jrn_std": 0.0729672748384406,
+          "metadata_m_base_mean": 0.029123306270096603,
+          "metadata_m_join_mean": 0.031195501781725133,
+          "predict_baseline": "0.029123",
+          "predict_our_method": "0.031196"
+        },
+        {
+          "input": "Measure individual JRN for FK join: races.circuitId->circuits.circuitId, task: ss_circuits_lat, probe: GBM",
+          "output": "JRN = 1.0421 +/- 0.0475 (M_base=0.1137, M_join=0.1184)",
+          "metadata_measurement_type": "individual_jrn",
+          "metadata_join_idx": 0,
+          "metadata_join_label": "races.circuitId->circuits.circuitId",
+          "metadata_task": "ss_circuits_lat",
+          "metadata_task_type": "regression",
+          "metadata_probe": "GBM",
+          "metadata_parent_table": "circuits",
+          "metadata_jrn_mean": 1.0421297221994927,
+          "metadata_jrn_std": 0.04747225999175247,
+          "metadata_m_base_mean": 0.11368130993023,
+          "metadata_m_join_mean": 0.11844102899818569,
+          "predict_baseline": "0.113681",
+          "predict_our_method": "0.118441"
+        },
+        {
+          "input": "Measure individual JRN for FK join: constructor_standings.raceId->races.raceId, task: ss_races_year, probe: MLP",
+          "output": "JRN = 1.1049 +/- 0.0469 (M_base=0.0005, M_join=0.0006)",
+          "metadata_measurement_type": "individual_jrn",
+          "metadata_join_idx": 1,
+          "metadata_join_label": "constructor_standings.raceId->races.raceId",
+          "metadata_task": "ss_races_year",
+          "metadata_task_type": "regression",
+          "metadata_probe": "MLP",
+          "metadata_parent_table": "races",
+          "metadata_jrn_mean": 1.1048860947744412,
+          "metadata_jrn_std": 0.04685454755594646,
+          "metadata_m_base_mean": 0.0005411974528703708,
+          "metadata_m_join_mean": 0.0005981966078388898,
+          "predict_baseline": "0.000541",
+          "predict_our_method": "0.000598"
+        }
+      ]
+    }
+  ]
+}

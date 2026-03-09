@@ -1,0 +1,327 @@
+{
+  "metadata": {
+    "method_name": "Training-Free Proxy vs GBM-Probe JRN",
+    "description": "Cross-dataset diagnostic reliability of 5 training-free proxies for estimating JRN",
+    "datasets_used": [
+      "rel-stack",
+      "rel-avito"
+    ],
+    "num_pairs": 24,
+    "proxy_names": [
+      "entropy_reduction",
+      "mutual_information",
+      "pearson_correlation"
+    ],
+    "analysis": {
+      "proxy_spearman_table": {
+        "entropy_reduction": {
+          "per_dataset": {
+            "rel-avito": {
+              "rho": -0.3667,
+              "pval": 0.331722,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": -0.1547,
+            "pval": 0.470318,
+            "n": 24
+          }
+        },
+        "mutual_information": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.9357,
+              "pval": 0.0,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.9328,
+              "pval": 0.000243,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.7468,
+            "pval": 2.8e-05,
+            "n": 24
+          }
+        },
+        "pearson_correlation": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.8893,
+              "pval": 9e-06,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.916,
+              "pval": 0.000521,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.6538,
+            "pval": 0.000531,
+            "n": 24
+          }
+        },
+        "log_mean_fanout": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.5579,
+              "pval": 0.030702,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.7204,
+              "pval": 0.028592,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.6365,
+            "pval": 0.000827,
+            "n": 24
+          }
+        },
+        "homophily": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.7442,
+              "pval": 0.001464,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.4786,
+              "pval": 0.192518,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.5738,
+            "pval": 0.003369,
+            "n": 24
+          }
+        }
+      },
+      "proxy_selection_auc_table": {
+        "entropy_reduction": 0.3866,
+        "mutual_information": 0.916,
+        "pearson_correlation": 0.8403,
+        "log_mean_fanout": 0.9412,
+        "homophily": 0.8193
+      },
+      "cross_dataset_consistency": {
+        "entropy_reduction": {
+          "cv": 2.2682,
+          "rhos": [
+            -0.3667,
+            0.945
+          ],
+          "mean_rho": 0.2891
+        },
+        "mutual_information": {
+          "cv": 0.0016,
+          "rhos": [
+            0.9357,
+            0.9328
+          ],
+          "mean_rho": 0.9343
+        },
+        "pearson_correlation": {
+          "cv": 0.0148,
+          "rhos": [
+            0.8893,
+            0.916
+          ],
+          "mean_rho": 0.9026
+        },
+        "log_mean_fanout": {
+          "cv": 0.1271,
+          "rhos": [
+            0.5579,
+            0.7204
+          ],
+          "mean_rho": 0.6391
+        },
+        "homophily": {
+          "cv": 0.2172,
+          "rhos": [
+            0.7442,
+            0.4786
+          ],
+          "mean_rho": 0.6114
+        }
+      },
+      "best_proxy_recommendation": "mutual_information (pooled Spearman rho=0.747) is the strongest training-free proxy for predicting GBM-probe JRN across datasets.",
+      "schema_property_analysis": {
+        "rel-stack": {
+          "num_fk_joins": 11,
+          "num_tables": 7,
+          "max_fanout": 40851,
+          "min_fanout": 1.45,
+          "task_types": [
+            "clf",
+            "clf",
+            "reg"
+          ]
+        },
+        "rel-avito": {
+          "num_fk_joins": 11,
+          "num_tables": 8,
+          "max_fanout": 114625,
+          "min_fanout": 1.18,
+          "task_types": [
+            "reg",
+            "clf",
+            "clf"
+          ]
+        },
+        "rel-f1": {
+          "num_fk_joins": 12,
+          "num_tables": 9,
+          "max_fanout": 300,
+          "min_fanout": 1.1,
+          "task_types": [
+            "clf",
+            "clf",
+            "reg"
+          ]
+        }
+      },
+      "conditions_for_reliable_estimation": {
+        "entropy_reduction": {
+          "strong_datasets": [],
+          "weak_datasets": [
+            "rel-avito"
+          ],
+          "pooled_rho": -0.1547
+        },
+        "mutual_information": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.7468
+        },
+        "pearson_correlation": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.6538
+        },
+        "log_mean_fanout": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.6365
+        },
+        "homophily": {
+          "strong_datasets": [
+            "rel-stack"
+          ],
+          "weak_datasets": [
+            "rel-avito"
+          ],
+          "pooled_rho": 0.5738
+        }
+      },
+      "key_findings": [
+        "Evaluated 24 (join, task) pairs across 2 datasets",
+        "Best training-free proxy: mutual_information with pooled rho=0.747",
+        "GBM JRN range: [0.9915, 30.2707]"
+      ]
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "jrn-proxy-diagnostic",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"badges.UserId -> users.Id\", \"child_table\": \"badges\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.1605061367580534, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.9136636693684567, \"entropy_reduction\": 0.0, \"mutual_information\": 0.068088708918431, \"pearson_...",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_jrn_mean": 1.1605061367580534,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.9136636693684567,
+          "metadata_augmented_std": 1.1102230246251565e-16,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.068088708918431,
+          "metadata_pearson_correlation": 0.474599073456269,
+          "metadata_mean_fanout": 3.27034159627991,
+          "metadata_log_mean_fanout": 1.451693823169558,
+          "metadata_homophily": 0.96705,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.1605061367580534, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"comments.UserId -> users.Id\", \"child_table\": \"comments\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.2411498321269117, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.9771542553191489, \"entropy_reduction\": 0.0, \"mutual_information\": 0.10223742674396541, \"pearso...",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_jrn_mean": 1.2411498321269117,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.9771542553191489,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.10223742674396541,
+          "metadata_pearson_correlation": 0.31470390363561895,
+          "metadata_mean_fanout": 11.50355089617856,
+          "metadata_log_mean_fanout": 2.526012675661816,
+          "metadata_homophily": 0.96705,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.2411498321269117, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"posts.OwnerUserId -> users.Id\", \"child_table\": \"posts\", \"parent_table\": \"users\", \"fk_col\": \"OwnerUser...",
+          "output": "{\"jrn_mean\": 1.2504476660372486, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.984474417426545, \"entropy_reduction\": 0.0, \"mutual_information\": 0.10926594962724478, \"pearson...",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "posts.OwnerUserId -> users.Id",
+          "metadata_jrn_mean": 1.2504476660372486,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.984474417426545,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.10926594962724478,
+          "metadata_pearson_correlation": 0.5762163973818825,
+          "metadata_mean_fanout": 3.904110239961986,
+          "metadata_log_mean_fanout": 1.590073677981979,
+          "metadata_homophily": 0.96915,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.2504476660372486, \"best_proxy\": 0.0}"
+        }
+      ]
+    }
+  ]
+}

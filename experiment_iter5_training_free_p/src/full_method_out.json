@@ -1,0 +1,877 @@
+{
+  "metadata": {
+    "method_name": "Training-Free Proxy vs GBM-Probe JRN",
+    "description": "Cross-dataset diagnostic reliability of 5 training-free proxies for estimating JRN",
+    "datasets_used": [
+      "rel-stack",
+      "rel-avito"
+    ],
+    "num_pairs": 24,
+    "proxy_names": [
+      "entropy_reduction",
+      "mutual_information",
+      "pearson_correlation",
+      "log_mean_fanout",
+      "homophily"
+    ],
+    "analysis": {
+      "proxy_spearman_table": {
+        "entropy_reduction": {
+          "per_dataset": {
+            "rel-avito": {
+              "rho": -0.3667,
+              "pval": 0.331722,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": -0.1547,
+            "pval": 0.470318,
+            "n": 24
+          }
+        },
+        "mutual_information": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.9357,
+              "pval": 0.0,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.9328,
+              "pval": 0.000243,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.7468,
+            "pval": 2.8e-05,
+            "n": 24
+          }
+        },
+        "pearson_correlation": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.8893,
+              "pval": 9e-06,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.916,
+              "pval": 0.000521,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.6538,
+            "pval": 0.000531,
+            "n": 24
+          }
+        },
+        "log_mean_fanout": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.5579,
+              "pval": 0.030702,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.7204,
+              "pval": 0.028592,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.6365,
+            "pval": 0.000827,
+            "n": 24
+          }
+        },
+        "homophily": {
+          "per_dataset": {
+            "rel-stack": {
+              "rho": 0.7442,
+              "pval": 0.001464,
+              "n": 15
+            },
+            "rel-avito": {
+              "rho": 0.4786,
+              "pval": 0.192518,
+              "n": 9
+            }
+          },
+          "pooled": {
+            "rho": 0.5738,
+            "pval": 0.003369,
+            "n": 24
+          }
+        }
+      },
+      "proxy_selection_auc_table": {
+        "entropy_reduction": 0.3866,
+        "mutual_information": 0.916,
+        "pearson_correlation": 0.8403,
+        "log_mean_fanout": 0.9412,
+        "homophily": 0.8193
+      },
+      "cross_dataset_consistency": {
+        "entropy_reduction": {
+          "cv": 2.2682,
+          "rhos": [
+            -0.3667,
+            0.945
+          ],
+          "mean_rho": 0.2891
+        },
+        "mutual_information": {
+          "cv": 0.0016,
+          "rhos": [
+            0.9357,
+            0.9328
+          ],
+          "mean_rho": 0.9343
+        },
+        "pearson_correlation": {
+          "cv": 0.0148,
+          "rhos": [
+            0.8893,
+            0.916
+          ],
+          "mean_rho": 0.9026
+        },
+        "log_mean_fanout": {
+          "cv": 0.1271,
+          "rhos": [
+            0.5579,
+            0.7204
+          ],
+          "mean_rho": 0.6391
+        },
+        "homophily": {
+          "cv": 0.2172,
+          "rhos": [
+            0.7442,
+            0.4786
+          ],
+          "mean_rho": 0.6114
+        }
+      },
+      "best_proxy_recommendation": "mutual_information (pooled Spearman rho=0.747) is the strongest training-free proxy for predicting GBM-probe JRN across datasets.",
+      "schema_property_analysis": {
+        "rel-stack": {
+          "num_fk_joins": 11,
+          "num_tables": 7,
+          "max_fanout": 40851,
+          "min_fanout": 1.45,
+          "task_types": [
+            "clf",
+            "clf",
+            "reg"
+          ]
+        },
+        "rel-avito": {
+          "num_fk_joins": 11,
+          "num_tables": 8,
+          "max_fanout": 114625,
+          "min_fanout": 1.18,
+          "task_types": [
+            "reg",
+            "clf",
+            "clf"
+          ]
+        },
+        "rel-f1": {
+          "num_fk_joins": 12,
+          "num_tables": 9,
+          "max_fanout": 300,
+          "min_fanout": 1.1,
+          "task_types": [
+            "clf",
+            "clf",
+            "reg"
+          ]
+        }
+      },
+      "conditions_for_reliable_estimation": {
+        "entropy_reduction": {
+          "strong_datasets": [],
+          "weak_datasets": [
+            "rel-avito"
+          ],
+          "pooled_rho": -0.1547
+        },
+        "mutual_information": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.7468
+        },
+        "pearson_correlation": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.6538
+        },
+        "log_mean_fanout": {
+          "strong_datasets": [
+            "rel-stack",
+            "rel-avito"
+          ],
+          "weak_datasets": [],
+          "pooled_rho": 0.6365
+        },
+        "homophily": {
+          "strong_datasets": [
+            "rel-stack"
+          ],
+          "weak_datasets": [
+            "rel-avito"
+          ],
+          "pooled_rho": 0.5738
+        }
+      },
+      "key_findings": [
+        "Evaluated 24 (join, task) pairs across 2 datasets",
+        "Best training-free proxy: mutual_information with pooled rho=0.747",
+        "GBM JRN range: [0.9915, 30.2707]",
+        "17/24 joins are beneficial (JRN > 1.01)",
+        "Best join-selection AUC: log_mean_fanout=0.941"
+      ]
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "jrn-proxy-diagnostic",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"badges.UserId -> users.Id\", \"child_table\": \"badges\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.1605061367580534, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.9136636693684567, \"entropy_reduction\": 0.0, \"mutual_information\": 0.068088708918431, \"pearson_correlation\": 0.474599073456269, \"log_mean_fanout\": 1.451693823169558, \"homophily\": 0.96705}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_jrn_mean": 1.1605061367580534,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.9136636693684567,
+          "metadata_augmented_std": 1.1102230246251565e-16,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.068088708918431,
+          "metadata_pearson_correlation": 0.474599073456269,
+          "metadata_mean_fanout": 3.27034159627991,
+          "metadata_log_mean_fanout": 1.451693823169558,
+          "metadata_homophily": 0.96705,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.1605061367580534, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"comments.UserId -> users.Id\", \"child_table\": \"comments\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.2411498321269117, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.9771542553191489, \"entropy_reduction\": 0.0, \"mutual_information\": 0.10223742674396541, \"pearson_correlation\": 0.31470390363561895, \"log_mean_fanout\": 2.526012675661816, \"homophily\": 0.96705}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_jrn_mean": 1.2411498321269117,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.9771542553191489,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.10223742674396541,
+          "metadata_pearson_correlation": 0.31470390363561895,
+          "metadata_mean_fanout": 11.50355089617856,
+          "metadata_log_mean_fanout": 2.526012675661816,
+          "metadata_homophily": 0.96705,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.2411498321269117, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"posts.OwnerUserId -> users.Id\", \"child_table\": \"posts\", \"parent_table\": \"users\", \"fk_col\": \"OwnerUserId\"}",
+          "output": "{\"jrn_mean\": 1.2504476660372486, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.984474417426545, \"entropy_reduction\": 0.0, \"mutual_information\": 0.10926594962724478, \"pearson_correlation\": 0.5762163973818825, \"log_mean_fanout\": 1.590073677981979, \"homophily\": 0.96915}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "posts.OwnerUserId -> users.Id",
+          "metadata_jrn_mean": 1.2504476660372486,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.984474417426545,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.10926594962724478,
+          "metadata_pearson_correlation": 0.5762163973818825,
+          "metadata_mean_fanout": 3.904110239961986,
+          "metadata_log_mean_fanout": 1.590073677981979,
+          "metadata_homophily": 0.96915,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.2504476660372486, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"postHistory.UserId -> users.Id\", \"child_table\": \"postHistory\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.1613651407906003, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.9143399611617697, \"entropy_reduction\": 0.0, \"mutual_information\": 0.07212484817873177, \"pearson_correlation\": 0.4147571387036799, \"log_mean_fanout\": 2.6352661967864086, \"homophily\": 0.96705}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "postHistory.UserId -> users.Id",
+          "metadata_jrn_mean": 1.1613651407906003,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.9143399611617697,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.07212484817873177,
+          "metadata_pearson_correlation": 0.4147571387036799,
+          "metadata_mean_fanout": 12.947024622192929,
+          "metadata_log_mean_fanout": 2.6352661967864086,
+          "metadata_homophily": 0.96705,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.1613651407906003, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"task_type\": \"binary_classification\", \"join\": \"votes.UserId -> users.Id\", \"child_table\": \"votes\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.0044092323093832, \"jrn_std\": 0.0, \"baseline_mean\": 0.7872975768321512, \"augmented_mean\": 0.7907689547450186, \"entropy_reduction\": 0.0, \"mutual_information\": 0.002833051648829965, \"pearson_correlation\": 0.11509745718431501, \"log_mean_fanout\": 1.0942572158182502, \"homophily\": 0.9674}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "votes.UserId -> users.Id",
+          "metadata_jrn_mean": 1.0044092323093832,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.7872975768321512,
+          "metadata_baseline_std": 1.1102230246251565e-16,
+          "metadata_augmented_mean": 0.7907689547450186,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.002833051648829965,
+          "metadata_pearson_correlation": 0.11509745718431501,
+          "metadata_mean_fanout": 1.986963190184049,
+          "metadata_log_mean_fanout": 1.0942572158182502,
+          "metadata_homophily": 0.9674,
+          "predict_baseline": "{\"metric\": 0.7872975768321512}",
+          "predict_our_method": "{\"jrn\": 1.0044092323093832, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"task_type\": \"binary_classification\", \"join\": \"badges.UserId -> users.Id\", \"child_table\": \"badges\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.1745257336488157, \"jrn_std\": 0.0, \"baseline_mean\": 0.8514074841879973, \"augmented_mean\": 1.0, \"entropy_reduction\": 0.0, \"mutual_information\": 0.2207811560337054, \"pearson_correlation\": 0.5286167210996147, \"log_mean_fanout\": 1.451693823169558, \"homophily\": 0.94225}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "badges.UserId -> users.Id",
+          "metadata_jrn_mean": 1.1745257336488157,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.8514074841879973,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 1.0,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.2207811560337054,
+          "metadata_pearson_correlation": 0.5286167210996147,
+          "metadata_mean_fanout": 3.27034159627991,
+          "metadata_log_mean_fanout": 1.451693823169558,
+          "metadata_homophily": 0.94225,
+          "predict_baseline": "{\"metric\": 0.8514074841879973}",
+          "predict_our_method": "{\"jrn\": 1.1745257336488157, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"task_type\": \"binary_classification\", \"join\": \"comments.UserId -> users.Id\", \"child_table\": \"comments\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.0721346184845795, \"jrn_std\": 0.0, \"baseline_mean\": 0.8514074841879973, \"augmented_mean\": 0.9128234382348142, \"entropy_reduction\": 0.0, \"mutual_information\": 0.05759008300978863, \"pearson_correlation\": 0.1585723255374426, \"log_mean_fanout\": 2.526012675661816, \"homophily\": 0.94225}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "comments.UserId -> users.Id",
+          "metadata_jrn_mean": 1.0721346184845795,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.8514074841879973,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.9128234382348142,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.05759008300978863,
+          "metadata_pearson_correlation": 0.1585723255374426,
+          "metadata_mean_fanout": 11.50355089617856,
+          "metadata_log_mean_fanout": 2.526012675661816,
+          "metadata_homophily": 0.94225,
+          "predict_baseline": "{\"metric\": 0.8514074841879973}",
+          "predict_our_method": "{\"jrn\": 1.0721346184845795, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"task_type\": \"binary_classification\", \"join\": \"posts.OwnerUserId -> users.Id\", \"child_table\": \"posts\", \"parent_table\": \"users\", \"fk_col\": \"OwnerUserId\"}",
+          "output": "{\"jrn_mean\": 1.0813915345048568, \"jrn_std\": 0.0, \"baseline_mean\": 0.8514074841879973, \"augmented_mean\": 0.9207048458149781, \"entropy_reduction\": 0.0, \"mutual_information\": 0.06540357553346943, \"pearson_correlation\": 0.4439139741168805, \"log_mean_fanout\": 1.590073677981979, \"homophily\": 0.9431}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "posts.OwnerUserId -> users.Id",
+          "metadata_jrn_mean": 1.0813915345048568,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.8514074841879973,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.9207048458149781,
+          "metadata_augmented_std": 1.1102230246251565e-16,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.06540357553346943,
+          "metadata_pearson_correlation": 0.4439139741168805,
+          "metadata_mean_fanout": 3.904110239961986,
+          "metadata_log_mean_fanout": 1.590073677981979,
+          "metadata_homophily": 0.9431,
+          "predict_baseline": "{\"metric\": 0.8514074841879973}",
+          "predict_our_method": "{\"jrn\": 1.0813915345048568, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"task_type\": \"binary_classification\", \"join\": \"postHistory.UserId -> users.Id\", \"child_table\": \"postHistory\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.0772164462686014, \"jrn_std\": 0.0, \"baseline_mean\": 0.8514074841879973, \"augmented_mean\": 0.9171501444434847, \"entropy_reduction\": 0.0, \"mutual_information\": 0.06431317604669595, \"pearson_correlation\": 0.37843353995611073, \"log_mean_fanout\": 2.6352661967864086, \"homophily\": 0.94225}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "postHistory.UserId -> users.Id",
+          "metadata_jrn_mean": 1.0772164462686014,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.8514074841879973,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.9171501444434847,
+          "metadata_augmented_std": 1.1102230246251565e-16,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.06431317604669595,
+          "metadata_pearson_correlation": 0.37843353995611073,
+          "metadata_mean_fanout": 12.947024622192929,
+          "metadata_log_mean_fanout": 2.6352661967864086,
+          "metadata_homophily": 0.94225,
+          "predict_baseline": "{\"metric\": 0.8514074841879973}",
+          "predict_our_method": "{\"jrn\": 1.0772164462686014, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"task_type\": \"binary_classification\", \"join\": \"votes.UserId -> users.Id\", \"child_table\": \"votes\", \"parent_table\": \"users\", \"fk_col\": \"UserId\"}",
+          "output": "{\"jrn_mean\": 1.0005261484803976, \"jrn_std\": 0.0, \"baseline_mean\": 0.8514074841879973, \"augmented_mean\": 0.851855450942002, \"entropy_reduction\": 0.0, \"mutual_information\": 0.0020524135582498104, \"pearson_correlation\": 0.11004194293147954, \"log_mean_fanout\": 1.0942572158182502, \"homophily\": 0.94295}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "votes.UserId -> users.Id",
+          "metadata_jrn_mean": 1.0005261484803976,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.8514074841879973,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.851855450942002,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 20256,
+          "metadata_n_val": 8682,
+          "metadata_n_base_features": 2,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.0020524135582498104,
+          "metadata_pearson_correlation": 0.11004194293147954,
+          "metadata_mean_fanout": 1.986963190184049,
+          "metadata_log_mean_fanout": 1.0942572158182502,
+          "metadata_homophily": 0.94295,
+          "predict_baseline": "{\"metric\": 0.8514074841879973}",
+          "predict_our_method": "{\"jrn\": 1.0005261484803976, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"task_type\": \"regression\", \"join\": \"comments.PostId -> posts.Id\", \"child_table\": \"comments\", \"parent_table\": \"posts\", \"fk_col\": \"PostId\"}",
+          "output": "{\"jrn_mean\": 0.9952053925462797, \"jrn_std\": 0.0, \"baseline_mean\": 0.21744825765439044, \"augmented_mean\": 0.21849585953110529, \"entropy_reduction\": 0.0, \"mutual_information\": 0.005089149199651644, \"pearson_correlation\": 0.1575905505244688, \"log_mean_fanout\": 1.4651284343004716, \"homophily\": 0.9021908420724744}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_join": "comments.PostId -> posts.Id",
+          "metadata_jrn_mean": 0.9952053925462797,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.21744825765439044,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.21849585953110529,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 19262,
+          "metadata_n_val": 8256,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.005089149199651644,
+          "metadata_pearson_correlation": 0.1575905505244688,
+          "metadata_mean_fanout": 3.3280990809833426,
+          "metadata_log_mean_fanout": 1.4651284343004716,
+          "metadata_homophily": 0.9021908420724744,
+          "predict_baseline": "{\"metric\": 0.21744825765439044}",
+          "predict_our_method": "{\"jrn\": 0.9952053925462797, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"task_type\": \"regression\", \"join\": \"postLinks.PostId -> posts.Id\", \"child_table\": \"postLinks\", \"parent_table\": \"posts\", \"fk_col\": \"PostId\"}",
+          "output": "{\"jrn_mean\": 0.991495223143542, \"jrn_std\": 1.1102230246251565e-16, \"baseline_mean\": 0.21744825765439044, \"augmented_mean\": 0.21931346977645472, \"entropy_reduction\": 0.0, \"mutual_information\": 0.004595866659741432, \"pearson_correlation\": 0.07336755391572396, \"log_mean_fanout\": 0.9621908736808875, \"homophily\": 0.9021908420724744}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_join": "postLinks.PostId -> posts.Id",
+          "metadata_jrn_mean": 0.991495223143542,
+          "metadata_jrn_std": 1.1102230246251565e-16,
+          "metadata_baseline_mean": 0.21744825765439044,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.21931346977645472,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 19262,
+          "metadata_n_val": 8256,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.004595866659741432,
+          "metadata_pearson_correlation": 0.07336755391572396,
+          "metadata_mean_fanout": 1.6174246430460073,
+          "metadata_log_mean_fanout": 0.9621908736808875,
+          "metadata_homophily": 0.9021908420724744,
+          "predict_baseline": "{\"metric\": 0.21744825765439044}",
+          "predict_our_method": "{\"jrn\": 0.991495223143542, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"task_type\": \"regression\", \"join\": \"postLinks.RelatedPostId -> posts.Id\", \"child_table\": \"postLinks\", \"parent_table\": \"posts\", \"fk_col\": \"RelatedPostId\"}",
+          "output": "{\"jrn_mean\": 1.021994004571366, \"jrn_std\": 0.0, \"baseline_mean\": 0.21744825765439044, \"augmented_mean\": 0.21276862357484208, \"entropy_reduction\": 0.0, \"mutual_information\": 0.015707956189083383, \"pearson_correlation\": 0.30545246890616107, \"log_mean_fanout\": 1.3965011861766603, \"homophily\": 0.9021908420724744}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_join": "postLinks.RelatedPostId -> posts.Id",
+          "metadata_jrn_mean": 1.021994004571366,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.21744825765439044,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.21276862357484208,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 19262,
+          "metadata_n_val": 8256,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.015707956189083383,
+          "metadata_pearson_correlation": 0.30545246890616107,
+          "metadata_mean_fanout": 3.0410363694882525,
+          "metadata_log_mean_fanout": 1.3965011861766603,
+          "metadata_homophily": 0.9021908420724744,
+          "predict_baseline": "{\"metric\": 0.21744825765439044}",
+          "predict_our_method": "{\"jrn\": 1.021994004571366, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"task_type\": \"regression\", \"join\": \"postHistory.PostId -> posts.Id\", \"child_table\": \"postHistory\", \"parent_table\": \"posts\", \"fk_col\": \"PostId\"}",
+          "output": "{\"jrn_mean\": 1.0002052874331657, \"jrn_std\": 0.0, \"baseline_mean\": 0.21744825765439044, \"augmented_mean\": 0.2174036274217561, \"entropy_reduction\": 0.0, \"mutual_information\": 0.012330605447081311, \"pearson_correlation\": 0.17693342434590592, \"log_mean_fanout\": 1.5085548236689812, \"homophily\": 0.9021908420724744}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_join": "postHistory.PostId -> posts.Id",
+          "metadata_jrn_mean": 1.0002052874331657,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.21744825765439044,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.2174036274217561,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 19262,
+          "metadata_n_val": 8256,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.012330605447081311,
+          "metadata_pearson_correlation": 0.17693342434590592,
+          "metadata_mean_fanout": 3.520193594954072,
+          "metadata_log_mean_fanout": 1.5085548236689812,
+          "metadata_homophily": 0.9021908420724744,
+          "predict_baseline": "{\"metric\": 0.21744825765439044}",
+          "predict_our_method": "{\"jrn\": 1.0002052874331657, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"task_type\": \"regression\", \"join\": \"votes.PostId -> posts.Id\", \"child_table\": \"votes\", \"parent_table\": \"posts\", \"fk_col\": \"PostId\"}",
+          "output": "{\"jrn_mean\": 30.270717894558217, \"jrn_std\": 0.0, \"baseline_mean\": 0.21744825765439044, \"augmented_mean\": 0.007183452285863403, \"entropy_reduction\": 0.0, \"mutual_information\": 0.3956757613962969, \"pearson_correlation\": 1.0, \"log_mean_fanout\": 1.6746254784889865, \"homophily\": 1.0}",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_task_type": "regression",
+          "metadata_join": "votes.PostId -> posts.Id",
+          "metadata_jrn_mean": 30.270717894558217,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.21744825765439044,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.007183452285863403,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 19262,
+          "metadata_n_val": 8256,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 5,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.3956757613962969,
+          "metadata_pearson_correlation": 1.0,
+          "metadata_mean_fanout": 4.3367960298269015,
+          "metadata_log_mean_fanout": 1.6746254784889865,
+          "metadata_homophily": 1.0,
+          "predict_baseline": "{\"metric\": 0.21744825765439044}",
+          "predict_our_method": "{\"jrn\": 30.270717894558217, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"ad-ctr\", \"task_type\": \"regression\", \"join\": \"SearchStream.AdID -> AdsInfo.AdID\", \"child_table\": \"SearchStream\", \"parent_table\": \"AdsInfo\", \"fk_col\": \"AdID\"}",
+          "output": "{\"jrn_mean\": 1.314353553967465, \"jrn_std\": 0.0, \"baseline_mean\": 0.04792563943008856, \"augmented_mean\": 0.03646327830546186, \"entropy_reduction\": 2.3022370254378313, \"mutual_information\": 0.41147675437777753, \"pearson_correlation\": 0.3990828862282573, \"log_mean_fanout\": 1.5018314022978685, \"homophily\": 0.7905882352941176}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "ad-ctr",
+          "metadata_task_type": "regression",
+          "metadata_join": "SearchStream.AdID -> AdsInfo.AdID",
+          "metadata_jrn_mean": 1.314353553967465,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.04792563943008856,
+          "metadata_baseline_std": 6.938893903907228e-18,
+          "metadata_augmented_mean": 0.03646327830546186,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 5100,
+          "metadata_n_val": 1766,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 7,
+          "metadata_entropy_reduction": 2.3022370254378313,
+          "metadata_mutual_information": 0.41147675437777753,
+          "metadata_pearson_correlation": 0.3990828862282573,
+          "metadata_mean_fanout": 3.489904366459713,
+          "metadata_log_mean_fanout": 1.5018314022978685,
+          "metadata_homophily": 0.7905882352941176,
+          "predict_baseline": "{\"metric\": 0.04792563943008856}",
+          "predict_our_method": "{\"jrn\": 1.314353553967465, \"best_proxy\": 2.3022370254378313}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"ad-ctr\", \"task_type\": \"regression\", \"join\": \"VisitStream.AdID -> AdsInfo.AdID\", \"child_table\": \"VisitStream\", \"parent_table\": \"AdsInfo\", \"fk_col\": \"AdID\"}",
+          "output": "{\"jrn_mean\": 1.0, \"jrn_std\": 0.0, \"baseline_mean\": 0.04792563943008856, \"augmented_mean\": 0.04792563943008856, \"entropy_reduction\": 2.3022370254378313, \"mutual_information\": 0.0021021867508488334, \"pearson_correlation\": 0.0, \"log_mean_fanout\": 0.9807388925358749, \"homophily\": 0.5009803921568627}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "ad-ctr",
+          "metadata_task_type": "regression",
+          "metadata_join": "VisitStream.AdID -> AdsInfo.AdID",
+          "metadata_jrn_mean": 1.0,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.04792563943008856,
+          "metadata_baseline_std": 6.938893903907228e-18,
+          "metadata_augmented_mean": 0.04792563943008856,
+          "metadata_augmented_std": 6.938893903907228e-18,
+          "metadata_n_train": 5100,
+          "metadata_n_val": 1766,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 2.3022370254378313,
+          "metadata_mutual_information": 0.0021021867508488334,
+          "metadata_pearson_correlation": 0.0,
+          "metadata_mean_fanout": 1.6664257162840894,
+          "metadata_log_mean_fanout": 0.9807388925358749,
+          "metadata_homophily": 0.5009803921568627,
+          "predict_baseline": "{\"metric\": 0.04792563943008856}",
+          "predict_our_method": "{\"jrn\": 1.0, \"best_proxy\": 2.3022370254378313}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"ad-ctr\", \"task_type\": \"regression\", \"join\": \"PhoneRequestsStream.AdID -> AdsInfo.AdID\", \"child_table\": \"PhoneRequestsStream\", \"parent_table\": \"AdsInfo\", \"fk_col\": \"AdID\"}",
+          "output": "{\"jrn_mean\": 1.0, \"jrn_std\": 0.0, \"baseline_mean\": 0.04792563943008856, \"augmented_mean\": 0.04792563943008856, \"entropy_reduction\": 2.3022370254378313, \"mutual_information\": 0.0021021867508488334, \"pearson_correlation\": 0.0, \"log_mean_fanout\": 0.7790438588181693, \"homophily\": 0.5009803921568627}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "ad-ctr",
+          "metadata_task_type": "regression",
+          "metadata_join": "PhoneRequestsStream.AdID -> AdsInfo.AdID",
+          "metadata_jrn_mean": 1.0,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.04792563943008856,
+          "metadata_baseline_std": 6.938893903907228e-18,
+          "metadata_augmented_mean": 0.04792563943008856,
+          "metadata_augmented_std": 6.938893903907228e-18,
+          "metadata_n_train": 5100,
+          "metadata_n_val": 1766,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 2.3022370254378313,
+          "metadata_mutual_information": 0.0021021867508488334,
+          "metadata_pearson_correlation": 0.0,
+          "metadata_mean_fanout": 1.1793874668678779,
+          "metadata_log_mean_fanout": 0.7790438588181693,
+          "metadata_homophily": 0.5009803921568627,
+          "predict_baseline": "{\"metric\": 0.04792563943008856}",
+          "predict_our_method": "{\"jrn\": 1.0, \"best_proxy\": 2.3022370254378313}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-clicks\", \"task_type\": \"binary_classification\", \"join\": \"SearchInfo.UserID -> UserInfo.UserID\", \"child_table\": \"SearchInfo\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.2384904832908818, \"jrn_std\": 0.0, \"baseline_mean\": 0.5007768461301523, \"augmented_mean\": 0.6202073581846159, \"entropy_reduction\": 0.0, \"mutual_information\": 0.012204978731716443, \"pearson_correlation\": 0.17110907056568575, \"log_mean_fanout\": 3.5933229922727215, \"homophily\": 0.96065}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-clicks",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "SearchInfo.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.2384904832908818,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5007768461301523,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.6202073581846159,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 21183,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 7,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.012204978731716443,
+          "metadata_pearson_correlation": 0.17110907056568575,
+          "metadata_mean_fanout": 35.35468175592878,
+          "metadata_log_mean_fanout": 3.5933229922727215,
+          "metadata_homophily": 0.96065,
+          "predict_baseline": "{\"metric\": 0.5007768461301523}",
+          "predict_our_method": "{\"jrn\": 1.2384904832908818, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-clicks\", \"task_type\": \"binary_classification\", \"join\": \"VisitStream.UserID -> UserInfo.UserID\", \"child_table\": \"VisitStream\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.2470974527354715, \"jrn_std\": 0.0, \"baseline_mean\": 0.5007768461301523, \"augmented_mean\": 0.624517529197816, \"entropy_reduction\": 0.0, \"mutual_information\": 0.009029798996534222, \"pearson_correlation\": 0.1355030070938706, \"log_mean_fanout\": 4.507742005882873, \"homophily\": 0.96065}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-clicks",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "VisitStream.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.2470974527354715,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5007768461301523,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.624517529197816,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 21183,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.009029798996534222,
+          "metadata_pearson_correlation": 0.1355030070938706,
+          "metadata_mean_fanout": 89.71674918900462,
+          "metadata_log_mean_fanout": 4.507742005882873,
+          "metadata_homophily": 0.96065,
+          "predict_baseline": "{\"metric\": 0.5007768461301523}",
+          "predict_our_method": "{\"jrn\": 1.2470974527354715, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-clicks\", \"task_type\": \"binary_classification\", \"join\": \"PhoneRequestsStream.UserID -> UserInfo.UserID\", \"child_table\": \"PhoneRequestsStream\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.024333823148601, \"jrn_std\": 0.0, \"baseline_mean\": 0.5007768461301523, \"augmented_mean\": 0.5129626613407976, \"entropy_reduction\": 0.0, \"mutual_information\": 0.002178086935114232, \"pearson_correlation\": 0.04490456333838844, \"log_mean_fanout\": 2.2037328089012633, \"homophily\": 0.96065}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-clicks",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "PhoneRequestsStream.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.024333823148601,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5007768461301523,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.5129626613407976,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 21183,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.002178086935114232,
+          "metadata_pearson_correlation": 0.04490456333838844,
+          "metadata_mean_fanout": 8.058765105115047,
+          "metadata_log_mean_fanout": 2.2037328089012633,
+          "metadata_homophily": 0.96065,
+          "predict_baseline": "{\"metric\": 0.5007768461301523}",
+          "predict_our_method": "{\"jrn\": 1.024333823148601, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-visits\", \"task_type\": \"binary_classification\", \"join\": \"SearchInfo.UserID -> UserInfo.UserID\", \"child_table\": \"SearchInfo\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.1543967176394792, \"jrn_std\": 0.0, \"baseline_mean\": 0.5003796097772601, \"augmented_mean\": 0.5776365791005925, \"entropy_reduction\": 0.0, \"mutual_information\": 0.010867089472391678, \"pearson_correlation\": 0.09704777301670223, \"log_mean_fanout\": 3.5933229922727215, \"homophily\": 1.0}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "SearchInfo.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.1543967176394792,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5003796097772601,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.5776365791005925,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 25000,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 7,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.010867089472391678,
+          "metadata_pearson_correlation": 0.09704777301670223,
+          "metadata_mean_fanout": 35.35468175592878,
+          "metadata_log_mean_fanout": 3.5933229922727215,
+          "metadata_homophily": 1.0,
+          "predict_baseline": "{\"metric\": 0.5003796097772601}",
+          "predict_our_method": "{\"jrn\": 1.1543967176394792, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-visits\", \"task_type\": \"binary_classification\", \"join\": \"VisitStream.UserID -> UserInfo.UserID\", \"child_table\": \"VisitStream\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.3598300169653024, \"jrn_std\": 0.0, \"baseline_mean\": 0.5003796097772601, \"augmented_mean\": 0.6804312132525029, \"entropy_reduction\": 0.0, \"mutual_information\": 0.02805368361301408, \"pearson_correlation\": 0.16019282938290147, \"log_mean_fanout\": 4.507742005882873, \"homophily\": 1.0}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "VisitStream.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.3598300169653024,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5003796097772601,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.6804312132525029,
+          "metadata_augmented_std": 1.1102230246251565e-16,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 25000,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.02805368361301408,
+          "metadata_pearson_correlation": 0.16019282938290147,
+          "metadata_mean_fanout": 89.71674918900462,
+          "metadata_log_mean_fanout": 4.507742005882873,
+          "metadata_homophily": 1.0,
+          "predict_baseline": "{\"metric\": 0.5003796097772601}",
+          "predict_our_method": "{\"jrn\": 1.3598300169653024, \"best_proxy\": 0.0}"
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"task\": \"user-visits\", \"task_type\": \"binary_classification\", \"join\": \"PhoneRequestsStream.UserID -> UserInfo.UserID\", \"child_table\": \"PhoneRequestsStream\", \"parent_table\": \"UserInfo\", \"fk_col\": \"UserID\"}",
+          "output": "{\"jrn_mean\": 1.0349430724358504, \"jrn_std\": 0.0, \"baseline_mean\": 0.5003796097772601, \"augmented_mean\": 0.5178644107271295, \"entropy_reduction\": 0.0, \"mutual_information\": 0.00301535525631369, \"pearson_correlation\": 0.04588447579827906, \"log_mean_fanout\": 2.2037328089012633, \"homophily\": 1.0}",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_join": "PhoneRequestsStream.UserID -> UserInfo.UserID",
+          "metadata_jrn_mean": 1.0349430724358504,
+          "metadata_jrn_std": 0.0,
+          "metadata_baseline_mean": 0.5003796097772601,
+          "metadata_baseline_std": 0.0,
+          "metadata_augmented_mean": 0.5178644107271295,
+          "metadata_augmented_std": 0.0,
+          "metadata_n_train": 50000,
+          "metadata_n_val": 25000,
+          "metadata_n_base_features": 4,
+          "metadata_n_aug_features": 4,
+          "metadata_entropy_reduction": 0.0,
+          "metadata_mutual_information": 0.00301535525631369,
+          "metadata_pearson_correlation": 0.04588447579827906,
+          "metadata_mean_fanout": 8.058765105115047,
+          "metadata_log_mean_fanout": 2.2037328089012633,
+          "metadata_homophily": 1.0,
+          "predict_baseline": "{\"metric\": 0.5003796097772601}",
+          "predict_our_method": "{\"jrn\": 1.0349430724358504, \"best_proxy\": 0.0}"
+        }
+      ]
+    }
+  ]
+}

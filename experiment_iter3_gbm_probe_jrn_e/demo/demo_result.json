@@ -1,0 +1,13 @@
+{
+  "id": "exp_id2_it3__opus",
+  "type": "code",
+  "title": "GBM Probe JRN Estimation on rel-stack: Cross-Validated Aggregation Sensitivity and Multiplicative Compounding",
+  "summary": "Demo notebook analyzing Join Reproduction Number (JRN) estimation using LightGBM probes across 11 foreign-key joins in the StackOverflow-based rel-stack relational benchmark. Covers JRN matrix visualization, probe-to-full Spearman \u03c1 correlation, aggregation sensitivity analysis with quadratic fitting, and multiplicative compounding of multi-hop chain JRN. Mini data contains pre-computed JRN results for 3 entity-level tasks and 5 aggregation strategies.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_3/gen_art/exp_id2_it3__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it3__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it3__opus/method_code_demo.ipynb"
+}

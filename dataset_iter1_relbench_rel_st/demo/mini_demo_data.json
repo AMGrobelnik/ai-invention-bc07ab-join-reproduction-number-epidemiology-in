@@ -1,0 +1,1526 @@
+{
+  "metadata": {
+    "description": "RelBench rel-stack dataset for JRN estimation experiments",
+    "source": "RelBench (Stanford) - Stack Exchange stats-exchange",
+    "license": "CC BY-SA 4.0",
+    "rel_stack": {
+      "total_rows_full": 4247264,
+      "total_tables": 7,
+      "total_columns": 51,
+      "schema": {
+        "comments": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {
+            "UserId": "users",
+            "PostId": "posts"
+          },
+          "columns": [
+            "Id",
+            "PostId",
+            "UserId",
+            "ContentLicense",
+            "UserDisplayName",
+            "Text",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "PostId": "Int64",
+            "UserId": "Int64",
+            "ContentLicense": "object",
+            "UserDisplayName": "object",
+            "Text": "object",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 623967,
+          "num_cols": 7
+        },
+        "badges": {
+          "pkey_col": "Id",
+          "time_col": "Date",
+          "fkey_col_to_pkey_table": {
+            "UserId": "users"
+          },
+          "columns": [
+            "Id",
+            "UserId",
+            "Class",
+            "Name",
+            "TagBased",
+            "Date"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "UserId": "Int64",
+            "Class": "int64",
+            "Name": "object",
+            "TagBased": "bool",
+            "Date": "datetime64[ns]"
+          },
+          "num_rows": 463463,
+          "num_cols": 6
+        },
+        "postLinks": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {
+            "PostId": "posts",
+            "RelatedPostId": "posts"
+          },
+          "columns": [
+            "Id",
+            "RelatedPostId",
+            "PostId",
+            "LinkTypeId",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "RelatedPostId": "Int64",
+            "PostId": "Int64",
+            "LinkTypeId": "int64",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 77337,
+          "num_cols": 5
+        },
+        "postHistory": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {
+            "PostId": "posts",
+            "UserId": "users"
+          },
+          "columns": [
+            "Id",
+            "PostId",
+            "UserId",
+            "PostHistoryTypeId",
+            "UserDisplayName",
+            "ContentLicense",
+            "RevisionGUID",
+            "Text",
+            "Comment",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "PostId": "Int64",
+            "UserId": "Int64",
+            "PostHistoryTypeId": "int64",
+            "UserDisplayName": "object",
+            "ContentLicense": "object",
+            "RevisionGUID": "object",
+            "Text": "object",
+            "Comment": "object",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 1175368,
+          "num_cols": 10
+        },
+        "votes": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {
+            "PostId": "posts",
+            "UserId": "users"
+          },
+          "columns": [
+            "Id",
+            "UserId",
+            "PostId",
+            "VoteTypeId",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "UserId": "Int64",
+            "PostId": "Int64",
+            "VoteTypeId": "int64",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 1317876,
+          "num_cols": 5
+        },
+        "users": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {},
+          "columns": [
+            "Id",
+            "AccountId",
+            "DisplayName",
+            "Location",
+            "ProfileImageUrl",
+            "WebsiteUrl",
+            "AboutMe",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "AccountId": "float64",
+            "DisplayName": "object",
+            "Location": "object",
+            "ProfileImageUrl": "float64",
+            "WebsiteUrl": "object",
+            "AboutMe": "object",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 255360,
+          "num_cols": 8
+        },
+        "posts": {
+          "pkey_col": "Id",
+          "time_col": "CreationDate",
+          "fkey_col_to_pkey_table": {
+            "OwnerUserId": "users",
+            "ParentId": "posts"
+          },
+          "columns": [
+            "Id",
+            "OwnerUserId",
+            "PostTypeId",
+            "ParentId",
+            "OwnerDisplayName",
+            "Title",
+            "Tags",
+            "ContentLicense",
+            "Body",
+            "CreationDate"
+          ],
+          "dtypes": {
+            "Id": "Int64",
+            "OwnerUserId": "Int64",
+            "PostTypeId": "int64",
+            "ParentId": "Int64",
+            "OwnerDisplayName": "object",
+            "Title": "object",
+            "Tags": "object",
+            "ContentLicense": "object",
+            "Body": "object",
+            "CreationDate": "datetime64[ns]"
+          },
+          "num_rows": 333893,
+          "num_cols": 10
+        }
+      },
+      "join_statistics": {
+        "comments.UserId -> users.Id": {
+          "child_table": "comments",
+          "fk_col": "UserId",
+          "parent_table": "users",
+          "pk_col": "Id",
+          "child_rows_total": 623967,
+          "parent_rows_total": 255360,
+          "fk_non_null_count": 612288,
+          "fk_null_count": 11679,
+          "fk_null_ratio": 0.018717336012962223,
+          "unique_fk_values": 53226,
+          "unique_pk_values": 255360,
+          "parent_coverage": 0.20843515037593985,
+          "cardinality_ratio": 2.3977443609022555,
+          "fan_out_stats": {
+            "mean": 11.50355089617856,
+            "median": 2.0,
+            "std": 235.21854985710402,
+            "min": 1,
+            "max": 40851,
+            "p25": 1.0,
+            "p75": 5.0,
+            "p95": 21.0,
+            "p99": 102.0
+          },
+          "fan_out_with_zeros_mean": 2.3977443609022555,
+          "n_parents_with_zero_children": 202134,
+          "fan_out_histogram": [
+            [
+              1.0,
+              53215
+            ],
+            [
+              4086.0,
+              7
+            ],
+            [
+              8171.0,
+              2
+            ],
+            [
+              12256.0,
+              0
+            ],
+            [
+              16341.0,
+              0
+            ],
+            [
+              20426.0,
+              1
+            ],
+            [
+              24511.0,
+              0
+            ],
+            [
+              28596.0,
+              0
+            ],
+            [
+              32681.0,
+              0
+            ],
+            [
+              36766.0,
+              1
+            ]
+          ]
+        },
+        "comments.PostId -> posts.Id": {
+          "child_table": "comments",
+          "fk_col": "PostId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 623967,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 623962,
+          "fk_null_count": 5,
+          "fk_null_ratio": 8.013244290162781e-06,
+          "unique_fk_values": 187483,
+          "unique_pk_values": 333893,
+          "parent_coverage": 0.5615062310380871,
+          "cardinality_ratio": 1.8687483714842779,
+          "fan_out_stats": {
+            "mean": 3.3280990809833426,
+            "median": 2.0,
+            "std": 2.8085532453232402,
+            "min": 1,
+            "max": 66,
+            "p25": 1.0,
+            "p75": 4.0,
+            "p95": 9.0,
+            "p99": 14.0
+          },
+          "fan_out_with_zeros_mean": 1.8687483714842779,
+          "n_parents_with_zero_children": 146410,
+          "fan_out_histogram": [
+            [
+              1.0,
+              173353
+            ],
+            [
+              7.5,
+              12201
+            ],
+            [
+              14.0,
+              1609
+            ],
+            [
+              20.5,
+              215
+            ],
+            [
+              27.0,
+              70
+            ],
+            [
+              33.5,
+              21
+            ],
+            [
+              40.0,
+              10
+            ],
+            [
+              46.5,
+              1
+            ],
+            [
+              53.0,
+              2
+            ],
+            [
+              59.5,
+              1
+            ]
+          ]
+        },
+        "badges.UserId -> users.Id": {
+          "child_table": "badges",
+          "fk_col": "UserId",
+          "parent_table": "users",
+          "pk_col": "Id",
+          "child_rows_total": 463463,
+          "parent_rows_total": 255360,
+          "fk_non_null_count": 463463,
+          "fk_null_count": 0,
+          "fk_null_ratio": 0.0,
+          "unique_fk_values": 141717,
+          "unique_pk_values": 255360,
+          "parent_coverage": 0.554969454887218,
+          "cardinality_ratio": 1.8149396929824562,
+          "fan_out_stats": {
+            "mean": 3.27034159627991,
+            "median": 2.0,
+            "std": 10.494136092372601,
+            "min": 1,
+            "max": 1578,
+            "p25": 1.0,
+            "p75": 3.0,
+            "p95": 10.0,
+            "p99": 25.0
+          },
+          "fan_out_with_zeros_mean": 1.8149396929824562,
+          "n_parents_with_zero_children": 113643,
+          "fan_out_histogram": [
+            [
+              1.0,
+              141650
+            ],
+            [
+              158.7,
+              49
+            ],
+            [
+              316.4,
+              9
+            ],
+            [
+              474.09999999999997,
+              4
+            ],
+            [
+              631.8,
+              2
+            ],
+            [
+              789.5,
+              0
+            ],
+            [
+              947.1999999999999,
+              1
+            ],
+            [
+              1104.8999999999999,
+              0
+            ],
+            [
+              1262.6,
+              1
+            ],
+            [
+              1420.3,
+              1
+            ]
+          ]
+        },
+        "postLinks.PostId -> posts.Id": {
+          "child_table": "postLinks",
+          "fk_col": "PostId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 77337,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 61171,
+          "fk_null_count": 16166,
+          "fk_null_ratio": 0.20903319239174004,
+          "unique_fk_values": 37820,
+          "unique_pk_values": 333893,
+          "parent_coverage": 0.11326981997226657,
+          "cardinality_ratio": 0.18320539813652878,
+          "fan_out_stats": {
+            "mean": 1.6174246430460073,
+            "median": 1.0,
+            "std": 1.1094606393124438,
+            "min": 1,
+            "max": 25,
+            "p25": 1.0,
+            "p75": 2.0,
+            "p95": 4.0,
+            "p99": 6.0
+          },
+          "fan_out_with_zeros_mean": 0.18320539813652878,
+          "n_parents_with_zero_children": 296073,
+          "fan_out_histogram": [
+            [
+              1.0,
+              35740
+            ],
+            [
+              3.4,
+              1630
+            ],
+            [
+              5.8,
+              367
+            ],
+            [
+              8.2,
+              46
+            ],
+            [
+              10.6,
+              17
+            ],
+            [
+              13.0,
+              11
+            ],
+            [
+              15.399999999999999,
+              3
+            ],
+            [
+              17.8,
+              2
+            ],
+            [
+              20.2,
+              0
+            ],
+            [
+              22.599999999999998,
+              4
+            ]
+          ]
+        },
+        "postLinks.RelatedPostId -> posts.Id": {
+          "child_table": "postLinks",
+          "fk_col": "RelatedPostId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 77337,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 75588,
+          "fk_null_count": 1749,
+          "fk_null_ratio": 0.0226153070328562,
+          "unique_fk_values": 24856,
+          "unique_pk_values": 333893,
+          "parent_coverage": 0.07444301018589788,
+          "cardinality_ratio": 0.22638390142949988,
+          "fan_out_stats": {
+            "mean": 3.0410363694882525,
+            "median": 1.0,
+            "std": 8.372585431010085,
+            "min": 1,
+            "max": 392,
+            "p25": 1.0,
+            "p75": 2.0,
+            "p95": 9.0,
+            "p99": 30.0
+          },
+          "fan_out_with_zeros_mean": 0.22638390142949988,
+          "n_parents_with_zero_children": 309037,
+          "fan_out_histogram": [
+            [
+              1.0,
+              24700
+            ],
+            [
+              40.1,
+              109
+            ],
+            [
+              79.2,
+              30
+            ],
+            [
+              118.30000000000001,
+              9
+            ],
+            [
+              157.4,
+              1
+            ],
+            [
+              196.5,
+              2
+            ],
+            [
+              235.60000000000002,
+              0
+            ],
+            [
+              274.7,
+              3
+            ],
+            [
+              313.8,
+              1
+            ],
+            [
+              352.90000000000003,
+              1
+            ]
+          ]
+        },
+        "postHistory.PostId -> posts.Id": {
+          "child_table": "postHistory",
+          "fk_col": "PostId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 1175368,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 1175368,
+          "fk_null_count": 0,
+          "fk_null_ratio": 0.0,
+          "unique_fk_values": 333893,
+          "unique_pk_values": 333893,
+          "parent_coverage": 1.0,
+          "cardinality_ratio": 3.520193594954072,
+          "fan_out_stats": {
+            "mean": 3.520193594954072,
+            "median": 3.0,
+            "std": 2.814207128720752,
+            "min": 1,
+            "max": 76,
+            "p25": 1.0,
+            "p75": 5.0,
+            "p95": 8.0,
+            "p99": 13.0
+          },
+          "fan_out_with_zeros_mean": 3.520193594954072,
+          "n_parents_with_zero_children": 0,
+          "fan_out_histogram": [
+            [
+              1.0,
+              317851
+            ],
+            [
+              8.5,
+              14261
+            ],
+            [
+              16.0,
+              1379
+            ],
+            [
+              23.5,
+              234
+            ],
+            [
+              31.0,
+              120
+            ],
+            [
+              38.5,
+              42
+            ],
+            [
+              46.0,
+              2
+            ],
+            [
+              53.5,
+              2
+            ],
+            [
+              61.0,
+              1
+            ],
+            [
+              68.5,
+              1
+            ]
+          ]
+        },
+        "postHistory.UserId -> users.Id": {
+          "child_table": "postHistory",
+          "fk_col": "UserId",
+          "parent_table": "users",
+          "pk_col": "Id",
+          "child_rows_total": 1175368,
+          "parent_rows_total": 255360,
+          "fk_non_null_count": 1100031,
+          "fk_null_count": 75337,
+          "fk_null_ratio": 0.06409652125972462,
+          "unique_fk_values": 84964,
+          "unique_pk_values": 255360,
+          "parent_coverage": 0.3327224310776942,
+          "cardinality_ratio": 4.307765507518797,
+          "fan_out_stats": {
+            "mean": 12.947024622192929,
+            "median": 3.0,
+            "std": 290.17300187150795,
+            "min": 1,
+            "max": 69917,
+            "p25": 3.0,
+            "p75": 7.0,
+            "p95": 29.0,
+            "p99": 107.0
+          },
+          "fan_out_with_zeros_mean": 4.307765507518797,
+          "n_parents_with_zero_children": 170396,
+          "fan_out_histogram": [
+            [
+              1.0,
+              84955
+            ],
+            [
+              6992.6,
+              4
+            ],
+            [
+              13984.2,
+              4
+            ],
+            [
+              20975.800000000003,
+              0
+            ],
+            [
+              27967.4,
+              0
+            ],
+            [
+              34959.0,
+              0
+            ],
+            [
+              41950.600000000006,
+              0
+            ],
+            [
+              48942.200000000004,
+              0
+            ],
+            [
+              55933.8,
+              0
+            ],
+            [
+              62925.4,
+              1
+            ]
+          ]
+        },
+        "votes.PostId -> posts.Id": {
+          "child_table": "votes",
+          "fk_col": "PostId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 1317876,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 1199831,
+          "fk_null_count": 118045,
+          "fk_null_ratio": 0.08957216005147677,
+          "unique_fk_values": 276663,
+          "unique_pk_values": 333893,
+          "parent_coverage": 0.8285977843201265,
+          "cardinality_ratio": 3.593459581362892,
+          "fan_out_stats": {
+            "mean": 4.3367960298269015,
+            "median": 2.0,
+            "std": 10.39788160024748,
+            "min": 1,
+            "max": 1561,
+            "p25": 1.0,
+            "p75": 4.0,
+            "p95": 13.0,
+            "p99": 35.0
+          },
+          "fan_out_with_zeros_mean": 3.593459581362892,
+          "n_parents_with_zero_children": 57230,
+          "fan_out_histogram": [
+            [
+              1.0,
+              276498
+            ],
+            [
+              157.0,
+              129
+            ],
+            [
+              313.0,
+              24
+            ],
+            [
+              469.0,
+              8
+            ],
+            [
+              625.0,
+              2
+            ],
+            [
+              781.0,
+              0
+            ],
+            [
+              937.0,
+              0
+            ],
+            [
+              1093.0,
+              1
+            ],
+            [
+              1249.0,
+              0
+            ],
+            [
+              1405.0,
+              1
+            ]
+          ]
+        },
+        "votes.UserId -> users.Id": {
+          "child_table": "votes",
+          "fk_col": "UserId",
+          "parent_table": "users",
+          "pk_col": "Id",
+          "child_rows_total": 1317876,
+          "parent_rows_total": 255360,
+          "fk_non_null_count": 5182,
+          "fk_null_count": 1312694,
+          "fk_null_ratio": 0.9960679153425663,
+          "unique_fk_values": 2608,
+          "unique_pk_values": 255360,
+          "parent_coverage": 0.010213032581453634,
+          "cardinality_ratio": 0.020292919799498748,
+          "fan_out_stats": {
+            "mean": 1.986963190184049,
+            "median": 1.0,
+            "std": 5.006001643461648,
+            "min": 1,
+            "max": 168,
+            "p25": 1.0,
+            "p75": 2.0,
+            "p95": 5.0,
+            "p99": 14.0
+          },
+          "fan_out_with_zeros_mean": 0.020292919799498748,
+          "n_parents_with_zero_children": 252752,
+          "fan_out_histogram": [
+            [
+              1.0,
+              2590
+            ],
+            [
+              17.7,
+              12
+            ],
+            [
+              34.4,
+              3
+            ],
+            [
+              51.099999999999994,
+              0
+            ],
+            [
+              67.8,
+              1
+            ],
+            [
+              84.5,
+              0
+            ],
+            [
+              101.19999999999999,
+              0
+            ],
+            [
+              117.89999999999999,
+              1
+            ],
+            [
+              134.6,
+              0
+            ],
+            [
+              151.29999999999998,
+              1
+            ]
+          ]
+        },
+        "posts.OwnerUserId -> users.Id": {
+          "child_table": "posts",
+          "fk_col": "OwnerUserId",
+          "parent_table": "users",
+          "pk_col": "Id",
+          "child_rows_total": 333893,
+          "parent_rows_total": 255360,
+          "fk_non_null_count": 328648,
+          "fk_null_count": 5245,
+          "fk_null_ratio": 0.015708625218258544,
+          "unique_fk_values": 84180,
+          "unique_pk_values": 255360,
+          "parent_coverage": 0.3296522556390977,
+          "cardinality_ratio": 1.286998746867168,
+          "fan_out_stats": {
+            "mean": 3.904110239961986,
+            "median": 1.0,
+            "std": 34.48874423447023,
+            "min": 1,
+            "max": 4672,
+            "p25": 1.0,
+            "p75": 2.0,
+            "p95": 9.0,
+            "p99": 38.0
+          },
+          "fan_out_with_zeros_mean": 1.286998746867168,
+          "n_parents_with_zero_children": 171180,
+          "fan_out_histogram": [
+            [
+              1.0,
+              84133
+            ],
+            [
+              468.1,
+              27
+            ],
+            [
+              935.2,
+              7
+            ],
+            [
+              1402.3000000000002,
+              9
+            ],
+            [
+              1869.4,
+              1
+            ],
+            [
+              2336.5,
+              1
+            ],
+            [
+              2803.6000000000004,
+              1
+            ],
+            [
+              3270.7000000000003,
+              0
+            ],
+            [
+              3737.8,
+              0
+            ],
+            [
+              4204.900000000001,
+              1
+            ]
+          ]
+        },
+        "posts.ParentId -> posts.Id": {
+          "child_table": "posts",
+          "fk_col": "ParentId",
+          "parent_table": "posts",
+          "pk_col": "Id",
+          "child_rows_total": 333893,
+          "parent_rows_total": 333893,
+          "fk_non_null_count": 167355,
+          "fk_null_count": 166538,
+          "fk_null_ratio": 0.49877655416555605,
+          "unique_fk_values": 115363,
+          "unique_pk_values": 333893,
+          "parent_coverage": 0.3455088905727284,
+          "cardinality_ratio": 0.501223445834444,
+          "fan_out_stats": {
+            "mean": 1.4506817610499034,
+            "median": 1.0,
+            "std": 1.161057083919,
+            "min": 1,
+            "max": 151,
+            "p25": 1.0,
+            "p75": 2.0,
+            "p95": 3.0,
+            "p99": 5.0
+          },
+          "fan_out_with_zeros_mean": 0.501223445834444,
+          "n_parents_with_zero_children": 218530,
+          "fan_out_histogram": [
+            [
+              1.0,
+              115318
+            ],
+            [
+              16.0,
+              36
+            ],
+            [
+              31.0,
+              4
+            ],
+            [
+              46.0,
+              2
+            ],
+            [
+              61.0,
+              0
+            ],
+            [
+              76.0,
+              2
+            ],
+            [
+              91.0,
+              0
+            ],
+            [
+              106.0,
+              0
+            ],
+            [
+              121.0,
+              0
+            ],
+            [
+              136.0,
+              1
+            ]
+          ]
+        }
+      },
+      "multi_hop_chains": [
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "comments.PostId -> posts"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.904110239961986,
+            3.3280990809833426
+          ],
+          "cumulative_cardinality": 12.993265701675142
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "votes.PostId -> posts"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.904110239961986,
+            4.3367960298269015
+          ],
+          "cumulative_cardinality": 16.931329788673693
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "postLinks.PostId -> posts"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.904110239961986,
+            1.6174246430460073
+          ],
+          "cumulative_cardinality": 6.314604111282777
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "postHistory.PostId -> posts"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.904110239961986,
+            3.520193594954072
+          ],
+          "cumulative_cardinality": 13.743223860708788
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "posts.ParentId -> posts"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.904110239961986,
+            1.4506817610499034
+          ],
+          "cumulative_cardinality": 5.663621518241015
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "posts.ParentId -> posts",
+            "comments.PostId -> posts"
+          ],
+          "depth": 3,
+          "individual_fan_outs": [
+            3.904110239961986,
+            1.4506817610499034,
+            3.3280990809833426
+          ],
+          "cumulative_cardinality": 18.849093569895405
+        },
+        {
+          "hops": [
+            "posts.OwnerUserId -> users",
+            "posts.ParentId -> posts",
+            "votes.PostId -> posts"
+          ],
+          "depth": 3,
+          "individual_fan_outs": [
+            3.904110239961986,
+            1.4506817610499034,
+            4.3367960298269015
+          ],
+          "cumulative_cardinality": 24.56197131474984
+        },
+        {
+          "hops": [
+            "comments.PostId -> posts",
+            "posts.OwnerUserId -> users"
+          ],
+          "depth": 2,
+          "individual_fan_outs": [
+            3.3280990809833426,
+            3.904110239961986
+          ],
+          "cumulative_cardinality": 12.993265701675142
+        }
+      ],
+      "tasks": {
+        "user-engagement": {
+          "task_type": "TaskType.BINARY_CLASSIFICATION",
+          "entity_table": "users",
+          "entity_col": "OwnerUserId",
+          "target_col": "contribution",
+          "time_col": "timestamp",
+          "timedelta_days": 91,
+          "metrics": [
+            "<function average_precision at 0x7b348ff4d750>",
+            "<function accuracy at 0x7b384b51c670>",
+            "<function f1 at 0x7b348ff4d480>",
+            "<function roc_auc at 0x7b348ff4d6c0>"
+          ],
+          "train_rows": 1360850,
+          "train_label_distribution": {
+            "count": 1360850.0,
+            "mean": 0.04998346621596796,
+            "std": 0.21791088594824978,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 1.0
+          },
+          "val_rows": 85838,
+          "test_rows": 88137
+        },
+        "user-badge": {
+          "task_type": "TaskType.BINARY_CLASSIFICATION",
+          "entity_table": "users",
+          "entity_col": "UserId",
+          "target_col": "WillGetBadge",
+          "time_col": "timestamp",
+          "timedelta_days": 91,
+          "metrics": [
+            "<function average_precision at 0x7b348ff4d750>",
+            "<function accuracy at 0x7b384b51c670>",
+            "<function f1 at 0x7b348ff4d480>",
+            "<function roc_auc at 0x7b348ff4d6c0>"
+          ],
+          "train_rows": 3386276,
+          "train_label_distribution": {
+            "count": 3386276.0,
+            "mean": 0.048149648758695394,
+            "std": 0.2140823991306322,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 1.0
+          },
+          "val_rows": 247398,
+          "test_rows": 255360
+        },
+        "post-votes": {
+          "task_type": "TaskType.REGRESSION",
+          "entity_table": "posts",
+          "entity_col": "PostId",
+          "target_col": "popularity",
+          "time_col": "timestamp",
+          "timedelta_days": 91,
+          "metrics": [
+            "<function r2 at 0x7b348ff4dbd0>",
+            "<function mae at 0x7b348ff4da20>",
+            "<function rmse at 0x7b348ff4db40>"
+          ],
+          "train_rows": 2453921,
+          "train_label_distribution": {
+            "count": 2453921.0,
+            "mean": 0.09305108029150083,
+            "std": 0.5104313497537508,
+            "min": 0.0,
+            "25%": 0.0,
+            "50%": 0.0,
+            "75%": 0.0,
+            "max": 78.0
+          },
+          "val_rows": 156216,
+          "test_rows": 160903
+        },
+        "user-post-comment": {
+          "task_type": "TaskType.LINK_PREDICTION",
+          "time_col": "timestamp",
+          "src_entity_table": "users",
+          "src_entity_col": "UserId",
+          "dst_entity_table": "posts",
+          "dst_entity_col": "PostId",
+          "timedelta_days": 91,
+          "metrics": [
+            "<function link_prediction_precision at 0x7b348ff4e3b0>",
+            "<function link_prediction_recall at 0x7b348ff4e320>",
+            "<function link_prediction_map at 0x7b348ff4e440>"
+          ],
+          "train_rows": 21239,
+          "val_rows": 825,
+          "test_rows": 758
+        },
+        "post-post-related": {
+          "task_type": "TaskType.LINK_PREDICTION",
+          "time_col": "timestamp",
+          "src_entity_table": "posts",
+          "src_entity_col": "PostId",
+          "dst_entity_table": "posts",
+          "dst_entity_col": "postLinksIdList",
+          "timedelta_days": 91,
+          "metrics": [
+            "<function link_prediction_precision at 0x7b348ff4e3b0>",
+            "<function link_prediction_recall at 0x7b348ff4e320>",
+            "<function link_prediction_map at 0x7b348ff4e440>"
+          ],
+          "train_rows": 5855,
+          "val_rows": 226,
+          "test_rows": 258
+        }
+      },
+      "temporal_splits": {
+        "val_timestamp": "2019-01-01",
+        "test_timestamp": "2021-01-01"
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"Id\": 3798, \"UserId\": 1613, \"Class\": 3, \"Name\": \"Editor\", \"TagBased\": false, \"Date\": \"2010-12-23T23:42:30.023000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "badges",
+          "metadata_pk": 3798,
+          "metadata_fkeys": "{\"UserId\": 1613}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 2320, \"UserId\": 873, \"Class\": 3, \"Name\": \"Student\", \"TagBased\": false, \"Date\": \"2010-10-11T17:27:32.357000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "badges",
+          "metadata_pk": 2320,
+          "metadata_fkeys": "{\"UserId\": 873}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 2431, \"UserId\": 188, \"Class\": 3, \"Name\": \"Editor\", \"TagBased\": false, \"Date\": \"2010-10-18T06:16:17.030000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "badges",
+          "metadata_pk": 2431,
+          "metadata_fkeys": "{\"UserId\": 188}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 2533, \"UserId\": 1134, \"Class\": 3, \"Name\": \"Supporter\", \"TagBased\": false, \"Date\": \"2010-10-21T16:37:09.853000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "badges",
+          "metadata_pk": 2533,
+          "metadata_fkeys": "{\"UserId\": 1134}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 315, \"UserId\": 84, \"Class\": 3, \"Name\": \"Teacher\", \"TagBased\": false, \"Date\": \"2010-07-20T08:54:10.137000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "badges",
+          "metadata_pk": 315,
+          "metadata_fkeys": "{\"UserId\": 84}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 9, \"PostId\": 6, \"UserId\": 957, \"ContentLicense\": \"CC BY-SA 2.5\", \"UserDisplayName\": null, \"Text\": \"http://en.wikipedia.org/wiki/Chebychev%27s_inequality  This applies regardless of the distribution.\", \"CreationDate\": \"2009-02-02T20:49:38.013000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "comments",
+          "metadata_pk": 9,
+          "metadata_fkeys": "{\"UserId\": 957, \"PostId\": 6}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 25, \"PostId\": 9, \"UserId\": 3314, \"ContentLicense\": \"CC BY-SA 2.5\", \"UserDisplayName\": null, \"Text\": \"If a known event is going to change the distribution it is essential to recalibrate.  In a mass spectrometer the device becomes more accurate as it adjusts itself to the compound being analyzed.  This is a well known method to increase accuracy while supporting a large variety of inputs.\", \"CreationDate\": \"2009-04-12T08:13:05.517000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "comments",
+          "metadata_pk": 25,
+          "metadata_fkeys": "{\"UserId\": 3314, \"PostId\": 9}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 8, \"PostId\": 6, \"UserId\": null, \"ContentLicense\": \"CC BY-SA 2.5\", \"UserDisplayName\": \"David Thornley\", \"Text\": \"It's not at all hard to prove that there has to be at least one data point within one standard deviation (inclusive) of the mean.  Any outlier big enough to pull the mean way out is going to enlarge the standard deviation a lot.\", \"CreationDate\": \"2009-02-02T17:47:21.783000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "comments",
+          "metadata_pk": 8,
+          "metadata_fkeys": "{\"UserId\": null, \"PostId\": 6}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 21, \"PostId\": 9, \"UserId\": 3314, \"ContentLicense\": \"CC BY-SA 2.5\", \"UserDisplayName\": null, \"Text\": \"The system has to know that it is being calibrated and bootstrapping itself.  Typical techniques are to seed the first values with the initial value plus or minus ten percent.  When the second value arrives the seeded values are the first and second values interleaved.\", \"CreationDate\": \"2009-04-12T07:53:44.953000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "comments",
+          "metadata_pk": 21,
+          "metadata_fkeys": "{\"UserId\": 3314, \"PostId\": 9}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 0, \"PostId\": 1, \"UserId\": null, \"ContentLicense\": \"CC BY-SA 2.5\", \"UserDisplayName\": \"Jason Cohen\", \"Text\": \"Using a rule like \\\"biggest 10%\\\" doesn't make sense. What if there are no outliers? The 10% rule would eliminate some data anyway. Unacceptable.\", \"CreationDate\": \"2009-02-02T14:45:19.280000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "comments",
+          "metadata_pk": 0,
+          "metadata_fkeys": "{\"UserId\": null, \"PostId\": 1}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 8, \"PostId\": 6, \"UserId\": null, \"PostHistoryTypeId\": 2, \"UserDisplayName\": \"Jason Cohen\", \"ContentLicense\": \"CC BY-SA 2.5\", \"RevisionGUID\": \"0418121d-2c22-4e4d-9d2b-0373370a9fe3\", \"Text\": \"A statistically sensible approach is to use a [standard deviation][1] cut-off.\\r\\n\\r\\nFor example, remove any results +/-3 standard deviations.\\r\\n\\r\\nUsing a rule like \\\"biggest 10%\\\" doesn't make sense.  What if there are no outliers?  The 10% rule would eliminate some data anyway.  Unacceptable.\\r\\n\\r\\n\\r\\n  [1]: http://en.wikipedia.org/wiki/Standard_deviation\", \"Comment\": null, \"CreationDate\": \"2009-02-02T14:44:30.840000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postHistory",
+          "metadata_pk": 8,
+          "metadata_fkeys": "{\"PostId\": 6, \"UserId\": null}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 16, \"PostId\": 12, \"UserId\": null, \"PostHistoryTypeId\": 2, \"UserDisplayName\": \"ozan\", \"ContentLicense\": \"CC BY-SA 2.5\", \"RevisionGUID\": \"2034d882-59f1-4d6e-b469-d71a9633dd30\", \"Text\": \"You need to have some idea of expected variation or distribution, if you want to be able to exclude certain (higher) instances of variation as erroneous. For instance, if you can approximate the distribution of the \\\"average times\\\" result to a normal (Gaussian) distribution, then you can do what ojblass suggested and exclude those results that exhibit a variation that is greater than some multiple of the standard deviation (which can be calculated on the fly alongside your running average). If yo...\", \"Comment\": null, \"CreationDate\": \"2009-04-12T07:53:27.777000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postHistory",
+          "metadata_pk": 16,
+          "metadata_fkeys": "{\"PostId\": 12, \"UserId\": null}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 0, \"PostId\": 0, \"UserId\": 76449, \"PostHistoryTypeId\": 1, \"UserDisplayName\": \"Tawani\", \"ContentLicense\": \"CC BY-SA 2.5\", \"RevisionGUID\": \"f2d5ed7a-52d0-4831-8056-d337bd96ac72\", \"Text\": \"What is an Average that does not include outliers?\", \"Comment\": null, \"CreationDate\": \"2009-02-02T14:21:12.103000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postHistory",
+          "metadata_pk": 0,
+          "metadata_fkeys": "{\"PostId\": 0, \"UserId\": 76449}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 18, \"PostId\": 14, \"UserId\": 5376, \"PostHistoryTypeId\": 2, \"UserDisplayName\": \"dmckee\", \"ContentLicense\": \"CC BY-SA 2.5\", \"RevisionGUID\": \"b2a7c3dd-46fb-4122-b2fa-2da82104d786\", \"Text\": \"The naive (and possibly best) answer to the bootstrapping question is \\\"Accept the first N values without filtering.\\\" Choose N to be as large as possible while still allowing the setup time to be \\\"short\\\" in your application. In this case, you might consider using the window width (64 samples) for N.\\r\\n\\r\\nThen I would go with some kind of mean and sigma based filter. \\r\\n\", \"Comment\": null, \"CreationDate\": \"2009-04-12T15:22:27.027000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postHistory",
+          "metadata_pk": 18,
+          "metadata_fkeys": "{\"PostId\": 14, \"UserId\": 5376}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 11, \"PostId\": 9, \"UserId\": null, \"PostHistoryTypeId\": 2, \"UserDisplayName\": \"Edward Z. Yang\", \"ContentLicense\": \"CC BY-SA 2.5\", \"RevisionGUID\": \"2d7b38bf-bc28-44eb-a6fc-794d3ab306f1\", \"Text\": \"We have a daemon that reads in data from some sensors, and among the things it calculates (besides simply just reporting the state) is the average time it takes for the sensors to change from one value to another. It keeps a running average of 64 datapoints, and assumes that runtime is fairly constant.\\r\\n\\r\\nUnfortunately, as demonstrated by the below graph, the input data isn't the most pristine:\\r\\n\\r\\n<img src=\\\"http://random-hall.mit.edu/blog/wp-content/uploads/2009/04/graphpng.png\\\" />\\r\\n\\r\\n(Each line...\", \"Comment\": null, \"CreationDate\": \"2009-04-12T07:24:17.007000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postHistory",
+          "metadata_pk": 11,
+          "metadata_fkeys": "{\"PostId\": 9, \"UserId\": null}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 30, \"RelatedPostId\": 1320, \"PostId\": 1485, \"LinkTypeId\": 1, \"CreationDate\": \"2010-08-12T15:18:28.103000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postLinks",
+          "metadata_pk": 30,
+          "metadata_fkeys": "{\"PostId\": 1485, \"RelatedPostId\": 1320}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 116, \"RelatedPostId\": 307, \"PostId\": 2809, \"LinkTypeId\": 1, \"CreationDate\": \"2010-10-01T23:13:10.240000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postLinks",
+          "metadata_pk": 116,
+          "metadata_fkeys": "{\"PostId\": 2809, \"RelatedPostId\": 307}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 79, \"RelatedPostId\": 2353, \"PostId\": 2430, \"LinkTypeId\": 1, \"CreationDate\": \"2010-09-17T21:30:52.633000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postLinks",
+          "metadata_pk": 79,
+          "metadata_fkeys": "{\"PostId\": 2430, \"RelatedPostId\": 2353}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 127, \"RelatedPostId\": 31, \"PostId\": 208, \"LinkTypeId\": 1, \"CreationDate\": \"2010-10-06T17:05:16.630000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postLinks",
+          "metadata_pk": 127,
+          "metadata_fkeys": "{\"PostId\": 208, \"RelatedPostId\": 31}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 196, \"RelatedPostId\": 3451, \"PostId\": 3646, \"LinkTypeId\": 1, \"CreationDate\": \"2010-10-24T15:57:33.730000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "postLinks",
+          "metadata_pk": 196,
+          "metadata_fkeys": "{\"PostId\": 3646, \"RelatedPostId\": 3451}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 0, \"OwnerUserId\": 76449, \"PostTypeId\": 1, \"ParentId\": null, \"OwnerDisplayName\": \"Tawani\", \"Title\": \"What do you call an average that does not include outliers?\", \"Tags\": \"<terminology><outliers><types-of-averages>\", \"ContentLicense\": \"CC BY-SA 3.0\", \"Body\": \"<p>What do you call an average that does not include outliers?</p>\\n\\n<p>For example if you have a set:</p>\\n\\n<pre><code>{90,89,92,91,5} avg = 73.4\\n</code></pre>\\n\\n<p>but excluding the outlier (5) we have</p>\\n\\n<pre><code>{90,89,92,91(,5)} avg = 90.5\\n</code></pre>\\n\\n<p>How do you describe this average in statistics?</p>\\n\", \"CreationDate\": \"2009-02-02T14:21:12.103000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "posts",
+          "metadata_pk": 0,
+          "metadata_fkeys": "{\"OwnerUserId\": 76449, \"ParentId\": null}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 1, \"OwnerUserId\": 957, \"PostTypeId\": 2, \"ParentId\": 0, \"OwnerDisplayName\": \"dsimcha\", \"Title\": null, \"Tags\": null, \"ContentLicense\": \"CC BY-SA 4.0\", \"Body\": \"<p>It's called the <a href=\\\"https://wikipedia.org/wiki/Truncated_mean\\\" rel=\\\"noreferrer\\\">trimmed mean</a>.  Basically what you do is compute the mean of the middle 80% of your data, ignoring the top and bottom 10%. Of course, these numbers can vary, but that's the general idea.</p>\\n\", \"CreationDate\": \"2009-02-02T14:24:31.740000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "posts",
+          "metadata_pk": 1,
+          "metadata_fkeys": "{\"OwnerUserId\": 957, \"ParentId\": 0}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 8, \"OwnerUserId\": null, \"PostTypeId\": 2, \"ParentId\": 0, \"OwnerDisplayName\": \"Nick Fortescue\", \"Title\": null, \"Tags\": null, \"ContentLicense\": \"CC BY-SA 2.5\", \"Body\": \"<p>The most common way of having a Robust (the usual word meaning resistant to bad data) average is to use the <strong>median</strong>. This is just the middle value in the sorted list (of half way between the middle two values), so for your example it would be 90.5 = half way between 90 and 91.</p>\\n\\n<p>If you want to get really into <a href=\\\"http://en.wikipedia.org/wiki/Robust_statistics\\\" rel=\\\"noreferrer\\\">robust statistics</a> (such as robust estimates of standard deviation etc) I would recomme...\", \"CreationDate\": \"2009-02-13T09:22:19.977000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "posts",
+          "metadata_pk": 8,
+          "metadata_fkeys": "{\"OwnerUserId\": null, \"ParentId\": 0}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 5, \"OwnerUserId\": null, \"PostTypeId\": 2, \"ParentId\": 0, \"OwnerDisplayName\": \"mvrak\", \"Title\": null, \"Tags\": null, \"ContentLicense\": \"CC BY-SA 2.5\", \"Body\": \"<p>There is no official name because of the various mechanisms, such as Q test, used to get rid of outliers.  </p>\\n\\n<p>Removing outliers is called trimming.</p>\\n\\n<p>No program I have ever used has average() with an integrated trim()</p>\\n\", \"CreationDate\": \"2009-02-02T14:31:27.840000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "posts",
+          "metadata_pk": 5,
+          "metadata_fkeys": "{\"OwnerUserId\": null, \"ParentId\": 0}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 3, \"OwnerUserId\": 884, \"PostTypeId\": 2, \"ParentId\": 0, \"OwnerDisplayName\": \"Jason S\", \"Title\": null, \"Tags\": null, \"ContentLicense\": \"CC BY-SA 3.0\", \"Body\": \"<p>I don't know if it has a name, but you could easily come up with a number of algorithms to reject outliers:</p>\\n\\n<ol>\\n<li><p>Find all numbers between the 10th and 90th percentiles (do this by sorting then rejecting the first $N/10$ and last $N/10$ numbers) and take the mean value of the remaining values.</p></li>\\n<li><p>Sort values, reject high and low values as long as by doing so, the mean/standard deviation change more than $X\\\\%$.</p></li>\\n<li><p>Sort values, reject high and low values as ...\", \"CreationDate\": \"2009-02-02T14:25:44.200000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "posts",
+          "metadata_pk": 3,
+          "metadata_fkeys": "{\"OwnerUserId\": 884, \"ParentId\": 0}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 941, \"AccountId\": 66386.0, \"DisplayName\": \"Ryan Lynch\", \"Location\": \"New York, NY, United States\", \"ProfileImageUrl\": null, \"WebsiteUrl\": null, \"AboutMe\": \"<p>I engineer web applications, with an emphasis on writing simple code that expresses my view of an optimal solution. React and Redux are my jam at the moment, but I love to learn new things. I'm getting into Go; and so far it's like putting on a new pair of shoes that you need to break in. I take photos, write music, and code as much as I can.</p>\\n\", \"CreationDate\": \"2010-09-16T15:46:33.927000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "users",
+          "metadata_pk": 941,
+          "metadata_fkeys": "{}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 988, \"AccountId\": 5630.0, \"DisplayName\": \"sandesh247\", \"Location\": \"Mumbai, India\", \"ProfileImageUrl\": null, \"WebsiteUrl\": \"http://sandesh247.com\", \"AboutMe\": null, \"CreationDate\": \"2010-09-22T22:11:14.707000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "users",
+          "metadata_pk": 988,
+          "metadata_fkeys": "{}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 405, \"AccountId\": 66370.0, \"DisplayName\": \"Samik R\", \"Location\": null, \"ProfileImageUrl\": null, \"WebsiteUrl\": null, \"AboutMe\": null, \"CreationDate\": \"2010-07-28T04:15:32.517000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "users",
+          "metadata_pk": 405,
+          "metadata_fkeys": "{}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 722, \"AccountId\": 185021.0, \"DisplayName\": \"DavidShor\", \"Location\": null, \"ProfileImageUrl\": null, \"WebsiteUrl\": null, \"AboutMe\": null, \"CreationDate\": \"2010-08-19T04:41:58.163000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "users",
+          "metadata_pk": 722,
+          "metadata_fkeys": "{}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 1613, \"AccountId\": 509622.0, \"DisplayName\": \"user2510\", \"Location\": null, \"ProfileImageUrl\": null, \"WebsiteUrl\": null, \"AboutMe\": null, \"CreationDate\": \"2010-12-23T22:01:37.867000\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "users",
+          "metadata_pk": 1613,
+          "metadata_fkeys": "{}",
+          "metadata_row_index": 4
+        },
+        {
+          "input": "{\"Id\": 22, \"UserId\": null, \"PostId\": 7, \"VoteTypeId\": 2, \"CreationDate\": \"2009-02-02T00:00:00\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "votes",
+          "metadata_pk": 22,
+          "metadata_fkeys": "{\"PostId\": 7, \"UserId\": null}",
+          "metadata_row_index": 0
+        },
+        {
+          "input": "{\"Id\": 0, \"UserId\": null, \"PostId\": 2, \"VoteTypeId\": 2, \"CreationDate\": \"2009-02-02T00:00:00\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "votes",
+          "metadata_pk": 0,
+          "metadata_fkeys": "{\"PostId\": 2, \"UserId\": null}",
+          "metadata_row_index": 1
+        },
+        {
+          "input": "{\"Id\": 49, \"UserId\": null, \"PostId\": 2, \"VoteTypeId\": 2, \"CreationDate\": \"2009-02-13T00:00:00\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "votes",
+          "metadata_pk": 49,
+          "metadata_fkeys": "{\"PostId\": 2, \"UserId\": null}",
+          "metadata_row_index": 2
+        },
+        {
+          "input": "{\"Id\": 4, \"UserId\": null, \"PostId\": 6, \"VoteTypeId\": 2, \"CreationDate\": \"2009-02-02T00:00:00\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "votes",
+          "metadata_pk": 4,
+          "metadata_fkeys": "{\"PostId\": 6, \"UserId\": null}",
+          "metadata_row_index": 3
+        },
+        {
+          "input": "{\"Id\": 54, \"UserId\": null, \"PostId\": 4, \"VoteTypeId\": 2, \"CreationDate\": \"2009-03-03T00:00:00\"}",
+          "output": "{}",
+          "metadata_fold": 0,
+          "metadata_table": "votes",
+          "metadata_pk": 54,
+          "metadata_fkeys": "{\"PostId\": 4, \"UserId\": null}",
+          "metadata_row_index": 4
+        }
+      ]
+    }
+  ]
+}

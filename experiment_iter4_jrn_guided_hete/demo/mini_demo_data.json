@@ -1,0 +1,1081 @@
+{
+  "metadata": {
+    "description": "JRN-guided heterogeneous architecture experiment on rel-stack",
+    "dataset": "rel-stack",
+    "tasks": [
+      "user-engagement",
+      "user-badge",
+      "post-votes"
+    ],
+    "n_joins_total": 11,
+    "probe_params": {
+      "n_estimators": 150,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "max_bin": 127
+    },
+    "final_params": {
+      "n_estimators": 250,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "max_bin": 255
+    },
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "temporal_splits": {
+      "val": "2019-01-01 00:00:00",
+      "test": "2021-01-01 00:00:00"
+    },
+    "jrn_thresholds": {
+      "high": 1.15,
+      "low": 0.85
+    },
+    "max_train_samples": 150000,
+    "jrn_matrix": {
+      "joins": [
+        "comments.UserId -> users",
+        "comments.PostId -> posts",
+        "badges.UserId -> users",
+        "postLinks.PostId -> posts",
+        "postLinks.RelatedPostId -> posts",
+        "postHistory.PostId -> posts",
+        "postHistory.UserId -> users",
+        "votes.PostId -> posts",
+        "votes.UserId -> users",
+        "posts.OwnerUserId -> users",
+        "posts.ParentId -> posts"
+      ],
+      "tasks": [
+        "user-engagement",
+        "user-badge",
+        "post-votes"
+      ],
+      "values": [
+        [
+          2.204413880408862,
+          3.8475621940072884,
+          null
+        ],
+        [
+          null,
+          null,
+          1.0365375582997243
+        ],
+        [
+          2.173807777733321,
+          3.99376103465026,
+          null
+        ],
+        [
+          null,
+          null,
+          1.0506707080250663
+        ],
+        [
+          null,
+          null,
+          1.2535339272821393
+        ],
+        [
+          null,
+          null,
+          1.1210376300162836
+        ],
+        [
+          2.3889244598465087,
+          4.242555342516459,
+          null
+        ],
+        [
+          null,
+          null,
+          1.4420655479260338
+        ],
+        [
+          1.4782408749909604,
+          1.9936360871107053,
+          null
+        ],
+        [
+          2.3970742420279505,
+          4.182119440716396,
+          null
+        ],
+        [
+          null,
+          null,
+          1.2311065070726979
+        ]
+      ],
+      "categories": [
+        [
+          "HIGH",
+          "HIGH",
+          "N/A"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "CRITICAL"
+        ],
+        [
+          "HIGH",
+          "HIGH",
+          "N/A"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "CRITICAL"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "HIGH"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "CRITICAL"
+        ],
+        [
+          "HIGH",
+          "HIGH",
+          "N/A"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "HIGH"
+        ],
+        [
+          "HIGH",
+          "HIGH",
+          "N/A"
+        ],
+        [
+          "HIGH",
+          "HIGH",
+          "N/A"
+        ],
+        [
+          "N/A",
+          "N/A",
+          "HIGH"
+        ]
+      ],
+      "per_agg_scores": {
+        "user-engagement/comments.UserId -> users/mean": {
+          "mean": 0.17103251739120587,
+          "std": 0.00024231776906861725
+        },
+        "user-engagement/comments.UserId -> users/sum": {
+          "mean": 0.1712656192930492,
+          "std": 0.000468264097718161
+        },
+        "user-engagement/comments.UserId -> users/max": {
+          "mean": 0.170391262831748,
+          "std": 0.0004044357413709444
+        },
+        "user-engagement/comments.UserId -> users/std": {
+          "mean": 0.17003390775776983,
+          "std": 0.000534733352434897
+        },
+        "user-engagement/comments.UserId -> users/all": {
+          "mean": 0.1713124068914934,
+          "std": 0.00023816887848392574
+        },
+        "user-engagement/badges.UserId -> users/mean": {
+          "mean": 0.16780639495289437,
+          "std": 0.00013437132336740573
+        },
+        "user-engagement/badges.UserId -> users/sum": {
+          "mean": 0.16498909354692937,
+          "std": 0.000306244381659767
+        },
+        "user-engagement/badges.UserId -> users/max": {
+          "mean": 0.1643596921626688,
+          "std": 0.0005270769475086782
+        },
+        "user-engagement/badges.UserId -> users/std": {
+          "mean": 0.16724529608728975,
+          "std": 0.00024159937832930994
+        },
+        "user-engagement/badges.UserId -> users/all": {
+          "mean": 0.16893390385197227,
+          "std": 0.00021758021791520114
+        },
+        "user-engagement/postHistory.UserId -> users/mean": {
+          "mean": 0.1835238604696734,
+          "std": 0.000302812516619794
+        },
+        "user-engagement/postHistory.UserId -> users/sum": {
+          "mean": 0.1818380900926048,
+          "std": 0.00036847815069970314
+        },
+        "user-engagement/postHistory.UserId -> users/max": {
+          "mean": 0.17914322675908942,
+          "std": 0.0008587827492968843
+        },
+        "user-engagement/postHistory.UserId -> users/std": {
+          "mean": 0.18320024604081228,
+          "std": 0.001324657546288816
+        },
+        "user-engagement/postHistory.UserId -> users/all": {
+          "mean": 0.18565134375871398,
+          "std": 0.00039269762700099486
+        },
+        "user-engagement/votes.UserId -> users/mean": {
+          "mean": 0.11477407398233852,
+          "std": 0.00044737634153769573
+        },
+        "user-engagement/votes.UserId -> users/sum": {
+          "mean": 0.11456938482277364,
+          "std": 0.00040235364494150606
+        },
+        "user-engagement/votes.UserId -> users/max": {
+          "mean": 0.11477407398233852,
+          "std": 0.00044737634153769573
+        },
+        "user-engagement/votes.UserId -> users/std": {
+          "mean": 0.11487906355095123,
+          "std": 0.0003473133995486323
+        },
+        "user-engagement/votes.UserId -> users/all": {
+          "mean": 0.11443977562974084,
+          "std": 0.0002472131534676509
+        },
+        "user-engagement/posts.OwnerUserId -> users/mean": {
+          "mean": 0.18333572625194594,
+          "std": 0.0002507592492718736
+        },
+        "user-engagement/posts.OwnerUserId -> users/sum": {
+          "mean": 0.18373984320616263,
+          "std": 0.0006541401870329952
+        },
+        "user-engagement/posts.OwnerUserId -> users/max": {
+          "mean": 0.1830363091652125,
+          "std": 0.00025578474689189393
+        },
+        "user-engagement/posts.OwnerUserId -> users/std": {
+          "mean": 0.18394013218723795,
+          "std": 0.000421118102109533
+        },
+        "user-engagement/posts.OwnerUserId -> users/all": {
+          "mean": 0.18628469070574247,
+          "std": 0.00014072604753054234
+        },
+        "user-badge/comments.UserId -> users/mean": {
+          "mean": 0.22451735218220162,
+          "std": 0.0007102703505085741
+        },
+        "user-badge/comments.UserId -> users/sum": {
+          "mean": 0.22566800598513037,
+          "std": 0.0001743552567796336
+        },
+        "user-badge/comments.UserId -> users/max": {
+          "mean": 0.22610477455125536,
+          "std": 0.0009463467159931922
+        },
+        "user-badge/comments.UserId -> users/std": {
+          "mean": 0.2269148917082692,
+          "std": 0.0004137763904879766
+        },
+        "user-badge/comments.UserId -> users/all": {
+          "mean": 0.22663804777983818,
+          "std": 0.0006822677923602384
+        },
+        "user-badge/badges.UserId -> users/mean": {
+          "mean": 0.23449415125868592,
+          "std": 0.0004753505452469972
+        },
+        "user-badge/badges.UserId -> users/sum": {
+          "mean": 0.2345423124449201,
+          "std": 0.00033066146319704154
+        },
+        "user-badge/badges.UserId -> users/max": {
+          "mean": 0.23423511594845978,
+          "std": 0.0013294396602326385
+        },
+        "user-badge/badges.UserId -> users/std": {
+          "mean": 0.2355371549543436,
+          "std": 0.00016533992807546253
+        },
+        "user-badge/badges.UserId -> users/all": {
+          "mean": 0.2344122841119957,
+          "std": 0.00012062076734159636
+        },
+        "user-badge/postHistory.UserId -> users/mean": {
+          "mean": 0.24608775068219527,
+          "std": 0.00012937094673595262
+        },
+        "user-badge/postHistory.UserId -> users/sum": {
+          "mean": 0.2473066614859146,
+          "std": 0.0006168539017133967
+        },
+        "user-badge/postHistory.UserId -> users/max": {
+          "mean": 0.24599521788733378,
+          "std": 0.0006696838340118944
+        },
+        "user-badge/postHistory.UserId -> users/std": {
+          "mean": 0.25021011684044986,
+          "std": 0.00015018506307665853
+        },
+        "user-badge/postHistory.UserId -> users/all": {
+          "mean": 0.24727807832704282,
+          "std": 0.0008774477010634791
+        },
+        "user-badge/votes.UserId -> users/mean": {
+          "mean": 0.11654526173826607,
+          "std": 0.0014099433344957899
+        },
+        "user-badge/votes.UserId -> users/sum": {
+          "mean": 0.1166390722832387,
+          "std": 0.0006401055800808964
+        },
+        "user-badge/votes.UserId -> users/max": {
+          "mean": 0.11654526173826607,
+          "std": 0.0014099433344957899
+        },
+        "user-badge/votes.UserId -> users/std": {
+          "mean": 0.11631306174808098,
+          "std": 0.0007254515562522223
+        },
+        "user-badge/votes.UserId -> users/all": {
+          "mean": 0.11757723306384227,
+          "std": 0.000271739768195685
+        },
+        "user-badge/posts.OwnerUserId -> users/mean": {
+          "mean": 0.24533415735300723,
+          "std": 0.0008615535972535908
+        },
+        "user-badge/posts.OwnerUserId -> users/sum": {
+          "mean": 0.2460805385532456,
+          "std": 0.00019328962680670894
+        },
+        "user-badge/posts.OwnerUserId -> users/max": {
+          "mean": 0.24349959060186718,
+          "std": 0.0010811041893467013
+        },
+        "user-badge/posts.OwnerUserId -> users/std": {
+          "mean": 0.24152993390638433,
+          "std": 0.0001636850193134456
+        },
+        "user-badge/posts.OwnerUserId -> users/all": {
+          "mean": 0.2466458323868775,
+          "std": 0.0013131851994808753
+        },
+        "post-votes/comments.PostId -> posts/mean": {
+          "mean": -0.1401373202944722,
+          "std": 9.171398900227003e-05
+        },
+        "post-votes/comments.PostId -> posts/sum": {
+          "mean": -0.14070848132880934,
+          "std": 5.644629035185321e-06
+        },
+        "post-votes/comments.PostId -> posts/max": {
+          "mean": -0.1402450206255255,
+          "std": 4.2154998954453435e-05
+        },
+        "post-votes/comments.PostId -> posts/std": {
+          "mean": -0.1403366526248109,
+          "std": 7.225263160572383e-05
+        },
+        "post-votes/comments.PostId -> posts/all": {
+          "mean": -0.13960883144783462,
+          "std": 5.135962821908202e-05
+        },
+        "post-votes/postLinks.PostId -> posts/mean": {
+          "mean": -0.1377308762495393,
+          "std": 4.261785365857645e-05
+        },
+        "post-votes/postLinks.PostId -> posts/sum": {
+          "mean": -0.13807993915863104,
+          "std": 4.3222281129103714e-05
+        },
+        "post-votes/postLinks.PostId -> posts/max": {
+          "mean": -0.13775491480619007,
+          "std": 2.7910517545712977e-05
+        },
+        "post-votes/postLinks.PostId -> posts/std": {
+          "mean": -0.13792691359663078,
+          "std": 4.762839265661807e-05
+        },
+        "post-votes/postLinks.PostId -> posts/all": {
+          "mean": -0.1378657859866542,
+          "std": 1.2666854209358243e-05
+        },
+        "post-votes/postLinks.RelatedPostId -> posts/mean": {
+          "mean": -0.11544146840905223,
+          "std": 3.629023361987053e-05
+        },
+        "post-votes/postLinks.RelatedPostId -> posts/sum": {
+          "mean": -0.11580494489436323,
+          "std": 2.3329330592553624e-05
+        },
+        "post-votes/postLinks.RelatedPostId -> posts/max": {
+          "mean": -0.1154482107620242,
+          "std": 3.569960133116254e-06
+        },
+        "post-votes/postLinks.RelatedPostId -> posts/std": {
+          "mean": -0.11555796126716623,
+          "std": 3.6621647503606675e-05
+        },
+        "post-votes/postLinks.RelatedPostId -> posts/all": {
+          "mean": -0.11560471580306846,
+          "std": 3.44105341410837e-05
+        },
+        "post-votes/postHistory.PostId -> posts/mean": {
+          "mean": -0.12954946445390578,
+          "std": 0.00015588456627793612
+        },
+        "post-votes/postHistory.PostId -> posts/sum": {
+          "mean": -0.13048801806050037,
+          "std": 2.1814600930365586e-05
+        },
+        "post-votes/postHistory.PostId -> posts/max": {
+          "mean": -0.12908558409757778,
+          "std": 7.097597942856076e-05
+        },
+        "post-votes/postHistory.PostId -> posts/std": {
+          "mean": -0.1294583592801346,
+          "std": 7.813699651060916e-05
+        },
+        "post-votes/postHistory.PostId -> posts/all": {
+          "mean": -0.12915062481906173,
+          "std": 1.3580796430240873e-05
+        },
+        "post-votes/votes.PostId -> posts/mean": {
+          "mean": -0.10034897336957856,
+          "std": 7.173224942108113e-05
+        },
+        "post-votes/votes.PostId -> posts/sum": {
+          "mean": -0.10103233113386546,
+          "std": 8.364055338958815e-05
+        },
+        "post-votes/votes.PostId -> posts/max": {
+          "mean": -0.10044124756782612,
+          "std": 8.910975822499217e-05
+        },
+        "post-votes/votes.PostId -> posts/std": {
+          "mean": -0.10077972618810178,
+          "std": 1.8597723914799574e-05
+        },
+        "post-votes/votes.PostId -> posts/all": {
+          "mean": -0.10063536101179875,
+          "std": 7.255565240933645e-05
+        },
+        "post-votes/posts.ParentId -> posts/mean": {
+          "mean": -0.1177004084860489,
+          "std": 0.00023337981306119105
+        },
+        "post-votes/posts.ParentId -> posts/sum": {
+          "mean": -0.11809706736121399,
+          "std": 3.1211141037173514e-05
+        },
+        "post-votes/posts.ParentId -> posts/max": {
+          "mean": -0.11788630038277748,
+          "std": 1.1490596621662127e-05
+        },
+        "post-votes/posts.ParentId -> posts/std": {
+          "mean": -0.11852441203761817,
+          "std": 6.4670493499811e-05
+        },
+        "post-votes/posts.ParentId -> posts/all": {
+          "mean": -0.11754449873724128,
+          "std": 4.6466318143838184e-05
+        },
+        "post-votes/posts.OwnerUserId -> users (lookup)/lookup": {
+          "mean": -0.13098688991202323,
+          "std": 6.482523778811606e-05
+        }
+      }
+    },
+    "baseline_scores": {
+      "user-engagement": {
+        "mean": 0.07771335882702725,
+        "std": 0.0002020483450494557,
+        "scores": [
+          0.07778425865197168,
+          0.07791762794117366,
+          0.07743818988793644
+        ]
+      },
+      "user-badge": {
+        "mean": 0.058976276474931845,
+        "std": 0.00018415815949222346,
+        "scores": [
+          0.05923659295431478,
+          0.05885303484442437,
+          0.05883920162605641
+        ]
+      },
+      "post-votes": {
+        "mean": -0.14470979726601627,
+        "std": 7.14117142792729e-05,
+        "scores": [
+          -0.14480488534553865,
+          -0.14463278897242074,
+          -0.14469171748008933
+        ]
+      }
+    },
+    "config_results": {
+      "user-engagement": {
+        "jrn_guided": {
+          "mean": 0.19498022340599586,
+          "std": 0.0015254872241028392,
+          "scores": [
+            0.19544368141111146,
+            0.19292378294283058,
+            0.19657320586404547
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "uniform_mean": {
+          "mean": 0.19498022340599586,
+          "std": 0.0015254872241028392,
+          "scores": [
+            0.19544368141111146,
+            0.19292378294283058,
+            0.19657320586404547
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "uniform_rich": {
+          "mean": 0.19517431365384905,
+          "std": 0.0012160930146890613,
+          "scores": [
+            0.19465661200281695,
+            0.19685348559832105,
+            0.19401284336040917
+          ],
+          "n_features": 180,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "top_k": {
+          "mean": 0.1951049993247387,
+          "std": 0.0005784962214090027,
+          "scores": [
+            0.19589871492775082,
+            0.1945363903269396,
+            0.1948798927195258
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "posts.OwnerUserId -> users",
+            "postHistory.UserId -> users",
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "votes.UserId -> users"
+          ]
+        },
+        "oracle": {
+          "mean": 0.19607609965330874,
+          "std": 0.0011643377204015725,
+          "scores": [
+            0.19460092331988013,
+            0.19744726068851884,
+            0.19618011495152726
+          ],
+          "n_features": 124,
+          "joins_used": [
+            "postHistory.UserId -> users",
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "votes.UserId -> users"
+          ]
+        }
+      },
+      "user-badge": {
+        "jrn_guided": {
+          "mean": 0.2452361308981528,
+          "std": 0.0007043911926842828,
+          "scores": [
+            0.24513563486408832,
+            0.24614467713774513,
+            0.244428080692625
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "uniform_mean": {
+          "mean": 0.2452361308981528,
+          "std": 0.0007043911926842828,
+          "scores": [
+            0.24513563486408832,
+            0.24614467713774513,
+            0.244428080692625
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "uniform_rich": {
+          "mean": 0.24618733281411276,
+          "std": 0.0004950752610399754,
+          "scores": [
+            0.2465186831043743,
+            0.24655579670518735,
+            0.24548751863277662
+          ],
+          "n_features": 180,
+          "joins_used": [
+            "comments.UserId -> users",
+            "badges.UserId -> users",
+            "postHistory.UserId -> users",
+            "votes.UserId -> users",
+            "posts.OwnerUserId -> users"
+          ]
+        },
+        "top_k": {
+          "mean": 0.24552138412155525,
+          "std": 0.0005445915573840494,
+          "scores": [
+            0.2448325768151211,
+            0.2461641639090612,
+            0.24556741164048349
+          ],
+          "n_features": 48,
+          "joins_used": [
+            "postHistory.UserId -> users",
+            "posts.OwnerUserId -> users",
+            "badges.UserId -> users",
+            "comments.UserId -> users",
+            "votes.UserId -> users"
+          ]
+        },
+        "oracle": {
+          "mean": 0.24791779968862157,
+          "std": 0.0005948919006152168,
+          "scores": [
+            0.24750696451837034,
+            0.24875902810040074,
+            0.24748740644709366
+          ],
+          "n_features": 103,
+          "joins_used": [
+            "postHistory.UserId -> users",
+            "comments.UserId -> users",
+            "votes.UserId -> users"
+          ]
+        }
+      },
+      "post-votes": {
+        "jrn_guided": {
+          "mean": -0.1043070821780463,
+          "std": 8.179467749004126e-05,
+          "scores": [
+            -0.104191527266798,
+            -0.10436029337006121,
+            -0.10436942589727968
+          ],
+          "n_features": 130,
+          "joins_used": [
+            "comments.PostId -> posts",
+            "postLinks.PostId -> posts",
+            "postLinks.RelatedPostId -> posts",
+            "postHistory.PostId -> posts",
+            "votes.PostId -> posts",
+            "posts.ParentId -> posts",
+            "posts.OwnerUserId -> users (lookup)"
+          ]
+        },
+        "uniform_mean": {
+          "mean": -0.10407543723158695,
+          "std": 8.496540732043995e-05,
+          "scores": [
+            -0.10402721885569582,
+            -0.10419486127583262,
+            -0.10400423156323242
+          ],
+          "n_features": 58,
+          "joins_used": [
+            "comments.PostId -> posts",
+            "postLinks.PostId -> posts",
+            "postLinks.RelatedPostId -> posts",
+            "postHistory.PostId -> posts",
+            "votes.PostId -> posts",
+            "posts.ParentId -> posts",
+            "posts.OwnerUserId -> users (lookup)"
+          ]
+        },
+        "uniform_rich": {
+          "mean": -0.10423309148983978,
+          "std": 9.486666899748574e-05,
+          "scores": [
+            -0.10415935797940855,
+            -0.10417289097760835,
+            -0.10436702551250242
+          ],
+          "n_features": 182,
+          "joins_used": [
+            "comments.PostId -> posts",
+            "postLinks.PostId -> posts",
+            "postLinks.RelatedPostId -> posts",
+            "postHistory.PostId -> posts",
+            "votes.PostId -> posts",
+            "posts.ParentId -> posts",
+            "posts.OwnerUserId -> users (lookup)"
+          ]
+        },
+        "top_k": {
+          "mean": -0.10414884256010705,
+          "std": 0.00017499635989364813,
+          "scores": [
+            -0.10438707531086999,
+            -0.10408777320284007,
+            -0.1039716791666111
+          ],
+          "n_features": 58,
+          "joins_used": [
+            "votes.PostId -> posts",
+            "postLinks.RelatedPostId -> posts",
+            "posts.ParentId -> posts",
+            "postHistory.PostId -> posts",
+            "posts.OwnerUserId -> users (lookup)",
+            "postLinks.PostId -> posts",
+            "comments.PostId -> posts"
+          ]
+        },
+        "oracle": {
+          "mean": -0.10072213485958363,
+          "std": 7.256223953756082e-05,
+          "scores": [
+            -0.10074425303054653,
+            -0.10062429439479187,
+            -0.10079785715341251
+          ],
+          "n_features": 17,
+          "joins_used": [
+            "votes.PostId -> posts"
+          ]
+        }
+      }
+    },
+    "analysis": {
+      "win_rates": {
+        "jrn_vs_uniform_mean": {
+          "wins": 0,
+          "ties": 2,
+          "losses": 1,
+          "rate": 0.0
+        },
+        "jrn_vs_uniform_rich": {
+          "wins": 0,
+          "ties": 1,
+          "losses": 2,
+          "rate": 0.0
+        },
+        "jrn_vs_top_k": {
+          "wins": 0,
+          "ties": 0,
+          "losses": 3,
+          "rate": 0.0
+        }
+      },
+      "oracle_gap": {
+        "user-engagement": {
+          "gap": 0.0093,
+          "oracle": 0.196076,
+          "jrn_guided": 0.19498,
+          "baseline": 0.077713
+        },
+        "user-badge": {
+          "gap": 0.0142,
+          "oracle": 0.247918,
+          "jrn_guided": 0.245236,
+          "baseline": 0.058976
+        },
+        "post-votes": {
+          "gap": 0.0815,
+          "oracle": -0.100722,
+          "jrn_guided": -0.104307,
+          "baseline": -0.14471
+        }
+      },
+      "category_distribution": {
+        "user-engagement": {
+          "HIGH": 5,
+          "CRITICAL": 0,
+          "LOW": 0,
+          "N/A": 0
+        },
+        "user-badge": {
+          "HIGH": 5,
+          "CRITICAL": 0,
+          "LOW": 0,
+          "N/A": 0
+        },
+        "post-votes": {
+          "HIGH": 3,
+          "CRITICAL": 4,
+          "LOW": 0,
+          "N/A": 0
+        }
+      },
+      "domain_validation": {
+        "user-engagement": [
+          {
+            "join": "comments.UserId -> users",
+            "expected_informative": true,
+            "actual": "HIGH",
+            "jrn": 2.204413880408862
+          }
+        ],
+        "user-badge": [
+          {
+            "join": "badges.UserId -> users",
+            "expected": "HIGH",
+            "actual": "HIGH",
+            "jrn": 3.99376103465026,
+            "passed": true
+          }
+        ],
+        "post-votes": [
+          {
+            "join": "votes.PostId -> posts",
+            "expected": "HIGH",
+            "actual": "HIGH",
+            "jrn": 1.4420655479260338,
+            "passed": true
+          }
+        ]
+      },
+      "aggregation_sensitivity": {
+        "user-engagement/comments.UserId -> users": {
+          "jrn": 2.204413880408862,
+          "sensitivity": 0.002882
+        },
+        "user-engagement/badges.UserId -> users": {
+          "jrn": 2.173807777733321,
+          "sensitivity": 0.008769
+        },
+        "user-engagement/postHistory.UserId -> users": {
+          "jrn": 2.3889244598465087,
+          "sensitivity": 0.009492
+        },
+        "user-engagement/votes.UserId -> users": {
+          "jrn": 1.4782408749909604,
+          "sensitivity": 0.000979
+        },
+        "user-engagement/posts.OwnerUserId -> users": {
+          "jrn": 2.3970742420279505,
+          "sensitivity": 0.001912
+        },
+        "user-badge/comments.UserId -> users": {
+          "jrn": 3.8475621940072884,
+          "sensitivity": 0.003834
+        },
+        "user-badge/badges.UserId -> users": {
+          "jrn": 3.99376103465026,
+          "sensitivity": 0.002113
+        },
+        "user-badge/postHistory.UserId -> users": {
+          "jrn": 4.242555342516459,
+          "sensitivity": 0.006884
+        },
+        "user-badge/votes.UserId -> users": {
+          "jrn": 1.9936360871107053,
+          "sensitivity": 0.001033
+        },
+        "user-badge/posts.OwnerUserId -> users": {
+          "jrn": 4.182119440716396,
+          "sensitivity": 0.007216
+        },
+        "post-votes/comments.PostId -> posts": {
+          "jrn": 1.0365375582997243,
+          "sensitivity": 0.001531
+        },
+        "post-votes/postLinks.PostId -> posts": {
+          "jrn": 1.0506707080250663,
+          "sensitivity": 0.001025
+        },
+        "post-votes/postLinks.RelatedPostId -> posts": {
+          "jrn": 1.2535339272821393,
+          "sensitivity": 0.001273
+        },
+        "post-votes/postHistory.PostId -> posts": {
+          "jrn": 1.1210376300162836,
+          "sensitivity": 0.003985
+        },
+        "post-votes/votes.PostId -> posts": {
+          "jrn": 1.4420655479260338,
+          "sensitivity": 0.002708
+        },
+        "post-votes/posts.ParentId -> posts": {
+          "jrn": 1.2311065070726979,
+          "sensitivity": 0.002598
+        }
+      },
+      "feature_efficiency": {
+        "user-engagement/jrn_guided": {
+          "n_features": 48,
+          "gain": 0.117267,
+          "efficiency": 0.00244306
+        },
+        "user-engagement/uniform_mean": {
+          "n_features": 48,
+          "gain": 0.117267,
+          "efficiency": 0.00244306
+        },
+        "user-engagement/uniform_rich": {
+          "n_features": 180,
+          "gain": 0.117461,
+          "efficiency": 0.00065256
+        },
+        "user-engagement/top_k": {
+          "n_features": 48,
+          "gain": 0.117392,
+          "efficiency": 0.00244566
+        },
+        "user-engagement/oracle": {
+          "n_features": 124,
+          "gain": 0.118363,
+          "efficiency": 0.00095454
+        },
+        "user-badge/jrn_guided": {
+          "n_features": 48,
+          "gain": 0.18626,
+          "efficiency": 0.00388041
+        },
+        "user-badge/uniform_mean": {
+          "n_features": 48,
+          "gain": 0.18626,
+          "efficiency": 0.00388041
+        },
+        "user-badge/uniform_rich": {
+          "n_features": 180,
+          "gain": 0.187211,
+          "efficiency": 0.00104006
+        },
+        "user-badge/top_k": {
+          "n_features": 48,
+          "gain": 0.186545,
+          "efficiency": 0.00388636
+        },
+        "user-badge/oracle": {
+          "n_features": 103,
+          "gain": 0.188942,
+          "efficiency": 0.00183438
+        },
+        "post-votes/jrn_guided": {
+          "n_features": 130,
+          "gain": 0.040403,
+          "efficiency": 0.00031079
+        },
+        "post-votes/uniform_mean": {
+          "n_features": 58,
+          "gain": 0.040634,
+          "efficiency": 0.00070059
+        },
+        "post-votes/uniform_rich": {
+          "n_features": 182,
+          "gain": 0.040477,
+          "efficiency": 0.0002224
+        },
+        "post-votes/top_k": {
+          "n_features": 58,
+          "gain": 0.040561,
+          "efficiency": 0.00069933
+        },
+        "post-votes/oracle": {
+          "n_features": 17,
+          "gain": 0.043988,
+          "efficiency": 0.00258751
+        }
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"task\": \"user-engagement\", \"dataset\": \"rel-stack\", \"metric\": \"average_precision\", \"entity_table\": \"users\", \"task_type\": \"classification\", \"description\": \"Evaluate JRN-guided heterogeneous architecture vs baselines on user-engagement (rel-stack). Metric: average_precision.\"}",
+          "output": "{\"config_results\": {\"jrn_guided\": {\"mean\": 0.19498, \"std\": 0.001525, \"n_features\": 48, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"uniform_mean\": {\"mean\": 0.19498, \"std\": 0.001525, \"n_features\": 48, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"uniform_rich\": {\"mean\": 0.195174, \"std\": 0.001216, \"n_features\": 180, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"top_k\": {\"mean\": 0.195105, \"std\": 0.000578, \"n_features\": 48, \"joins_used\": [\"posts.OwnerUserId -> users\", \"postHistory.UserId -> users\", \"comments.UserId -> users\", \"badges.UserId -> users\", \"votes.UserId -> users\"]}, \"oracle\": {\"mean\": 0.196076, \"std\": 0.001164, \"n_features\": 124, \"joins_used\": [\"postHistory.UserId -> users\", \"comments.UserId -> users\", \"badges.UserId -> users\", \"votes.UserId -> users\"]}}, \"jrn_matrix\": {\"comments.UserId -> users\": {\"jrn\": 2.2044, \"category\": \"HIGH\", \"best_agg\": \"all\"}, \"badges.UserId -> users\": {\"jrn\": 2.1738, \"category\": \"HIGH\", \"best_agg\": \"all\"}, \"postHistory.UserId -> users\": {\"jrn\": 2.3889, \"category\": \"HIGH\", \"best_agg\": \"all\"}, \"votes.UserId -> users\": {\"jrn\": 1.4782, \"category\": \"HIGH\", \"best_agg\": \"std\"}, \"posts.OwnerUserId -> users\": {\"jrn\": 2.3971, \"category\": \"HIGH\", \"best_agg\": \"all\"}}, \"baseline\": 0.077713}",
+          "predict_jrn_guided": "0.19498",
+          "predict_uniform_mean": "0.19498",
+          "predict_uniform_rich": "0.195174",
+          "predict_top_k": "0.195105",
+          "predict_oracle": "0.196076",
+          "metadata_task": "user-engagement",
+          "metadata_metric": "average_precision",
+          "metadata_entity_table": "users",
+          "metadata_task_type": "classification",
+          "metadata_n_joins": 5
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"dataset\": \"rel-stack\", \"metric\": \"average_precision\", \"entity_table\": \"users\", \"task_type\": \"classification\", \"description\": \"Evaluate JRN-guided heterogeneous architecture vs baselines on user-badge (rel-stack). Metric: average_precision.\"}",
+          "output": "{\"config_results\": {\"jrn_guided\": {\"mean\": 0.245236, \"std\": 0.000704, \"n_features\": 48, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"uniform_mean\": {\"mean\": 0.245236, \"std\": 0.000704, \"n_features\": 48, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"uniform_rich\": {\"mean\": 0.246187, \"std\": 0.000495, \"n_features\": 180, \"joins_used\": [\"comments.UserId -> users\", \"badges.UserId -> users\", \"postHistory.UserId -> users\", \"votes.UserId -> users\", \"posts.OwnerUserId -> users\"]}, \"top_k\": {\"mean\": 0.245521, \"std\": 0.000545, \"n_features\": 48, \"joins_used\": [\"postHistory.UserId -> users\", \"posts.OwnerUserId -> users\", \"badges.UserId -> users\", \"comments.UserId -> users\", \"votes.UserId -> users\"]}, \"oracle\": {\"mean\": 0.247918, \"std\": 0.000595, \"n_features\": 103, \"joins_used\": [\"postHistory.UserId -> users\", \"comments.UserId -> users\", \"votes.UserId -> users\"]}}, \"jrn_matrix\": {\"comments.UserId -> users\": {\"jrn\": 3.8476, \"category\": \"HIGH\", \"best_agg\": \"std\"}, \"badges.UserId -> users\": {\"jrn\": 3.9938, \"category\": \"HIGH\", \"best_agg\": \"std\"}, \"postHistory.UserId -> users\": {\"jrn\": 4.2426, \"category\": \"HIGH\", \"best_agg\": \"std\"}, \"votes.UserId -> users\": {\"jrn\": 1.9936, \"category\": \"HIGH\", \"best_agg\": \"all\"}, \"posts.OwnerUserId -> users\": {\"jrn\": 4.1821, \"category\": \"HIGH\", \"best_agg\": \"all\"}}, \"baseline\": 0.058976}",
+          "predict_jrn_guided": "0.245236",
+          "predict_uniform_mean": "0.245236",
+          "predict_uniform_rich": "0.246187",
+          "predict_top_k": "0.245521",
+          "predict_oracle": "0.247918",
+          "metadata_task": "user-badge",
+          "metadata_metric": "average_precision",
+          "metadata_entity_table": "users",
+          "metadata_task_type": "classification",
+          "metadata_n_joins": 5
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"dataset\": \"rel-stack\", \"metric\": \"neg_mae\", \"entity_table\": \"posts\", \"task_type\": \"regression\", \"description\": \"Evaluate JRN-guided heterogeneous architecture vs baselines on post-votes (rel-stack). Metric: neg_mae.\"}",
+          "output": "{\"config_results\": {\"jrn_guided\": {\"mean\": -0.104307, \"std\": 8.2e-05, \"n_features\": 130, \"joins_used\": [\"comments.PostId -> posts\", \"postLinks.PostId -> posts\", \"postLinks.RelatedPostId -> posts\", \"postHistory.PostId -> posts\", \"votes.PostId -> posts\", \"posts.ParentId -> posts\", \"posts.OwnerUserId -> users (lookup)\"]}, \"uniform_mean\": {\"mean\": -0.104075, \"std\": 8.5e-05, \"n_features\": 58, \"joins_used\": [\"comments.PostId -> posts\", \"postLinks.PostId -> posts\", \"postLinks.RelatedPostId -> posts\", \"postHistory.PostId -> posts\", \"votes.PostId -> posts\", \"posts.ParentId -> posts\", \"posts.OwnerUserId -> users (lookup)\"]}, \"uniform_rich\": {\"mean\": -0.104233, \"std\": 9.5e-05, \"n_features\": 182, \"joins_used\": [\"comments.PostId -> posts\", \"postLinks.PostId -> posts\", \"postLinks.RelatedPostId -> posts\", \"postHistory.PostId -> posts\", \"votes.PostId -> posts\", \"posts.ParentId -> posts\", \"posts.OwnerUserId -> users (lookup)\"]}, \"top_k\": {\"mean\": -0.104149, \"std\": 0.000175, \"n_features\": 58, \"joins_used\": [\"votes.PostId -> posts\", \"postLinks.RelatedPostId -> posts\", \"posts.ParentId -> posts\", \"postHistory.PostId -> posts\", \"posts.OwnerUserId -> users (lookup)\", \"postLinks.PostId -> posts\", \"comments.PostId -> posts\"]}, \"oracle\": {\"mean\": -0.100722, \"std\": 7.3e-05, \"n_features\": 17, \"joins_used\": [\"votes.PostId -> posts\"]}}, \"jrn_matrix\": {\"comments.PostId -> posts\": {\"jrn\": 1.0365, \"category\": \"CRITICAL\", \"best_agg\": \"all\"}, \"postLinks.PostId -> posts\": {\"jrn\": 1.0507, \"category\": \"CRITICAL\", \"best_agg\": \"mean\"}, \"postLinks.RelatedPostId -> posts\": {\"jrn\": 1.2535, \"category\": \"HIGH\", \"best_agg\": \"mean\"}, \"postHistory.PostId -> posts\": {\"jrn\": 1.121, \"category\": \"CRITICAL\", \"best_agg\": \"max\"}, \"votes.PostId -> posts\": {\"jrn\": 1.4421, \"category\": \"HIGH\", \"best_agg\": \"mean\"}, \"posts.ParentId -> posts\": {\"jrn\": 1.2311, \"category\": \"HIGH\", \"best_agg\": \"all\"}, \"posts.OwnerUserId -> users (lookup)\": {\"jrn\": 1.1048, \"category\": \"CRITICAL\", \"best_agg\": \"lookup\"}}, \"baseline\": -0.14471}",
+          "predict_jrn_guided": "-0.104307",
+          "predict_uniform_mean": "-0.104075",
+          "predict_uniform_rich": "-0.104233",
+          "predict_top_k": "-0.104149",
+          "predict_oracle": "-0.100722",
+          "metadata_task": "post-votes",
+          "metadata_metric": "neg_mae",
+          "metadata_entity_table": "posts",
+          "metadata_task_type": "regression",
+          "metadata_n_joins": 7
+        }
+      ]
+    }
+  ]
+}

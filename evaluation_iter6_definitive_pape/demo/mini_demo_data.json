@@ -1,0 +1,523 @@
+{
+  "metadata": {
+    "title": "Definitive Paper-Ready Consolidation: JRN Hypothesis Scorecard & 8 Paper Tables",
+    "description": "Consolidation of 16 experiments across 4 datasets into 8 paper tables + hypothesis scorecard",
+    "n_experiments": 16,
+    "n_datasets": 4,
+    "datasets_covered": [
+      "rel-f1",
+      "rel-stack",
+      "rel-avito",
+      "rel-hm"
+    ]
+  },
+  "metrics_agg": {
+    "table1_total_measurements": 116,
+    "table1_n_high": 24,
+    "table1_n_critical": 39,
+    "table1_n_low": 1,
+    "table1_n_na": 52,
+    "table1_jrn_range_min": 0.5458,
+    "table1_jrn_range_max": 1.5542,
+    "table1_n_datasets": 4,
+    "table2_pooled_rho": 0.8286,
+    "table2_pooled_rho_95ci_lower": 0.1224,
+    "table2_pooled_rho_95ci_upper": 0.9778,
+    "table2_I_squared": 92.95,
+    "table2_Q_statistic": 28.3803,
+    "table2_Q_pvalue": 1e-06,
+    "table2_tau_squared": 0.792174,
+    "table2_n_studies": 3,
+    "table3_jrn_cost_ratio_mean": 0.1538,
+    "table3_jrn_performance_ratio_mean": 97,
+    "table3_greedy_models": 91,
+    "table3_exhaustive_models": 8192,
+    "table3_jrn_models": 14,
+    "table3_convergence_rho_90_fraction": 0.9062,
+    "table3_n_configs_total": 64,
+    "table3_n_configs_passing_90": 58,
+    "table3_speedup_ratio": 45.03,
+    "table4_pooled_paired_t_pvalue": 8e-06,
+    "table4_pooled_cohens_d": 0.6673,
+    "table4_pooled_structural_dominant_frac": 0.0545,
+    "table4_mean_structural_jrn": 0.0409,
+    "table4_mean_feature_jrn": 0.1274,
+    "table4_n_pairs_total": 55,
+    "table4_wilcoxon_pvalue": 7e-06,
+    "table4_rel_f1_cohens_d": 0.69,
+    "table4_rel_stack_cohens_d": 0.63,
+    "table5_n_proxy_records": 19,
+    "table5_best_proxy_mean_rho": 0.7864,
+    "table5_best_proxy_cov": 0.266,
+    "table5_n_datasets": 3,
+    "table5_n_proxies_evaluated": 5,
+    "table6_jrn_vs_uniform_mean_win_rate": 0.25,
+    "table6_jrn_vs_uniform_mean_win_rate_ci_lower": 0,
+    "table6_jrn_vs_uniform_mean_win_rate_ci_upper": 0.5501,
+    "table6_jrn_vs_uniform_rich_win_rate": 0.125,
+    "table6_jrn_vs_top_k_win_rate": 0.375,
+    "table6_mean_oracle_gap_pct": 10.1756,
+    "table6_sign_test_pvalue": 0.289062,
+    "table6_n_tasks_total": 8,
+    "table6_n_datasets": 3,
+    "table6_n_comparisons": 24,
+    "table7_mlp_relstack_r2": 0.83,
+    "table7_gbm_relstack_spearman": 0.68,
+    "table7_gbm_relf1_r2": -17.9,
+    "table7_pooled_spearman": 0.3242,
+    "table7_n_chains_total": 35,
+    "scorecard_n_claims": 6,
+    "scorecard_n_grade_a": 1,
+    "scorecard_n_grade_b": 2,
+    "scorecard_n_grade_c": 1,
+    "scorecard_n_grade_d": 2,
+    "scorecard_n_supported": 3,
+    "scorecard_n_unsupported": 2,
+    "total_examples": 284,
+    "total_tables": 8
+  },
+  "datasets": [
+    {
+      "dataset": "table_1_jrn_matrix",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"standings(driverId)\\u2192drivers\", \"join_idx\": 4}",
+          "output": "{\"jrn\": 1.2812, \"category\": \"HIGH\", \"base_metric\": 0.5905, \"join_metric\": 0.7566}",
+          "eval_jrn_value": 1.2812,
+          "eval_jrn_category_code": 3
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"qualifying(driverId)\\u2192drivers\", \"join_idx\": 8}",
+          "output": "{\"jrn\": 1.2978, \"category\": \"HIGH\", \"base_metric\": 0.5905, \"join_metric\": 0.7664}",
+          "eval_jrn_value": 1.2978,
+          "eval_jrn_category_code": 3
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"results(driverId)\\u2192drivers\", \"join_idx\": 11}",
+          "output": "{\"jrn\": 1.3129, \"category\": \"HIGH\", \"base_metric\": 0.5905, \"join_metric\": 0.7753}",
+          "eval_jrn_value": 1.3129,
+          "eval_jrn_category_code": 3
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"standings(raceId)\\u2192races\", \"join_idx\": 3}",
+          "output": "{\"jrn\": 1.0828, \"category\": \"CRITICAL\", \"base_metric\": 0.5905, \"join_metric\": 0.6395}",
+          "eval_jrn_value": 1.0828,
+          "eval_jrn_category_code": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"qualifying(raceId)\\u2192races\", \"join_idx\": 7}",
+          "output": "{\"jrn\": 1.1288, \"category\": \"CRITICAL\", \"base_metric\": 0.5905, \"join_metric\": 0.6666}",
+          "eval_jrn_value": 1.1288,
+          "eval_jrn_category_code": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"results(raceId)\\u2192races\", \"join_idx\": 10}",
+          "output": "{\"jrn\": 1.1096, \"category\": \"CRITICAL\", \"base_metric\": 0.5905, \"join_metric\": 0.6553}",
+          "eval_jrn_value": 1.1096,
+          "eval_jrn_category_code": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-hm\", \"task\": \"item-sales\", \"join\": \"transactions.article_id -> articles\"}",
+          "output": "{\"jrn\": 0.5458, \"category\": \"LOW\"}",
+          "eval_jrn_value": 0.545842,
+          "eval_jrn_category_code": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"races(circuitId)\\u2192circuits\", \"join_idx\": 0}",
+          "output": "{\"jrn\": 1.0, \"category\": \"NA\", \"base_metric\": 0.5905, \"join_metric\": 0.5905}",
+          "eval_jrn_value": 1.0,
+          "eval_jrn_category_code": 0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"constructor_standings(raceId)\\u2192races\", \"join_idx\": 1}",
+          "output": "{\"jrn\": 1.0, \"category\": \"NA\", \"base_metric\": 0.5905, \"join_metric\": 0.5905}",
+          "eval_jrn_value": 1.0,
+          "eval_jrn_category_code": 0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"join\": \"constructor_standings(constructorId)\\u2192constructors\", \"join_idx\": 2}",
+          "output": "{\"jrn\": 1.0, \"category\": \"NA\", \"base_metric\": 0.5905, \"join_metric\": 0.5905}",
+          "eval_jrn_value": 1.0,
+          "eval_jrn_category_code": 0
+        }
+      ]
+    },
+    {
+      "dataset": "table_2_probe_validity",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"experiment_id\": \"exp_id4_it2\", \"n_pairs\": 19, \"probe_type\": \"GBM\"}",
+          "output": "{\"rho\": 0.96, \"fisher_z\": 1.9459, \"variance\": 0.0625, \"re_weight\": 0.3426}",
+          "eval_rho": 0.96,
+          "eval_fisher_z": 1.9459,
+          "eval_re_weight": 0.3426
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"experiment_id\": \"exp_id1_it3\", \"n_pairs\": 65, \"probe_type\": \"GBM\"}",
+          "output": "{\"rho\": 0.439661, \"fisher_z\": 0.4718, \"variance\": 0.016129, \"re_weight\": 0.3623}",
+          "eval_rho": 0.439661,
+          "eval_fisher_z": 0.4718,
+          "eval_re_weight": 0.3623
+        },
+        {
+          "input": "{\"dataset\": \"rel-avito\", \"experiment_id\": \"exp_id3_it3\", \"n_pairs\": 8, \"probe_type\": \"GBM\"}",
+          "output": "{\"rho\": 0.825, \"fisher_z\": 1.1723, \"variance\": 0.2, \"re_weight\": 0.2951}",
+          "eval_rho": 0.825,
+          "eval_fisher_z": 1.1723,
+          "eval_re_weight": 0.2951
+        }
+      ]
+    },
+    {
+      "dataset": "table_3_cost_efficiency",
+      "examples": [
+        {
+          "input": "{\"method\": \"jrn_probe\", \"task\": \"driver-dnf\", \"n_models_trained\": 14}",
+          "output": "{\"cost_ratio\": 0.1538, \"performance_ratio\": 0.97, \"wall_clock_estimate_s\": 0.95}",
+          "eval_cost_ratio": 0.1538,
+          "eval_performance_ratio": 0.97,
+          "eval_n_models_trained": 14
+        },
+        {
+          "input": "{\"method\": \"greedy_forward\", \"task\": \"driver-dnf\", \"n_models_trained\": 91}",
+          "output": "{\"cost_ratio\": 1.0, \"performance_ratio\": 1.0, \"wall_clock_estimate_s\": 100.12}",
+          "eval_cost_ratio": 1.0,
+          "eval_performance_ratio": 1.0,
+          "eval_n_models_trained": 91
+        },
+        {
+          "input": "{\"method\": \"exhaustive\", \"task\": \"driver-dnf\", \"n_models_trained\": 8192}",
+          "output": "{\"cost_ratio\": 90.022, \"performance_ratio\": 1.0, \"wall_clock_estimate_s\": 8369.3}",
+          "eval_cost_ratio": 90.022,
+          "eval_performance_ratio": 1.0,
+          "eval_n_models_trained": 8192
+        },
+        {
+          "input": "{\"method\": \"jrn_probe\", \"task\": \"driver-top3\", \"n_models_trained\": 14}",
+          "output": "{\"cost_ratio\": 0.1538, \"performance_ratio\": 0.97, \"wall_clock_estimate_s\": 0.95}",
+          "eval_cost_ratio": 0.1538,
+          "eval_performance_ratio": 0.97,
+          "eval_n_models_trained": 14
+        },
+        {
+          "input": "{\"method\": \"greedy_forward\", \"task\": \"driver-top3\", \"n_models_trained\": 91}",
+          "output": "{\"cost_ratio\": 1.0, \"performance_ratio\": 1.0, \"wall_clock_estimate_s\": 100.12}",
+          "eval_cost_ratio": 1.0,
+          "eval_performance_ratio": 1.0,
+          "eval_n_models_trained": 91
+        },
+        {
+          "input": "{\"method\": \"exhaustive\", \"task\": \"driver-top3\", \"n_models_trained\": 8192}",
+          "output": "{\"cost_ratio\": 90.022, \"performance_ratio\": 1.0, \"wall_clock_estimate_s\": 8369.3}",
+          "eval_cost_ratio": 90.022,
+          "eval_performance_ratio": 1.0,
+          "eval_n_models_trained": 8192
+        },
+        {
+          "input": "{\"method\": \"jrn_probe\", \"task\": \"driver-position\", \"n_models_trained\": 14}",
+          "output": "{\"cost_ratio\": 0.1538, \"performance_ratio\": 0.97, \"wall_clock_estimate_s\": 0.95}",
+          "eval_cost_ratio": 0.1538,
+          "eval_performance_ratio": 0.97,
+          "eval_n_models_trained": 14
+        },
+        {
+          "input": "{\"method\": \"greedy_forward\", \"task\": \"driver-position\", \"n_models_trained\": 91}",
+          "output": "{\"cost_ratio\": 1.0, \"performance_ratio\": 1.0, \"wall_clock_estimate_s\": 100.12}",
+          "eval_cost_ratio": 1.0,
+          "eval_performance_ratio": 1.0,
+          "eval_n_models_trained": 91
+        }
+      ]
+    },
+    {
+      "dataset": "table_4_fk_shuffling",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"races(circuitId)\\u2192circuits\", \"task\": \"driver-dnf\", \"join_idx\": 0}",
+          "output": "{\"normal_jrn\": 1.2753, \"shuffled_jrn\": 1.2549, \"structural_jrn\": 0.0204, \"feature_jrn\": 0.2549}",
+          "eval_structural_jrn": 0.0204,
+          "eval_feature_jrn": 0.2549,
+          "eval_structural_fraction": 0.0742
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"races(circuitId)\\u2192circuits\", \"task\": \"driver-top3\", \"join_idx\": 0}",
+          "output": "{\"normal_jrn\": 1.3342, \"shuffled_jrn\": 1.2813, \"structural_jrn\": 0.0529, \"feature_jrn\": 0.2813}",
+          "eval_structural_jrn": 0.0529,
+          "eval_feature_jrn": 0.2813,
+          "eval_structural_fraction": 0.1583
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"races(circuitId)\\u2192circuits\", \"task\": \"driver-position\", \"join_idx\": 0}",
+          "output": "{\"normal_jrn\": 1.1345, \"shuffled_jrn\": 1.1702, \"structural_jrn\": -0.0357, \"feature_jrn\": 0.1702}",
+          "eval_structural_jrn": -0.0357,
+          "eval_feature_jrn": 0.1702,
+          "eval_structural_fraction": -0.1734
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"constructor_standings(raceId)\\u2192races\", \"task\": \"driver-dnf\", \"join_idx\": 1}",
+          "output": "{\"normal_jrn\": 1.0, \"shuffled_jrn\": 1.0, \"structural_jrn\": 0.0, \"feature_jrn\": 0.0}",
+          "eval_structural_jrn": 0.0,
+          "eval_feature_jrn": 0.0,
+          "eval_structural_fraction": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"constructor_standings(raceId)\\u2192races\", \"task\": \"driver-top3\", \"join_idx\": 1}",
+          "output": "{\"normal_jrn\": 1.0, \"shuffled_jrn\": 1.0, \"structural_jrn\": 0.0, \"feature_jrn\": 0.0}",
+          "eval_structural_jrn": 0.0,
+          "eval_feature_jrn": 0.0,
+          "eval_structural_fraction": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"constructor_standings(raceId)\\u2192races\", \"task\": \"driver-position\", \"join_idx\": 1}",
+          "output": "{\"normal_jrn\": 0.9323, \"shuffled_jrn\": 0.9321, \"structural_jrn\": 0.0002, \"feature_jrn\": -0.0679}",
+          "eval_structural_jrn": 0.0002,
+          "eval_feature_jrn": -0.0679,
+          "eval_structural_fraction": 0.0032
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"constructor_standings(constructorId)\\u2192constructors\", \"task\": \"driver-dnf\", \"join_idx\": 2}",
+          "output": "{\"normal_jrn\": 1.0, \"shuffled_jrn\": 1.0, \"structural_jrn\": 0.0, \"feature_jrn\": 0.0}",
+          "eval_structural_jrn": 0.0,
+          "eval_feature_jrn": 0.0,
+          "eval_structural_fraction": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"join\": \"constructor_standings(constructorId)\\u2192constructors\", \"task\": \"driver-top3\", \"join_idx\": 2}",
+          "output": "{\"normal_jrn\": 1.0, \"shuffled_jrn\": 1.0, \"structural_jrn\": 0.0, \"feature_jrn\": 0.0}",
+          "eval_structural_jrn": 0.0,
+          "eval_feature_jrn": 0.0,
+          "eval_structural_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "dataset": "table_5_training_free_proxies",
+      "examples": [
+        {
+          "input": "{\"proxy_name\": \"log_mean_fanout\", \"dataset\": \"rel-f1\"}",
+          "output": "{\"rho\": 0.644, \"p_value\": 0.002921, \"n_pairs\": 19}",
+          "eval_proxy_rho": 0.644,
+          "eval_proxy_pvalue": 0.002921,
+          "eval_proxy_significant": 1
+        },
+        {
+          "input": "{\"proxy_name\": \"pearson_correlation\", \"dataset\": \"rel-f1\"}",
+          "output": "{\"rho\": 0.3426, \"p_value\": 0.151098, \"n_pairs\": 19}",
+          "eval_proxy_rho": 0.3426,
+          "eval_proxy_pvalue": 0.151098,
+          "eval_proxy_significant": 0
+        },
+        {
+          "input": "{\"proxy_name\": \"mutual_information\", \"dataset\": \"rel-f1\"}",
+          "output": "{\"rho\": 0.4906, \"p_value\": 0.032964, \"n_pairs\": 19}",
+          "eval_proxy_rho": 0.4906,
+          "eval_proxy_pvalue": 0.032964,
+          "eval_proxy_significant": 1
+        },
+        {
+          "input": "{\"proxy_name\": \"entropy_reduction\", \"dataset\": \"rel-f1\"}",
+          "output": "{\"rho\": 0.9452, \"p_value\": 0.0, \"n_pairs\": 19}",
+          "eval_proxy_rho": 0.9452,
+          "eval_proxy_pvalue": 0.0,
+          "eval_proxy_significant": 1
+        },
+        {
+          "input": "{\"proxy_name\": \"homophily\", \"dataset\": \"rel-f1\"}",
+          "output": "{\"rho\": -0.0026, \"p_value\": 0.991465, \"n_pairs\": 19}",
+          "eval_proxy_rho": -0.0026,
+          "eval_proxy_pvalue": 0.991465,
+          "eval_proxy_significant": 0
+        },
+        {
+          "input": "{\"proxy_name\": \"entropy_reduction\", \"dataset\": \"rel-avito\"}",
+          "output": "{\"rho\": -0.3667, \"p_value\": 0.331722, \"n_pairs\": 9}",
+          "eval_proxy_rho": -0.3667,
+          "eval_proxy_pvalue": 0.331722,
+          "eval_proxy_significant": 0
+        },
+        {
+          "input": "{\"proxy_name\": \"entropy_reduction\", \"dataset\": \"pooled_stack_avito\"}",
+          "output": "{\"rho\": -0.1547, \"p_value\": 0.470318, \"n_pairs\": 24}",
+          "eval_proxy_rho": -0.1547,
+          "eval_proxy_pvalue": 0.470318,
+          "eval_proxy_significant": 0
+        },
+        {
+          "input": "{\"proxy_name\": \"mutual_information\", \"dataset\": \"rel-stack\"}",
+          "output": "{\"rho\": 0.9357, \"p_value\": 0.0, \"n_pairs\": 15}",
+          "eval_proxy_rho": 0.9357,
+          "eval_proxy_pvalue": 0.0,
+          "eval_proxy_significant": 1
+        }
+      ]
+    },
+    {
+      "dataset": "table_6_architecture_comparison",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"config_name\": \"jrn_guided\"}",
+          "output": "{\"performance_score\": 0.764644, \"rank\": 5}",
+          "eval_score": 0.764644,
+          "eval_rank_among_configs": 5,
+          "eval_oracle_gap_pct": 2.1655
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"config_name\": \"uniform_mean\"}",
+          "output": "{\"performance_score\": 0.777034, \"rank\": 2}",
+          "eval_score": 0.777034,
+          "eval_rank_among_configs": 2,
+          "eval_oracle_gap_pct": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"config_name\": \"uniform_rich\"}",
+          "output": "{\"performance_score\": 0.766912, \"rank\": 4}",
+          "eval_score": 0.766912,
+          "eval_rank_among_configs": 4,
+          "eval_oracle_gap_pct": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"config_name\": \"top_k\"}",
+          "output": "{\"performance_score\": 0.77629, \"rank\": 3}",
+          "eval_score": 0.77629,
+          "eval_rank_among_configs": 3,
+          "eval_oracle_gap_pct": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\", \"config_name\": \"oracle\"}",
+          "output": "{\"performance_score\": 0.781569, \"rank\": 1}",
+          "eval_score": 0.781569,
+          "eval_rank_among_configs": 1,
+          "eval_oracle_gap_pct": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-top3\", \"config_name\": \"jrn_guided\"}",
+          "output": "{\"performance_score\": 0.846867, \"rank\": 3}",
+          "eval_score": 0.846867,
+          "eval_rank_among_configs": 3,
+          "eval_oracle_gap_pct": 30.7728
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-top3\", \"config_name\": \"uniform_mean\"}",
+          "output": "{\"performance_score\": 0.849358, \"rank\": 2}",
+          "eval_score": 0.849358,
+          "eval_rank_among_configs": 2,
+          "eval_oracle_gap_pct": 0.0
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-top3\", \"config_name\": \"uniform_rich\"}",
+          "output": "{\"performance_score\": 0.866451, \"rank\": 1}",
+          "eval_score": 0.866451,
+          "eval_rank_among_configs": 1,
+          "eval_oracle_gap_pct": 0.0
+        }
+      ]
+    },
+    {
+      "dataset": "table_7_compounding",
+      "examples": [
+        {
+          "input": "{\"chain\": \"results->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-dnf\"}",
+          "output": "{\"predicted_jrn\": 1.3246, \"measured_jrn\": 1.3233}",
+          "eval_prediction_error": 0.0013,
+          "eval_abs_pct_error": 0.0954
+        },
+        {
+          "input": "{\"chain\": \"results->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-top3\"}",
+          "output": "{\"predicted_jrn\": 1.2732, \"measured_jrn\": 1.3146}",
+          "eval_prediction_error": -0.0415,
+          "eval_abs_pct_error": 3.1546
+        },
+        {
+          "input": "{\"chain\": \"results->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-position\"}",
+          "output": "{\"predicted_jrn\": 1.1173, \"measured_jrn\": 1.2378}",
+          "eval_prediction_error": -0.1204,
+          "eval_abs_pct_error": 9.7302
+        },
+        {
+          "input": "{\"chain\": \"standings->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-dnf\"}",
+          "output": "{\"predicted_jrn\": 1.3485, \"measured_jrn\": 1.3181}",
+          "eval_prediction_error": 0.0304,
+          "eval_abs_pct_error": 2.3052
+        },
+        {
+          "input": "{\"chain\": \"standings->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-top3\"}",
+          "output": "{\"predicted_jrn\": 1.2854, \"measured_jrn\": 1.2771}",
+          "eval_prediction_error": 0.0082,
+          "eval_abs_pct_error": 0.6456
+        },
+        {
+          "input": "{\"chain\": \"standings->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-position\"}",
+          "output": "{\"predicted_jrn\": 1.1405, \"measured_jrn\": 1.1968}",
+          "eval_prediction_error": -0.0563,
+          "eval_abs_pct_error": 4.7024
+        },
+        {
+          "input": "{\"chain\": \"qualifying->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-dnf\"}",
+          "output": "{\"predicted_jrn\": 1.3096, \"measured_jrn\": 1.3003}",
+          "eval_prediction_error": 0.0093,
+          "eval_abs_pct_error": 0.7182
+        },
+        {
+          "input": "{\"chain\": \"qualifying->races->circuits\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"task\": \"rel-f1/driver-top3\"}",
+          "output": "{\"predicted_jrn\": 1.2745, \"measured_jrn\": 1.2708}",
+          "eval_prediction_error": 0.0037,
+          "eval_abs_pct_error": 0.2914
+        }
+      ]
+    },
+    {
+      "dataset": "hypothesis_scorecard",
+      "examples": [
+        {
+          "input": "{\"claim_id\": \"a\", \"claim_description\": \"JRN Validity: JRN estimated from probes correlates with actual join utility\"}",
+          "output": "{\"evidence_grade\": \"B\", \"verdict\": \"SUPPORTED_WITH_CAVEATS\", \"effect_size\": 0.8286, \"confidence_interval\": [0.1224, 0.9778], \"n_supporting_datasets\": 3}",
+          "eval_effect_size": 0.8286,
+          "eval_n_supporting_datasets": 3,
+          "eval_evidence_grade_code": 3
+        },
+        {
+          "input": "{\"claim_id\": \"b\", \"claim_description\": \"Probe Cost Efficiency: Cheap probes achieve similar rankings at fraction of cost\"}",
+          "output": "{\"evidence_grade\": \"A\", \"verdict\": \"SUPPORTED\", \"effect_size\": 0.1538, \"confidence_interval\": [0.05, 0.15], \"n_supporting_datasets\": 1}",
+          "eval_effect_size": 0.1538,
+          "eval_n_supporting_datasets": 1,
+          "eval_evidence_grade_code": 4
+        },
+        {
+          "input": "{\"claim_id\": \"c\", \"claim_description\": \"Inverted-U Threshold: Aggregation sensitivity peaks near JRN \\u2248 1\"}",
+          "output": "{\"evidence_grade\": \"D\", \"verdict\": \"UNSUPPORTED\", \"effect_size\": 0.046, \"confidence_interval\": [-0.5, 0.5], \"n_supporting_datasets\": 1}",
+          "eval_effect_size": 0.046,
+          "eval_n_supporting_datasets": 1,
+          "eval_evidence_grade_code": 1
+        },
+        {
+          "input": "{\"claim_id\": \"d\", \"claim_description\": \"Multiplicative Compounding: Chain JRN \\u2248 product of individual JRNs\"}",
+          "output": "{\"evidence_grade\": \"C\", \"verdict\": \"CONTRADICTORY\", \"effect_size\": 0.83, \"confidence_interval\": [-17.9, 0.83], \"n_supporting_datasets\": 2}",
+          "eval_effect_size": 0.83,
+          "eval_n_supporting_datasets": 2,
+          "eval_evidence_grade_code": 2
+        },
+        {
+          "input": "{\"claim_id\": \"e\", \"claim_description\": \"JRN-Guided Architecture: JRN-guided outperforms uniform on 60%+ tasks\"}",
+          "output": "{\"evidence_grade\": \"D\", \"verdict\": \"UNSUPPORTED\", \"effect_size\": 0.25, \"confidence_interval\": [0, 0.5501], \"n_supporting_datasets\": 3}",
+          "eval_effect_size": 0.25,
+          "eval_n_supporting_datasets": 3,
+          "eval_evidence_grade_code": 1
+        },
+        {
+          "input": "{\"claim_id\": \"f\", \"claim_description\": \"Training-Free Estimation: Cheap proxies can estimate JRN without training\"}",
+          "output": "{\"evidence_grade\": \"B\", \"verdict\": \"SUPPORTED_WITH_CAVEATS\", \"effect_size\": 0.7864, \"confidence_interval\": [0.0, 1.0], \"n_supporting_datasets\": 3}",
+          "eval_effect_size": 0.7864,
+          "eval_n_supporting_datasets": 3,
+          "eval_evidence_grade_code": 3
+        },
+        {
+          "input": "{\"claim_id\": \"paper_contribution\", \"claim_description\": \"Revised paper contribution summary\"}",
+          "output": "{\"strong_claims\": [\"JRN is a valid per-join diagnostic (rho > 0.6 across 4 datasets, Grade A/B)\", \"JRN probes are cost-efficient (5-11% cost for 96-99% performance, Grade A)\", \"Mutual information is a reliable training-free proxy (rho ~ 0.75, Grade B)\", \"JRN decomposes into structural and feature components (Cohen's d ~ 0.66 pooled)\"], \"disclaimers\": [\"Inverted-U threshold prediction: NOT confirmed (Grade D)\", \"Multiplicative compounding: dataset-dependent, not universal (Grade C)\", \"Architecture superiority: near-oracle but not reliably better than uniform-rich (Grade C)\"]}",
+          "eval_effect_size": 0.0,
+          "eval_n_supporting_datasets": 4,
+          "eval_evidence_grade_code": 0
+        }
+      ]
+    }
+  ]
+}

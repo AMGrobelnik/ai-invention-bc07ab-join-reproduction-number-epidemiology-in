@@ -1,0 +1,13 @@
+{
+  "id": "data_id5_it1__opus",
+  "type": "code",
+  "title": "RelBench rel-hm Dataset Preparation for JRN Estimation",
+  "summary": "Demo notebook for the RelBench rel-hm (H&M) relational dataset prepared for Join Reproduction Number (JRN) estimation. Loads 3 tables (customers, articles, transactions) with 2 FK joins exhibiting extreme cardinality variation (fan-out 1\u201350,287). Computes full join statistics, creates a stratified subsample preserving natural fan-out distribution, and provides examples with time-based train/val/test splits for 4 prediction tasks (user-churn classification, item-sales regression, price regression, user-item-purchase link prediction). The mini data JSON contains 14 curated examples across all tables with detailed metadata including fan-out buckets and fold assignments.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_1/gen_art/data_id5_it1__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id5_it1__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id5_it1__opus/data_code_demo.ipynb"
+}

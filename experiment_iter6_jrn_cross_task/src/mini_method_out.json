@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "experiment": "JRN Cross-Task Transfer Analysis",
+    "datasets": [
+      "rel-f1",
+      "rel-stack"
+    ],
+    "config": {
+      "lgbm_params": {
+        "n_estimators": 150,
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "verbose": -1,
+        "n_jobs": 4
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "max_train_samples": 40000,
+      "max_val_samples": 20000,
+      "max_agg_rows": 150000
+    },
+    "summary": {
+      "rel-f1": {
+        "kendalls_W": 0.5243956043956044,
+        "mean_transfer_rho": 0.37336653467338443,
+        "same_entity_mean_rho": 0.8720930232558138,
+        "cross_entity_mean_rho": 0.24374987608553436,
+        "same_type_mean_rho": 0.33356504063800374,
+        "cross_type_mean_rho": 0.4980446733023612,
+        "num_tasks": 5,
+        "num_joins": 13,
+        "cost_recommendation": "per_task",
+        "mean_gap_pct": 14.428146708220833
+      },
+      "rel-stack": {
+        "kendalls_W": 0.20606060606060606,
+        "mean_transfer_rho": 0.20606060606060606,
+        "same_entity_mean_rho": 0.8181818181818182,
+        "cross_entity_mean_rho": -0.6954545454545455,
+        "same_type_mean_rho": 0.8181818181818182,
+        "cross_type_mean_rho": -0.6954545454545455,
+        "num_tasks": 3,
+        "num_joins": 11,
+        "cost_recommendation": "per_task",
+        "mean_gap_pct": 7.996080975718966
+      },
+      "cross_dataset_comparison": {
+        "rel_f1_W_vs_rel_stack_W": "0.5244 vs 0.2061",
+        "higher_concordance_dataset": "rel-f1",
+        "recommendation": "Universal JRN ranking is more transferable on rel-stack (higher W, same-entity tasks dominate). On rel-f1, per-task JRN may be needed due to mixed entity tables reducing concordance."
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1678613493731766, \"jrn_std\": 0.00823635485068654, \"jrn_seeds\": [1.1713219820164529, 1.1757629761639563, 1.15649908993912]}",
+          "predict_jrn_probe": "1.1679",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1557708846602466, \"jrn_std\": 0.004294240917888316, \"jrn_seeds\": [1.150723805879727, 1.1612194889093976, 1.155369359191615]}",
+          "predict_jrn_probe": "1.1558",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1786128033726841, \"jrn_std\": 0.010609323591797832, \"jrn_seeds\": [1.193514444231873, 1.1726760653024855, 1.1696479005836942]}",
+          "predict_jrn_probe": "1.1786",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        }
+      ]
+    },
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3634296239026735, \"jrn_std\": 0.0011053706948235904, \"jrn_seeds\": [1.362824515111043, 1.362483919882863, 1.3649804367141147]}",
+          "predict_jrn_probe": "1.3634",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"badges.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3383607764520924, \"jrn_std\": 0.0031623093342257524, \"jrn_seeds\": [1.3341470711643246, 1.3391700096221408, 1.3417652485698113]}",
+          "predict_jrn_probe": "1.3384",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "badges.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"postHistory.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.393075696290948, \"jrn_std\": 0.0008826069129242147, \"jrn_seeds\": [1.3919642435023105, 1.3931394908118486, 1.394123354558685]}",
+          "predict_jrn_probe": "1.3931",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        }
+      ]
+    }
+  ]
+}

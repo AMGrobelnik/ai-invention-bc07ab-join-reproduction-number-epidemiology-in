@@ -1,0 +1,1331 @@
+{
+  "exp1": {
+    "metadata": {
+      "method_name": "JRN Estimation & Aggregation Sensitivity",
+      "dataset": "rel-f1",
+      "description": "Estimated JRN for 50 (join, task) pairs across 13 FK joins and 5 tasks. Quadratic fit b2=-0.8159 (p=0.0714). Inverted-U not confirmed.",
+      "parameters": {
+        "hidden_dim": 32,
+        "epochs": 10,
+        "lr": 0.001,
+        "batch_size": 512,
+        "seeds": [
+          42,
+          123,
+          456
+        ],
+        "agg_strategies": [
+          "mean",
+          "sum",
+          "max",
+          "attention"
+        ]
+      }
+    },
+    "datasets": [
+      {
+        "dataset": "rel-f1",
+        "examples": [
+          {
+            "input": "{\"join_idx\": 0, \"source_table\": \"races\", \"target_table\": \"circuits\", \"fk_col\": \"circuitId\", \"task_name\": \"rel-f1/qualifying-position\", \"connectivity\": \"2hop_double_lookup\", \"fanout_mean\": 12.424242424242424, \"num_edges\": 820}",
+            "output": "{\"jrn\": 1.032559725854192, \"baseline_perf\": {\"mean\": 0.09532383703684179, \"std\": 0.001208133158866984}, \"enriched_perf\": {\"mean\": 0.09842755503813104, \"std\": 0.00024132158166091265}, \"agg_sensitivity\": 0.0, \"agg_performances\": {\"mean\": {\"mean\": 0.09842755503813104, \"std\": 0.00024132158166091265}, \"sum\": {\"mean\": 0.09842755503813104, \"std\": 0.00024132158166091265}, \"max\": {\"mean\": 0.09842755503813104, \"std\": 0.00024132158166091265}, \"attention\": {\"mean\": 0.09842755503813104, \"std\": 0.00024132158166091265}}}",
+            "predict_baseline": "0.0953",
+            "predict_our_method": "0.0984",
+            "metadata_join_idx": 0,
+            "metadata_task_name": "rel-f1/qualifying-position",
+            "metadata_connectivity": "2hop_double_lookup",
+            "metadata_jrn": 1.032559725854192,
+            "metadata_agg_sensitivity": 0.0
+          },
+          {
+            "input": "{\"join_idx\": 1, \"source_table\": \"constructor_standings\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/results-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 13.452380952380953, \"num_edges\": 10170}",
+            "output": "{\"jrn\": 0.9665202994375642, \"baseline_perf\": {\"mean\": 0.132817880294645, \"std\": 0.0026720268100739217}, \"enriched_perf\": {\"mean\": 0.12837117743304285, \"std\": 0.003434455151514117}, \"agg_sensitivity\": 0.07988089434091686, \"agg_performances\": {\"mean\": {\"mean\": 0.12837117743304285, \"std\": 0.003434455151514117}, \"sum\": {\"mean\": 0.1539075633618906, \"std\": 0.02006735918724778}, \"max\": {\"mean\": 0.13033742161702247, \"std\": 0.0034278822163629876}, \"attention\": {\"mean\": 0.12837117743304285, \"std\": 0.003434455151514117}}}",
+            "predict_baseline": "0.1328",
+            "predict_our_method": "0.1284",
+            "metadata_join_idx": 1,
+            "metadata_task_name": "rel-f1/results-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 0.9665202994375642,
+            "metadata_agg_sensitivity": 0.07988089434091686
+          },
+          {
+            "input": "{\"join_idx\": 3, \"source_table\": \"standings\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/driver-dnf\", \"connectivity\": \"2hop_agg_then_lookup\", \"fanout_mean\": 34.28658536585366, \"num_edges\": 28115}",
+            "output": "{\"jrn\": 1.3932606895934485, \"baseline_perf\": {\"mean\": 0.5405049130763416, \"std\": 0.025552398284487528}, \"enriched_perf\": {\"mean\": 0.7530642479213907, \"std\": 0.00826932805673179}, \"agg_sensitivity\": 0.024457786161181792, \"agg_performances\": {\"mean\": {\"mean\": 0.7530642479213907, \"std\": 0.00826932805673179}, \"sum\": {\"mean\": 0.7093575207860923, \"std\": 0.02775412319581066}, \"max\": {\"mean\": 0.7455842781557068, \"std\": 0.0028055359997579826}, \"attention\": {\"mean\": 0.7530642479213907, \"std\": 0.00826932805673179}}}",
+            "predict_baseline": "0.5405",
+            "predict_our_method": "0.7531",
+            "metadata_join_idx": 3,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_connectivity": "2hop_agg_then_lookup",
+            "metadata_jrn": 1.3932606895934485,
+            "metadata_agg_sensitivity": 0.024457786161181792
+          },
+          {
+            "input": "{\"join_idx\": 3, \"source_table\": \"standings\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/qualifying-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 34.28658536585366, \"num_edges\": 28115}",
+            "output": "{\"jrn\": 1.0152563472389833, \"baseline_perf\": {\"mean\": 0.09532383703684179, \"std\": 0.001208133158866984}, \"enriched_perf\": {\"mean\": 0.0967781305948281, \"std\": 0.0008227000548244438}, \"agg_sensitivity\": 0.2424160807687575, \"agg_performances\": {\"mean\": {\"mean\": 0.0967781305948281, \"std\": 0.0008227000548244438}, \"sum\": {\"mean\": 0.1626847558681059, \"std\": 0.009986486756644115}, \"max\": {\"mean\": 0.10255441726750873, \"std\": 0.0010698131843732272}, \"attention\": {\"mean\": 0.0967781305948281, \"std\": 0.0008227000548244438}}}",
+            "predict_baseline": "0.0953",
+            "predict_our_method": "0.0968",
+            "metadata_join_idx": 3,
+            "metadata_task_name": "rel-f1/qualifying-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 1.0152563472389833,
+            "metadata_agg_sensitivity": 0.2424160807687575
+          },
+          {
+            "input": "{\"join_idx\": 4, \"source_table\": \"standings\", \"target_table\": \"drivers\", \"fk_col\": \"driverId\", \"task_name\": \"rel-f1/driver-position\", \"connectivity\": \"direct_agg\", \"fanout_mean\": 35.187734668335416, \"num_edges\": 28115}",
+            "output": "{\"jrn\": 1.1807795220478807, \"baseline_perf\": {\"mean\": 0.22553651617011242, \"std\": 0.007227596965108907}, \"enriched_perf\": {\"mean\": 0.26630889976768946, \"std\": 0.008094643670950639}, \"agg_sensitivity\": 0.10728427308047538, \"agg_performances\": {\"mean\": {\"mean\": 0.26630889976768946, \"std\": 0.008094643670950639}, \"sum\": {\"mean\": 0.20078293425307506, \"std\": 0.004136127406136662}, \"max\": {\"mean\": 0.26323421933728497, \"std\": 0.002518104271789075}, \"attention\": {\"mean\": 0.244716195667214, \"std\": 0.024418925657618287}}}",
+            "predict_baseline": "0.2255",
+            "predict_our_method": "0.2663",
+            "metadata_join_idx": 4,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_connectivity": "direct_agg",
+            "metadata_jrn": 1.1807795220478807,
+            "metadata_agg_sensitivity": 0.10728427308047538
+          },
+          {
+            "input": "{\"join_idx\": 4, \"source_table\": \"standings\", \"target_table\": \"drivers\", \"fk_col\": \"driverId\", \"task_name\": \"rel-f1/results-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 35.187734668335416, \"num_edges\": 28115}",
+            "output": "{\"jrn\": 0.9662322759882224, \"baseline_perf\": {\"mean\": 0.132817880294645, \"std\": 0.0026720268100739217}, \"enriched_perf\": {\"mean\": 0.1283329227690261, \"std\": 0.003313628322964466}, \"agg_sensitivity\": 0.15371221574634839, \"agg_performances\": {\"mean\": {\"mean\": 0.1283329227690261, \"std\": 0.003313628322964466}, \"sum\": {\"mean\": 0.17988353024196232, \"std\": 0.022312297106067396}, \"max\": {\"mean\": 0.13197337084166713, \"std\": 0.004630760029316408}, \"attention\": {\"mean\": 0.1283329227690261, \"std\": 0.003313628322964466}}}",
+            "predict_baseline": "0.1328",
+            "predict_our_method": "0.1283",
+            "metadata_join_idx": 4,
+            "metadata_task_name": "rel-f1/results-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 0.9662322759882224,
+            "metadata_agg_sensitivity": 0.15371221574634839
+          },
+          {
+            "input": "{\"join_idx\": 6, \"source_table\": \"constructor_results\", \"target_table\": \"constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"rel-f1/qualifying-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 57.717791411042946, \"num_edges\": 9408}",
+            "output": "{\"jrn\": 1.0165126324765472, \"baseline_perf\": {\"mean\": 0.09532383703684179, \"std\": 0.001208133158866984}, \"enriched_perf\": {\"mean\": 0.09689788452408543, \"std\": 0.003371015289786589}, \"agg_sensitivity\": 0.2201153964388574, \"agg_performances\": {\"mean\": {\"mean\": 0.09689788452408543, \"std\": 0.003371015289786589}, \"sum\": {\"mean\": 0.15558699224022157, \"std\": 0.008431871609664675}, \"max\": {\"mean\": 0.10155076207566466, \"std\": 0.004331673625858036}, \"attention\": {\"mean\": 0.09689788452408543, \"std\": 0.003371015289786589}}}",
+            "predict_baseline": "0.0953",
+            "predict_our_method": "0.0969",
+            "metadata_join_idx": 6,
+            "metadata_task_name": "rel-f1/qualifying-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 1.0165126324765472,
+            "metadata_agg_sensitivity": 0.2201153964388574
+          },
+          {
+            "input": "{\"join_idx\": 7, \"source_table\": \"qualifying\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/driver-position\", \"connectivity\": \"2hop_agg_then_lookup\", \"fanout_mean\": 21.597883597883598, \"num_edges\": 4082}",
+            "output": "{\"jrn\": 1.1857753234856068, \"baseline_perf\": {\"mean\": 0.22553651617011242, \"std\": 0.007227596965108907}, \"enriched_perf\": {\"mean\": 0.2674356354194318, \"std\": 0.010730908827578664}, \"agg_sensitivity\": 0.1237562851123937, \"agg_performances\": {\"mean\": {\"mean\": 0.2674356354194318, \"std\": 0.010730908827578664}, \"sum\": {\"mean\": 0.19374521061946184, \"std\": 0.012944944870042805}, \"max\": {\"mean\": 0.24384029032603305, \"std\": 0.00885600549696267}, \"attention\": {\"mean\": 0.2674356354194318, \"std\": 0.010730908827578664}}}",
+            "predict_baseline": "0.2255",
+            "predict_our_method": "0.2674",
+            "metadata_join_idx": 7,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_connectivity": "2hop_agg_then_lookup",
+            "metadata_jrn": 1.1857753234856068,
+            "metadata_agg_sensitivity": 0.1237562851123937
+          },
+          {
+            "input": "{\"join_idx\": 7, \"source_table\": \"qualifying\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/results-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 21.597883597883598, \"num_edges\": 4082}",
+            "output": "{\"jrn\": 0.9670103772126863, \"baseline_perf\": {\"mean\": 0.132817880294645, \"std\": 0.0026720268100739217}, \"enriched_perf\": {\"mean\": 0.12843626852431408, \"std\": 0.005291965041769499}, \"agg_sensitivity\": 0.11584655997763377, \"agg_performances\": {\"mean\": {\"mean\": 0.12843626852431408, \"std\": 0.005291965041769499}, \"sum\": {\"mean\": 0.16526543522572956, \"std\": 0.02550319541938569}, \"max\": {\"mean\": 0.12844759888224486, \"std\": 0.004366992964199588}, \"attention\": {\"mean\": 0.12843626852431408, \"std\": 0.005291965041769499}}}",
+            "predict_baseline": "0.1328",
+            "predict_our_method": "0.1284",
+            "metadata_join_idx": 7,
+            "metadata_task_name": "rel-f1/results-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 0.9670103772126863,
+            "metadata_agg_sensitivity": 0.11584655997763377
+          },
+          {
+            "input": "{\"join_idx\": 8, \"source_table\": \"qualifying\", \"target_table\": \"drivers\", \"fk_col\": \"driverId\", \"task_name\": \"rel-f1/driver-top3\", \"connectivity\": \"direct_agg\", \"fanout_mean\": 34.888888888888886, \"num_edges\": 4082}",
+            "output": "{\"jrn\": 1.0714964323856826, \"baseline_perf\": {\"mean\": 0.4557733541177664, \"std\": 0.041748902058757614}, \"enriched_perf\": {\"mean\": 0.48835952291364304, \"std\": 0.08385663272939382}, \"agg_sensitivity\": 0.1228905913973429, \"agg_performances\": {\"mean\": {\"mean\": 0.48835952291364304, \"std\": 0.08385663272939382}, \"sum\": {\"mean\": 0.6216904672316689, \"std\": 0.04204103839258427}, \"max\": {\"mean\": 0.45155076956155593, \"std\": 0.0479566246197244}, \"attention\": {\"mean\": 0.5072237850364026, \"std\": 0.06846020317011837}}}",
+            "predict_baseline": "0.4558",
+            "predict_our_method": "0.4884",
+            "metadata_join_idx": 8,
+            "metadata_task_name": "rel-f1/driver-top3",
+            "metadata_connectivity": "direct_agg",
+            "metadata_jrn": 1.0714964323856826,
+            "metadata_agg_sensitivity": 0.1228905913973429
+          },
+          {
+            "input": "{\"join_idx\": 9, \"source_table\": \"qualifying\", \"target_table\": \"constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"rel-f1/driver-dnf\", \"connectivity\": \"2hop_agg_then_lookup\", \"fanout_mean\": 127.5625, \"num_edges\": 4082}",
+            "output": "{\"jrn\": 1.2660148121629786, \"baseline_perf\": {\"mean\": 0.5405049130763416, \"std\": 0.025552398284487528}, \"enriched_perf\": {\"mean\": 0.6842872260015117, \"std\": 0.016506636270396134}, \"agg_sensitivity\": 0.06532351355515267, \"agg_performances\": {\"mean\": {\"mean\": 0.6842872260015117, \"std\": 0.016506636270396134}, \"sum\": {\"mean\": 0.6967014361300076, \"std\": 0.013715288155849862}, \"max\": {\"mean\": 0.5890068027210885, \"std\": 0.020286603282198314}, \"attention\": {\"mean\": 0.6842872260015117, \"std\": 0.016506636270396134}}}",
+            "predict_baseline": "0.5405",
+            "predict_our_method": "0.6843",
+            "metadata_join_idx": 9,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_connectivity": "2hop_agg_then_lookup",
+            "metadata_jrn": 1.2660148121629786,
+            "metadata_agg_sensitivity": 0.06532351355515267
+          },
+          {
+            "input": "{\"join_idx\": 9, \"source_table\": \"qualifying\", \"target_table\": \"constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"rel-f1/qualifying-position\", \"connectivity\": \"direct_lookup\", \"fanout_mean\": 127.5625, \"num_edges\": 4082}",
+            "output": "{\"jrn\": 0.9953084853790327, \"baseline_perf\": {\"mean\": 0.09532383703684179, \"std\": 0.001208133158866984}, \"enriched_perf\": {\"mean\": 0.09487662386165674, \"std\": 0.0019246909169744824}, \"agg_sensitivity\": 0.0, \"agg_performances\": {\"mean\": {\"mean\": 0.09487662386165674, \"std\": 0.0019246909169744824}, \"sum\": {\"mean\": 0.09487662386165674, \"std\": 0.0019246909169744824}, \"max\": {\"mean\": 0.09487662386165674, \"std\": 0.0019246909169744824}, \"attention\": {\"mean\": 0.09487662386165674, \"std\": 0.0019246909169744824}}}",
+            "predict_baseline": "0.0953",
+            "predict_our_method": "0.0949",
+            "metadata_join_idx": 9,
+            "metadata_task_name": "rel-f1/qualifying-position",
+            "metadata_connectivity": "direct_lookup",
+            "metadata_jrn": 0.9953084853790327,
+            "metadata_agg_sensitivity": 0.0
+          },
+          {
+            "input": "{\"join_idx\": 10, \"source_table\": \"results\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/driver-position\", \"connectivity\": \"2hop_agg_then_lookup\", \"fanout_mean\": 24.784146341463416, \"num_edges\": 20323}",
+            "output": "{\"jrn\": 0.9078724884081019, \"baseline_perf\": {\"mean\": 0.22553651617011242, \"std\": 0.007227596965108907}, \"enriched_perf\": {\"mean\": 0.20475839816225405, \"std\": 0.01677913999960633}, \"agg_sensitivity\": 0.07693366498599497, \"agg_performances\": {\"mean\": {\"mean\": 0.20475839816225405, \"std\": 0.01677913999960633}, \"sum\": {\"mean\": 0.21049158160314826, \"std\": 0.00624001856292577}, \"max\": {\"mean\": 0.2446953325818708, \"std\": 0.007958294366506224}, \"attention\": {\"mean\": 0.20475839816225405, \"std\": 0.01677913999960633}}}",
+            "predict_baseline": "0.2255",
+            "predict_our_method": "0.2048",
+            "metadata_join_idx": 10,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_connectivity": "2hop_agg_then_lookup",
+            "metadata_jrn": 0.9078724884081019,
+            "metadata_agg_sensitivity": 0.07693366498599497
+          },
+          {
+            "input": "{\"join_idx\": 10, \"source_table\": \"results\", \"target_table\": \"races\", \"fk_col\": \"raceId\", \"task_name\": \"rel-f1/results-position\", \"connectivity\": \"direct_lookup\", \"fanout_mean\": 24.784146341463416, \"num_edges\": 20323}",
+            "output": "{\"jrn\": 0.9535033228775377, \"baseline_perf\": {\"mean\": 0.132817880294645, \"std\": 0.0026720268100739217}, \"enriched_perf\": {\"mean\": 0.12664229019849504, \"std\": 0.004793057958907321}, \"agg_sensitivity\": 0.0, \"agg_performances\": {\"mean\": {\"mean\": 0.12664229019849504, \"std\": 0.004793057958907321}, \"sum\": {\"mean\": 0.12664229019849504, \"std\": 0.004793057958907321}, \"max\": {\"mean\": 0.12664229019849504, \"std\": 0.004793057958907321}, \"attention\": {\"mean\": 0.12664229019849504, \"std\": 0.004793057958907321}}}",
+            "predict_baseline": "0.1328",
+            "predict_our_method": "0.1266",
+            "metadata_join_idx": 10,
+            "metadata_task_name": "rel-f1/results-position",
+            "metadata_connectivity": "direct_lookup",
+            "metadata_jrn": 0.9535033228775377,
+            "metadata_agg_sensitivity": 0.0
+          },
+          {
+            "input": "{\"join_idx\": 11, \"source_table\": \"results\", \"target_table\": \"drivers\", \"fk_col\": \"driverId\", \"task_name\": \"rel-f1/driver-top3\", \"connectivity\": \"direct_agg\", \"fanout_mean\": 25.214640198511166, \"num_edges\": 20323}",
+            "output": "{\"jrn\": 1.197519377813305, \"baseline_perf\": {\"mean\": 0.4557733541177664, \"std\": 0.041748902058757614}, \"enriched_perf\": {\"mean\": 0.5457974234469908, \"std\": 0.0408278557290498}, \"agg_sensitivity\": 0.1818131166806354, \"agg_performances\": {\"mean\": {\"mean\": 0.5457974234469908, \"std\": 0.0408278557290498}, \"sum\": {\"mean\": 0.6317900294446137, \"std\": 0.0506287972045015}, \"max\": {\"mean\": 0.373065644168115, \"std\": 0.09467834985605134}, \"attention\": {\"mean\": 0.5765768994164829, \"std\": 0.04702337812289919}}}",
+            "predict_baseline": "0.4558",
+            "predict_our_method": "0.5458",
+            "metadata_join_idx": 11,
+            "metadata_task_name": "rel-f1/driver-top3",
+            "metadata_connectivity": "direct_agg",
+            "metadata_jrn": 1.197519377813305,
+            "metadata_agg_sensitivity": 0.1818131166806354
+          },
+          {
+            "input": "{\"join_idx\": 12, \"source_table\": \"results\", \"target_table\": \"constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"rel-f1/driver-dnf\", \"connectivity\": \"2hop_agg_then_lookup\", \"fanout_mean\": 102.12562814070351, \"num_edges\": 20323}",
+            "output": "{\"jrn\": 1.313192222495693, \"baseline_perf\": {\"mean\": 0.5405049130763416, \"std\": 0.025552398284487528}, \"enriched_perf\": {\"mean\": 0.7097868480725623, \"std\": 0.006055968956514119}, \"agg_sensitivity\": 0.04668069712112042, \"agg_performances\": {\"mean\": {\"mean\": 0.7097868480725623, \"std\": 0.006055968956514119}, \"sum\": {\"mean\": 0.650031746031746, \"std\": 0.03238143849767755}, \"max\": {\"mean\": 0.643265306122449, \"std\": 0.04182071522336422}, \"attention\": {\"mean\": 0.7097868480725623, \"std\": 0.006055968956514119}}}",
+            "predict_baseline": "0.5405",
+            "predict_our_method": "0.7098",
+            "metadata_join_idx": 12,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_connectivity": "2hop_agg_then_lookup",
+            "metadata_jrn": 1.313192222495693,
+            "metadata_agg_sensitivity": 0.04668069712112042
+          },
+          {
+            "input": "{\"join_idx\": 12, \"source_table\": \"results\", \"target_table\": \"constructors\", \"fk_col\": \"constructorId\", \"task_name\": \"rel-f1/qualifying-position\", \"connectivity\": \"2hop_lookup_then_agg\", \"fanout_mean\": 102.12562814070351, \"num_edges\": 20323}",
+            "output": "{\"jrn\": 1.0280534619036326, \"baseline_perf\": {\"mean\": 0.09532383703684179, \"std\": 0.001208133158866984}, \"enriched_perf\": {\"mean\": 0.09799800066766291, \"std\": 0.0039581598167304395}, \"agg_sensitivity\": 0.2572606937335095, \"agg_performances\": {\"mean\": {\"mean\": 0.09799800066766291, \"std\": 0.0039581598167304395}, \"sum\": {\"mean\": 0.1695827354096517, \"std\": 0.005933488019669461}, \"max\": {\"mean\": 0.10416731226324426, \"std\": 0.004739031900278578}, \"attention\": {\"mean\": 0.09799800066766291, \"std\": 0.0039581598167304395}}}",
+            "predict_baseline": "0.0953",
+            "predict_our_method": "0.0980",
+            "metadata_join_idx": 12,
+            "metadata_task_name": "rel-f1/qualifying-position",
+            "metadata_connectivity": "2hop_lookup_then_agg",
+            "metadata_jrn": 1.0280534619036326,
+            "metadata_agg_sensitivity": 0.2572606937335095
+          }
+        ]
+      }
+    ]
+  },
+  "exp2": {
+    "metadata": {
+      "title": "JRN Estimation & Multiplicative Compounding on rel-stack",
+      "summary": "Estimated JRN for 16 (join, task) pairs using MLP probe method (hidden=32, layers=2, epochs=10, seeds=3). Validated multiplicative compounding on 14 multi-hop chains (R\u00b2=0.8283). Join classifications: 13 high-value, 3 critical, 0 low-value.",
+      "experiment_config": {
+        "dataset": "rel-stack",
+        "hidden_dim": 32,
+        "n_layers": 2,
+        "epochs": 10,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "batch_size": 512,
+        "lr": 0.001,
+        "max_train_samples": 50000,
+        "max_val_samples": 10000,
+        "aggregation": "mean"
+      },
+      "phase1_summary": {
+        "jrn_matrix": {
+          "comments.UserId -> users.Id": {
+            "user-engagement": 1.559715533758994,
+            "user-badge": 1.3970752241147837
+          },
+          "badges.UserId -> users.Id": {
+            "user-engagement": 1.5263403165898162,
+            "user-badge": 1.5522037269853568
+          },
+          "postHistory.UserId -> users.Id": {
+            "user-engagement": 1.606679916795472,
+            "user-badge": 1.4808357651414934
+          },
+          "votes.UserId -> users.Id": {
+            "user-engagement": 1.1548844688401319,
+            "user-badge": 1.024286008541145
+          },
+          "posts.OwnerUserId -> users.Id": {
+            "user-engagement": 1.5715837937983221,
+            "user-badge": 1.4635480094733837
+          },
+          "comments.PostId -> posts.Id": {
+            "post-votes": 1.0146737172734865
+          },
+          "postLinks.PostId -> posts.Id": {
+            "post-votes": 1.0720461029321458
+          },
+          "postLinks.RelatedPostId -> posts.Id": {
+            "post-votes": 1.1768266656233832
+          },
+          "postHistory.PostId -> posts.Id": {
+            "post-votes": 1.022553281599242
+          },
+          "votes.PostId -> posts.Id": {
+            "post-votes": 1.275040235453607
+          },
+          "posts.ParentId -> posts.Id": {
+            "post-votes": 1.1215078066786173
+          }
+        },
+        "n_measurements": 16,
+        "n_high_value": 13,
+        "n_critical": 3,
+        "n_low_value": 0
+      },
+      "phase3_summary": {
+        "n_chains_tested": 14,
+        "r_squared": 0.828332168788979,
+        "mean_absolute_deviation": 0.012766373188826468,
+        "compounding_holds": true
+      },
+      "domain_validation": {
+        "votes_posts_for_postvotes": {
+          "expected": "JRN > 1 (votes directly predict popularity)",
+          "actual_jrn": 1.275040235453607,
+          "passed": 1.0,
+          "note": "corrected JRN (inverted for neg_MAE so >1 = improvement)"
+        },
+        "badges_users_for_userbadge": {
+          "expected": "JRN > 1 (badges predict future badges)",
+          "actual_jrn": 1.5522037269853568,
+          "passed": 1.0
+        },
+        "posts_users_for_engagement": {
+          "expected": "JRN > 1 (posting activity predicts engagement)",
+          "actual_jrn": 1.5715837937983221,
+          "passed": 1.0
+        },
+        "votes_stronger_than_postlinks": {
+          "expected": "votes JRN > postLinks JRN for post-votes",
+          "votes_jrn": 1.275040235453607,
+          "postlinks_jrn": 1.0720461029321458,
+          "passed": 1.0
+        }
+      },
+      "key_findings": [
+        "JRN range: [1.0147, 1.6067], spread=0.5920",
+        "Votes->Posts corrected JRN for post-votes = 1.2750 (confirms domain expectation)",
+        "Badges->Users JRN for user-badge = 1.5522 (confirms domain expectation)",
+        "Multiplicative compounding: R\u00b2=0.8283 across 14 chains"
+      ],
+      "hypothesis_support": {
+        "jrn_is_informative": true,
+        "compounding_holds": true,
+        "domain_expectations_met": true
+      },
+      "runtime_seconds": 443.5802438259125
+    },
+    "datasets": [
+      {
+        "dataset": "rel-stack",
+        "examples": [
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"relative_improvement\": 0.5597155337589941, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.026325491595155, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.559715533758994, \"M_base\": 0.5677848659631978, \"M_join\": 0.8855828752760679, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0033696757953382834, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "comments.UserId -> users.Id",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"badges.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"badges\", \"question\": \"What is the JRN for join 'badges.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"relative_improvement\": 0.5263403165898161, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0402822864853776, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.5263403165898162, \"M_base\": 0.5677848659631978, \"M_join\": 0.8666329320691736, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.0032657671667489724, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "badges.UserId -> users.Id",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"relative_improvement\": 0.6066799167954718, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0438406087765821, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.606679916795472, \"M_base\": 0.5677848659631978, \"M_join\": 0.9122485412034788, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.002779502797543129, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "postHistory.UserId -> users.Id",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.UserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.UserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.1548844688401319, \"M_base\": 0.5677848659631978, \"M_join\": 0.6557259233433731, \"relative_improvement\": 0.15488446884013182, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0005587842298822, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.1548844688401319, \"M_base\": 0.5677848659631978, \"M_join\": 0.6557259233433731, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.00798305859780369, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "votes.UserId -> users.Id",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.OwnerUserId -> users.Id\", \"task\": \"user-engagement\", \"entity_table\": \"users\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.OwnerUserId -> users.Id' on task 'user-engagement'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.5715837937983221, \"M_base\": 0.5677848659631978, \"M_join\": 0.8923214937117142, \"relative_improvement\": 0.5715837937983221, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0262085687289557, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.5715837937983221, \"M_base\": 0.5677848659631978, \"M_join\": 0.8923214937117142, \"M_base_std\": 0.00829547826219912, \"M_join_std\": 0.011970312390169924, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "posts.OwnerUserId -> users.Id",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.3970752241147837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8254505933707188, \"relative_improvement\": 0.39707522411478363, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.026325491595155, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.3970752241147837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8254505933707188, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0004240844434138495, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "comments.UserId -> users.Id",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"badges.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"badges\", \"question\": \"What is the JRN for join 'badges.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.5522037269853568, \"M_base\": 0.5908419096715009, \"M_join\": 0.9171070142512492, \"relative_improvement\": 0.5522037269853568, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0402822864853776, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.5522037269853568, \"M_base\": 0.5908419096715009, \"M_join\": 0.9171070142512492, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0033752660422254744, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "badges.UserId -> users.Id",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.4808357651414934, \"M_base\": 0.5908419096715009, \"M_join\": 0.8749398313860581, \"relative_improvement\": 0.48083576514149345, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0438406087765821, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.4808357651414934, \"M_base\": 0.5908419096715009, \"M_join\": 0.8749398313860581, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.00040036655676607447, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "postHistory.UserId -> users.Id",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.UserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.UserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.024286008541145, \"M_base\": 0.5908419096715009, \"M_join\": 0.6051911013362493, \"relative_improvement\": 0.02428600854114495, \"classification\": \"critical_threshold\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0005587842298822, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.024286008541145, \"M_base\": 0.5908419096715009, \"M_join\": 0.6051911013362493, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.000317268158837631, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "votes.UserId -> users.Id",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.OwnerUserId -> users.Id\", \"task\": \"user-badge\", \"entity_table\": \"users\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.OwnerUserId -> users.Id' on task 'user-badge'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.4635480094733837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8647255008131779, \"relative_improvement\": 0.46354800947338376, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0262085687289557, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.4635480094733837, \"M_base\": 0.5908419096715009, \"M_join\": 0.8647255008131779, \"M_base_std\": 0.001976129586049949, \"M_join_std\": 0.0008681889584644095, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "posts.OwnerUserId -> users.Id",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"comments.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"comments\", \"question\": \"What is the JRN for join 'comments.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.0146737172734865, \"M_base\": -0.132974311709404, \"M_join\": -0.13105130195617676, \"relative_improvement\": 0.014461513118636717, \"classification\": \"critical_threshold\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0411339372565396, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.0146737172734865, \"M_base\": -0.132974311709404, \"M_join\": -0.13105130195617676, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.002090274735387019, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "comments.PostId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postLinks.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postLinks\", \"question\": \"What is the JRN for join 'postLinks.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.0720461029321458, \"M_base\": -0.132974311709404, \"M_join\": -0.12403786679108937, \"relative_improvement\": 0.06720429535175125, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0054493593520395, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.0720461029321458, \"M_base\": -0.132974311709404, \"M_join\": -0.12403786679108937, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.005115368489437064, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "postLinks.PostId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postLinks.RelatedPostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postLinks\", \"question\": \"What is the JRN for join 'postLinks.RelatedPostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.1768266656233832, \"M_base\": -0.132974311709404, \"M_join\": -0.11299396554629008, \"relative_improvement\": 0.15025718807086624, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0051979876013584, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.1768266656233832, \"M_base\": -0.132974311709404, \"M_join\": -0.11299396554629008, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.0029897002634590073, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "postLinks.RelatedPostId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"postHistory.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"postHistory\", \"question\": \"What is the JRN for join 'postHistory.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.022553281599242, \"M_base\": -0.132974311709404, \"M_join\": -0.1300414502620697, \"relative_improvement\": 0.022055849807620223, \"classification\": \"critical_threshold\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.075427741183449, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.022553281599242, \"M_base\": -0.132974311709404, \"M_join\": -0.1300414502620697, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.004612824027354812, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "postHistory.PostId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"votes.PostId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"votes\", \"question\": \"What is the JRN for join 'votes.PostId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.275040235453607, \"M_base\": -0.132974311709404, \"M_join\": -0.10429028669993083, \"relative_improvement\": 0.2157110244883833, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0693795480521002, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.275040235453607, \"M_base\": -0.132974311709404, \"M_join\": -0.10429028669993083, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.0021159079402851004, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "votes.PostId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase1_individual_jrn\", \"join\": \"posts.ParentId -> posts.Id\", \"task\": \"post-votes\", \"entity_table\": \"posts\", \"child_table\": \"posts\", \"question\": \"What is the JRN for join 'posts.ParentId -> posts.Id' on task 'post-votes'? How much does adding aggregated child features improve the probe metric?\"}",
+            "output": "{\"JRN\": 1.1215078066786173, \"M_base\": -0.132974311709404, \"M_join\": -0.11856744190057118, \"relative_improvement\": 0.10834325535233397, \"classification\": \"high_value\"}",
+            "predict_baseline": "{\"heuristic_jrn\": 1.0154851255270487, \"method\": \"fan_out_heuristic\", \"formula\": \"1 + 0.05 * coverage * log(1 + fan_out_mean)\"}",
+            "predict_our_method": "{\"JRN\": 1.1215078066786173, \"M_base\": -0.132974311709404, \"M_join\": -0.11856744190057118, \"M_base_std\": 0.002366325255457148, \"M_join_std\": 0.003939878596423651, \"seeds\": 3, \"method\": \"probe_based_jrn\"}",
+            "metadata_phase": "phase1",
+            "metadata_join": "posts.ParentId -> posts.Id",
+            "metadata_task": "post-votes"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"comments.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | comments.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5415293664711094, \"M_chain\": 0.875257044720132, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.03005442732721275}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0684205676071759, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5415293664711094, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.03005442732721275, \"ratio\": 0.9808763443312336, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | comments.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"comments.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | comments.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4643104798075126, \"M_chain\": 0.8651760002414625, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0007624703341289063}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0684205676071759, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4643104798075126, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0007624703341289063, \"ratio\": 1.0005209739135263, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | comments.PostId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"votes.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | votes.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5534312324000572, \"M_chain\": 0.8820147440713116, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.018152561398264933}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0974064554345633, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5534312324000572, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.018152561398264933, \"ratio\": 0.9884495109520107, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | votes.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"votes.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | votes.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.47676737607626, \"M_chain\": 0.8725360566214689, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.01321936660287637}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0974064554345633, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.47676737607626, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.01321936660287637, \"ratio\": 1.0090324106331388, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | votes.PostId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postLinks.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postLinks.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5499360168228442, \"M_chain\": 0.8800302135632913, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.021647776975477928}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.031800747990102, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5499360168228442, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.021647776975477928, \"ratio\": 0.9862255025402381, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | postLinks.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postLinks.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postLinks.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4635971448547973, \"M_chain\": 0.8647545320557647, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 4.9135381413600854e-05}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.031800747990102, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4635971448547973, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 4.9135381413600854e-05, \"ratio\": 1.000033572784149, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | postLinks.PostId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postHistory.PostId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postHistory.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5713236781209614, \"M_chain\": 0.892173803966709, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.00026011567736072827}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.103613163051281, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5713236781209614, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.00026011567736072827, \"ratio\": 0.9998344881905838, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | postHistory.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"postHistory.PostId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | postHistory.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4652086622702643, \"M_chain\": 0.865706684082988, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0016606527968805462}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.103613163051281, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4652086622702643, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0016606527968805462, \"ratio\": 1.0011346759970505, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | postHistory.PostId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\"], \"depth\": 2, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5591239279619682, \"M_chain\": 0.8852469704579006, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.012459865836353945}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0420995372326567, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5591239279619682, \"individual_jrns\": [1.5715837937983221, 1.0], \"deviation\": -0.012459865836353945, \"ratio\": 0.9920717776007094, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\"], \"depth\": 2, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 2-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4637998411255142, \"M_chain\": 0.8648742935074384, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.0002518316521304964}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0420995372326567, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4637998411255142, \"individual_jrns\": [1.4635480094733837, 1.0], \"deviation\": 0.0002518316521304964, \"ratio\": 1.0001720692799283, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"comments.PostId -> posts\"], \"depth\": 3, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.5285633817231068, \"M_chain\": 0.8678951548079065, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.04302041207521534}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0849651942122538, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.5285633817231068, \"individual_jrns\": [1.5715837937983221, 1.0, 1.0], \"deviation\": -0.04302041207521534, \"ratio\": 0.9726260780717009, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"comments.PostId -> posts\"], \"depth\": 3, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4577304418614576, \"M_chain\": 0.8612882380557044, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": -0.005817567611926089}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.0849651942122538, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4577304418614576, \"individual_jrns\": [1.4635480094733837, 1.0, 1.0], \"deviation\": -0.005817567611926089, \"ratio\": 0.9960250244103578, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | comments.PostId -> posts",
+            "metadata_task": "user-badge"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"votes.PostId -> posts\"], \"depth\": 3, \"task\": \"user-engagement\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts] on task 'user-engagement'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.54987134325279, \"M_chain\": 0.8799934928889867, \"M_base\": 0.5677848659631978, \"deviation_from_predicted\": -0.02171245054553217}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.1143999321511613, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.5715837937983221, \"actual_chain_jrn\": 1.54987134325279, \"individual_jrns\": [1.5715837937983221, 1.0, 1.0], \"deviation\": -0.02171245054553217, \"ratio\": 0.9861843506969132, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts",
+            "metadata_task": "user-engagement"
+          },
+          {
+            "input": "{\"phase\": \"phase3_compounding\", \"chain\": [\"posts.OwnerUserId -> users\", \"posts.ParentId -> posts\", \"votes.PostId -> posts\"], \"depth\": 3, \"task\": \"user-badge\", \"question\": \"Does the multiplicative compounding property hold for the 3-hop chain [posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts] on task 'user-badge'? What is the actual vs predicted chain JRN?\"}",
+            "output": "{\"actual_chain_jrn\": 1.4732085999021804, \"M_chain\": 0.8704333825106824, \"M_base\": 0.5908419096715009, \"deviation_from_predicted\": 0.009660590428796745}",
+            "predict_baseline": "{\"predicted_chain_jrn\": 1.1143999321511613, \"method\": \"fan_out_heuristic_product\"}",
+            "predict_our_method": "{\"predicted_chain_jrn\": 1.4635480094733837, \"actual_chain_jrn\": 1.4732085999021804, \"individual_jrns\": [1.4635480094733837, 1.0, 1.0], \"deviation\": 0.009660590428796745, \"ratio\": 1.006600801863871, \"method\": \"multiplicative_product_of_probe_jrns\"}",
+            "metadata_phase": "phase3",
+            "metadata_chain": "posts.OwnerUserId -> users | posts.ParentId -> posts | votes.PostId -> posts",
+            "metadata_task": "user-badge"
+          }
+        ]
+      }
+    ]
+  },
+  "exp3": {
+    "metadata": {
+      "global_jrn_results": {
+        "user-churn_J1_txn_to_customer": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "task_type": "classification",
+          "split_used": "time_val",
+          "base_metric_mean": 0.176471,
+          "base_metric_std": 0.024015,
+          "join_metric_mean": 0.676471,
+          "join_metric_std": 0.374351,
+          "JRN": 3.833333,
+          "relative_improvement": 2.833333,
+          "n_seeds": 3
+        },
+        "item-sales_J2_txn_to_article": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "task_type": "regression",
+          "split_used": "time_val",
+          "base_metric_mean": 8.943371,
+          "base_metric_std": 0.155697,
+          "join_metric_mean": 5.59212,
+          "join_metric_std": 0.123286,
+          "JRN": 0.625281,
+          "relative_improvement": -0.374719,
+          "n_seeds": 3
+        }
+      },
+      "bucket_jrn_results": {
+        "user-churn_1": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "1",
+          "fan_out_midpoint": 1,
+          "n_train_in_bucket": 807,
+          "n_val": 205,
+          "base_metric_mean": 0.4745,
+          "join_metric_mean": 0.306,
+          "JRN": 0.644889
+        },
+        "user-churn_2-5": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "2-5",
+          "fan_out_midpoint": 3.5,
+          "n_train_in_bucket": 2344,
+          "n_val": 595,
+          "base_metric_mean": 0.65682,
+          "join_metric_mean": 0.49989,
+          "JRN": 0.761076
+        },
+        "user-churn_6-10": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "6-10",
+          "fan_out_midpoint": 8,
+          "n_train_in_bucket": 1392,
+          "n_val": 349,
+          "base_metric_mean": 0.61103,
+          "join_metric_mean": 0.571105,
+          "JRN": 0.934659
+        },
+        "user-churn_11-50": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "11-50",
+          "fan_out_midpoint": 30,
+          "n_train_in_bucket": 2987,
+          "n_val": 748,
+          "base_metric_mean": 0.52804,
+          "join_metric_mean": 0.548062,
+          "JRN": 1.037917
+        },
+        "user-churn_51-100": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "51-100",
+          "fan_out_midpoint": 75,
+          "n_train_in_bucket": 726,
+          "n_val": 181,
+          "base_metric_mean": 0.468721,
+          "join_metric_mean": 0.477344,
+          "JRN": 1.018395
+        },
+        "user-churn_101-500": {
+          "task": "user-churn",
+          "join": "J1_txn_to_customer",
+          "fan_out_bucket": "101-500",
+          "fan_out_midpoint": 250,
+          "n_train_in_bucket": 348,
+          "n_val": 87,
+          "base_metric_mean": 0.478814,
+          "join_metric_mean": 0.554681,
+          "JRN": 1.158449
+        },
+        "item-sales_1": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "1",
+          "fan_out_midpoint": 1,
+          "n_train_in_bucket": 24,
+          "n_val": 6,
+          "base_metric_mean": 13.632994,
+          "join_metric_mean": 76.768174,
+          "JRN": 5.631058
+        },
+        "item-sales_2-5": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "2-5",
+          "fan_out_midpoint": 3.5,
+          "n_train_in_bucket": 242,
+          "n_val": 5,
+          "base_metric_mean": 72.885787,
+          "join_metric_mean": 49.638597,
+          "JRN": 0.681046
+        },
+        "item-sales_6-10": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "6-10",
+          "fan_out_midpoint": 8,
+          "n_train_in_bucket": 412,
+          "n_val": 7,
+          "base_metric_mean": 48.940398,
+          "join_metric_mean": 99.091027,
+          "JRN": 2.024729
+        },
+        "item-sales_11-50": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "11-50",
+          "fan_out_midpoint": 30,
+          "n_train_in_bucket": 4141,
+          "n_val": 71,
+          "base_metric_mean": 21.280294,
+          "join_metric_mean": 48.677661,
+          "JRN": 2.287452
+        },
+        "item-sales_51-100": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "51-100",
+          "fan_out_midpoint": 75,
+          "n_train_in_bucket": 4649,
+          "n_val": 73,
+          "base_metric_mean": 11.896003,
+          "join_metric_mean": 45.171271,
+          "JRN": 3.79718
+        },
+        "item-sales_101-500": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "101-500",
+          "fan_out_midpoint": 250,
+          "n_train_in_bucket": 20165,
+          "n_val": 368,
+          "base_metric_mean": 9.782045,
+          "join_metric_mean": 22.805602,
+          "JRN": 2.331374
+        },
+        "item-sales_501-1000": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "501-1000",
+          "fan_out_midpoint": 750,
+          "n_train_in_bucket": 8526,
+          "n_val": 195,
+          "base_metric_mean": 7.992095,
+          "join_metric_mean": 8.366051,
+          "JRN": 1.046791
+        },
+        "item-sales_1001+": {
+          "task": "item-sales",
+          "join": "J2_txn_to_article",
+          "fan_out_bucket": "1001+",
+          "fan_out_midpoint": 1500,
+          "n_train_in_bucket": 7123,
+          "n_val": 257,
+          "base_metric_mean": 6.60554,
+          "join_metric_mean": 1.922551,
+          "JRN": 0.291051
+        }
+      },
+      "training_free_baselines": {
+        "user-churn": {
+          "correlations": {
+            "txn_price_mean": {
+              "pearson": -0.004563,
+              "spearman": -0.032081
+            },
+            "txn_price_std": {
+              "pearson": -0.087842,
+              "spearman": -0.120313
+            },
+            "txn_price_min": {
+              "pearson": 0.095243,
+              "spearman": 0.142657
+            },
+            "txn_price_max": {
+              "pearson": -0.152311,
+              "spearman": -0.157058
+            },
+            "txn_count": {
+              "pearson": -0.253104,
+              "spearman": -0.209382
+            },
+            "txn_channel_mean": {
+              "pearson": 0.021193,
+              "spearman": 0.056787
+            }
+          },
+          "max_abs_spearman": 0.209382,
+          "MI_parent_only": 0.008789,
+          "MI_parent_plus_agg": 0.091449,
+          "MI_ratio": 10.404598,
+          "mean_fan_out": 22.99,
+          "median_fan_out": 9.0,
+          "fan_out_target_spearman": -0.209382
+        },
+        "item-sales": {
+          "correlations": {
+            "txn_price_mean": {
+              "pearson": 0.287334,
+              "spearman": 0.551018
+            },
+            "txn_price_std": {
+              "pearson": 0.306066,
+              "spearman": 0.599731
+            },
+            "txn_price_min": {
+              "pearson": 0.146704,
+              "spearman": 0.328131
+            },
+            "txn_price_max": {
+              "pearson": 0.327463,
+              "spearman": 0.626301
+            },
+            "txn_count": {
+              "pearson": 0.629399,
+              "spearman": 0.769188
+            },
+            "txn_channel_mean": {
+              "pearson": 0.067937,
+              "spearman": 0.015933
+            }
+          },
+          "max_abs_spearman": 0.769188,
+          "MI_parent_only": 2.491687,
+          "MI_parent_plus_agg": 10.999536,
+          "MI_ratio": 4.414493,
+          "mean_fan_out": 615.38,
+          "median_fan_out": 314.0,
+          "fan_out_target_spearman": 0.64111
+        }
+      },
+      "analysis": {
+        "jrn_decorrelation_from_fanout": {
+          "user-churn": {
+            "n_buckets": 6,
+            "spearman_jrn_vs_fanout": 0.9429,
+            "p_value": 0.0048,
+            "bucket_jrns": {
+              "1": 0.644889,
+              "2-5": 0.761076,
+              "6-10": 0.934659,
+              "11-50": 1.037917,
+              "51-100": 1.018395,
+              "101-500": 1.158449
+            },
+            "interpretation": "|\u03c1|=0.94: JRN strongly correlates with fan-out"
+          },
+          "item-sales": {
+            "n_buckets": 8,
+            "spearman_jrn_vs_fanout": -0.4286,
+            "p_value": 0.2894,
+            "bucket_jrns": {
+              "1": 5.631058,
+              "2-5": 0.681046,
+              "6-10": 2.024729,
+              "11-50": 2.287452,
+              "51-100": 3.79718,
+              "101-500": 2.331374,
+              "501-1000": 1.046791,
+              "1001+": 0.291051
+            },
+            "interpretation": "|\u03c1|=0.43: JRN moderately correlates with fan-out"
+          }
+        },
+        "training_free_vs_probe_comparison": {
+          "task_rankings": [
+            {
+              "task": "user-churn",
+              "probe_JRN": 3.833333,
+              "MI_ratio": 10.404598,
+              "max_abs_corr": 0.209382,
+              "mean_fan_out": 22.99
+            },
+            {
+              "task": "item-sales",
+              "probe_JRN": 0.625281,
+              "MI_ratio": 4.414493,
+              "max_abs_corr": 0.769188,
+              "mean_fan_out": 615.38
+            }
+          ],
+          "ranking_agreement": {
+            "probe_vs_MI": "agree",
+            "probe_vs_correlation": "disagree",
+            "probe_vs_fan_out": "disagree"
+          }
+        },
+        "key_findings": [
+          "user-churn (J1_txn_to_customer): JRN=3.8333 \u2014 join helps",
+          "item-sales (J2_txn_to_article): JRN=0.6253 \u2014 join hurts",
+          "user-churn: JRN-fanout \u03c1=0.94 \u2192 correlated with fan-out",
+          "item-sales: JRN-fanout \u03c1=-0.43 \u2192 decorrelated (JRN captures more than cardinality)"
+        ]
+      }
+    },
+    "datasets": []
+  },
+  "exp4": {
+    "metadata": {
+      "dataset": "rel-f1",
+      "num_joins": 13,
+      "num_tasks_evaluated": 6,
+      "num_join_task_pairs": 19,
+      "model_probe_config": {
+        "hidden": [
+          32,
+          16
+        ],
+        "epochs": 50,
+        "seeds": 3
+      },
+      "model_gt_config": {
+        "hidden": [
+          128,
+          64,
+          32
+        ],
+        "epochs": 200,
+        "seeds": 3
+      }
+    },
+    "datasets": [
+      {
+        "dataset": "rel-f1",
+        "examples": [
+          {
+            "input": "{\"join\": \"standings\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 35.187734668335416}",
+            "output": "{\"jrn_gt_mean\": 1.0928010576075635, \"jrn_gt_std\": 0.002093349348415716, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6597974300831444}",
+            "metadata_join_idx": 4,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_source_table": "standings",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 11411,
+            "metadata_n_val": 566,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "35.187734668335416",
+            "predict_proxy_correlation": "0.33123598067111604",
+            "predict_proxy_MI": "0.057125037510007776",
+            "predict_proxy_entropy_reduction": "0.016738349364746545",
+            "predict_proxy_homophily": "0.15707556535264722",
+            "predict_jrn_probe_gbm": "1.1848520080400424",
+            "predict_jrn_probe_mlp": "1.8638087594227528"
+          },
+          {
+            "input": "{\"join\": \"qualifying\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 34.888888888888886}",
+            "output": "{\"jrn_gt_mean\": 1.0898866276740644, \"jrn_gt_std\": 0.00019829130151058968, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6580377928949357}",
+            "metadata_join_idx": 8,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_source_table": "qualifying",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 11411,
+            "metadata_n_val": 566,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "34.888888888888886",
+            "predict_proxy_correlation": "0.1332531350659518",
+            "predict_proxy_MI": "0.026846967151428393",
+            "predict_proxy_entropy_reduction": "-0.005700069787449646",
+            "predict_proxy_homophily": "0.04986714180214572",
+            "predict_jrn_probe_gbm": "1.056812359594845",
+            "predict_jrn_probe_mlp": "1.7177501849141523"
+          },
+          {
+            "input": "{\"join\": \"results\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 25.214640198511166}",
+            "output": "{\"jrn_gt_mean\": 1.095304863392356, \"jrn_gt_std\": 0.0003266866923784075, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6613091458805744}",
+            "metadata_join_idx": 11,
+            "metadata_task_name": "rel-f1/driver-dnf",
+            "metadata_source_table": "results",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 11411,
+            "metadata_n_val": 566,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "25.214640198511166",
+            "predict_proxy_correlation": "0.3914747201380485",
+            "predict_proxy_MI": "0.055778622035153345",
+            "predict_proxy_entropy_reduction": "0.017530697340794064",
+            "predict_proxy_homophily": "0.14732738616814933",
+            "predict_jrn_probe_gbm": "1.1253891932369053",
+            "predict_jrn_probe_mlp": "1.9664636545331504"
+          },
+          {
+            "input": "{\"join\": \"standings\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-top3\", \"task_type\": \"binary_classification\", \"fanout_mean\": 35.187734668335416}",
+            "output": "{\"jrn_gt_mean\": 1.119517471640566, \"jrn_gt_std\": 0.003799253836902666, \"M_base_gt\": 0.5894208429640512, \"M_join_gt\": 0.6598669318473659}",
+            "metadata_join_idx": 4,
+            "metadata_task_name": "rel-f1/driver-top3",
+            "metadata_source_table": "standings",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 1353,
+            "metadata_n_val": 588,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "35.187734668335416",
+            "predict_proxy_correlation": "0.5514754652631508",
+            "predict_proxy_MI": "0.1491486473626217",
+            "predict_proxy_entropy_reduction": "0.025809602616889776",
+            "predict_proxy_homophily": "0.2749827406982387",
+            "predict_jrn_probe_gbm": "1.085397856157986",
+            "predict_jrn_probe_mlp": "1.558392901456872"
+          },
+          {
+            "input": "{\"join\": \"qualifying\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-top3\", \"task_type\": \"binary_classification\", \"fanout_mean\": 34.888888888888886}",
+            "output": "{\"jrn_gt_mean\": 1.1006500250789102, \"jrn_gt_std\": 5.732029820601042e-05, \"M_base_gt\": 0.5894208429640512, \"M_join_gt\": 0.6487460655904154}",
+            "metadata_join_idx": 8,
+            "metadata_task_name": "rel-f1/driver-top3",
+            "metadata_source_table": "qualifying",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 1353,
+            "metadata_n_val": 588,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "34.888888888888886",
+            "predict_proxy_correlation": "0.4473995291196059",
+            "predict_proxy_MI": "0.14500304940343875",
+            "predict_proxy_entropy_reduction": "0.022926235298797226",
+            "predict_proxy_homophily": "0.20849551803697428",
+            "predict_jrn_probe_gbm": "1.1757377178806703",
+            "predict_jrn_probe_mlp": "1.3448918694807432"
+          },
+          {
+            "input": "{\"join\": \"results\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-top3\", \"task_type\": \"binary_classification\", \"fanout_mean\": 25.214640198511166}",
+            "output": "{\"jrn_gt_mean\": 1.0585073235483364, \"jrn_gt_std\": 0.001435584551263745, \"M_base_gt\": 0.5894208429640512, \"M_join_gt\": 0.6239062789294821}",
+            "metadata_join_idx": 11,
+            "metadata_task_name": "rel-f1/driver-top3",
+            "metadata_source_table": "results",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "binary_classification",
+            "metadata_n_train": 1353,
+            "metadata_n_val": 588,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "25.214640198511166",
+            "predict_proxy_correlation": "0.5552897238163426",
+            "predict_proxy_MI": "0.1470799371084546",
+            "predict_proxy_entropy_reduction": "0.03070612126851463",
+            "predict_proxy_homophily": "0.2651702137383877",
+            "predict_jrn_probe_gbm": "1.085022263735069",
+            "predict_jrn_probe_mlp": "1.4883637882300247"
+          },
+          {
+            "input": "{\"join\": \"standings\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-position\", \"task_type\": \"regression\", \"fanout_mean\": 35.187734668335416}",
+            "output": "{\"jrn_gt_mean\": 1.1443825406038837, \"jrn_gt_std\": 0.0012382127516557648, \"M_base_gt\": 0.010880393293312288, \"M_join_gt\": 0.155262933897196}",
+            "metadata_join_idx": 4,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_source_table": "standings",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 7453,
+            "metadata_n_val": 499,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "35.187734668335416",
+            "predict_proxy_correlation": "0.4459695683108337",
+            "predict_proxy_MI": "0.1596275437504067",
+            "predict_proxy_entropy_reduction": "0.057078948257147266",
+            "predict_proxy_homophily": "0.23352400588486474",
+            "predict_jrn_probe_gbm": "1.2378108306864064",
+            "predict_jrn_probe_mlp": "1.1854769704647792"
+          },
+          {
+            "input": "{\"join\": \"qualifying\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-position\", \"task_type\": \"regression\", \"fanout_mean\": 34.888888888888886}",
+            "output": "{\"jrn_gt_mean\": 1.0427789912050107, \"jrn_gt_std\": 0.0034137908461146504, \"M_base_gt\": 0.010880393293312288, \"M_join_gt\": 0.05365938449832297}",
+            "metadata_join_idx": 8,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_source_table": "qualifying",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 7453,
+            "metadata_n_val": 499,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "34.888888888888886",
+            "predict_proxy_correlation": "0.20132839163514482",
+            "predict_proxy_MI": "0.07923531380817449",
+            "predict_proxy_entropy_reduction": "0.000861404278244049",
+            "predict_proxy_homophily": "0.06756246512305389",
+            "predict_jrn_probe_gbm": "1.0802831813903353",
+            "predict_jrn_probe_mlp": "1.1690992117195773"
+          },
+          {
+            "input": "{\"join\": \"results\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-position\", \"task_type\": \"regression\", \"fanout_mean\": 25.214640198511166}",
+            "output": "{\"jrn_gt_mean\": 1.203697106185065, \"jrn_gt_std\": 0.0005539150824573698, \"M_base_gt\": 0.010880393293312288, \"M_join_gt\": 0.21457749947837723}",
+            "metadata_join_idx": 11,
+            "metadata_task_name": "rel-f1/driver-position",
+            "metadata_source_table": "results",
+            "metadata_target_table": "drivers",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 7453,
+            "metadata_n_val": 499,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "25.214640198511166",
+            "predict_proxy_correlation": "0.6535811500291382",
+            "predict_proxy_MI": "0.16456161564155516",
+            "predict_proxy_entropy_reduction": "0.07232508268863172",
+            "predict_proxy_homophily": "0.21237666182973075",
+            "predict_jrn_probe_gbm": "1.2311659407948519",
+            "predict_jrn_probe_mlp": "1.2406520824766551"
+          },
+          {
+            "input": "{\"join\": \"constructor_standings\\u2192races via raceId\", \"task\": \"ss_races\", \"task_type\": \"regression\", \"fanout_mean\": 13.452380952380953}",
+            "output": "{\"jrn_gt_mean\": 0.9992993980360733, \"jrn_gt_std\": 0.00010103485720141461, \"M_base_gt\": 0.9995776344794244, \"M_join_gt\": 0.9988773284256109}",
+            "metadata_join_idx": 1,
+            "metadata_task_name": "ss_races",
+            "metadata_source_table": "constructor_standings",
+            "metadata_target_table": "races",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 731,
+            "metadata_n_val": 89,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "13.452380952380953",
+            "predict_proxy_correlation": "0.8817983476771524",
+            "predict_proxy_MI": "0.3941668168794024",
+            "predict_proxy_entropy_reduction": "-0.3760432055858898",
+            "predict_proxy_homophily": "0.5636460597641418",
+            "predict_jrn_probe_gbm": "0.9993374294550627",
+            "predict_jrn_probe_mlp": "1.1613422297280511"
+          },
+          {
+            "input": "{\"join\": \"standings\\u2192races via raceId\", \"task\": \"ss_races\", \"task_type\": \"regression\", \"fanout_mean\": 34.28658536585366}",
+            "output": "{\"jrn_gt_mean\": 0.9991988851809531, \"jrn_gt_std\": 0.00023541014971690475, \"M_base_gt\": 0.9995776344794244, \"M_join_gt\": 0.9987768580236551}",
+            "metadata_join_idx": 3,
+            "metadata_task_name": "ss_races",
+            "metadata_source_table": "standings",
+            "metadata_target_table": "races",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 731,
+            "metadata_n_val": 89,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "34.28658536585366",
+            "predict_proxy_correlation": "0.8809999459998177",
+            "predict_proxy_MI": "0.4512568084790432",
+            "predict_proxy_entropy_reduction": "-0.34720821685987346",
+            "predict_proxy_homophily": "0.5824977799996783",
+            "predict_jrn_probe_gbm": "0.9990995051685898",
+            "predict_jrn_probe_mlp": "1.1429478095642676"
+          },
+          {
+            "input": "{\"join\": \"constructor_results\\u2192races via raceId\", \"task\": \"ss_races\", \"task_type\": \"regression\", \"fanout_mean\": 12.428005284015851}",
+            "output": "{\"jrn_gt_mean\": 0.9999999999999999, \"jrn_gt_std\": 0.0, \"M_base_gt\": 0.9995776344794244, \"M_join_gt\": 0.9995776344794244}",
+            "metadata_join_idx": 5,
+            "metadata_task_name": "ss_races",
+            "metadata_source_table": "constructor_results",
+            "metadata_target_table": "races",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 731,
+            "metadata_n_val": 89,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "12.428005284015851",
+            "predict_proxy_correlation": "0.8250473280991187",
+            "predict_proxy_MI": "0.19657337179854503",
+            "predict_proxy_entropy_reduction": "-0.4652273665169529",
+            "predict_proxy_homophily": "0.42803393920065147",
+            "predict_jrn_probe_gbm": "1.0",
+            "predict_jrn_probe_mlp": "1.057094452000662"
+          },
+          {
+            "input": "{\"join\": \"qualifying\\u2192races via raceId\", \"task\": \"ss_races\", \"task_type\": \"regression\", \"fanout_mean\": 21.597883597883598}",
+            "output": "{\"jrn_gt_mean\": 0.9999999999999999, \"jrn_gt_std\": 0.0, \"M_base_gt\": 0.9995776344794244, \"M_join_gt\": 0.9995776344794244}",
+            "metadata_join_idx": 7,
+            "metadata_task_name": "ss_races",
+            "metadata_source_table": "qualifying",
+            "metadata_target_table": "races",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 731,
+            "metadata_n_val": 89,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "21.597883597883598",
+            "predict_proxy_correlation": "0.30892009526985803",
+            "predict_proxy_MI": "0.04574922585127636",
+            "predict_proxy_entropy_reduction": "-0.6361326651637229",
+            "predict_proxy_homophily": "0.14171348704776437",
+            "predict_jrn_probe_gbm": "1.0",
+            "predict_jrn_probe_mlp": "1.2310555800894916"
+          },
+          {
+            "input": "{\"join\": \"results\\u2192races via raceId\", \"task\": \"ss_races\", \"task_type\": \"regression\", \"fanout_mean\": 24.784146341463416}",
+            "output": "{\"jrn_gt_mean\": 0.998424346060388, \"jrn_gt_std\": 9.358413741994525e-05, \"M_base_gt\": 0.9995776344794244, \"M_join_gt\": 0.998002646041709}",
+            "metadata_join_idx": 10,
+            "metadata_task_name": "ss_races",
+            "metadata_source_table": "results",
+            "metadata_target_table": "races",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 731,
+            "metadata_n_val": 89,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "24.784146341463416",
+            "predict_proxy_correlation": "0.8809999459998177",
+            "predict_proxy_MI": "0.05848859330203794",
+            "predict_proxy_entropy_reduction": "-0.7415877588450054",
+            "predict_proxy_homophily": "0.26043316944476375",
+            "predict_jrn_probe_gbm": "0.9984438870759762",
+            "predict_jrn_probe_mlp": "0.9505820484788426"
+          },
+          {
+            "input": "{\"join\": \"constructor_standings\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"task_type\": \"regression\", \"fanout_mean\": 69.18367346938776}",
+            "output": "{\"jrn_gt_mean\": 2.6666549710859875, \"jrn_gt_std\": 0.0039079417057149915, \"M_base_gt\": -0.6726542972244532, \"M_join_gt\": 0.9940006738615339}",
+            "metadata_join_idx": 2,
+            "metadata_task_name": "ss_constructors",
+            "metadata_source_table": "constructor_standings",
+            "metadata_target_table": "constructors",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 102,
+            "metadata_n_val": 23,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "69.18367346938776",
+            "predict_proxy_correlation": "1.0",
+            "predict_proxy_MI": "1.506776142632391",
+            "predict_proxy_entropy_reduction": "1.3175445199967812",
+            "predict_proxy_homophily": "0.3784307440779263",
+            "predict_jrn_probe_gbm": "2.2638430611302787",
+            "predict_jrn_probe_mlp": "1.0426608968627131"
+          },
+          {
+            "input": "{\"join\": \"constructor_results\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"task_type\": \"regression\", \"fanout_mean\": 57.717791411042946}",
+            "output": "{\"jrn_gt_mean\": 2.616837736786156, \"jrn_gt_std\": 0.007911022069859852, \"M_base_gt\": -0.6726542972244532, \"M_join_gt\": 0.9441834395617028}",
+            "metadata_join_idx": 6,
+            "metadata_task_name": "ss_constructors",
+            "metadata_source_table": "constructor_results",
+            "metadata_target_table": "constructors",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 102,
+            "metadata_n_val": 23,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "57.717791411042946",
+            "predict_proxy_correlation": "0.9982547485563745",
+            "predict_proxy_MI": "0.9496507539326472",
+            "predict_proxy_entropy_reduction": "0.7813124086192237",
+            "predict_proxy_homophily": "0.28154515198611924",
+            "predict_jrn_probe_gbm": "2.216040325698318",
+            "predict_jrn_probe_mlp": "1.0506420298207433"
+          },
+          {
+            "input": "{\"join\": \"qualifying\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"task_type\": \"regression\", \"fanout_mean\": 127.5625}",
+            "output": "{\"jrn_gt_mean\": 2.2864729172443528, \"jrn_gt_std\": 0.016256391215807423, \"M_base_gt\": -0.6726542972244532, \"M_join_gt\": 0.6138186200198994}",
+            "metadata_join_idx": 9,
+            "metadata_task_name": "ss_constructors",
+            "metadata_source_table": "qualifying",
+            "metadata_target_table": "constructors",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 102,
+            "metadata_n_val": 23,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "127.5625",
+            "predict_proxy_correlation": "0.7819118859039876",
+            "predict_proxy_MI": "0.17208066731657098",
+            "predict_proxy_entropy_reduction": "0.14083064905752352",
+            "predict_proxy_homophily": "0.45115101554608705",
+            "predict_jrn_probe_gbm": "1.9829615113817356",
+            "predict_jrn_probe_mlp": "1.0560003998875283"
+          },
+          {
+            "input": "{\"join\": \"results\\u2192constructors via constructorId\", \"task\": \"ss_constructors\", \"task_type\": \"regression\", \"fanout_mean\": 102.12562814070351}",
+            "output": "{\"jrn_gt_mean\": 2.6536181241751104, \"jrn_gt_std\": 0.008054733200923404, \"M_base_gt\": -0.6726542972244532, \"M_join_gt\": 0.9809638269506572}",
+            "metadata_join_idx": 12,
+            "metadata_task_name": "ss_constructors",
+            "metadata_source_table": "results",
+            "metadata_target_table": "constructors",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 102,
+            "metadata_n_val": 23,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "102.12562814070351",
+            "predict_proxy_correlation": "0.9781834973268317",
+            "predict_proxy_MI": "0.6452145050767689",
+            "predict_proxy_entropy_reduction": "0.6028132635560542",
+            "predict_proxy_homophily": "0.2479117225549076",
+            "predict_jrn_probe_gbm": "2.244726324586876",
+            "predict_jrn_probe_mlp": "1.093638141286597"
+          },
+          {
+            "input": "{\"join\": \"races\\u2192circuits via circuitId\", \"task\": \"ss_circuits\", \"task_type\": \"regression\", \"fanout_mean\": 12.424242424242424}",
+            "output": "{\"jrn_gt_mean\": 2.247916243391098, \"jrn_gt_std\": 0.0008063142987418137, \"M_base_gt\": -0.2549045483001166, \"M_join_gt\": 0.9930116950909816}",
+            "metadata_join_idx": 0,
+            "metadata_task_name": "ss_circuits",
+            "metadata_source_table": "races",
+            "metadata_target_table": "circuits",
+            "metadata_task_type": "regression",
+            "metadata_n_train": 49,
+            "metadata_n_val": 7,
+            "metadata_model_type": "GBM+MLP",
+            "predict_proxy_fanout": "12.424242424242424",
+            "predict_proxy_correlation": "1.0",
+            "predict_proxy_MI": "1.0668233110392724",
+            "predict_proxy_entropy_reduction": "0.7571582639519984",
+            "predict_proxy_homophily": "0.14828796504115113",
+            "predict_jrn_probe_gbm": "2.816013517161887",
+            "predict_jrn_probe_mlp": "1.4409727440964772"
+          },
+          {
+            "input": "{\"type\": \"spearman_correlation_summary\", \"n_pairs\": 19}",
+            "output": "{\"probe_gbm_vs_gt_rho\": 0.9596136962247587, \"probe_gbm_vs_gt_pval\": 8.56504989950266e-11, \"probe_mlp_vs_gt_rho\": -0.06669592568350946, \"probe_mlp_vs_gt_pval\": 0.7861712279616262, \"best_probe_type\": \"GBM\", \"probe_vs_gt_rho\": 0.9596136962247587, \"probe_vs_gt_pval\": 8.56504989950266e-11, \"best_training_free_proxy\": \"entropy_reduction\", \"best_training_free_rho\": 0.9451514731728905, \"best_training_free_pval\": 1.0993720583767862e-09, \"probe_outperforms_all_free\": true, \"steiger_z_probe_vs_best_free\": 0.0, \"steiger_z_pval\": 1.0}",
+            "metadata_type": "summary",
+            "predict_probe_justified": "True",
+            "predict_best_alternative": "entropy_reduction"
+          }
+        ]
+      }
+    ]
+  }
+}

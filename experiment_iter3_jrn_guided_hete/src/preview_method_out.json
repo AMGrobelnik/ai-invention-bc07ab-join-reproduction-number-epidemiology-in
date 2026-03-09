@@ -1,0 +1,1148 @@
+{
+  "metadata": {
+    "title": "JRN-Guided Heterogeneous Architecture on rel-f1",
+    "summary": "JRN estimation across 5 tasks and 13 FK joins on rel-f1. JRN range: 0.657, critical joins exist: True. Win rate vs uniform-mean: 40%, vs uniform-rich: 20%, vs top-k: 60%. Average gap to oracle: 6.7%.",
+    "method": "JRN-guided heterogeneous architecture with LightGBM probes",
+    "jrn_matrix": {
+      "rel-f1/driver-dnf": {
+        "0": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "jrn": 1.0828,
+          "category": "CRITICAL",
+          "base_metric": 0.5905,
+          "join_metric": 0.6395,
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "jrn": 1.2812,
+          "category": "HIGH",
+          "base_metric": 0.5905,
+          "join_metric": 0.7566,
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "jrn": 1.1288,
+          "category": "CRITICAL",
+          "base_metric": 0.5905,
+          "join_metric": 0.6666,
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "jrn": 1.2978,
+          "category": "HIGH",
+          "base_metric": 0.5905,
+          "join_metric": 0.7664,
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "jrn": 1.1096,
+          "category": "CRITICAL",
+          "base_metric": 0.5905,
+          "join_metric": 0.6553,
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "jrn": 1.3129,
+          "category": "HIGH",
+          "base_metric": 0.5905,
+          "join_metric": 0.7753,
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5905,
+          "join_metric": 0.5905,
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/driver-top3": {
+        "0": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "jrn": 1.09,
+          "category": "CRITICAL",
+          "base_metric": 0.5433,
+          "join_metric": 0.5922,
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "jrn": 1.5387,
+          "category": "HIGH",
+          "base_metric": 0.5433,
+          "join_metric": 0.836,
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "jrn": 1.273,
+          "category": "HIGH",
+          "base_metric": 0.5433,
+          "join_metric": 0.6917,
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "jrn": 1.5495,
+          "category": "HIGH",
+          "base_metric": 0.5433,
+          "join_metric": 0.8419,
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "jrn": 1.2435,
+          "category": "HIGH",
+          "base_metric": 0.5433,
+          "join_metric": 0.6756,
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "jrn": 1.4577,
+          "category": "HIGH",
+          "base_metric": 0.5433,
+          "join_metric": 0.792,
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.5433,
+          "join_metric": 0.5433,
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/driver-position": {
+        "0": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "jrn": 1.0033,
+          "category": "CRITICAL",
+          "base_metric": 0.2648,
+          "join_metric": 0.2657,
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "jrn": 1.2478,
+          "category": "HIGH",
+          "base_metric": 0.2648,
+          "join_metric": 0.3304,
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "jrn": 1.0839,
+          "category": "CRITICAL",
+          "base_metric": 0.2648,
+          "join_metric": 0.287,
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "jrn": 1.2097,
+          "category": "HIGH",
+          "base_metric": 0.2648,
+          "join_metric": 0.3204,
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "jrn": 1.0383,
+          "category": "CRITICAL",
+          "base_metric": 0.2648,
+          "join_metric": 0.275,
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "jrn": 1.3361,
+          "category": "HIGH",
+          "base_metric": 0.2648,
+          "join_metric": 0.3538,
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.2648,
+          "join_metric": 0.2648,
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/qualifying-position": {
+        "0": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "jrn": 0.9751,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3263,
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "jrn": 0.9556,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3198,
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "jrn": 0.9211,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3083,
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "jrn": 0.9864,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3301,
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3347,
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "jrn": 0.8929,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.2988,
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "jrn": 0.9735,
+          "category": "CRITICAL",
+          "base_metric": 0.3347,
+          "join_metric": 0.3258,
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/results-position": {
+        "0": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "jrn": 1.0005,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.6114,
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "jrn": 1.0182,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 41.3329,
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "jrn": 1.0089,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.9544,
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "jrn": 1.0,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "jrn": 1.027,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 41.6896,
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "jrn": 1.0231,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 41.5291,
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "jrn": 0.9972,
+          "category": "CRITICAL",
+          "base_metric": 40.5924,
+          "join_metric": 40.4769,
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "jrn": 1.0,
+          "category": "NA",
+          "base_metric": 40.5924,
+          "join_metric": 40.5924,
+          "join_label": "results(constructorId)→constructors"
+        }
+      }
+    },
+    "configuration_results": {
+      "rel-f1/driver-dnf": {
+        "jrn_guided": {
+          "val_mean": 0.7646439909297053,
+          "val_std": 1.1102230246251565e-16
+        },
+        "uniform_mean": {
+          "val_mean": 0.7770340136054422,
+          "val_std": 0.0
+        },
+        "uniform_rich": {
+          "val_mean": 0.7669115646258503,
+          "val_std": 0.0
+        },
+        "top_k": {
+          "val_mean": 0.7762902494331066,
+          "val_std": 0.0
+        },
+        "oracle": {
+          "val_mean": 0.7815691609977323,
+          "val_std": 1.1102230246251565e-16
+        }
+      },
+      "rel-f1/driver-top3": {
+        "jrn_guided": {
+          "val_mean": 0.8468671050509755,
+          "val_std": 0.0
+        },
+        "uniform_mean": {
+          "val_mean": 0.8493576535091648,
+          "val_std": 0.0
+        },
+        "uniform_rich": {
+          "val_mean": 0.8664510580351544,
+          "val_std": 0.0
+        },
+        "top_k": {
+          "val_mean": 0.8439644514522225,
+          "val_std": 1.1102230246251565e-16
+        },
+        "oracle": {
+          "val_mean": 0.8442690509039436,
+          "val_std": 1.1102230246251565e-16
+        }
+      },
+      "rel-f1/driver-position": {
+        "jrn_guided": {
+          "val_mean": 0.354612739621366,
+          "val_std": 0.0
+        },
+        "uniform_mean": {
+          "val_mean": 0.3534883303546035,
+          "val_std": 0.0
+        },
+        "uniform_rich": {
+          "val_mean": 0.3510665288185624,
+          "val_std": 0.0
+        },
+        "top_k": {
+          "val_mean": 0.353837365345629,
+          "val_std": 5.551115123125783e-17
+        },
+        "oracle": {
+          "val_mean": 0.35436867613777157,
+          "val_std": 0.0
+        }
+      },
+      "rel-f1/qualifying-position": {
+        "jrn_guided": {
+          "val_mean": 0.23704227535635755,
+          "val_std": 0.0
+        },
+        "uniform_mean": {
+          "val_mean": 0.2940260007469325,
+          "val_std": 0.0
+        },
+        "uniform_rich": {
+          "val_mean": 0.23704227535635755,
+          "val_std": 0.0
+        },
+        "top_k": {
+          "val_mean": 0.31475072512696817,
+          "val_std": 0.0
+        },
+        "oracle": {
+          "val_mean": 0.3346959887484335,
+          "val_std": 5.551115123125783e-17
+        }
+      },
+      "rel-f1/results-position": {
+        "jrn_guided": {
+          "val_mean": 45.43371223780079,
+          "val_std": 0.0
+        },
+        "uniform_mean": {
+          "val_mean": 44.43823304476984,
+          "val_std": 0.0
+        },
+        "uniform_rich": {
+          "val_mean": 45.43371223780079,
+          "val_std": 0.0
+        },
+        "top_k": {
+          "val_mean": 44.89751989865412,
+          "val_std": 0.0
+        },
+        "oracle": {
+          "val_mean": 46.31479374397711,
+          "val_std": 0.0
+        }
+      }
+    },
+    "win_rates": {
+      "jrn_guided_vs_uniform_mean": 0.4,
+      "jrn_guided_vs_uniform_rich": 0.2,
+      "jrn_guided_vs_top_k": 0.6
+    },
+    "oracle_analysis": {
+      "rel-f1/driver-dnf": {
+        "best_subset": [
+          4,
+          8,
+          10
+        ],
+        "best_subset_labels": [
+          "standings→drivers",
+          "qualifying→drivers",
+          "results→races"
+        ],
+        "oracle_val": 0.7815691609977323,
+        "jrn_guided_val": 0.7646439909297053,
+        "gap_pct": 2.1655370903351416
+      },
+      "rel-f1/driver-top3": {
+        "best_subset": [
+          7,
+          8,
+          10
+        ],
+        "best_subset_labels": [
+          "qualifying→races",
+          "qualifying→drivers",
+          "results→races"
+        ],
+        "oracle_val": 0.8442690509039436,
+        "jrn_guided_val": 0.8468671050509755,
+        "gap_pct": 0.30772822292257057
+      },
+      "rel-f1/driver-position": {
+        "best_subset": [
+          3,
+          8,
+          11
+        ],
+        "best_subset_labels": [
+          "standings→races",
+          "qualifying→drivers",
+          "results→drivers"
+        ],
+        "oracle_val": 0.35436867613777157,
+        "jrn_guided_val": 0.354612739621366,
+        "gap_pct": 0.06887275880432835
+      },
+      "rel-f1/qualifying-position": {
+        "best_subset": [
+          1
+        ],
+        "best_subset_labels": [
+          "constructor_standings→races"
+        ],
+        "oracle_val": 0.3346959887484335,
+        "jrn_guided_val": 0.23704227535635755,
+        "gap_pct": 29.17684008023027
+      },
+      "rel-f1/results-position": {
+        "best_subset": [
+          1
+        ],
+        "best_subset_labels": [
+          "constructor_standings→races"
+        ],
+        "oracle_val": 46.31479374397711,
+        "jrn_guided_val": 45.43371223780079,
+        "gap_pct": 1.9023759687818973
+      }
+    },
+    "join_classifications": {
+      "rel-f1/driver-dnf": {
+        "0": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "category": "CRITICAL",
+          "jrn": 1.0828,
+          "agg_strategy": "rich",
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "category": "HIGH",
+          "jrn": 1.2812,
+          "agg_strategy": "mean",
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "category": "CRITICAL",
+          "jrn": 1.1288,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "category": "HIGH",
+          "jrn": 1.2978,
+          "agg_strategy": "mean",
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "category": "CRITICAL",
+          "jrn": 1.1096,
+          "agg_strategy": "rich",
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "category": "HIGH",
+          "jrn": 1.3129,
+          "agg_strategy": "mean",
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/driver-top3": {
+        "0": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "category": "CRITICAL",
+          "jrn": 1.09,
+          "agg_strategy": "rich",
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "category": "HIGH",
+          "jrn": 1.5387,
+          "agg_strategy": "mean",
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "category": "HIGH",
+          "jrn": 1.273,
+          "agg_strategy": "mean",
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "category": "HIGH",
+          "jrn": 1.5495,
+          "agg_strategy": "mean",
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "category": "HIGH",
+          "jrn": 1.2435,
+          "agg_strategy": "mean",
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "category": "HIGH",
+          "jrn": 1.4577,
+          "agg_strategy": "mean",
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/driver-position": {
+        "0": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "category": "CRITICAL",
+          "jrn": 1.0033,
+          "agg_strategy": "rich",
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "category": "HIGH",
+          "jrn": 1.2478,
+          "agg_strategy": "mean",
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "category": "CRITICAL",
+          "jrn": 1.0839,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "category": "HIGH",
+          "jrn": 1.2097,
+          "agg_strategy": "mean",
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "category": "CRITICAL",
+          "jrn": 1.0383,
+          "agg_strategy": "rich",
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "category": "HIGH",
+          "jrn": 1.3361,
+          "agg_strategy": "mean",
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/qualifying-position": {
+        "0": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "category": "CRITICAL",
+          "jrn": 0.9751,
+          "agg_strategy": "rich",
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "category": "CRITICAL",
+          "jrn": 0.9556,
+          "agg_strategy": "rich",
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "category": "CRITICAL",
+          "jrn": 0.9211,
+          "agg_strategy": "rich",
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "category": "CRITICAL",
+          "jrn": 0.9864,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "category": "CRITICAL",
+          "jrn": 0.8929,
+          "agg_strategy": "rich",
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "category": "CRITICAL",
+          "jrn": 0.9735,
+          "agg_strategy": "rich",
+          "join_label": "results(constructorId)→constructors"
+        }
+      },
+      "rel-f1/results-position": {
+        "0": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "races(circuitId)→circuits"
+        },
+        "1": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "constructor_standings(raceId)→races"
+        },
+        "2": {
+          "category": "CRITICAL",
+          "jrn": 1.0005,
+          "agg_strategy": "rich",
+          "join_label": "constructor_standings(constructorId)→constructors"
+        },
+        "3": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "standings(raceId)→races"
+        },
+        "4": {
+          "category": "CRITICAL",
+          "jrn": 1.0182,
+          "agg_strategy": "rich",
+          "join_label": "standings(driverId)→drivers"
+        },
+        "5": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "constructor_results(raceId)→races"
+        },
+        "6": {
+          "category": "CRITICAL",
+          "jrn": 1.0089,
+          "agg_strategy": "rich",
+          "join_label": "constructor_results(constructorId)→constructors"
+        },
+        "7": {
+          "category": "CRITICAL",
+          "jrn": 1.0,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(raceId)→races"
+        },
+        "8": {
+          "category": "CRITICAL",
+          "jrn": 1.027,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(driverId)→drivers"
+        },
+        "9": {
+          "category": "CRITICAL",
+          "jrn": 1.0231,
+          "agg_strategy": "rich",
+          "join_label": "qualifying(constructorId)→constructors"
+        },
+        "10": {
+          "category": "CRITICAL",
+          "jrn": 0.9972,
+          "agg_strategy": "rich",
+          "join_label": "results(raceId)→races"
+        },
+        "11": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "results(driverId)→drivers"
+        },
+        "12": {
+          "category": "NA",
+          "jrn": 1.0,
+          "agg_strategy": "excluded",
+          "join_label": "results(constructorId)→constructors"
+        }
+      }
+    },
+    "domain_analysis": "rel-f1/driver-dnf: HIGH=[4, 8, 11], CRITICAL=[3, 7, 10], LOW=[], NA=[0, 1, 2, 5, 6, 9, 12]\nrel-f1/driver-top3: HIGH=[4, 7, 8, 10, 11], CRITICAL=[3], LOW=[], NA=[0, 1, 2, 5, 6, 9, 12]\nrel-f1/driver-pos...",
+    "hypothesis_support": {
+      "jrn_differentiates_joins": true,
+      "jrn_guided_beats_uniform": false,
+      "jrn_guided_close_to_oracle": "False",
+      "critical_joins_exist": true
+    },
+    "tasks_evaluated": [
+      "rel-f1/driver-dnf",
+      "rel-f1/driver-top3",
+      "rel-f1/driver-position"
+    ],
+    "n_fk_joins": 13,
+    "jrn_thresholds": {
+      "HIGH": 1.15,
+      "LOW": 0.85
+    },
+    "seeds": [
+      42,
+      123,
+      7
+    ],
+    "probe_params": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "verbose": -1
+    },
+    "final_params": {
+      "n_estimators": 300,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "verbose": -1
+    },
+    "oracle_params": {
+      "n_estimators": 100,
+      "max_depth": 4,
+      "learning_rate": 0.1,
+      "verbose": -1
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"date\": \"2005-03-02T00:00:00\", \"driverId\": 30}",
+          "output": "0",
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_task_type": "clf",
+          "metadata_entity_col": "driverId",
+          "metadata_fold": 1,
+          "predict_jrn_guided": "0.679513",
+          "predict_uniform_mean": "0.666424",
+          "predict_uniform_rich": "0.660525",
+          "predict_top_k": "0.663647",
+          "predict_oracle": "0.665023"
+        },
+        {
+          "input": "{\"date\": \"2005-03-02T00:00:00\", \"driverId\": 17}",
+          "output": "1",
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_task_type": "clf",
+          "metadata_entity_col": "driverId",
+          "metadata_fold": 1,
+          "predict_jrn_guided": "0.745063",
+          "predict_uniform_mean": "0.753334",
+          "predict_uniform_rich": "0.735015",
+          "predict_top_k": "0.746316",
+          "predict_oracle": "0.74579"
+        },
+        {
+          "input": "{\"date\": \"2005-03-02T00:00:00\", \"driverId\": 14}",
+          "output": "0",
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_task_type": "clf",
+          "metadata_entity_col": "driverId",
+          "metadata_fold": 1,
+          "predict_jrn_guided": "0.82241",
+          "predict_uniform_mean": "0.821142",
+          "predict_uniform_rich": "0.827079",
+          "predict_top_k": "0.822503",
+          "predict_oracle": "0.819458"
+        }
+      ]
+    }
+  ]
+}

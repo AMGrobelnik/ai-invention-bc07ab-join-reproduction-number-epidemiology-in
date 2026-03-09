@@ -1,0 +1,13 @@
+{
+  "id": "exp_id1_it3__opus",
+  "type": "code",
+  "title": "Phase 2 GBM-Based Aggregation Sensitivity and JRN Estimation on rel-f1",
+  "summary": "Demo notebook that loads pre-computed results from Phase 2 GBM-based aggregation sensitivity analysis on the RelBench rel-f1 (Formula 1) relational database. Processes 65 join-task pairs (13 FK joins x 5 tasks) with 1365 LightGBM models. Reproduces the full statistical analysis pipeline: probe-GT Spearman correlation, quadratic and piecewise regression for inverted-U hypothesis testing, Kruskal-Wallis across JRN tertiles, and generates a 6-panel visualization with JRN/sensitivity heatmaps, scatter plots, and statistical fits. Uses mini_demo_data.json containing all 65 examples with per-pair JRN, sensitivity CoV, and aggregation performance details.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_3/gen_art/exp_id1_it3__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it3__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it3__opus/method_code_demo.ipynb"
+}

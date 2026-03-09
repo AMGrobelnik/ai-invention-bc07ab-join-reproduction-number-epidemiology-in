@@ -1,0 +1,13 @@
+{
+  "id": "exp_id3_it4__opus",
+  "type": "code",
+  "title": "JRN Multiplicative Compounding on rel-f1 + Entropy vs GBM Probe Architecture Comparison",
+  "summary": "Demo notebook for the JRN Multiplicative Compounding experiment on the rel-f1 (Formula 1) relational dataset. Part A tests whether chain JRN equals the product of individual JRNs across 10 multi-hop FK join chains. Part B compares entropy-based JRN proxy vs GBM probe rankings and evaluates 4 architecture configurations (probe-guided, entropy-guided, uniform-mean, uniform-rich) across 3 driver prediction tasks. Uses a curated 494-example subset with 9 tables, 13 FK joins, and task samples for driver-dnf, driver-top3, and driver-position tasks. LightGBM probes measure predictive signal gain from each join.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_4/gen_art/exp_id3_it4__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it4__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it4__opus/method_code_demo.ipynb"
+}

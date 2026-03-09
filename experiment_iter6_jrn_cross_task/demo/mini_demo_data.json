@@ -1,0 +1,1064 @@
+{
+  "metadata": {
+    "experiment": "JRN Cross-Task Transfer Analysis",
+    "datasets": [
+      "rel-f1",
+      "rel-stack"
+    ],
+    "config": {
+      "lgbm_params": {
+        "n_estimators": 150,
+        "max_depth": 6,
+        "learning_rate": 0.1,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "verbose": -1,
+        "n_jobs": 4
+      },
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "max_train_samples": 40000,
+      "max_val_samples": 20000,
+      "max_agg_rows": 150000
+    },
+    "summary": {
+      "rel-f1": {
+        "kendalls_W": 0.5243956043956044,
+        "mean_transfer_rho": 0.37336653467338443,
+        "same_entity_mean_rho": 0.8720930232558138,
+        "cross_entity_mean_rho": 0.24374987608553436,
+        "same_type_mean_rho": 0.33356504063800374,
+        "cross_type_mean_rho": 0.4980446733023612,
+        "num_tasks": 5,
+        "num_joins": 13,
+        "cost_recommendation": "per_task",
+        "mean_gap_pct": 14.428146708220833
+      },
+      "rel-stack": {
+        "kendalls_W": 0.20606060606060606,
+        "mean_transfer_rho": 0.20606060606060606,
+        "same_entity_mean_rho": 0.8181818181818182,
+        "cross_entity_mean_rho": -0.6954545454545455,
+        "same_type_mean_rho": 0.8181818181818182,
+        "cross_type_mean_rho": -0.6954545454545455,
+        "num_tasks": 3,
+        "num_joins": 11,
+        "cost_recommendation": "per_task",
+        "mean_gap_pct": 7.996080975718966
+      },
+      "cross_dataset_comparison": {
+        "rel_f1_W_vs_rel_stack_W": "0.5244 vs 0.2061",
+        "higher_concordance_dataset": "rel-f1",
+        "recommendation": "Universal JRN ranking is more transferable on rel-stack (higher W, same-entity tasks dominate). On rel-f1, per-task JRN may be needed due to mixed entity tables reducing concordance."
+      }
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1678613493731766, \"jrn_std\": 0.00823635485068654, \"jrn_seeds\": [1.1713219820164529, 1.1757629761639563, 1.15649908993912]}",
+          "predict_jrn_probe": "1.1679",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1557708846602466, \"jrn_std\": 0.004294240917888316, \"jrn_seeds\": [1.150723805879727, 1.1612194889093976, 1.155369359191615]}",
+          "predict_jrn_probe": "1.1558",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1786128033726841, \"jrn_std\": 0.010609323591797832, \"jrn_seeds\": [1.193514444231873, 1.1726760653024855, 1.1696479005836942]}",
+          "predict_jrn_probe": "1.1786",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1136539596524266, \"jrn_std\": 0.019074238261611722, \"jrn_seeds\": [1.1377463171991582, 1.1121153295356903, 1.0911002322224315]}",
+          "predict_jrn_probe": "1.1137",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"qualifying.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0847933392839717, \"jrn_std\": 0.01037216114828631, \"jrn_seeds\": [1.085326190931701, 1.097221780224676, 1.0718320466955376]}",
+          "predict_jrn_probe": "1.0848",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "qualifying.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"qualifying.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0861489501560782, \"jrn_std\": 0.005767379604794518, \"jrn_seeds\": [1.094286078693961, 1.0815962829774368, 1.0825644887968369]}",
+          "predict_jrn_probe": "1.0861",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "qualifying.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1159409530204067, \"jrn_std\": 0.010604105039547215, \"jrn_seeds\": [1.1165741980741024, 1.128600070012411, 1.1026485909747066]}",
+          "predict_jrn_probe": "1.1159",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-dnf\", \"join\": \"results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1052743441108108, \"jrn_std\": 0.015882003030441932, \"jrn_seeds\": [1.1257572858873794, 1.1030137160678484, 1.0870520303772047]}",
+          "predict_jrn_probe": "1.1053",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-dnf",
+          "metadata_join": "results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1753273529528103, \"jrn_std\": 0.017677629815640795, \"jrn_seeds\": [1.1505971319223498, 1.1908642168769097, 1.1845207100591717]}",
+          "predict_jrn_probe": "1.1753",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1774186674276361, \"jrn_std\": 0.016075774712159943, \"jrn_seeds\": [1.1580670447733665, 1.1767609496199953, 1.1974280078895463]}",
+          "predict_jrn_probe": "1.1774",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1390350525394601, \"jrn_std\": 0.014025789248997639, \"jrn_seeds\": [1.1209326631930032, 1.1410640131630496, 1.1551084812623276]}",
+          "predict_jrn_probe": "1.139",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.171589395629151, \"jrn_std\": 0.015930988471930998, \"jrn_seeds\": [1.1549007854167628, 1.1668259813523467, 1.1930414201183432]}",
+          "predict_jrn_probe": "1.1716",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"qualifying.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0798240830400947, \"jrn_std\": 0.011476981940573472, \"jrn_seeds\": [1.0649851677656352, 1.08154822533887, 1.092938856015779]}",
+          "predict_jrn_probe": "1.0798",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "qualifying.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"qualifying.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1508441271283467, \"jrn_std\": 0.011810482307963657, \"jrn_seeds\": [1.134735094757228, 1.1627203635508894, 1.1550769230769231]}",
+          "predict_jrn_probe": "1.1508",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "qualifying.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1384924655019089, \"jrn_std\": 0.017465284889706157, \"jrn_seeds\": [1.1142005195124576, 1.1467680012536239, 1.1545088757396451]}",
+          "predict_jrn_probe": "1.1385",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-top3\", \"join\": \"results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1469759339945835, \"jrn_std\": 0.02077039620246334, \"jrn_seeds\": [1.1179508461290173, 1.1575805061505915, 1.165396449704142]}",
+          "predict_jrn_probe": "1.147",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-top3",
+          "metadata_join": "results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.1291973556253754, \"jrn_std\": 0.010017647627760362, \"jrn_seeds\": [1.1151020982705826, 1.1374789559667822, 1.1350110126387611]}",
+          "predict_jrn_probe": "1.1292",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.098982535768353, \"jrn_std\": 0.014509509734644587, \"jrn_seeds\": [1.0805884693089112, 1.11605564342788, 1.1003034945682677]}",
+          "predict_jrn_probe": "1.099",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.164812598876181, \"jrn_std\": 0.010523642259828974, \"jrn_seeds\": [1.1505257838643397, 1.1755665128884463, 1.168345499875757]}",
+          "predict_jrn_probe": "1.1648",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0250445878143284, \"jrn_std\": 0.00942654918489426, \"jrn_seeds\": [1.0307155864728974, 1.032657513005694, 1.0117606639643935]}",
+          "predict_jrn_probe": "1.025",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"qualifying.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0529888240400103, \"jrn_std\": 0.009654461720759282, \"jrn_seeds\": [1.0427954906707058, 1.0659521871591944, 1.0502187942901304]}",
+          "predict_jrn_probe": "1.053",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "qualifying.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"qualifying.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0634296726066503, \"jrn_std\": 0.008600290280626633, \"jrn_seeds\": [1.0534656796955981, 1.062371253238913, 1.0744520848854404]}",
+          "predict_jrn_probe": "1.0634",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "qualifying.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0533312397763892, \"jrn_std\": 0.006367647607352405, \"jrn_seeds\": [1.0450475656160152, 1.054414325333374, 1.0605318283797789]}",
+          "predict_jrn_probe": "1.0533",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"driver-position\", \"join\": \"results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"drivers\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0534235521188966, \"jrn_std\": 0.014602179777774848, \"jrn_seeds\": [1.0354016096781116, 1.0537028182143169, 1.071166228464261]}",
+          "predict_jrn_probe": "1.0534",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "driver-position",
+          "metadata_join": "results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"results.raceId->races\", \"hop_distance\": 1, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.2675041154254834, \"jrn_std\": 0.08599995055376786, \"jrn_seeds\": [1.2730201907273713, 1.1595264649268215, 1.369965690622258]}",
+          "predict_jrn_probe": "1.2675",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0272450491765721, \"jrn_std\": 0.09770098494018363, \"jrn_seeds\": [1.0934551204843064, 0.8891143331845537, 1.0991656938608563]}",
+          "predict_jrn_probe": "1.0272",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"results.constructorId->constructors\", \"hop_distance\": 1, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0752129117752725, \"jrn_std\": 0.13601292283269345, \"jrn_seeds\": [0.9853916653725252, 0.9728198332674522, 1.2674272366858395]}",
+          "predict_jrn_probe": "1.0752",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"races.circuitId->circuits\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.9726827143242884, \"jrn_std\": 0.034816374009909286, \"jrn_seeds\": [0.9738842149142383, 0.9294534859184767, 1.0147104421401503]}",
+          "predict_jrn_probe": "0.9727",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "races.circuitId->circuits",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"constructor_standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.1252353739217007, \"jrn_std\": 0.04163514839756877, \"jrn_seeds\": [1.1598279031949148, 1.0666747655729645, 1.1492034529972226]}",
+          "predict_jrn_probe": "1.1252",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "constructor_standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"constructor_standings.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0077199319959895, \"jrn_std\": 0.07208073285615865, \"jrn_seeds\": [1.087298950065153, 0.9127594796489886, 1.023101366273827]}",
+          "predict_jrn_probe": "1.0077",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "constructor_standings.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.2334685219946542, \"jrn_std\": 0.1296134832738881, \"jrn_seeds\": [1.3259346987225271, 1.0501698026702795, 1.324301064591156]}",
+          "predict_jrn_probe": "1.2335",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.2780674947358353, \"jrn_std\": 0.07626624064835495, \"jrn_seeds\": [1.3732282416661359, 1.186519708602896, 1.2744545339384739]}",
+          "predict_jrn_probe": "1.2781",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"constructor_results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.6256259201294156, \"jrn_std\": 0.06811772462150943, \"jrn_seeds\": [1.6455217753342348, 1.5340498550946884, 1.6973061299593237]}",
+          "predict_jrn_probe": "1.6256",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "constructor_results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"constructor_results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0365077587171625, \"jrn_std\": 0.07403812129721553, \"jrn_seeds\": [1.1398710618490382, 0.9992997308192206, 0.9703524834832286]}",
+          "predict_jrn_probe": "1.0365",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "constructor_results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"qualifying.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.9679766896808495, \"jrn_std\": 0.07872273372492757, \"jrn_seeds\": [1.0521642542390472, 0.8627937348916579, 0.9889720799118432]}",
+          "predict_jrn_probe": "0.968",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "qualifying.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0158894920706938, \"jrn_std\": 0.11130109445663419, \"jrn_seeds\": [1.0539275584411327, 0.8645952549696782, 1.1291456628012706]}",
+          "predict_jrn_probe": "1.0159",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"results-position\", \"join\": \"qualifying.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"results\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0138222693308785, \"jrn_std\": 0.12937877330697764, \"jrn_seeds\": [1.051583278548252, 0.8398969966363531, 1.1499865328080308]}",
+          "predict_jrn_probe": "1.0138",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "results-position",
+          "metadata_join": "qualifying.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"qualifying.raceId->races\", \"hop_distance\": 1, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.4282441105926004, \"jrn_std\": 0.2916344557580466, \"jrn_seeds\": [0.7094492811946669, 0.5489243657115516, 0.026358684871582737]}",
+          "predict_jrn_probe": "0.4282",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "qualifying.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"qualifying.driverId->drivers\", \"hop_distance\": 1, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.5425374147025603, \"jrn_std\": 0.1584603597985824, \"jrn_seeds\": [0.7617095745539468, 0.473413683952403, 0.3924889856013311]}",
+          "predict_jrn_probe": "0.5425",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "qualifying.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"qualifying.constructorId->constructors\", \"hop_distance\": 1, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.3177755716935203, \"jrn_std\": 0.18912544985398683, \"jrn_seeds\": [0.47146681101648646, 0.4305002711493435, 0.051359632914730766]}",
+          "predict_jrn_probe": "0.3178",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "qualifying.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"races.circuitId->circuits\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.45468363011949653, \"jrn_std\": 0.25281711895680414, \"jrn_seeds\": [0.48403076095165415, 0.7486017089363237, 0.1314184204705117]}",
+          "predict_jrn_probe": "0.4547",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "races.circuitId->circuits",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"constructor_standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.3997852798602, \"jrn_std\": 0.23346034211427968, \"jrn_seeds\": [0.5073230026916373, 0.6163538476627576, 0.07567898922620513]}",
+          "predict_jrn_probe": "0.3998",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "constructor_standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"constructor_standings.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.29161495210848276, \"jrn_std\": 0.15844317376296044, \"jrn_seeds\": [0.37368111439854973, 0.43115102038647446, 0.07001272154042407]}",
+          "predict_jrn_probe": "0.2916",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "constructor_standings.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"standings.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.184007793475362, \"jrn_std\": 0.8617035425144258, \"jrn_seeds\": [1.3396742230725736, 2.1528958714740356, 0.05945328587947638]}",
+          "predict_jrn_probe": "1.184",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "standings.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"standings.driverId->drivers\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.7575679679006256, \"jrn_std\": 0.5027014212522265, \"jrn_seeds\": [1.251373720121434, 0.9535871929533306, 0.06774299062711184]}",
+          "predict_jrn_probe": "0.7576",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "standings.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"constructor_results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.2929509848367562, \"jrn_std\": 0.1348877441988182, \"jrn_seeds\": [0.45066585432132156, 0.3070266995093544, 0.12116040067959251]}",
+          "predict_jrn_probe": "0.293",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "constructor_results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"constructor_results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.8231640061986111, \"jrn_std\": 0.863240988189186, \"jrn_seeds\": [2.042399339299914, 0.2671784888010596, 0.15991419049485975]}",
+          "predict_jrn_probe": "0.8232",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "constructor_results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"results.raceId->races\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.5252382266246354, \"jrn_std\": 0.4009928904293652, \"jrn_seeds\": [1.0648125183136667, 0.4065723402823994, 0.1043298212778399]}",
+          "predict_jrn_probe": "0.5252",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "results.raceId->races",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"results.driverId->drivers\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.445013871903947, \"jrn_std\": 0.289653787154437, \"jrn_seeds\": [0.6017718035496695, 0.694383571629823, 0.038886240532348355]}",
+          "predict_jrn_probe": "0.445",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "results.driverId->drivers",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"task\": \"qualifying-position\", \"join\": \"results.constructorId->constructors\", \"hop_distance\": 2, \"entity_table\": \"qualifying\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.3776952743250747, \"jrn_std\": 0.2394047299609146, \"jrn_seeds\": [0.634983962480433, 0.4396390602606753, 0.058462800234115916]}",
+          "predict_jrn_probe": "0.3777",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "qualifying-position",
+          "metadata_join": "results.constructorId->constructors",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"analysis\": \"leave_one_task_out_transfer\"}",
+          "output": "{\"per_task_transfer_rho\": {\"driver-dnf\": {\"rho\": 0.5369374399914809, \"pval\": 0.05848336926199256}, \"driver-top3\": {\"rho\": 0.41824600588810085, \"pval\": 0.15495107693967924}, \"driver-position\": {\"rho\": 0.37868219452030755, \"pval\": 0.2019710967039028}, \"results-position\": {\"rho\": 0.2912087912087912, \"pval\": 0.3343858561975295}, \"qualifying-position\": {\"rho\": 0.24175824175824176, \"pval\": 0.42617551959450883}}, \"mean_transfer_rho\": 0.37336653467338443, \"num_common_joins\": 8, \"num_all_joins\": 13}",
+          "predict_jrn_probe": "0.3734",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "transfer_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"analysis\": \"concordance_kendalls_W\"}",
+          "output": "{\"kendalls_W\": 0.5243956043956044, \"pairwise_spearman_rho\": {\"driver-dnf_vs_driver-top3\": {\"rho\": 0.8488372093023255, \"pval\": 0.0002427886461142067}, \"driver-dnf_vs_driver-position\": {\"rho\": 0.9302325581395348, \"pval\": 4.061299315093725e-06}, \"driver-dnf_vs_results-position\": {\"rho\": 0.22607892210167616, \"pval\": 0.4576608320707284}, \"driver-dnf_vs_qualifying-position\": {\"rho\": 0.42954995199318474, \"pval\": 0.14295814491557998}, \"driver-top3_vs_driver-position\": {\"rho\": 0.8372093023255814, \"pval\": 0.0003564622576945848}, \"driver-top3_vs_results-position\": {\"rho\": 0.15260327241863142, \"pval\": 0.6186880748705734}, \"driver-top3_vs_qualifying-position\": {\"rho\": 0.412594032835559, \"pval\": 0.16118504021244595}, \"driver-position_vs_results-position\": {\"rho\": 0.05086775747287714, \"pval\": 0.8689195820774955}, \"driver-position_vs_qualifying-position\": {\"rho\": 0.21477497599659237, \"pval\": 0.4810305942715858}, \"results-position_vs_qualifying-position\": {\"rho\": 0.21978021978021978, \"pval\": 0.47061485147214255}}, \"num_tasks\": 5, \"num_joins\": 13}",
+          "predict_jrn_probe": "0.5244",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "concordance_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"analysis\": \"task_type_entity_concordance\"}",
+          "output": "{\"entity_groups\": {\"drivers\": [\"driver-dnf\", \"driver-top3\", \"driver-position\"], \"results\": [\"results-position\"], \"qualifying\": [\"qualifying-position\"]}, \"same_entity_mean_rho\": 0.8720930232558138, \"cross_entity_mean_rho\": 0.24374987608553436, \"same_entity_rhos\": [0.8488372093023255, 0.9302325581395348, 0.8372093023255814], \"cross_entity_rhos\": [0.22607892210167616, 0.42954995199318474, 0.15260327241863142, 0.412594032835559, 0.05086775747287714, 0.21477497599659237, 0.21978021978021978], \"same_type_mean_rho\": 0.33356504063800374, \"cross_type_mean_rho\": 0.4980446733023612, \"same_type_rhos\": [0.8488372093023255, 0.05086775747287714, 0.21477497599659237, 0.21978021978021978], \"cross_type_rhos\": [0.9302325581395348, 0.22607892210167616, 0.42954995199318474, 0.8372093023255814, 0.15260327241863142, 0.412594032835559]}",
+          "predict_jrn_probe": "0.8721",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "task_type_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"analysis\": \"practical_impact_universal_vs_specific\"}",
+          "output": "{\"per_task\": {\"driver-dnf\": {\"num_reachable_joins\": 8, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"results.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1786128033726841, \"universal_joins\": [\"standings.raceId->races\"], \"universal_mean_jrn\": 1.1136539596524266, \"random_mean_jrn\": 1.1139248110933533, \"relative_gap_pct\": 5.511465982243971}, \"top_2\": {\"task_specific_joins\": [\"results.driverId->drivers\", \"standings.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1732370763729305, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\"], \"universal_mean_jrn\": 1.1407576545128015, \"random_mean_jrn\": 1.1268668114139513, \"relative_gap_pct\": 2.768359653322524}, \"top_3\": {\"task_specific_joins\": [\"results.driverId->drivers\", \"standings.driverId->drivers\", \"qualifying.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1674150124687026, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\", \"results.raceId->races\"], \"universal_mean_jrn\": 1.1324854206820032, \"random_mean_jrn\": 1.129636249932642, \"relative_gap_pct\": 2.992045794651441}}}, \"driver-top3\": {\"num_reachable_joins\": 8, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"qualifying.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1774186674276361, \"universal_joins\": [\"standings.raceId->races\"], \"universal_mean_jrn\": 1.171589395629151, \"random_mean_jrn\": 1.135125090018105, \"relative_gap_pct\": 0.4950891267267428}, \"top_2\": {\"task_specific_joins\": [\"qualifying.driverId->drivers\", \"standings.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1763730101902232, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\"], \"universal_mean_jrn\": 1.1734583742909805, \"random_mean_jrn\": 1.1447080433926686, \"relative_gap_pct\": 0.2477646013632507}, \"top_3\": {\"task_specific_joins\": [\"qualifying.driverId->drivers\", \"standings.driverId->drivers\", \"standings.raceId->races\"], \"task_specific_mean_jrn\": 1.174778472003199, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\", \"results.raceId->races\"], \"universal_mean_jrn\": 1.16180307136129, \"random_mean_jrn\": 1.1436872717817843, \"relative_gap_pct\": 1.1044976522070478}}}, \"driver-position\": {\"num_reachable_joins\": 8, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"results.driverId->drivers\"], \"task_specific_mean_jrn\": 1.164812598876181, \"universal_joins\": [\"standings.raceId->races\"], \"universal_mean_jrn\": 1.0250445878143284, \"random_mean_jrn\": 1.0730442723440203, \"relative_gap_pct\": 11.999184349199329}, \"top_2\": {\"task_specific_joins\": [\"results.driverId->drivers\", \"standings.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1470049772507782, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\"], \"universal_mean_jrn\": 1.077120971719852, \"random_mean_jrn\": 1.0892874698340962, \"relative_gap_pct\": 6.092737775073051}, \"top_3\": {\"task_specific_joins\": [\"results.driverId->drivers\", \"standings.driverId->drivers\", \"qualifying.driverId->drivers\"], \"task_specific_mean_jrn\": 1.1309974967566365, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\", \"results.raceId->races\"], \"universal_mean_jrn\": 1.069191061072031, \"random_mean_jrn\": 1.0893407245681164, \"relative_gap_pct\": 5.464772102665829}}}, \"results-position\": {\"num_reachable_joins\": 13, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"constructor_results.raceId->races\"], \"task_specific_mean_jrn\": 1.6256259201294156, \"universal_joins\": [\"standings.raceId->races\"], \"universal_mean_jrn\": 1.2334685219946542, \"random_mean_jrn\": 1.1904761797382917, \"relative_gap_pct\": 24.123471044528}, \"top_2\": {\"task_specific_joins\": [\"constructor_results.raceId->races\", \"standings.driverId->drivers\"], \"task_specific_mean_jrn\": 1.4518467074326256, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\"], \"universal_mean_jrn\": 1.2557680083652447, \"random_mean_jrn\": 1.1518320487215816, \"relative_gap_pct\": 13.50546845363012}, \"top_3\": {\"task_specific_joins\": [\"constructor_results.raceId->races\", \"standings.driverId->drivers\", \"results.raceId->races\"], \"task_specific_mean_jrn\": 1.3903991767635782, \"universal_joins\": [\"standings.raceId->races\", \"standings.driverId->drivers\", \"qualifying.driverId->drivers\"], \"universal_mean_jrn\": 1.1758085029337277, \"random_mean_jrn\": 1.132535809518496, \"relative_gap_pct\": 15.433745748422517}}}, \"qualifying-position\": {\"num_reachable_joins\": 13, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"standings.raceId->races\"], \"task_specific_mean_jrn\": 1.184007793475362, \"universal_joins\": [\"standings.driverId->drivers\"], \"universal_mean_jrn\": 0.7575679679006256, \"random_mean_jrn\": 0.595773751306395, \"relative_gap_pct\": 36.01664008672001}, \"top_2\": {\"task_specific_joins\": [\"standings.raceId->races\", \"constructor_results.constructorId->constructors\"], \"task_specific_mean_jrn\": 1.0035858998369864, \"universal_joins\": [\"standings.driverId->drivers\", \"constructor_results.raceId->races\"], \"universal_mean_jrn\": 0.5252594763686909, \"random_mean_jrn\": 0.5397189272193796, \"relative_gap_pct\": 47.661732149284944}, \"top_3\": {\"task_specific_joins\": [\"standings.raceId->races\", \"constructor_results.constructorId->constructors\", \"standings.driverId->drivers\"], \"task_specific_mean_jrn\": 0.9215799225248662, \"universal_joins\": [\"standings.driverId->drivers\", \"constructor_results.raceId->races\", \"results.raceId->races\"], \"universal_mean_jrn\": 0.5252523931206724, \"random_mean_jrn\": 0.537629313133537, \"relative_gap_pct\": 43.005226103273756}}}}, \"mean_gap_pct\": 14.428146708220833}",
+          "predict_jrn_probe": "14.43",
+          "predict_baseline_uniform": "100.0",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "practical_impact"
+        },
+        {
+          "input": "{\"dataset\": \"rel-f1\", \"analysis\": \"cost_adjusted_recommendation\"}",
+          "output": "{\"num_joins\": 13, \"num_tasks\": 5, \"universal_cost_models\": 13, \"per_task_cost_models\": 65, \"greedy_cost_models\": 455, \"performance_gap_pct\": 14.428146708220833, \"recommendation\": \"per_task\"}",
+          "predict_jrn_probe": "per_task",
+          "predict_baseline_uniform": "universal",
+          "metadata_dataset": "rel-f1",
+          "metadata_type": "cost_adjusted"
+        }
+      ]
+    },
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3634296239026735, \"jrn_std\": 0.0011053706948235904, \"jrn_seeds\": [1.362824515111043, 1.362483919882863, 1.3649804367141147]}",
+          "predict_jrn_probe": "1.3634",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"badges.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3383607764520924, \"jrn_std\": 0.0031623093342257524, \"jrn_seeds\": [1.3341470711643246, 1.3391700096221408, 1.3417652485698113]}",
+          "predict_jrn_probe": "1.3384",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "badges.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"postHistory.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.393075696290948, \"jrn_std\": 0.0008826069129242147, \"jrn_seeds\": [1.3919642435023105, 1.3931394908118486, 1.394123354558685]}",
+          "predict_jrn_probe": "1.3931",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"votes.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0867493238214347, \"jrn_std\": 0.006711238357640319, \"jrn_seeds\": [1.0782933888448947, 1.0872444702325583, 1.0947101123868512]}",
+          "predict_jrn_probe": "1.0867",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "votes.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"posts.OwnerUserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.418907618409084, \"jrn_std\": 0.0043453213115786, \"jrn_seeds\": [1.412982820570402, 1.4204574650712147, 1.4232825695856355]}",
+          "predict_jrn_probe": "1.4189",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "posts.OwnerUserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"comments.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3558167865630946, \"jrn_std\": 0.0014185231442825454, \"jrn_seeds\": [1.3539727061590647, 1.3574228132151966, 1.3560548403150219]}",
+          "predict_jrn_probe": "1.3558",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"postLinks.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.144102452259032, \"jrn_std\": 0.002821653378255062, \"jrn_seeds\": [1.1410916797664497, 1.147875883572988, 1.143339793437658]}",
+          "predict_jrn_probe": "1.1441",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postLinks.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"postLinks.RelatedPostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0977872243859519, \"jrn_std\": 0.00533634741636286, \"jrn_seeds\": [1.0908520423841999, 1.0986775409400302, 1.1038320898336254]}",
+          "predict_jrn_probe": "1.0978",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postLinks.RelatedPostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"postHistory.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3949893375803981, \"jrn_std\": 0.002798082596119949, \"jrn_seeds\": [1.3911270639545192, 1.3976661493568396, 1.396174799429836]}",
+          "predict_jrn_probe": "1.395",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postHistory.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"votes.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0914643633061272, \"jrn_std\": 0.0035861278480992854, \"jrn_seeds\": [1.0867569320505395, 1.0954522569061158, 1.0921839009617265]}",
+          "predict_jrn_probe": "1.0915",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "votes.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-engagement\", \"join\": \"posts.ParentId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.2500942786310387, \"jrn_std\": 0.005165033618397977, \"jrn_seeds\": [1.2433117236162492, 1.2511373506486425, 1.255833761628225]}",
+          "predict_jrn_probe": "1.2501",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement",
+          "metadata_join": "posts.ParentId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.2943507647259567, \"jrn_std\": 0.009105053704495788, \"jrn_seeds\": [1.2859933869628246, 1.2900460178568462, 1.3070128893581994]}",
+          "predict_jrn_probe": "1.2944",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"badges.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.4012374602506814, \"jrn_std\": 0.013603809738689136, \"jrn_seeds\": [1.397519260730596, 1.386749489834197, 1.4194436301872515]}",
+          "predict_jrn_probe": "1.4012",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "badges.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"postHistory.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3752151728397515, \"jrn_std\": 0.01332779112605266, \"jrn_seeds\": [1.3673758197404102, 1.364290543016694, 1.3939791557621504]}",
+          "predict_jrn_probe": "1.3752",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"votes.UserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.058595405368825, \"jrn_std\": 0.007655460417303024, \"jrn_seeds\": [1.0600531990779918, 1.0485759089949704, 1.067157108033512]}",
+          "predict_jrn_probe": "1.0586",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "votes.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"posts.OwnerUserId->users\", \"hop_distance\": 1, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3706328738784361, \"jrn_std\": 0.013957892910484894, \"jrn_seeds\": [1.3585745248473895, 1.3631275988028257, 1.3901964979850931]}",
+          "predict_jrn_probe": "1.3706",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "posts.OwnerUserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"comments.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3096435355631908, \"jrn_std\": 0.00662970857720953, \"jrn_seeds\": [1.3077422735834707, 1.302643163101194, 1.318545170004908]}",
+          "predict_jrn_probe": "1.3096",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"postLinks.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1666885292159213, \"jrn_std\": 0.008484346037583863, \"jrn_seeds\": [1.1582267876820767, 1.1635522167226686, 1.1782865832430187]}",
+          "predict_jrn_probe": "1.1667",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "postLinks.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"postLinks.RelatedPostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.1297468894603624, \"jrn_std\": 0.006346070753981377, \"jrn_seeds\": [1.1255879471271963, 1.1249389576313413, 1.1387137636225495]}",
+          "predict_jrn_probe": "1.1297",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "postLinks.RelatedPostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"postHistory.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.3909642135051523, \"jrn_std\": 0.013093016270018793, \"jrn_seeds\": [1.3853514518416385, 1.37848945261085, 1.4090517360629684]}",
+          "predict_jrn_probe": "1.391",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "postHistory.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"votes.PostId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.0516456118480606, \"jrn_std\": 0.008220034404002288, \"jrn_seeds\": [1.0408187656818706, 1.0533932471611511, 1.06072482270116]}",
+          "predict_jrn_probe": "1.0516",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "votes.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"user-badge\", \"join\": \"posts.ParentId->posts\", \"hop_distance\": 2, \"entity_table\": \"users\", \"task_type\": \"classification\"}",
+          "output": "{\"jrn_mean\": 1.2044067986398643, \"jrn_std\": 0.009659721022264941, \"jrn_seeds\": [1.1966143221164491, 1.1985858718023266, 1.2180202020008177]}",
+          "predict_jrn_probe": "1.2044",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge",
+          "metadata_join": "posts.ParentId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0498991587089077, \"jrn_std\": 0.00017174768710238048, \"jrn_seeds\": [1.0496805889455647, 1.0501001842356155, 1.0499167029455427]}",
+          "predict_jrn_probe": "1.0499",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"postLinks.PostId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.086188460283042, \"jrn_std\": 0.003263790128278838, \"jrn_seeds\": [1.0815738910240178, 1.0884074164492632, 1.088584073375845]}",
+          "predict_jrn_probe": "1.0862",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "postLinks.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"postLinks.RelatedPostId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.155365832853624, \"jrn_std\": 0.0030251892314923515, \"jrn_seeds\": [1.1551362586235283, 1.1591803667957077, 1.1517808731416357]}",
+          "predict_jrn_probe": "1.1554",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "postLinks.RelatedPostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"postHistory.PostId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0110240590659665, \"jrn_std\": 0.004136144414613053, \"jrn_seeds\": [1.0054830034110218, 1.0154175664371812, 1.0121716073496967]}",
+          "predict_jrn_probe": "1.011",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "postHistory.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"votes.PostId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.2490991542484806, \"jrn_std\": 0.0046034432341972185, \"jrn_seeds\": [1.2472485234407926, 1.2446190179019208, 1.255429921402728]}",
+          "predict_jrn_probe": "1.2491",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "votes.PostId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"posts.OwnerUserId->users\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 0.9896455509227798, \"jrn_std\": 0.0034972779671966414, \"jrn_seeds\": [0.9863253509188397, 0.994480337321882, 0.988130964527618]}",
+          "predict_jrn_probe": "0.9896",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "posts.OwnerUserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"posts.ParentId->posts\", \"hop_distance\": 1, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.1485965776729623, \"jrn_std\": 0.0011713290647088368, \"jrn_seeds\": [1.147837393567898, 1.1477011217704314, 1.1502512176805577]}",
+          "predict_jrn_probe": "1.1486",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "posts.ParentId->posts",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 1
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"comments.UserId->users\", \"hop_distance\": 2, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.049362552148606, \"jrn_std\": 0.0008468978357521692, \"jrn_seeds\": [1.0485750301656906, 1.0505377929933686, 1.048974833286759]}",
+          "predict_jrn_probe": "1.0494",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"badges.UserId->users\", \"hop_distance\": 2, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.041951825934207, \"jrn_std\": 0.0013990086120721059, \"jrn_seeds\": [1.0403857840789996, 1.043781972606782, 1.0416877211168394]}",
+          "predict_jrn_probe": "1.042",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "badges.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"postHistory.UserId->users\", \"hop_distance\": 2, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0344872537072842, \"jrn_std\": 0.004906087053560071, \"jrn_seeds\": [1.0276990976087903, 1.0366382557924299, 1.039124407720632]}",
+          "predict_jrn_probe": "1.0345",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"task\": \"post-votes\", \"join\": \"votes.UserId->users\", \"hop_distance\": 2, \"entity_table\": \"posts\", \"task_type\": \"regression\"}",
+          "output": "{\"jrn_mean\": 1.0378596383937744, \"jrn_std\": 0.0038633135732979956, \"jrn_seeds\": [1.0370836659093017, 1.0429312330393627, 1.033564016232659]}",
+          "predict_jrn_probe": "1.0379",
+          "predict_baseline_uniform": "1.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes",
+          "metadata_join": "votes.UserId->users",
+          "metadata_type": "jrn_measurement",
+          "metadata_hop_distance": 2
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"analysis\": \"leave_one_task_out_transfer\"}",
+          "output": "{\"per_task_transfer_rho\": {\"user-engagement\": {\"rho\": 0.7545454545454545, \"pval\": 0.00728204100842914}, \"user-badge\": {\"rho\": 0.6545454545454547, \"pval\": 0.028864598957001886}, \"post-votes\": {\"rho\": -0.790909090909091, \"pval\": 0.003746082953397406}}, \"mean_transfer_rho\": 0.20606060606060606, \"num_common_joins\": 11, \"num_all_joins\": 11}",
+          "predict_jrn_probe": "0.2061",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_type": "transfer_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"analysis\": \"concordance_kendalls_W\"}",
+          "output": "{\"kendalls_W\": 0.20606060606060606, \"pairwise_spearman_rho\": {\"user-engagement_vs_user-badge\": {\"rho\": 0.8181818181818182, \"pval\": 0.0020831448404786904}, \"user-engagement_vs_post-votes\": {\"rho\": -0.7090909090909092, \"pval\": 0.014552051953727704}, \"user-badge_vs_post-votes\": {\"rho\": -0.6818181818181819, \"pval\": 0.020842853610945056}}, \"num_tasks\": 3, \"num_joins\": 11}",
+          "predict_jrn_probe": "0.2061",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_type": "concordance_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"analysis\": \"task_type_entity_concordance\"}",
+          "output": "{\"entity_groups\": {\"users\": [\"user-engagement\", \"user-badge\"], \"posts\": [\"post-votes\"]}, \"same_entity_mean_rho\": 0.8181818181818182, \"cross_entity_mean_rho\": -0.6954545454545455, \"same_entity_rhos\": [0.8181818181818182], \"cross_entity_rhos\": [-0.7090909090909092, -0.6818181818181819], \"same_type_mean_rho\": 0.8181818181818182, \"cross_type_mean_rho\": -0.6954545454545455, \"same_type_rhos\": [0.8181818181818182], \"cross_type_rhos\": [-0.7090909090909092, -0.6818181818181819]}",
+          "predict_jrn_probe": "0.8182",
+          "predict_baseline_uniform": "0.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_type": "task_type_analysis"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"analysis\": \"practical_impact_universal_vs_specific\"}",
+          "output": "{\"per_task\": {\"user-engagement\": {\"num_reachable_joins\": 11, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"posts.OwnerUserId->users\"], \"task_specific_mean_jrn\": 1.418907618409084, \"universal_joins\": [\"badges.UserId->users\"], \"universal_mean_jrn\": 1.3383607764520924, \"random_mean_jrn\": 1.306114218186252, \"relative_gap_pct\": 5.676679786052801}, \"top_2\": {\"task_specific_joins\": [\"posts.OwnerUserId->users\", \"postHistory.PostId->posts\"], \"task_specific_mean_jrn\": 1.406948477994741, \"universal_joins\": [\"badges.UserId->users\", \"postHistory.UserId->users\"], \"universal_mean_jrn\": 1.3657182363715203, \"random_mean_jrn\": 1.299873767241114, \"relative_gap_pct\": 2.9304727406922684}, \"top_3\": {\"task_specific_joins\": [\"posts.OwnerUserId->users\", \"postHistory.PostId->posts\", \"postHistory.UserId->users\"], \"task_specific_mean_jrn\": 1.40232421742681, \"universal_joins\": [\"badges.UserId->users\", \"postHistory.UserId->users\", \"postHistory.PostId->posts\"], \"universal_mean_jrn\": 1.375475270107813, \"random_mean_jrn\": 1.2989125983159329, \"relative_gap_pct\": 1.914603412345213}}}, \"user-badge\": {\"num_reachable_joins\": 11, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"badges.UserId->users\"], \"task_specific_mean_jrn\": 1.4012374602506814, \"universal_joins\": [\"postHistory.UserId->users\"], \"universal_mean_jrn\": 1.3752151728397515, \"random_mean_jrn\": 1.287272724277842, \"relative_gap_pct\": 1.8570933299395624}, \"top_2\": {\"task_specific_joins\": [\"badges.UserId->users\", \"postHistory.PostId->posts\"], \"task_specific_mean_jrn\": 1.3961008368779169, \"universal_joins\": [\"postHistory.UserId->users\", \"comments.UserId->users\"], \"universal_mean_jrn\": 1.334782968782854, \"random_mean_jrn\": 1.2874013890143696, \"relative_gap_pct\": 4.392080176113008}, \"top_3\": {\"task_specific_joins\": [\"badges.UserId->users\", \"postHistory.PostId->posts\", \"postHistory.UserId->users\"], \"task_specific_mean_jrn\": 1.389138948865195, \"universal_joins\": [\"postHistory.UserId->users\", \"comments.UserId->users\", \"posts.OwnerUserId->users\"], \"universal_mean_jrn\": 1.346732937148048, \"random_mean_jrn\": 1.2820900325527618, \"relative_gap_pct\": 3.052683228829555}}}, \"post-votes\": {\"num_reachable_joins\": 11, \"top_k_comparisons\": {\"top_1\": {\"task_specific_joins\": [\"votes.PostId->posts\"], \"task_specific_mean_jrn\": 1.2490991542484806, \"universal_joins\": [\"posts.OwnerUserId->users\"], \"universal_mean_jrn\": 0.9896455509227798, \"random_mean_jrn\": 1.0925742083952092, \"relative_gap_pct\": 20.77125762540451}, \"top_2\": {\"task_specific_joins\": [\"votes.PostId->posts\", \"postLinks.RelatedPostId->posts\"], \"task_specific_mean_jrn\": 1.2022324935510524, \"universal_joins\": [\"posts.OwnerUserId->users\", \"postHistory.PostId->posts\"], \"universal_mean_jrn\": 1.0003348049943732, \"random_mean_jrn\": 1.0882370190364097, \"relative_gap_pct\": 16.79356444279184}, \"top_3\": {\"task_specific_joins\": [\"votes.PostId->posts\", \"postLinks.RelatedPostId->posts\", \"posts.ParentId->posts\"], \"task_specific_mean_jrn\": 1.1843538549250223, \"universal_joins\": [\"posts.OwnerUserId->users\", \"postHistory.PostId->posts\", \"postHistory.UserId->users\"], \"universal_mean_jrn\": 1.0117189545653436, \"random_mean_jrn\": 1.095933139739881, \"relative_gap_pct\": 14.57629403930194}}}}, \"mean_gap_pct\": 7.996080975718966}",
+          "predict_jrn_probe": "8.0",
+          "predict_baseline_uniform": "100.0",
+          "metadata_dataset": "rel-stack",
+          "metadata_type": "practical_impact"
+        },
+        {
+          "input": "{\"dataset\": \"rel-stack\", \"analysis\": \"cost_adjusted_recommendation\"}",
+          "output": "{\"num_joins\": 11, \"num_tasks\": 3, \"universal_cost_models\": 11, \"per_task_cost_models\": 33, \"greedy_cost_models\": 198, \"performance_gap_pct\": 7.996080975718966, \"recommendation\": \"per_task\"}",
+          "predict_jrn_probe": "per_task",
+          "predict_baseline_uniform": "universal",
+          "metadata_dataset": "rel-stack",
+          "metadata_type": "cost_adjusted"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "exp_id2_it2__opus",
+  "type": "code",
+  "title": "JRN Estimation & Multiplicative Compounding on rel-stack (Phase 1 + Phase 3)",
+  "summary": "Demo notebook for Join Reproduction Number (JRN) estimation on the rel-stack dataset. Demonstrates three components: (1) Phase 1 \u2014 individual JRN estimation for 11 FK joins \u00d7 3 entity tasks using lightweight MLP probes (hidden_dim=32, 2 layers, 10 epochs, 3 seeds), measuring how aggregated child-table features improve downstream prediction (AUROC/neg-MAE); (2) Phase 3 \u2014 multiplicative compounding validation on 14 multi-hop join chains (2- and 3-hop), confirming JRN_chain \u2248 \u220f JRN_individual with R\u00b2=0.83; (3) a fan-out heuristic baseline. The mini data JSON contains pre-computed JRN matrices, chain compounding results, and domain validation checks for 16 (join, task) pairs.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_2/gen_art/exp_id2_it2__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it2__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it2__opus/method_code_demo.ipynb"
+}

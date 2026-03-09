@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "source": "RelBench rel-avito (Avito ad marketplace) relational database",
+    "paper": "arXiv:2407.20060",
+    "license": "CC-BY-4.0",
+    "relbench_version": "1.0.0",
+    "val_timestamp": "2015-05-08T00:00:00",
+    "test_timestamp": "2015-05-14T00:00:00",
+    "num_tables": 8,
+    "num_fk_relationships": 11,
+    "num_tasks": 4,
+    "table_names": [
+      "AdsInfo",
+      "SearchInfo",
+      "UserInfo"
+    ],
+    "task_names": [
+      "rel-avito/ad-ctr",
+      "rel-avito/user-ad-visit",
+      "rel-avito/user-clicks"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"SearchID\": 1880769, \"AdID\": 1296060, \"Position\": 1.0, \"ObjectType\": 3.0, \"HistCTR\": 0.001627, \"IsClick\": 0.0, \"SearchDate\": \"2015-05-13T09:24:43\"}",
+          "output": "SearchStream/31985",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "SearchStream",
+          "metadata_primary_key_col": null,
+          "metadata_primary_key_value": "31985",
+          "metadata_row_index": 31985,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "SearchID",
+            "AdID",
+            "Position"
+          ],
+          "metadata_time_col": "SearchDate",
+          "metadata_foreign_keys_json": "{\"SearchID\": \"SearchInfo\", \"AdID\": \"AdsInfo\"}"
+        },
+        {
+          "input": "{\"SearchID\": 1356649, \"AdID\": 742790, \"Position\": 6.0, \"ObjectType\": 1.0, \"HistCTR\": null, \"IsClick\": null, \"SearchDate\": \"2015-05-08T16:36:58\"}",
+          "output": "SearchStream/31986",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "SearchStream",
+          "metadata_primary_key_col": null,
+          "metadata_primary_key_value": "31986",
+          "metadata_row_index": 31986,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "SearchID",
+            "AdID",
+            "Position"
+          ],
+          "metadata_time_col": "SearchDate",
+          "metadata_foreign_keys_json": "{\"SearchID\": \"SearchInfo\", \"AdID\": \"AdsInfo\"}"
+        },
+        {
+          "input": "{\"SearchID\": 1465039, \"AdID\": 5298471, \"Position\": 7.0, \"ObjectType\": 3.0, \"HistCTR\": 0.000925, \"IsClick\": 0.0, \"SearchDate\": \"2015-05-09T20:44:18\"}",
+          "output": "SearchStream/31987",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "SearchStream",
+          "metadata_primary_key_col": null,
+          "metadata_primary_key_value": "31987",
+          "metadata_row_index": 31987,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "SearchID",
+            "AdID",
+            "Position"
+          ],
+          "metadata_time_col": "SearchDate",
+          "metadata_foreign_keys_json": "{\"SearchID\": \"SearchInfo\", \"AdID\": \"AdsInfo\"}"
+        }
+      ]
+    }
+  ]
+}

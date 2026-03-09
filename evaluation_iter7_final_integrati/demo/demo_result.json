@@ -1,0 +1,13 @@
+{
+  "id": "eval_id1_it7__opus",
+  "type": "code",
+  "title": "Final Integrative Evaluation: 9 Paper Tables, Hypothesis Scorecard v5, and Statistical Summary from 30 Artifacts",
+  "summary": "Demo notebook for the Final Integrative Evaluation of the Join Reproduction Number (JRN) framework. Loads pre-computed evaluation results (33 examples across 11 dataset groups) and demonstrates: JRN matrix analysis with category classification, Fisher z random-effects meta-analysis for probe validity, cost efficiency analysis, FK-shuffling structural/feature decomposition with Cohen's d, hypothesis scorecard v5 grading 7 claims, and aggregate metrics summary. Produces a 3-panel visualization showing JRN distribution, structural vs feature decomposition, and scorecard grade distribution. Uses scipy stats, numpy, and matplotlib.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_7/gen_art/eval_id1_it7__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id1_it7__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id1_it7__opus/eval_code_demo.ipynb"
+}

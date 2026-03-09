@@ -1,0 +1,14 @@
+[project]
+name = "gbm-probe-jrn-estimation"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "lightgbm==4.6.0",
+    "loguru==0.7.3",
+    "numpy==2.4.2",
+    "pandas==3.0.1",
+    "scikit-learn==1.6.1",
+    "scipy==1.17.1",
+    "relbench==2.1.1",
+    "jsonschema==4.26.0",
+]

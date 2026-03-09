@@ -1,0 +1,13 @@
+{
+  "id": "exp_id2_it5__opus",
+  "type": "code",
+  "title": "GBM-Probe JRN Estimation on rel-hm with Corrected Metric Direction, Fan-Out Stratification, and FK-Shuffling",
+  "summary": "Demo notebook for GBM-Probe Join Reproduction Number (JRN) estimation on the rel-hm (H&M) relational dataset. Uses a curated mini dataset (84 customers, 85 articles, 100 transactions) extracted from the full rel-hm data. The notebook runs all 5 phases: baseline+JRN estimation with LightGBM probes across 2 tasks (user-churn classification, item-sales regression) x 5 aggregation types x 3 seeds, fan-out stratification, FK-shuffling confound decomposition (5 permutations), aggregation sensitivity analysis, and JRN-guided vs uniform architecture comparison. Includes matplotlib visualizations of JRN values, decomposition, and architecture comparison. Full original parameters used; completes in ~2 seconds.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_5/gen_art/exp_id2_it5__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it5__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id2_it5__opus/method_code_demo.ipynb"
+}

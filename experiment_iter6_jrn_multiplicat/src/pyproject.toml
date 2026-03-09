@@ -1,0 +1,12 @@
+[project]
+name = "jrn-compounding-rel-f1"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy==2.4.3",
+    "pandas==3.0.1",
+    "scikit-learn==1.8.0",
+    "scipy==1.17.1",
+    "loguru==0.7.3",
+    "jsonschema==4.26.0",
+]

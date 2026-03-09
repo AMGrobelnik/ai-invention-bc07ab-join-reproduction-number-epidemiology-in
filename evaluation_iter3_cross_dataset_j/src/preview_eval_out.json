@@ -1,0 +1,60 @@
+{
+  "metadata": {
+    "title": "Cross-Dataset JRN Consolidation",
+    "n_experiments_consolidated": 4,
+    "n_datasets": 3,
+    "total_jrn_measurements": 139,
+    "analysis_date": "2026-03-09"
+  },
+  "metrics_agg": {
+    "total_jrn_measurements": 139,
+    "pooled_mlp_jrn_mean": 1.174300760812181,
+    "pooled_mlp_jrn_std": 0.38866610640447546,
+    "dip_test_pooled_p_value": 0.06937376208428636,
+    "fraction_near_threshold_mlp": 0.47058823529411764,
+    "kendalls_W_rel_f1": 0.13142857142857142,
+    "kendalls_W_rel_stack": 0.7,
+    "gbm_probe_spearman_rho": 0.9596136962247587,
+    "mlp_probe_spearman_rho": -0.06669592568350946,
+    "gbm_probe_p_value": 8.56504989950266e-11,
+    "mlp_probe_p_value": 0.7861712279616262,
+    "entropy_proxy_spearman_rho": 0.9451514731728905,
+    "fanout_proxy_spearman_rho": 0.6440305194114924,
+    "compounding_r_squared": 0.828332168788979,
+    "compounding_r2_ci_lower": 0.5616285394071503,
+    "compounding_r2_ci_upper": 0.9461867294144181,
+    "loo_r_squared": 0.9222480125821053,
+    "n_metric_corrections_needed": 9,
+    "scorecard_n_supported": 2,
+    "scorecard_n_inconclusive": 3,
+    "scorecard_n_disconfirmed": 0
+  },
+  "datasets": [
+    {
+      "dataset": "cross_dataset_jrn_consolidation",
+      "examples": [
+        {
+          "input": "Analysis A: JRN Distribution & Threshold Testing",
+          "output": "{\"pooled_stats\": {\"name\": \"pooled MLP probe\", \"n\": 68, \"mean\": 1.174300760812181, \"median\": 1.0424321178631428, \"std\": 0.38866610640447546, \"min\": 0.625281, \"max\": 3.833333, \"iqr\": 0.3157932222364275,...",
+          "metadata_analysis_code": "A",
+          "metadata_analysis_name": "JRN Distribution & Threshold Testing",
+          "eval_dip_test_p_value": 0.06937376208428636
+        },
+        {
+          "input": "Analysis B: Task Stability (Kendall's W)",
+          "output": "{\"kendalls_W_rel_f1\": {\"W\": 0.13142857142857142, \"chi2\": 7.885714285714285, \"p_value\": 0.7939964375807903, \"n_joins\": 13, \"n_tasks\": 5, \"interpretation\": \"Poor concordance \\u2014 JRN is task-specific\"...",
+          "metadata_analysis_code": "B",
+          "metadata_analysis_name": "Task Stability (Kendall's W)",
+          "eval_kendalls_W_rel_f1": 0.13142857142857142
+        },
+        {
+          "input": "Analysis C: Probe Type Comparison (MLP vs GBM)",
+          "output": "{\"gbm_vs_gt_spearman\": {\"rho\": 0.9596136962247587, \"p_value\": 8.56504989950266e-11, \"ci_95\": [0.8958933853275326, 0.9846486524738514]}, \"mlp_vs_gt_spearman\": {\"rho\": -0.06669592568350946, \"p_value\": 0...",
+          "metadata_analysis_code": "C",
+          "metadata_analysis_name": "Probe Type Comparison (MLP vs GBM)",
+          "eval_gbm_spearman_rho": 0.9596136962247587
+        }
+      ]
+    }
+  ]
+}

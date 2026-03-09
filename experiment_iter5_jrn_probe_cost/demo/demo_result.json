@@ -1,0 +1,13 @@
+{
+  "id": "exp_id4_it5__opus",
+  "type": "code",
+  "title": "JRN Probe Cost-Efficiency & Ranking Stability on rel-f1",
+  "summary": "Demo notebook analyzing the Join Reproduction Number (JRN) probe methodology for cost-efficient join subset selection in relational databases. Uses the rel-f1 (Formula 1) dataset with 13 FK joins and 3 driver prediction tasks. Demonstrates: (A) convergence analysis showing JRN ranking stability (Spearman \u03c1 > 0.9) across 64 budget configurations, (B) wall-clock cost comparison of JRN probe vs greedy forward selection, exhaustive search, and random search (JRN is 10-20x faster), and breakeven analysis of theoretical scaling (O(J+1) vs O(J\u00b2/2) vs O(2^J)).",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_5/gen_art/exp_id4_it5__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it5__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it5__opus/method_code_demo.ipynb"
+}

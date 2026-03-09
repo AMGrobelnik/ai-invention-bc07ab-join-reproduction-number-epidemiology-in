@@ -1,0 +1,13 @@
+{
+  "id": "exp_id1_it4__opus",
+  "type": "code",
+  "title": "JRN-Guided Heterogeneous Architecture: GBM Probe Estimation and 5-Config Comparison on rel-stack",
+  "summary": "Demo notebook loading pre-computed JRN experiment results from rel-stack dataset. Demonstrates JRN matrix extraction, 5-config performance comparison (JRN-guided, uniform-mean, uniform-rich, top-K, oracle), win-rate analysis, oracle gap computation, aggregation sensitivity, feature efficiency metrics, and 4-panel visualization (JRN heatmap, config bars, oracle gaps, efficiency). Uses mini_demo_data.json with full metadata including 11 joins across 3 tasks.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_4/gen_art/exp_id1_it4__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it4__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it4__opus/method_code_demo.ipynb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "eval_id5_it3__opus",
+  "type": "code",
+  "title": "Cross-Dataset JRN Consolidation: Unified Statistical Analysis & Hypothesis Scorecard",
+  "summary": "Demonstrates cross-dataset JRN (Join Reproduction Number) consolidation evaluation across 4 experiments (rel-f1, rel-stack, rel-hm) with 7 analyses: (A) JRN distribution & dip test, (B) task stability via Kendall's W, (C) GBM vs MLP probe comparison, (D) training-free proxy generalization, (E) compounding robustness with bootstrap CI, (F) metric direction audit, (G) hypothesis scorecard. Uses mini_demo_data.json containing curated subsets from all 4 experiments (17 exp1, 30 exp2, metadata exp3, 20 exp4 examples). Produces 4-panel visualization showing JRN distributions, probe comparison scatter, and compounding analysis. Full original parameters (1000 bootstrap, 500 KDE grid) used \u2014 runs well within 5-minute limit.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_3/gen_art/eval_id5_it3__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id5_it3__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id5_it3__opus/eval_code_demo.ipynb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "eval_id3_it6__opus",
+  "type": "code",
+  "title": "Meta-Analysis of JRN Probe Reliability: Heterogeneity Decomposition and Practitioner Guidelines",
+  "summary": "Demo notebook performing a meta-analysis of JRN (Join Reproduction Number) probe reliability across 7 experiments and 4 datasets. Uses 63 curated records from mini_demo_data.json to compute: pooled JRN statistics (mean=1.21, 77.8% beneficial), probe-vs-GT error metrics (30 pairs, sign agreement=1.0, median abs error=0.08), GBM meta-model with LODO-CV, depth-2 decision rules (80% accuracy), training-free proxy reliability for 5 proxies with per-dataset Spearman rho and selection AUC, proxy selection decision tree (95.2% accuracy), and heterogeneity decomposition (I\u00b2=98.1%, Q=155.91, \u03c4\u00b2=1.85). Includes 4-panel visualization: JRN distribution by dataset, probe-vs-GT scatter, proxy reliability comparison, and forest plot of study correlations.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_6/gen_art/eval_id3_it6__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id3_it6__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id3_it6__opus/eval_code_demo.ipynb"
+}

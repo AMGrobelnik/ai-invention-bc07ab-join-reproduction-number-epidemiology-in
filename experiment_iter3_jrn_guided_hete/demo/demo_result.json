@@ -1,0 +1,13 @@
+{
+  "id": "exp_id4_it3__opus",
+  "type": "code",
+  "title": "JRN-Guided Heterogeneous Architecture: GBM Probe Estimation & 5-Config Comparison on rel-f1",
+  "summary": "Interactive notebook demonstrating Join Reproduction Number (JRN) estimation for relational learning on the Formula 1 (rel-f1) dataset from RelBench. The demo loads relational tables (races, drivers, standings, qualifying, results, etc.), engineers features via FK joins using aggregation strategies, estimates JRN for 13 FK joins using LightGBM probes, classifies joins by impact (HIGH/CRITICAL/LOW), and compares 5 configurations: JRN-guided heterogeneous, uniform-mean, uniform-rich, top-K, and oracle. Includes visualizations of the JRN matrix and configuration comparison. Mini data contains curated rows from 9 tables across 6 tasks.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_3/gen_art/exp_id4_it3__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it3__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it3__opus/method_code_demo.ipynb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "exp_id4_it4__opus",
+  "type": "code",
+  "title": "JRN FK-Shuffling Confound Control on rel-f1",
+  "summary": "Demo notebook analyzing pre-computed JRN FK-Shuffling experiment results on the rel-f1 (Formula 1) dataset. Demonstrates the full analysis pipeline: extracting per-join JRN decompositions (structural vs feature components) for 13 FK joins across 3 driver tasks, running paired t-tests and Wilcoxon tests for statistical significance, computing Spearman correlations between structural JRN and fanout statistics, generating domain-specific interpretations, and visualizing results with 4-panel plots (decomposition bars, normal-vs-shuffled scatter, JRN heatmap, structural distribution). Uses mini_demo_data.json containing all 13 join results from LightGBM probe experiments with 3 seeds and 5 shuffles each.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_4/gen_art/exp_id4_it4__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it4__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it4__opus/method_code_demo.ipynb"
+}

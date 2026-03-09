@@ -1,0 +1,13 @@
+{
+  "id": "exp_id3_it3__opus",
+  "type": "code",
+  "title": "GBM-Based JRN Estimation for 11 FK Joins \u00d7 4 Tasks on rel-avito",
+  "summary": "Demo notebook analyzing pre-computed JRN (Join Reproduction Number) measurements from the rel-avito dataset. Loads 39 examples covering 11 FK joins across 3 tasks (ad-ctr, user-clicks, user-visits), parses JRN measurements, reconstructs the JRN matrix, displays training-free proxy correlations (Pearson rho=0.926), probe-to-full validation (Spearman rho=0.825), and aggregation sensitivity analysis. Includes 4-panel visualization: JRN heatmap, direction comparison, probe vs full scatter, and proxy correlation bar chart.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_3/gen_art/exp_id3_it3__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it3__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it3__opus/method_code_demo.ipynb"
+}

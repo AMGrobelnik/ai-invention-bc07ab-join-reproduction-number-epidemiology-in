@@ -1,0 +1,306 @@
+{
+  "metadata": {
+    "evaluation_name": "Meta-Analysis of JRN Probe Reliability",
+    "description": "Pools all JRN measurements from 7 experiments across 4 datasets (rel-f1, rel-stack, rel-avito, rel-hm), builds a predictive model of JRN probe reliability, decomposes meta-analytic heterogeneity, and ...",
+    "n_experiments": 7,
+    "datasets_analyzed": [
+      "rel-avito",
+      "rel-f1",
+      "rel-hm"
+    ],
+    "measurements_per_dataset": {
+      "rel-avito": 42,
+      "rel-f1": 84,
+      "rel-hm": 10,
+      "rel-stack": 143
+    },
+    "per_dataset_spearman_rho": {
+      "rel-f1": {
+        "rho": 0.5357459307184828,
+        "pval": 1.5093900831764432e-07,
+        "n": 84
+      }
+    },
+    "study_correlations": [
+      {
+        "experiment": "exp_id1_it3",
+        "dataset": "rel-f1",
+        "rho": 0.439661,
+        "n": 65
+      },
+      {
+        "experiment": "exp_id4_it2",
+        "dataset": "rel-f1",
+        "rho": 0.96,
+        "n": 19
+      },
+      {
+        "experiment": "exp_id2_it3",
+        "dataset": "rel-stack",
+        "rho": 0.999,
+        "n": 20
+      }
+    ],
+    "meta_model_feature_importance": {
+      "log_mean_fanout": 0.08231668094516831,
+      "task_type_is_classification": 5.2923972524110405e-05,
+      "baseline_perf": 1.021998907862352,
+      "fanout_mean": 0.01620018418206739,
+      "jrn_magnitude": 0.718114204131736
+    },
+    "meta_model_top3_predictors": [
+      "baseline_perf",
+      "jrn_magnitude",
+      "log_mean_fanout"
+    ],
+    "decision_rule_text": "|--- log_mean_fanout <= 3.8081\n|   |--- log_mean_fanout <= 3.5435\n|   |   |--- class: 1\n|   |--- log_mean_fanout >  3.5435\n|   |   |--- class: 1\n|--- log_mean_fanout >  3.8081\n|   |--- jrn_magnitude <...",
+    "proxy_analysis": {
+      "entropy_reduction": {
+        "pooled_rho": 0.5105524437882417,
+        "rho_cv": 2.2793969735337525,
+        "selection_auc": 0.7124183006535948,
+        "per_dataset_rho": {
+          "rel-avito": -0.36667939881128453,
+          "rel-f1": 0.9398860053557714
+        },
+        "best_dataset": "rel-f1",
+        "worst_dataset": "rel-avito"
+      },
+      "mutual_information": {
+        "pooled_rho": 0.5425841609681141,
+        "rho_cv": 0.2609963655911279,
+        "selection_auc": 0.6078431372549019,
+        "per_dataset_rho": {
+          "rel-avito": 0.9327731092436976,
+          "rel-f1": 0.49758670871776134,
+          "rel-stack": 0.9357142857142854
+        },
+        "best_dataset": "rel-stack",
+        "worst_dataset": "rel-f1"
+      },
+      "pearson_correlation": {
+        "pooled_rho": 0.45398912576300565,
+        "rho_cv": 0.36255400391325004,
+        "selection_auc": 0.5490196078431373,
+        "per_dataset_rho": {
+          "rel-avito": 0.9159663865546219,
+          "rel-f1": 0.35046116686727347,
+          "rel-stack": 0.8892857142857141
+        },
+        "best_dataset": "rel-avito",
+        "worst_dataset": "rel-f1"
+      },
+      "log_mean_fanout": {
+        "pooled_rho": 0.5082773059390799,
+        "rho_cv": 0.13769468428628928,
+        "selection_auc": 0.7156862745098039,
+        "per_dataset_rho": {
+          "rel-avito": 0.7203648512563053,
+          "rel-f1": 0.5328690872938924,
+          "rel-stack": 0.5578531425923211
+        },
+        "best_dataset": "rel-avito",
+        "worst_dataset": "rel-f1"
+      },
+      "homophily": {
+        "pooled_rho": 0.05346948515016254,
+        "rho_cv": 0.9014637835599382,
+        "selection_auc": 0.6339869281045752,
+        "per_dataset_rho": {
+          "rel-avito": 0.47855043948174386,
+          "rel-f1": -0.07985959522630737,
+          "rel-stack": 0.7442009155031594
+        },
+        "best_dataset": "rel-stack",
+        "worst_dataset": "rel-f1"
+      }
+    },
+    "decision_tree_text": "|--- log_mean_fanout <= 2.8539\n|   |--- jrn_magnitude <= 0.2824\n|   |   |--- log_mean_fanout <= 1.0375\n|   |   |   |--- class: 3\n|   |   |--- log_mean_fanout >  1.0375\n|   |   |   |--- class: 4\n|   |-...",
+    "heterogeneity_details": {
+      "n_studies": 4,
+      "pooled_rho_fisher": 0.8568223276983711,
+      "I2_explained_by_dataset_stratification": 1.727603483976493
+    }
+  },
+  "metrics_agg": {
+    "total_pooled_measurements": 279.0,
+    "jrn_mean_pooled": 1.2975657274887038,
+    "jrn_std_pooled": 1.778089632033605,
+    "jrn_range_min": 0.0447,
+    "jrn_range_max": 30.270717894558217,
+    "fraction_beneficial": 0.7777777777777778,
+    "fraction_near_threshold": 0.3906810035842294,
+    "n_gt_pairs": 84.0,
+    "overall_sign_agreement_rate": 0.8690476190476191,
+    "overall_median_abs_error": 0.10116414504126137,
+    "overall_mean_abs_error": 0.7644999983859174,
+    "overall_mean_rel_error": 0.322730765903158,
+    "eval_meta_model_r2_loocv": 0.1533648446338971,
+    "eval_meta_model_mae_loocv": 0.6758010652040173,
+    "eval_rule_accuracy": 0.6904761904761905,
+    "eval_reliable_regime_coverage": 0.7142857142857143,
+    "eval_proxy_entropy_reduction_pooled_rho": 0.5105524437882417,
+    "eval_proxy_entropy_reduction_rho_cv": 2.2793969735337525,
+    "eval_proxy_entropy_reduction_selection_auc": 0.7124183006535948,
+    "eval_proxy_mutual_information_pooled_rho": 0.5425841609681141,
+    "eval_proxy_mutual_information_rho_cv": 0.2609963655911279,
+    "eval_proxy_mutual_information_selection_auc": 0.6078431372549019,
+    "eval_proxy_pearson_correlation_pooled_rho": 0.45398912576300565,
+    "eval_proxy_pearson_correlation_rho_cv": 0.36255400391325004,
+    "eval_proxy_pearson_correlation_selection_auc": 0.5490196078431373,
+    "eval_proxy_log_mean_fanout_pooled_rho": 0.5082773059390799,
+    "eval_proxy_log_mean_fanout_rho_cv": 0.13769468428628928,
+    "eval_proxy_log_mean_fanout_selection_auc": 0.7156862745098039,
+    "eval_proxy_homophily_pooled_rho": 0.05346948515016254,
+    "eval_proxy_homophily_rho_cv": 0.9014637835599382,
+    "eval_proxy_homophily_selection_auc": 0.6339869281045752,
+    "eval_decision_tree_accuracy": 0.9302325581395349,
+    "eval_I2_overall": 98.07585636944248,
+    "eval_I2_within_dataset": 96.3814944578642,
+    "eval_I2_between_dataset": 98.44088374894365,
+    "eval_Q_statistic": 155.913516660435,
+    "eval_Q_pvalue": 0.0,
+    "eval_tau2": 1.8492830478477529,
+    "eval_heterogeneity_I2_explained": 1.727603483976493
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"experiment\": \"exp_id3_it3\", \"dataset\": \"rel-avito\", \"join\": \"AdsInfo.LocationID->Location\", \"task\": \"rel-avito/ad-ctr\"}",
+          "output": "{\"probe_jrn\": 1.0, \"gt_jrn\": null}",
+          "eval_probe_jrn": 1.0,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.0,
+          "metadata_experiment": "exp_id3_it3",
+          "metadata_dataset": "rel-avito",
+          "metadata_join_name": "AdsInfo.LocationID->Location",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "predict_probe_jrn": "1.0"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id3_it3\", \"dataset\": \"rel-avito\", \"join\": \"AdsInfo.CategoryID->Category\", \"task\": \"rel-avito/ad-ctr\"}",
+          "output": "{\"probe_jrn\": 0.999371, \"gt_jrn\": null}",
+          "eval_probe_jrn": 0.999371,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.0006289999999999907,
+          "metadata_experiment": "exp_id3_it3",
+          "metadata_dataset": "rel-avito",
+          "metadata_join_name": "AdsInfo.CategoryID->Category",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "predict_probe_jrn": "0.999371"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id3_it3\", \"dataset\": \"rel-avito\", \"join\": \"SearchInfo.UserID->UserInfo\", \"task\": \"rel-avito/ad-ctr\"}",
+          "output": "{\"probe_jrn\": 1.0, \"gt_jrn\": null}",
+          "eval_probe_jrn": 1.0,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.0,
+          "metadata_experiment": "exp_id3_it3",
+          "metadata_dataset": "rel-avito",
+          "metadata_join_name": "SearchInfo.UserID->UserInfo",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "predict_probe_jrn": "1.0"
+        }
+      ]
+    },
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"experiment\": \"exp_id1_it3\", \"dataset\": \"rel-f1\", \"join\": \"races->circuits\", \"task\": \"driver-dnf\"}",
+          "output": "{\"probe_jrn\": 1.0984, \"gt_jrn\": 1.1207}",
+          "eval_probe_jrn": 1.0984,
+          "eval_is_beneficial": 1.0,
+          "eval_jrn_magnitude": 0.09840000000000004,
+          "eval_gt_jrn": 1.1207,
+          "eval_absolute_jrn_error": 0.022299999999999986,
+          "eval_relative_jrn_error": 0.019898277862050492,
+          "eval_sign_agreement": 1.0,
+          "metadata_experiment": "exp_id1_it3",
+          "metadata_dataset": "rel-f1",
+          "metadata_join_name": "races->circuits",
+          "metadata_task_name": "driver-dnf",
+          "predict_probe_jrn": "1.0984",
+          "predict_gt_jrn": "1.1207"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id1_it3\", \"dataset\": \"rel-f1\", \"join\": \"constructor_standings->races\", \"task\": \"driver-dnf\"}",
+          "output": "{\"probe_jrn\": 1.3028, \"gt_jrn\": 1.3416}",
+          "eval_probe_jrn": 1.3028,
+          "eval_is_beneficial": 1.0,
+          "eval_jrn_magnitude": 0.30279999999999996,
+          "eval_gt_jrn": 1.3416,
+          "eval_absolute_jrn_error": 0.038799999999999946,
+          "eval_relative_jrn_error": 0.02892069171138935,
+          "eval_sign_agreement": 1.0,
+          "metadata_experiment": "exp_id1_it3",
+          "metadata_dataset": "rel-f1",
+          "metadata_join_name": "constructor_standings->races",
+          "metadata_task_name": "driver-dnf",
+          "predict_probe_jrn": "1.3028",
+          "predict_gt_jrn": "1.3416"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id1_it3\", \"dataset\": \"rel-f1\", \"join\": \"constructor_standings->constructors\", \"task\": \"driver-dnf\"}",
+          "output": "{\"probe_jrn\": 1.4014, \"gt_jrn\": 1.2347}",
+          "eval_probe_jrn": 1.4014,
+          "eval_is_beneficial": 1.0,
+          "eval_jrn_magnitude": 0.4014,
+          "eval_gt_jrn": 1.2347,
+          "eval_absolute_jrn_error": 0.16670000000000007,
+          "eval_relative_jrn_error": 0.1350125536567588,
+          "eval_sign_agreement": 1.0,
+          "metadata_experiment": "exp_id1_it3",
+          "metadata_dataset": "rel-f1",
+          "metadata_join_name": "constructor_standings->constructors",
+          "metadata_task_name": "driver-dnf",
+          "predict_probe_jrn": "1.4014",
+          "predict_gt_jrn": "1.2347"
+        }
+      ]
+    },
+    {
+      "dataset": "rel-hm",
+      "examples": [
+        {
+          "input": "{\"experiment\": \"exp_id2_it5\", \"dataset\": \"rel-hm\", \"join\": \"transactions.customer_id -> customers\", \"task\": \"user-churn\"}",
+          "output": "{\"probe_jrn\": 0.905116, \"gt_jrn\": null}",
+          "eval_probe_jrn": 0.905116,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.09488399999999997,
+          "metadata_experiment": "exp_id2_it5",
+          "metadata_dataset": "rel-hm",
+          "metadata_join_name": "transactions.customer_id -> customers",
+          "metadata_task_name": "user-churn",
+          "predict_probe_jrn": "0.905116"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id2_it5\", \"dataset\": \"rel-hm\", \"join\": \"transactions.customer_id -> customers\", \"task\": \"user-churn\"}",
+          "output": "{\"probe_jrn\": 0.930317, \"gt_jrn\": null}",
+          "eval_probe_jrn": 0.930317,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.06968300000000005,
+          "metadata_experiment": "exp_id2_it5",
+          "metadata_dataset": "rel-hm",
+          "metadata_join_name": "transactions.customer_id -> customers",
+          "metadata_task_name": "user-churn",
+          "predict_probe_jrn": "0.930317"
+        },
+        {
+          "input": "{\"experiment\": \"exp_id2_it5\", \"dataset\": \"rel-hm\", \"join\": \"transactions.customer_id -> customers\", \"task\": \"user-churn\"}",
+          "output": "{\"probe_jrn\": 0.934568, \"gt_jrn\": null}",
+          "eval_probe_jrn": 0.934568,
+          "eval_is_beneficial": 0.0,
+          "eval_jrn_magnitude": 0.06543200000000005,
+          "metadata_experiment": "exp_id2_it5",
+          "metadata_dataset": "rel-hm",
+          "metadata_join_name": "transactions.customer_id -> customers",
+          "metadata_task_name": "user-churn",
+          "predict_probe_jrn": "0.934568"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "source": "RelBench rel-f1 (Formula 1) relational database",
+    "paper": "arXiv:2407.20060",
+    "license": "CC-BY-4.0",
+    "relbench_version": "2.1.1",
+    "val_timestamp": "2005-01-01T00:00:00",
+    "test_timestamp": "2010-01-01T00:00:00",
+    "num_tables": 9,
+    "num_fk_relationships": 13,
+    "num_tasks": 6,
+    "table_names": [
+      "races",
+      "drivers",
+      "constructor_standings"
+    ],
+    "task_names": [
+      "rel-f1/driver-circuit-compete",
+      "rel-f1/driver-dnf",
+      "rel-f1/driver-position"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"year\": 1950, \"round\": 1, \"circuitId\": 8, \"name\": \"British Grand Prix\", \"date\": \"1950-05-13T00:00:00\", \"time\": \"00:00:00\"}",
+          "output": "races/0",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "races",
+          "metadata_primary_key_col": "raceId",
+          "metadata_primary_key_value": "0",
+          "metadata_row_index": 0,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "year",
+            "round",
+            "circuitId"
+          ],
+          "metadata_time_col": "date",
+          "metadata_foreign_keys_json": "{\"circuitId\": \"circuits\"}"
+        },
+        {
+          "input": "{\"year\": 1950, \"round\": 2, \"circuitId\": 5, \"name\": \"Monaco Grand Prix\", \"date\": \"1950-05-21T00:00:00\", \"time\": \"00:00:00\"}",
+          "output": "races/1",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "races",
+          "metadata_primary_key_col": "raceId",
+          "metadata_primary_key_value": "1",
+          "metadata_row_index": 1,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "year",
+            "round",
+            "circuitId"
+          ],
+          "metadata_time_col": "date",
+          "metadata_foreign_keys_json": "{\"circuitId\": \"circuits\"}"
+        },
+        {
+          "input": "{\"year\": 1950, \"round\": 3, \"circuitId\": 18, \"name\": \"Indianapolis 500\", \"date\": \"1950-05-30T00:00:00\", \"time\": \"00:00:00\"}",
+          "output": "races/2",
+          "metadata_row_type": "table_row",
+          "metadata_table_name": "races",
+          "metadata_primary_key_col": "raceId",
+          "metadata_primary_key_value": "2",
+          "metadata_row_index": 2,
+          "metadata_num_cols": 7,
+          "metadata_feature_names": [
+            "year",
+            "round",
+            "circuitId"
+          ],
+          "metadata_time_col": "date",
+          "metadata_foreign_keys_json": "{\"circuitId\": \"circuits\"}"
+        }
+      ]
+    }
+  ]
+}

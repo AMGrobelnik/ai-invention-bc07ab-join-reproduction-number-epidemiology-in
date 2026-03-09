@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "dataset": "rel-f1",
+    "num_joins": 13,
+    "num_tasks_evaluated": 6,
+    "num_join_task_pairs": 19,
+    "model_probe_config": {
+      "hidden": [
+        32,
+        16
+      ],
+      "epochs": 50,
+      "seeds": 3
+    },
+    "model_gt_config": {
+      "hidden": [
+        128,
+        64,
+        32
+      ],
+      "epochs": 200,
+      "seeds": 3
+    }
+  },
+  "datasets": [
+    {
+      "dataset": "rel-f1",
+      "examples": [
+        {
+          "input": "{\"join\": \"standings\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 35.187734668335416}",
+          "output": "{\"jrn_gt_mean\": 1.0928010576075635, \"jrn_gt_std\": 0.002093349348415716, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6597974300831444}",
+          "metadata_join_idx": 4,
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_source_table": "standings",
+          "metadata_target_table": "drivers",
+          "metadata_task_type": "binary_classification",
+          "metadata_n_train": 11411,
+          "metadata_n_val": 566,
+          "metadata_model_type": "GBM+MLP",
+          "predict_proxy_fanout": "35.187734668335416",
+          "predict_proxy_correlation": "0.33123598067111604",
+          "predict_proxy_MI": "0.057125037510007776",
+          "predict_proxy_entropy_reduction": "0.016738349364746545",
+          "predict_proxy_homophily": "0.15707556535264722",
+          "predict_jrn_probe_gbm": "1.1848520080400424",
+          "predict_jrn_probe_mlp": "1.8638087594227528"
+        },
+        {
+          "input": "{\"join\": \"qualifying\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 34.888888888888886}",
+          "output": "{\"jrn_gt_mean\": 1.0898866276740644, \"jrn_gt_std\": 0.00019829130151058968, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6580377928949357}",
+          "metadata_join_idx": 8,
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_source_table": "qualifying",
+          "metadata_target_table": "drivers",
+          "metadata_task_type": "binary_classification",
+          "metadata_n_train": 11411,
+          "metadata_n_val": 566,
+          "metadata_model_type": "GBM+MLP",
+          "predict_proxy_fanout": "34.888888888888886",
+          "predict_proxy_correlation": "0.1332531350659518",
+          "predict_proxy_MI": "0.026846967151428393",
+          "predict_proxy_entropy_reduction": "-0.005700069787449646",
+          "predict_proxy_homophily": "0.04986714180214572",
+          "predict_jrn_probe_gbm": "1.056812359594845",
+          "predict_jrn_probe_mlp": "1.7177501849141523"
+        },
+        {
+          "input": "{\"join\": \"results\\u2192drivers via driverId\", \"task\": \"rel-f1/driver-dnf\", \"task_type\": \"binary_classification\", \"fanout_mean\": 25.214640198511166}",
+          "output": "{\"jrn_gt_mean\": 1.095304863392356, \"jrn_gt_std\": 0.0003266866923784075, \"M_base_gt\": 0.6037671957671958, \"M_join_gt\": 0.6613091458805744}",
+          "metadata_join_idx": 11,
+          "metadata_task_name": "rel-f1/driver-dnf",
+          "metadata_source_table": "results",
+          "metadata_target_table": "drivers",
+          "metadata_task_type": "binary_classification",
+          "metadata_n_train": 11411,
+          "metadata_n_val": 566,
+          "metadata_model_type": "GBM+MLP",
+          "predict_proxy_fanout": "25.214640198511166",
+          "predict_proxy_correlation": "0.3914747201380485",
+          "predict_proxy_MI": "0.055778622035153345",
+          "predict_proxy_entropy_reduction": "0.017530697340794064",
+          "predict_proxy_homophily": "0.14732738616814933",
+          "predict_jrn_probe_gbm": "1.1253891932369053",
+          "predict_jrn_probe_mlp": "1.9664636545331504"
+        }
+      ]
+    }
+  ]
+}

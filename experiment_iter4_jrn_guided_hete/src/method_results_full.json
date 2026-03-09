@@ -1,0 +1,922 @@
+{
+  "title": "JRN-Guided Heterogeneous Architecture on rel-avito",
+  "dataset": "rel-avito",
+  "tasks": [
+    "ad-ctr",
+    "user-clicks",
+    "user-visits"
+  ],
+  "schema": {
+    "tables": [
+      {
+        "name": "AdsInfo",
+        "rows": 56625,
+        "cols": 6
+      },
+      {
+        "name": "SearchInfo",
+        "rows": 18878,
+        "cols": 8
+      },
+      {
+        "name": "UserInfo",
+        "rows": 1000,
+        "cols": 5
+      },
+      {
+        "name": "Location",
+        "rows": 3512,
+        "cols": 4
+      },
+      {
+        "name": "SearchStream",
+        "rows": 67519,
+        "cols": 7
+      },
+      {
+        "name": "VisitStream",
+        "rows": 50140,
+        "cols": 4
+      },
+      {
+        "name": "PhoneRequestsStream",
+        "rows": 2322,
+        "cols": 4
+      },
+      {
+        "name": "Category",
+        "rows": 68,
+        "cols": 4
+      }
+    ],
+    "fk_joins": [
+      {
+        "index": 0,
+        "source": "AdsInfo",
+        "fk_col": "LocationID",
+        "target": "Location",
+        "full_fanout_mean": 1765,
+        "full_fanout_max": 929887
+      },
+      {
+        "index": 1,
+        "source": "AdsInfo",
+        "fk_col": "CategoryID",
+        "target": "Category",
+        "full_fanout_mean": 114625,
+        "full_fanout_max": 741045
+      },
+      {
+        "index": 2,
+        "source": "SearchInfo",
+        "fk_col": "UserID",
+        "target": "UserInfo",
+        "full_fanout_mean": 35,
+        "full_fanout_max": 3325
+      },
+      {
+        "index": 3,
+        "source": "SearchInfo",
+        "fk_col": "LocationID",
+        "target": "Location",
+        "full_fanout_mean": 1093,
+        "full_fanout_max": 261154
+      },
+      {
+        "index": 4,
+        "source": "SearchInfo",
+        "fk_col": "CategoryID",
+        "target": "Category",
+        "full_fanout_mean": 50953,
+        "full_fanout_max": 222683
+      },
+      {
+        "index": 5,
+        "source": "SearchStream",
+        "fk_col": "SearchID",
+        "target": "SearchInfo",
+        "full_fanout_mean": 3.6,
+        "full_fanout_max": 6
+      },
+      {
+        "index": 6,
+        "source": "SearchStream",
+        "fk_col": "AdID",
+        "target": "AdsInfo",
+        "full_fanout_mean": 3.5,
+        "full_fanout_max": 23775
+      },
+      {
+        "index": 7,
+        "source": "VisitStream",
+        "fk_col": "UserID",
+        "target": "UserInfo",
+        "full_fanout_mean": 89.7,
+        "full_fanout_max": 6493
+      },
+      {
+        "index": 8,
+        "source": "VisitStream",
+        "fk_col": "AdID",
+        "target": "AdsInfo",
+        "full_fanout_mean": 1.67,
+        "full_fanout_max": 367
+      },
+      {
+        "index": 9,
+        "source": "PhoneRequestsStream",
+        "fk_col": "UserID",
+        "target": "UserInfo",
+        "full_fanout_mean": 8.1,
+        "full_fanout_max": 1123
+      },
+      {
+        "index": 10,
+        "source": "PhoneRequestsStream",
+        "fk_col": "AdID",
+        "target": "AdsInfo",
+        "full_fanout_mean": 1.18,
+        "full_fanout_max": 83
+      }
+    ]
+  },
+  "jrn_matrix": {
+    "join_0_AdsInfo_LocationID_Location": {
+      "rel-avito/ad-ctr": {
+        "best_jrn": 1.0,
+        "best_agg": "lookup",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "lookup": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.049556805584340946,
+        "best_join_metric": 0.049556805584340946
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_1_AdsInfo_CategoryID_Category": {
+      "rel-avito/ad-ctr": {
+        "best_jrn": 1.0006313557235003,
+        "best_agg": "lookup",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "lookup": 1.0006313557235003
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.049556805584340946,
+        "best_join_metric": 0.04952553735287379
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_2_SearchInfo_UserID_UserInfo": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.5006539886113793,
+        "best_join_metric": 0.5006539886113793
+      },
+      "rel-avito/user-visits": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.49975389803837933,
+        "best_join_metric": 0.49975389803837933
+      }
+    },
+    "join_3_SearchInfo_LocationID_Location": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_4_SearchInfo_CategoryID_Category": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_5_SearchStream_SearchID_SearchInfo": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_6_SearchStream_AdID_AdsInfo": {
+      "rel-avito/ad-ctr": {
+        "best_jrn": 1.3926809675776517,
+        "best_agg": "max",
+        "classification": "HIGH",
+        "jrn_by_agg": {
+          "mean": 1.3788865595346163,
+          "sum": 1.3917087982167191,
+          "max": 1.3926809675776517,
+          "std": 1.378251602188715,
+          "all": 1.383373290870001
+        },
+        "agg_sensitivity": 0.0044457999679641804,
+        "baseline_metric": 0.049556805584340946,
+        "best_join_metric": 0.03558374583845802
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_7_VisitStream_UserID_UserInfo": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.5006539886113793,
+        "best_join_metric": 0.5006539886113793
+      },
+      "rel-avito/user-visits": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.49975389803837933,
+        "best_join_metric": 0.49975389803837933
+      }
+    },
+    "join_8_VisitStream_AdID_AdsInfo": {
+      "rel-avito/ad-ctr": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.049556805584340946,
+        "best_join_metric": 0.049556805584340946
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    },
+    "join_9_PhoneRequestsStream_UserID_UserInfo": {
+      "rel-avito/ad-ctr": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-clicks": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.5006539886113793,
+        "best_join_metric": 0.5006539886113793
+      },
+      "rel-avito/user-visits": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.49975389803837933,
+        "best_join_metric": 0.49975389803837933
+      }
+    },
+    "join_10_PhoneRequestsStream_AdID_AdsInfo": {
+      "rel-avito/ad-ctr": {
+        "best_jrn": 1.0,
+        "best_agg": "mean",
+        "classification": "CRITICAL",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        },
+        "agg_sensitivity": 0.0,
+        "baseline_metric": 0.049556805584340946,
+        "best_join_metric": 0.049556805584340946
+      },
+      "rel-avito/user-clicks": {
+        "jrn": 1.0,
+        "classification": "NA"
+      },
+      "rel-avito/user-visits": {
+        "jrn": 1.0,
+        "classification": "NA"
+      }
+    }
+  },
+  "jrn_summary": {
+    "num_high": 1,
+    "num_critical": 10,
+    "num_low": 0,
+    "num_na": 22,
+    "high_joins": [
+      "join_6_SearchStream_AdID_AdsInfo"
+    ],
+    "critical_joins": [
+      "join_0_AdsInfo_LocationID_Location",
+      "join_1_AdsInfo_CategoryID_Category",
+      "join_2_SearchInfo_UserID_UserInfo",
+      "join_7_VisitStream_UserID_UserInfo",
+      "join_8_VisitStream_AdID_AdsInfo",
+      "join_9_PhoneRequestsStream_UserID_UserInfo",
+      "join_10_PhoneRequestsStream_AdID_AdsInfo"
+    ],
+    "low_joins": []
+  },
+  "baseline_metrics": {
+    "rel-avito/ad-ctr": {
+      "mean": 0.049556805584340946,
+      "std": 6.921029137883742e-05
+    },
+    "rel-avito/user-clicks": {
+      "mean": 0.5006539886113793,
+      "std": 0.00045093123707503767
+    },
+    "rel-avito/user-visits": {
+      "mean": 0.49975389803837933,
+      "std": 6.730300820116378e-05
+    }
+  },
+  "architecture_comparison": {
+    "rel-avito/ad-ctr": {
+      "jrn_guided": {
+        "mae": 0.03618285170104051,
+        "std": 0.00010981359867017816,
+        "n_joins": 3,
+        "n_features": 58
+      },
+      "uniform_mean": {
+        "mae": 0.03657272559060933,
+        "std": 0.00015633149793610557,
+        "n_joins": 5,
+        "n_features": 36
+      },
+      "uniform_rich": {
+        "mae": 0.0361638859963593,
+        "std": 0.0002536120822069602,
+        "n_joins": 5,
+        "n_features": 90
+      },
+      "top_k": {
+        "mae": 0.036156098966719896,
+        "std": 7.77662046395533e-05,
+        "n_joins": 2,
+        "n_features": 20
+      },
+      "greedy_oracle": {
+        "mae": 0.03610267510332852,
+        "std": 0.00020525361144896535,
+        "n_joins": 1,
+        "n_features": 16,
+        "selected_joins": [
+          [
+            6,
+            "sum"
+          ]
+        ]
+      }
+    },
+    "rel-avito/user-clicks": {
+      "jrn_guided": {
+        "auroc": 0.500659549161944,
+        "std": 0.00014287407358268088,
+        "n_joins": 3,
+        "n_features": 86
+      },
+      "uniform_mean": {
+        "auroc": 0.500659549161944,
+        "std": 0.00014287407358268088,
+        "n_joins": 3,
+        "n_features": 29
+      },
+      "uniform_rich": {
+        "auroc": 0.500659549161944,
+        "std": 0.00014287407358268088,
+        "n_joins": 3,
+        "n_features": 86
+      },
+      "top_k": {
+        "auroc": 0.500659549161944,
+        "std": 0.00014287407358268088,
+        "n_joins": 2,
+        "n_features": 23
+      },
+      "greedy_oracle": {
+        "auroc": 0.500659549161944,
+        "std": 0.00014287407358268088,
+        "n_joins": 0,
+        "n_features": 7,
+        "selected_joins": []
+      }
+    },
+    "rel-avito/user-visits": {
+      "jrn_guided": {
+        "auroc": 0.5001845759394802,
+        "std": 0.00018751753927275595,
+        "n_joins": 3,
+        "n_features": 86
+      },
+      "uniform_mean": {
+        "auroc": 0.5001845759394802,
+        "std": 0.00018751753927275595,
+        "n_joins": 3,
+        "n_features": 29
+      },
+      "uniform_rich": {
+        "auroc": 0.5001845759394802,
+        "std": 0.00018751753927275595,
+        "n_joins": 3,
+        "n_features": 86
+      },
+      "top_k": {
+        "auroc": 0.5001845759394802,
+        "std": 0.00018751753927275595,
+        "n_joins": 2,
+        "n_features": 23
+      },
+      "greedy_oracle": {
+        "auroc": 0.5001845759394802,
+        "std": 0.00018751753927275595,
+        "n_joins": 0,
+        "n_features": 7,
+        "selected_joins": []
+      }
+    }
+  },
+  "win_rate_analysis": {
+    "jrn_guided_vs_uniform_mean": {
+      "wins": 3,
+      "total": 3,
+      "pct": 100.0
+    },
+    "jrn_guided_vs_uniform_rich": {
+      "wins": 2,
+      "total": 3,
+      "pct": 66.66666666666666
+    },
+    "jrn_guided_vs_top_k": {
+      "wins": 2,
+      "total": 3,
+      "pct": 66.66666666666666
+    },
+    "jrn_guided_oracle_gap": {
+      "mean_gap": 0.0007402646062701348,
+      "per_task": {
+        "rel-avito/ad-ctr": 0.0022207938188104044,
+        "rel-avito/user-clicks": 0.0,
+        "rel-avito/user-visits": 0.0
+      }
+    }
+  },
+  "aggregation_sensitivity": {
+    "pairs": [
+      {
+        "join_idx": 0,
+        "task": "rel-avito/ad-ctr",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "lookup",
+        "jrn_by_agg": {
+          "lookup": 1.0
+        }
+      },
+      {
+        "join_idx": 1,
+        "task": "rel-avito/ad-ctr",
+        "best_jrn": 1.0006313557235003,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "lookup",
+        "jrn_by_agg": {
+          "lookup": 1.0006313557235003
+        }
+      },
+      {
+        "join_idx": 6,
+        "task": "rel-avito/ad-ctr",
+        "best_jrn": 1.3926809675776517,
+        "agg_sensitivity": 0.0044457999679641804,
+        "classification": "HIGH",
+        "best_agg": "max",
+        "jrn_by_agg": {
+          "mean": 1.3788865595346163,
+          "sum": 1.3917087982167191,
+          "max": 1.3926809675776517,
+          "std": 1.378251602188715,
+          "all": 1.383373290870001
+        }
+      },
+      {
+        "join_idx": 8,
+        "task": "rel-avito/ad-ctr",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 10,
+        "task": "rel-avito/ad-ctr",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 2,
+        "task": "rel-avito/user-clicks",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 7,
+        "task": "rel-avito/user-clicks",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 9,
+        "task": "rel-avito/user-clicks",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 2,
+        "task": "rel-avito/user-visits",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 7,
+        "task": "rel-avito/user-visits",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      },
+      {
+        "join_idx": 9,
+        "task": "rel-avito/user-visits",
+        "best_jrn": 1.0,
+        "agg_sensitivity": 0.0,
+        "classification": "CRITICAL",
+        "best_agg": "mean",
+        "jrn_by_agg": {
+          "mean": 1.0,
+          "sum": 1.0,
+          "max": 1.0,
+          "std": 1.0,
+          "all": 1.0
+        }
+      }
+    ],
+    "quadratic_fit": {
+      "beta_0": 0.028896360416628682,
+      "beta_1": -0.05777448846180473,
+      "beta_2": 0.028878128045176046,
+      "r_squared": 1.0,
+      "p_value_beta2": 1.4957625450106856e-91
+    },
+    "best_agg_by_jrn_level": {
+      "HIGH": {
+        "max": 1
+      },
+      "CRITICAL": {
+        "lookup": 2,
+        "mean": 8
+      },
+      "LOW": {}
+    }
+  },
+  "extreme_cardinality_analysis": {
+    "fanout_vs_jrn_correlation": {
+      "spearman_rho": 0.0950381926622983,
+      "p_value": 0.7810470872010731
+    },
+    "coverage_vs_jrn_correlation": {
+      "spearman_rho": 0.1086150773283409,
+      "p_value": 0.7505711651084348
+    },
+    "subsampled_vs_full_fanout": [
+      {
+        "join_idx": 0,
+        "source_table": "AdsInfo",
+        "fk_col": "LocationID",
+        "target_table": "Location",
+        "full_fanout_mean": 1765,
+        "full_fanout_max": 929887,
+        "sub_fanout_mean": 41.74389341228719,
+        "sub_fanout_max": 9000,
+        "join_coverage": 0.9575740318906606,
+        "best_jrn": 1.0,
+        "task": "rel-avito/ad-ctr"
+      },
+      {
+        "join_idx": 1,
+        "source_table": "AdsInfo",
+        "fk_col": "CategoryID",
+        "target_table": "Category",
+        "full_fanout_mean": 114625,
+        "full_fanout_max": 741045,
+        "sub_fanout_mean": 1088.9423076923076,
+        "sub_fanout_max": 7045,
+        "join_coverage": 0.7647058823529411,
+        "best_jrn": 1.0006313557235003,
+        "task": "rel-avito/ad-ctr"
+      },
+      {
+        "join_idx": 6,
+        "source_table": "SearchStream",
+        "fk_col": "AdID",
+        "target_table": "AdsInfo",
+        "full_fanout_mean": 3.5,
+        "full_fanout_max": 23775,
+        "sub_fanout_mean": 1.6209098547593326,
+        "sub_fanout_max": 225,
+        "join_coverage": 0.3416666694628255,
+        "best_jrn": 1.3926809675776517,
+        "task": "rel-avito/ad-ctr"
+      },
+      {
+        "join_idx": 8,
+        "source_table": "VisitStream",
+        "fk_col": "AdID",
+        "target_table": "AdsInfo",
+        "full_fanout_mean": 1.67,
+        "full_fanout_max": 367,
+        "sub_fanout_mean": 1.0111980272067593,
+        "sub_fanout_max": 6,
+        "join_coverage": 0.5301030541100347,
+        "best_jrn": 1.0,
+        "task": "rel-avito/ad-ctr"
+      },
+      {
+        "join_idx": 10,
+        "source_table": "PhoneRequestsStream",
+        "fk_col": "AdID",
+        "target_table": "AdsInfo",
+        "full_fanout_mean": 1.18,
+        "full_fanout_max": 83,
+        "sub_fanout_mean": 1.0,
+        "sub_fanout_max": 1,
+        "join_coverage": 0.03468601429597699,
+        "best_jrn": 1.0,
+        "task": "rel-avito/ad-ctr"
+      },
+      {
+        "join_idx": 2,
+        "source_table": "SearchInfo",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 35,
+        "full_fanout_max": 3325,
+        "sub_fanout_mean": 1.8774954627949183,
+        "sub_fanout_max": 35,
+        "join_coverage": 0.5648040712468193,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-clicks"
+      },
+      {
+        "join_idx": 7,
+        "source_table": "VisitStream",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 89.7,
+        "full_fanout_max": 6493,
+        "sub_fanout_mean": 2.4022806004618937,
+        "sub_fanout_max": 61,
+        "join_coverage": 0.5961323155216285,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-clicks"
+      },
+      {
+        "join_idx": 9,
+        "source_table": "PhoneRequestsStream",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 8.1,
+        "full_fanout_max": 1123,
+        "sub_fanout_mean": 1.182608695652174,
+        "sub_fanout_max": 14,
+        "join_coverage": 0.30743002544529263,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-clicks"
+      },
+      {
+        "join_idx": 2,
+        "source_table": "SearchInfo",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 35,
+        "full_fanout_max": 3325,
+        "sub_fanout_mean": 1.8774954627949183,
+        "sub_fanout_max": 35,
+        "join_coverage": 0.5648040712468193,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-visits"
+      },
+      {
+        "join_idx": 7,
+        "source_table": "VisitStream",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 89.7,
+        "full_fanout_max": 6493,
+        "sub_fanout_mean": 2.4022806004618937,
+        "sub_fanout_max": 61,
+        "join_coverage": 0.5961323155216285,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-visits"
+      },
+      {
+        "join_idx": 9,
+        "source_table": "PhoneRequestsStream",
+        "fk_col": "UserID",
+        "target_table": "UserInfo",
+        "full_fanout_mean": 8.1,
+        "full_fanout_max": 1123,
+        "sub_fanout_mean": 1.182608695652174,
+        "sub_fanout_max": 14,
+        "join_coverage": 0.30743002544529263,
+        "best_jrn": 1.0,
+        "task": "rel-avito/user-visits"
+      }
+    ]
+  },
+  "hypothesis_validation": {
+    "threshold_prediction": "DISCONFIRMED",
+    "jrn_guided_wins_60pct": "CONFIRMED",
+    "prior_work_comparison": "See JRN matrix for comparison with expected JRN\u22481.34 (SearchStream\u2192AdsInfo) and JRN\u22481.36 (VisitStream\u2192UserInfo)"
+  },
+  "computational_cost": {
+    "total_lgbm_runs": 381,
+    "total_time_seconds": 123.02824091911316,
+    "probe_time_seconds": 37.23199725151062,
+    "architecture_time_seconds": 85.79624366760254,
+    "probe_runs": 150,
+    "architecture_runs": 231
+  }
+}

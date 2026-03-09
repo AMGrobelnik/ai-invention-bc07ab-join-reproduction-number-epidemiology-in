@@ -1,0 +1,13 @@
+{
+  "id": "eval_id4_it7__opus",
+  "type": "code",
+  "title": "Figure-Ready Data Assembly: JRN Paper Visualization Specifications from 5 Experiments",
+  "summary": "Demo notebook that loads pre-computed figure-ready data from 5 JRN (Join Reproduction Number) experiments and visualizes 6 paper figures: JRN heatmaps (join\u00d7task matrices), cross-task transfer correlation matrices (Kendall's W), cost-efficiency convergence curves, compounding model comparisons (R\u00b2 fits), FK-shuffling decomposition (structural vs feature signal), and probe validity forest plots. Uses a curated 13-example subset across all 6 figure types from the original 106-example evaluation output. Produces a 6-panel overview visualization and summary metrics table.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_7/gen_art/eval_id4_it7__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id4_it7__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/eval_id4_it7__opus/eval_code_demo.ipynb"
+}

@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "evaluation_name": "Definitive Cross-Dataset JRN Evaluation",
+    "description": "Consolidated meta-analysis of 12 experiments across 4 datasets (rel-f1, rel-stack, rel-avito, rel-hm) from iterations 2-4. Computes 7 analyses: probe validity meta-analysis, architecture comparison, c...",
+    "n_experiments": 12,
+    "n_analyses": 7,
+    "datasets_covered": [
+      "rel-f1",
+      "rel-stack",
+      "rel-avito"
+    ],
+    "iterations_covered": [
+      2,
+      3,
+      4
+    ],
+    "experiments_used": [
+      "exp_id1_it2",
+      "exp_id2_it2",
+      "exp_id3_it2"
+    ]
+  },
+  "metrics_agg": {
+    "pooled_probe_rho": 0.949906,
+    "pooled_probe_rho_ci_low": 0.512523,
+    "pooled_probe_rho_ci_high": 0.995913,
+    "I_squared": 97.6869,
+    "Q_statistic": 129.6944,
+    "tau_squared": 1.618457,
+    "n_meta_analysis_studies": 4,
+    "jrn_guided_overall_win_rate_vs_uniform_mean": 0.272727,
+    "jrn_guided_win_rate_vs_top_k": 0.272727,
+    "jrn_guided_win_rate_vs_uniform_rich": 0.090909,
+    "jrn_guided_sign_test_p": 0.2265625,
+    "avg_oracle_gap": 0.035494,
+    "n_architecture_tasks": 11,
+    "compounding_r2_mlp_stack": 0.828332,
+    "compounding_r2_gbm_f1": -17.9214,
+    "fk_shuffle_cohens_d": 0.6915,
+    "fk_shuffle_p_value": 0.000109,
+    "fk_shuffle_wilcoxon_p": 5.6e-05,
+    "mean_structural_fraction": 0.151197,
+    "structural_dominant_fraction": 0.0513,
+    "n_claims_supported": 2,
+    "n_claims_partial": 1,
+    "n_claims_unsupported": 2,
+    "n_claims_contradictory": 1,
+    "n_claims_total": 6
+  },
+  "datasets": [
+    {
+      "dataset": "cross_dataset_evaluation",
+      "examples": [
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-f1\", \"experiment\": \"exp_id4_it2\", \"probe_type\": \"GBM\", \"n_pairs\": 19}",
+          "output": "{\"rho\": 0.96, \"fisher_z\": 1.94591, \"var_z\": 0.0625, \"description\": \"GBM probe vs ground-truth JRN on rel-f1 (19 join-task pairs, diagnostic comparison)\"}",
+          "eval_spearman_rho": 0.96,
+          "eval_fisher_z": 1.94591,
+          "eval_sample_size": 19.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-f1",
+          "metadata_experiment": "exp_id4_it2"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-f1\", \"experiment\": \"exp_id1_it3\", \"probe_type\": \"GBM\", \"n_pairs\": 65}",
+          "output": "{\"rho\": 0.439661, \"fisher_z\": 0.47181, \"var_z\": 0.016129, \"description\": \"GBM probe vs ground-truth on rel-f1 (65 join-task pairs, Phase 2 agg sensitivity)\"}",
+          "eval_spearman_rho": 0.439661,
+          "eval_fisher_z": 0.47181,
+          "eval_sample_size": 65.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-f1",
+          "metadata_experiment": "exp_id1_it3"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-stack\", \"experiment\": \"exp_id2_it3\", \"probe_type\": \"GBM\", \"n_pairs\": 16}",
+          "output": "{\"rho\": 0.999, \"fisher_z\": 3.800201, \"var_z\": 0.076923, \"description\": \"GBM probe vs full model on rel-stack (16 non-trivial join-task pairs)\"}",
+          "eval_spearman_rho": 0.999,
+          "eval_fisher_z": 3.800201,
+          "eval_sample_size": 16.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-stack",
+          "metadata_experiment": "exp_id2_it3"
+        }
+      ]
+    }
+  ]
+}

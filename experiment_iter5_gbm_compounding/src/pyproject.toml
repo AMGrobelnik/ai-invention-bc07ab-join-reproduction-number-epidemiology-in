@@ -1,0 +1,18 @@
+[project]
+name = "exp-id1-it5-opus"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "lightgbm==4.6.0",
+    "pandas==3.0.1",
+    "numpy==2.4.2",
+    "scikit-learn==1.6.1",
+    "scipy==1.17.1",
+    "loguru==0.7.3",
+    "relbench==2.1.1",
+    "torch==2.10.0",
+    "torch-frame==1.7.5",
+    "torch-geometric==2.7.0",
+    "pooch==1.9.0",
+    "jsonschema==4.26.0",
+]

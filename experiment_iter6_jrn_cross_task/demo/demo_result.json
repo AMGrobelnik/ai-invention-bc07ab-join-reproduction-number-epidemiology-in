@@ -1,0 +1,13 @@
+{
+  "id": "exp_id1_it6__opus",
+  "type": "code",
+  "title": "JRN Cross-Task Transfer Analysis on rel-f1 and rel-stack",
+  "summary": "Demo notebook that loads pre-computed JRN (Join Reproduction Number) matrices from rel-f1 (5 tasks, 13 joins) and rel-stack (3 tasks, 11 joins) benchmarks. Reconstructs JRN matrices from 93 examples, then performs: leave-one-task-out transfer rho, pairwise Spearman rho, Kendall's W concordance, entity-table and task-type concordance analysis, universal vs task-specific join selection gap analysis, and cost-adjusted recommendations. Generates JRN heatmaps and concordance comparison bar charts. Uses original experiment parameters (no scaling needed since analysis is purely statistical on pre-computed results). Key findings reproduced: rel-f1 W=0.524, rel-stack W=0.206; both recommend per-task JRN.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_6/gen_art/exp_id1_it6__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it6__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it6__opus/method_code_demo.ipynb"
+}

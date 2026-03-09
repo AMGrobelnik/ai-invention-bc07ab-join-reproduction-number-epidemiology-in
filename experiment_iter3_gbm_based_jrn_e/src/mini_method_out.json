@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "dataset": "rel-avito",
+    "num_tables": 8,
+    "num_fk_joins": 11,
+    "num_tasks_tested": 3,
+    "tasks_excluded": [
+      "rel-avito/user-ad-visit (link_prediction - requires specialized approach)"
+    ],
+    "probe_config": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4
+    },
+    "full_config": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "num_leaves": 127,
+      "n_jobs": 4
+    },
+    "seeds": [
+      42,
+      123,
+      456
+    ],
+    "max_train_rows": 200000,
+    "agg_types_tested": [
+      "mean",
+      "sum",
+      "max",
+      "std",
+      "all_combined"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"AdsInfo.LocationID->Location\", \"join_idx\": 0, \"direction\": \"forward\", \"fanout_mean\": 1765.0336009515313, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047923}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 0,
+          "metadata_join_key": "AdsInfo.LocationID->Location",
+          "metadata_direction": "forward"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"AdsInfo.CategoryID->Category\", \"join_idx\": 1, \"direction\": \"forward\", \"fanout_mean\": 114625.5, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 0.999371, \"best_agg_type\": \"mean\", \"agg_sensitivity\": 0.0, \"agg_scores\": {\"mean\": 0.047954}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047954, \"best_agg_type\": \"mean\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 1,
+          "metadata_join_key": "AdsInfo.CategoryID->Category",
+          "metadata_direction": "forward"
+        },
+        {
+          "input": "{\"task_name\": \"rel-avito/ad-ctr\", \"join_key\": \"SearchInfo.UserID->UserInfo\", \"join_idx\": 2, \"direction\": \"none\", \"fanout_mean\": 35.35468175592878, \"subsampled_fanout\": 0.0}",
+          "output": "{\"jrn\": 1.0, \"best_agg_type\": \"none\", \"agg_sensitivity\": 0.0, \"agg_scores\": {}}",
+          "predict_baseline": "{\"score\": 0.047923, \"std\": 1e-06, \"metric\": \"MAE\"}",
+          "predict_our_method": "{\"score\": 0.047923, \"best_agg_type\": \"none\", \"metric\": \"MAE\"}",
+          "metadata_measurement_type": "jrn_measurement",
+          "metadata_task_name": "rel-avito/ad-ctr",
+          "metadata_join_idx": 2,
+          "metadata_join_key": "SearchInfo.UserID->UserInfo",
+          "metadata_direction": "none"
+        }
+      ]
+    }
+  ]
+}

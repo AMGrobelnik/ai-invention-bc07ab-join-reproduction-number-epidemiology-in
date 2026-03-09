@@ -1,0 +1,13 @@
+[project]
+name = "eval-id5-it7"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy==2.4.3",
+    "scipy==1.17.1",
+    "scikit-learn==1.8.0",
+    "loguru==0.7.3",
+    "psutil==7.2.2",
+    "joblib==1.5.3",
+    "threadpoolctl==3.6.0",
+]

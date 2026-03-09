@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "source": "RelBench rel-avito (Avito ad marketplace) relational database",
+    "paper": "arXiv:2407.20060",
+    "license": "CC-BY-4.0",
+    "relbench_version": "1.0.0",
+    "val_timestamp": "2015-05-08T00:00:00",
+    "test_timestamp": "2015-05-14T00:00:00",
+    "num_tables": 8,
+    "num_fk_relationships": 11,
+    "num_tasks": 4,
+    "table_names": [
+      "AdsInfo",
+      "SearchInfo",
+      "UserInfo",
+      "Location",
+      "SearchStream",
+      "VisitStream",
+      "PhoneRequestsStream",
+      "Category"
+    ],
+    "task_names": [
+      "rel-avito/ad-ctr",
+      "rel-avito/user-ad-visit",
+      "rel-avito/user-clicks",
+      "rel-avito/user-visits"
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-avito",
+      "examples": [
+        {
+          "input": "{\"UserID\": 74013, \"timestamp\": \"2015-04-26T00:00:00\"}",
+          "output": "True",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 0,
+          "metadata_fold_name": "train",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_row_index": 8064,
+          "metadata_target_col": "num_click",
+          "metadata_entity_col": "UserID",
+          "metadata_entity_table": "UserInfo",
+          "metadata_n_classes": 2,
+          "metadata_positive_rate": 0.9058866992230342
+        },
+        {
+          "input": "{\"UserID\": 31269, \"timestamp\": \"2015-04-26T00:00:00\"}",
+          "output": "True",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 0,
+          "metadata_fold_name": "train",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_row_index": 8065,
+          "metadata_target_col": "num_click",
+          "metadata_entity_col": "UserID",
+          "metadata_entity_table": "UserInfo",
+          "metadata_n_classes": 2,
+          "metadata_positive_rate": 0.9058866992230342
+        },
+        {
+          "input": "{\"UserID\": 73261, \"timestamp\": \"2015-04-26T00:00:00\"}",
+          "output": "True",
+          "metadata_row_type": "task_sample",
+          "metadata_fold": 0,
+          "metadata_fold_name": "train",
+          "metadata_task_name": "rel-avito/user-visits",
+          "metadata_task_type": "binary_classification",
+          "metadata_row_index": 8066,
+          "metadata_target_col": "num_click",
+          "metadata_entity_col": "UserID",
+          "metadata_entity_table": "UserInfo",
+          "metadata_n_classes": 2,
+          "metadata_positive_rate": 0.9058866992230342
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[project]
+name = "jrn-cross-dataset-evaluation"
+version = "1.0.0"
+description = "Definitive Cross-Dataset JRN Evaluation: Consolidated Meta-Analysis of 12 Experiments"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy==2.2.6",
+    "scipy==1.15.3",
+    "loguru==0.7.3",
+]

@@ -1,0 +1,13 @@
+[project]
+name = "exp-id2-it5-opus"
+version = "0.1.0"
+requires-python = ">=3.10,<3.12"
+dependencies = [
+    "numpy==1.26.4",
+    "pandas==2.3.3",
+    "lightgbm==4.6.0",
+    "scikit-learn==1.8.0",
+    "scipy==1.17.1",
+    "loguru==0.7.3",
+    "psutil==7.2.2",
+]

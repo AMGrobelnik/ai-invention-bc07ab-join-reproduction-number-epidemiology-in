@@ -1,0 +1,479 @@
+{
+  "metadata": {
+    "method_name": "GBM Probe JRN Estimation",
+    "description": "LightGBM-based JRN estimation for rel-stack FK joins. Computes JRN as ratio of with-join to without-join predictive performance across 3 tasks and 5 aggregation strategies.",
+    "dataset": "rel-stack",
+    "n_tasks": 3,
+    "n_joins": 11,
+    "n_agg_types": 5,
+    "probe_params": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "random_state": 42
+    },
+    "full_params": {
+      "n_estimators": 500,
+      "max_depth": 8,
+      "learning_rate": 0.03,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "verbose": -1,
+      "n_jobs": 4,
+      "random_state": 42
+    },
+    "seeds": [
+      42,
+      123,
+      456
+    ]
+  },
+  "datasets": [
+    {
+      "dataset": "rel-stack",
+      "examples": [
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"mean\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.352204331257203, \"base_score\": 0.6813001171916616, \"join_score\": 0.9212569693526048, \"relative_improvement\": 0.3522043260876115}",
+          "predict_gbm_probe": "1.352204331257203",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "mean",
+          "metadata_jrn": 1.352204331257203
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"sum\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3331750477245878, \"base_score\": 0.6813001171916616, \"join_score\": 0.9082923162517608, \"relative_improvement\": 0.33317504283430477}",
+          "predict_gbm_probe": "1.3331750477245878",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "sum",
+          "metadata_jrn": 1.3331750477245878
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"max\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3617801762130612, \"base_score\": 0.6813001171916616, \"join_score\": 0.9277809936432403, \"relative_improvement\": 0.36178017090291736}",
+          "predict_gbm_probe": "1.3617801762130612",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "max",
+          "metadata_jrn": 1.3617801762130612
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"std\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3369135244540842, \"base_score\": 0.6813001171916616, \"join_score\": 0.9108393408856849, \"relative_improvement\": 0.33691351950892834}",
+          "predict_gbm_probe": "1.3369135244540842",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "std",
+          "metadata_jrn": 1.3369135244540842
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"all\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.3586057765733477, \"base_score\": 0.6813001171916616, \"join_score\": 0.9256182747966902, \"relative_improvement\": 0.358605771309797}",
+          "predict_gbm_probe": "1.3586057765733477",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "all",
+          "metadata_jrn": 1.3586057765733477
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"mean\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.282159095748851, \"base_score\": 0.6545546716857843, \"join_score\": 0.8392432259668311, \"relative_improvement\": 0.28215909143814755}",
+          "predict_gbm_probe": "1.282159095748851",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "mean",
+          "metadata_jrn": 1.282159095748851
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"sum\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.2858430758833355, \"base_score\": 0.6545546716857843, \"join_score\": 0.8416545923742557, \"relative_improvement\": 0.28584307151635}",
+          "predict_gbm_probe": "1.2858430758833355",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "sum",
+          "metadata_jrn": 1.2858430758833355
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"max\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.285948239450661, \"base_score\": 0.6545546716857843, \"join_score\": 0.8417234276785397, \"relative_improvement\": 0.28594823508206885}",
+          "predict_gbm_probe": "1.285948239450661",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "max",
+          "metadata_jrn": 1.285948239450661
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"std\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.2813233935225208, \"base_score\": 0.6545546716857843, \"join_score\": 0.8386962131704486, \"relative_improvement\": 0.2813233892245851}",
+          "predict_gbm_probe": "1.2813233935225208",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "std",
+          "metadata_jrn": 1.2813233935225208
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"all\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.2909014163443715, \"base_score\": 0.6545546716857843, \"join_score\": 0.8449655527540041, \"relative_improvement\": 0.29090141190010704}",
+          "predict_gbm_probe": "1.2909014163443715",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "all",
+          "metadata_jrn": 1.2909014163443715
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"agg_type\": \"mean\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.0232380398079113, \"base_score\": 7.0475778215475815, \"join_score\": 7.211349715514056, \"relative_improvement\": 0.023238039774938105}",
+          "predict_gbm_probe": "1.0232380398079113",
+          "predict_baseline": "1.0",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_agg_type": "mean",
+          "metadata_jrn": 1.0232380398079113
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"agg_type\": \"sum\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.015627975396634, \"base_score\": 7.0475778215475815, \"join_score\": 7.1577171943485896, \"relative_improvement\": 0.0156279753744589}",
+          "predict_gbm_probe": "1.015627975396634",
+          "predict_baseline": "1.0",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_agg_type": "sum",
+          "metadata_jrn": 1.015627975396634
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"agg_type\": \"max\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.017917205256597, \"base_score\": 7.0475778215475815, \"join_score\": 7.17385071993809, \"relative_improvement\": 0.017917205231173797}",
+          "predict_gbm_probe": "1.017917205256597",
+          "predict_baseline": "1.0",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_agg_type": "max",
+          "metadata_jrn": 1.017917205256597
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"agg_type\": \"std\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.0323722829307354, \"base_score\": 7.0475778215475815, \"join_score\": 7.275724004763096, \"relative_improvement\": 0.03237228288480154}",
+          "predict_gbm_probe": "1.0323722829307354",
+          "predict_baseline": "1.0",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_agg_type": "std",
+          "metadata_jrn": 1.0323722829307354
+        },
+        {
+          "input": "{\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"agg_type\": \"all\", \"phase\": \"jrn_estimation\"}",
+          "output": "{\"jrn\": 1.0279975880807506, \"base_score\": 7.0475778215475815, \"join_score\": 7.244893002362304, \"relative_improvement\": 0.027997588041024066}",
+          "predict_gbm_probe": "1.0279975880807506",
+          "predict_baseline": "1.0",
+          "metadata_task": "post-votes",
+          "metadata_join": "comments.PostId->posts",
+          "metadata_agg_type": "all",
+          "metadata_jrn": 1.0279975880807506
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.3617801762130612, \"best_aggregation\": \"max\"}",
+          "predict_gbm_probe": "1.3617801762130612",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.3617801762130612
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"badges.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.3176126707716675, \"best_aggregation\": \"all\"}",
+          "predict_gbm_probe": "1.3176126707716675",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "badges.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.3176126707716675
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"postHistory.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.38090814934586, \"best_aggregation\": \"max\"}",
+          "predict_gbm_probe": "1.38090814934586",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.38090814934586
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"votes.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.065808240894364, \"best_aggregation\": \"mean\"}",
+          "predict_gbm_probe": "1.065808240894364",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "votes.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.065808240894364
+        },
+        {
+          "input": "{\"task\": \"user-engagement\", \"join\": \"posts.OwnerUserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.377456706453518, \"best_aggregation\": \"mean\"}",
+          "predict_gbm_probe": "1.377456706453518",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-engagement",
+          "metadata_join": "posts.OwnerUserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.377456706453518
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.2909014163443715, \"best_aggregation\": \"all\"}",
+          "predict_gbm_probe": "1.2909014163443715",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.2909014163443715
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"badges.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.4588445589337806, \"best_aggregation\": \"all\"}",
+          "predict_gbm_probe": "1.4588445589337806",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "badges.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.4588445589337806
+        },
+        {
+          "input": "{\"task\": \"user-badge\", \"join\": \"postHistory.UserId->users\", \"agg_type\": \"best\", \"phase\": \"jrn_best_aggregation\"}",
+          "output": "{\"jrn\": 1.3673631062876326, \"best_aggregation\": \"all\"}",
+          "predict_gbm_probe": "1.3673631062876326",
+          "predict_baseline": "1.0",
+          "metadata_task": "user-badge",
+          "metadata_join": "postHistory.UserId->users",
+          "metadata_agg_type": "best",
+          "metadata_jrn": 1.3673631062876326
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 0}",
+          "output": "{\"probe_jrn\": 1.352204331257203, \"full_jrn\": 1.3464424755372197, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.352204331257203",
+          "predict_gbm_full": "1.3464424755372197",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 1}",
+          "output": "{\"probe_jrn\": 1.3139112895168883, \"full_jrn\": 1.3070145548614567, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.3139112895168883",
+          "predict_gbm_full": "1.3070145548614567",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 2}",
+          "output": "{\"probe_jrn\": 1.3707723104086773, \"full_jrn\": 1.3638320998450906, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.3707723104086773",
+          "predict_gbm_full": "1.3638320998450906",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 3}",
+          "output": "{\"probe_jrn\": 1.065808240894364, \"full_jrn\": 1.063739700655685, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.065808240894364",
+          "predict_gbm_full": "1.063739700655685",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 4}",
+          "output": "{\"probe_jrn\": 1.377456706453518, \"full_jrn\": 1.368098773384329, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.377456706453518",
+          "predict_gbm_full": "1.368098773384329",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 5}",
+          "output": "{\"probe_jrn\": 1.282159095748851, \"full_jrn\": 1.2828974840066005, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.282159095748851",
+          "predict_gbm_full": "1.2828974840066005",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 6}",
+          "output": "{\"probe_jrn\": 1.4585967961010446, \"full_jrn\": 1.4570594751000292, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.4585967961010446",
+          "predict_gbm_full": "1.4570594751000292",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"probe_to_full_correlation\", \"index\": 7}",
+          "output": "{\"probe_jrn\": 1.358749097903664, \"full_jrn\": 1.3573244116915704, \"spearman_rho\": 1.0, \"spearman_p\": 0.0}",
+          "predict_gbm_probe": "1.358749097903664",
+          "predict_gbm_full": "1.3573244116915704",
+          "metadata_phase": "probe_to_full"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-engagement\", \"join\": \"comments.UserId->users\"}",
+          "output": "{\"jrn\": 1.3617801762130612, \"agg_sensitivity\": 0.008528129178536936, \"best_aggregation\": \"max\", \"performances\": {\"mean\": 0.9212569693526048, \"sum\": 0.9082923162517608, \"max\": 0.9277809936432403, \"std\": 0.9108393408856849, \"all\": 0.9256182747966902}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.3617801762130612",
+          "predict_baseline": "0.008528129178536936",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-engagement",
+          "metadata_join": "comments.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-engagement\", \"join\": \"badges.UserId->users\"}",
+          "output": "{\"jrn\": 1.3176126707716675, \"agg_sensitivity\": 0.004681331543578545, \"best_aggregation\": \"all\", \"performances\": {\"mean\": 0.8951679155273032, \"sum\": 0.8905425145305822, \"max\": 0.8890863193531967, \"std\": 0.8861269339583555, \"all\": 0.8976896670099553}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.3176126707716675",
+          "predict_baseline": "0.004681331543578545",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-engagement",
+          "metadata_join": "badges.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-engagement\", \"join\": \"postHistory.UserId->users\"}",
+          "output": "{\"jrn\": 1.38090814934586, \"agg_sensitivity\": 0.006829542399583787, \"best_aggregation\": \"max\", \"performances\": {\"mean\": 0.9339073357245167, \"sum\": 0.9243629035121986, \"max\": 0.940812883980255, \"std\": 0.9287540987487718, \"all\": 0.9401068930004617}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.38090814934586",
+          "predict_baseline": "0.006829542399583787",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-engagement",
+          "metadata_join": "postHistory.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-engagement\", \"join\": \"votes.UserId->users\"}",
+          "output": "{\"jrn\": 1.065808240894364, \"agg_sensitivity\": 0.0019531173985279716, \"best_aggregation\": \"mean\", \"performances\": {\"mean\": 0.726135279425169, \"sum\": 0.7259441031286622, \"max\": 0.7236451341785338, \"std\": 0.7224762361352793, \"all\": 0.7252928015909657}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.065808240894364",
+          "predict_baseline": "0.0019531173985279716",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-engagement",
+          "metadata_join": "votes.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-engagement\", \"join\": \"posts.OwnerUserId->users\"}",
+          "output": "{\"jrn\": 1.377456706453518, \"agg_sensitivity\": 0.005226543323196785, \"best_aggregation\": \"mean\", \"performances\": {\"mean\": 0.9384614155332219, \"sum\": 0.9313323744924654, \"max\": 0.937245226511358, \"std\": 0.9250670004853392, \"all\": 0.9356426009446358}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.377456706453518",
+          "predict_baseline": "0.005226543323196785",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-engagement",
+          "metadata_join": "posts.OwnerUserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-badge\", \"join\": \"comments.UserId->users\"}",
+          "output": "{\"jrn\": 1.2909014163443715, \"agg_sensitivity\": 0.002644253806343844, \"best_aggregation\": \"all\", \"performances\": {\"mean\": 0.8392432259668311, \"sum\": 0.8416545923742557, \"max\": 0.8417234276785397, \"std\": 0.8386962131704486, \"all\": 0.8449655527540041}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.2909014163443715",
+          "predict_baseline": "0.002644253806343844",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-badge",
+          "metadata_join": "comments.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-badge\", \"join\": \"badges.UserId->users\"}",
+          "output": "{\"jrn\": 1.4588445589337806, \"agg_sensitivity\": 0.01028665520306472, \"best_aggregation\": \"all\", \"performances\": {\"mean\": 0.9547313469938562, \"sum\": 0.9396618606247854, \"max\": 0.9544155805722266, \"std\": 0.9313929235176438, \"all\": 0.9548935213134936}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.4588445589337806",
+          "predict_baseline": "0.01028665520306472",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-badge",
+          "metadata_join": "badges.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"aggregation_sensitivity\", \"task\": \"user-badge\", \"join\": \"postHistory.UserId->users\"}",
+          "output": "{\"jrn\": 1.3673631062876326, \"agg_sensitivity\": 0.003497424201947685, \"best_aggregation\": \"all\", \"performances\": {\"mean\": 0.8893755696816884, \"sum\": 0.8881453531730529, \"max\": 0.8943463901416951, \"std\": 0.8877637108325342, \"all\": 0.8950139091113556}, \"quadratic_r2\": 0.12335044083107771, \"inverted_u_confirmed\": false, \"peak_jrn\": 1.1400962504900773}",
+          "predict_gbm_probe": "1.3673631062876326",
+          "predict_baseline": "0.003497424201947685",
+          "metadata_phase": "aggregation_sensitivity",
+          "metadata_task": "user-badge",
+          "metadata_join": "postHistory.UserId->users"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-comments\", \"task\": \"user-engagement\"}",
+          "output": "{\"description\": \"users<-posts<-comments\", \"task\": \"user-engagement\", \"measured_chain_jrn\": 1.3758850571956622, \"predicted_chain_jrn\": 1.4094661002317592, \"hop1_jrn\": 1.377456706453518, \"hop2_jrn\": 1.0232380398079113, \"chain_score_mean\": 0.9373906507096607, \"base_score_mean\": 0.6813001171916616}",
+          "predict_gbm_probe": "1.3758850571956622",
+          "predict_multiplicative": "1.4094661002317592",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-comments",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-comments\", \"task\": \"user-badge\"}",
+          "output": "{\"description\": \"users<-posts<-comments\", \"task\": \"user-badge\", \"measured_chain_jrn\": 1.3596321825111448, \"predicted_chain_jrn\": 1.3932924498800734, \"hop1_jrn\": 1.3616503645052436, \"hop2_jrn\": 1.0232380398079113, \"chain_score_mean\": 0.8899535968370088, \"base_score_mean\": 0.6545546716857843}",
+          "predict_gbm_probe": "1.3596321825111448",
+          "predict_multiplicative": "1.3932924498800734",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-comments",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-votes\", \"task\": \"user-engagement\"}",
+          "output": "{\"description\": \"users<-posts<-votes\", \"task\": \"user-engagement\", \"measured_chain_jrn\": 1.3729127279873108, \"predicted_chain_jrn\": 1.8360089848722316, \"hop1_jrn\": 1.377456706453518, \"hop2_jrn\": 1.3328977791246375, \"chain_score_mean\": 0.9353656024716787, \"base_score_mean\": 0.6813001171916616}",
+          "predict_gbm_probe": "1.3729127279873108",
+          "predict_multiplicative": "1.8360089848722316",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-votes",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-votes\", \"task\": \"user-badge\"}",
+          "output": "{\"description\": \"users<-posts<-votes\", \"task\": \"user-badge\", \"measured_chain_jrn\": 1.379510899891789, \"predicted_chain_jrn\": 1.8149407467932923, \"hop1_jrn\": 1.3616503645052436, \"hop2_jrn\": 1.3328977791246375, \"chain_score_mean\": 0.9029653041656308, \"base_score_mean\": 0.6545546716857843}",
+          "predict_gbm_probe": "1.379510899891789",
+          "predict_multiplicative": "1.8149407467932923",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-votes",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-postLinks\", \"task\": \"user-engagement\"}",
+          "output": "{\"description\": \"users<-posts<-postLinks\", \"task\": \"user-engagement\", \"measured_chain_jrn\": 1.377079236107745, \"predicted_chain_jrn\": 1.4335464020847937, \"hop1_jrn\": 1.377456706453518, \"hop2_jrn\": 1.04071975211162, \"chain_score_mean\": 0.9382042449424105, \"base_score_mean\": 0.6813001171916616}",
+          "predict_gbm_probe": "1.377079236107745",
+          "predict_multiplicative": "1.4335464020847937",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-postLinks",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-postLinks\", \"task\": \"user-badge\"}",
+          "output": "{\"description\": \"users<-posts<-postLinks\", \"task\": \"user-badge\", \"measured_chain_jrn\": 1.3629800551823892, \"predicted_chain_jrn\": 1.4170964298105941, \"hop1_jrn\": 1.3616503645052436, \"hop2_jrn\": 1.04071975211162, \"chain_score_mean\": 0.8921449625341809, \"base_score_mean\": 0.6545546716857843}",
+          "predict_gbm_probe": "1.3629800551823892",
+          "predict_multiplicative": "1.4170964298105941",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-postLinks",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-postHistory\", \"task\": \"user-engagement\"}",
+          "output": "{\"description\": \"users<-posts<-postHistory\", \"task\": \"user-engagement\", \"measured_chain_jrn\": 1.376555990102545, \"predicted_chain_jrn\": 1.4527547416731421, \"hop1_jrn\": 1.377456706453518, \"hop2_jrn\": 1.0546645385418254, \"chain_score_mean\": 0.9378477573777477, \"base_score_mean\": 0.6813001171916616}",
+          "predict_gbm_probe": "1.376555990102545",
+          "predict_multiplicative": "1.4527547416731421",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-postHistory",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"phase\": \"multiplicative_compounding\", \"chain\": \"users<-posts<-postHistory\", \"task\": \"user-badge\"}",
+          "output": "{\"description\": \"users<-posts<-postHistory\", \"task\": \"user-badge\", \"measured_chain_jrn\": 1.3605838992317816, \"predicted_chain_jrn\": 1.436084353336231, \"hop1_jrn\": 1.3616503645052436, \"hop2_jrn\": 1.0546645385418254, \"chain_score_mean\": 0.890576547462623, \"base_score_mean\": 0.6545546716857843}",
+          "predict_gbm_probe": "1.3605838992317816",
+          "predict_multiplicative": "1.436084353336231",
+          "metadata_phase": "compounding",
+          "metadata_chain": "users<-posts<-postHistory",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"phase\": \"summary\"}",
+          "output": "{\"title\": \"GBM Probe JRN Estimation on rel-stack\", \"summary\": \"Estimated JRN for 80 (join, task, agg) combinations across 3 tasks and 11 FK joins using LightGBM probes. Probe-to-full Spearman rho=1.000. Aggregation sensitivity quadratic R2=0.123, inverted-U not confirmed. Multiplicative compounding R2=-3.1275179478639368 (MLP baseline R2=0.83). Total models trained: 339. Runtime: 212s.\", \"phase1_jrn_matrix\": {\"description\": \"JRN values for 16 relevant (join, task) pairs x 5 aggregation types\", \"n_entries\": 80, \"best_jrn_per_join_task\": [{\"task\": \"user-engagement\", \"join\": \"comments.UserId->users\", \"jrn\": 1.3617801762130612, \"best_aggregation\": \"max\"}, {\"task\": \"user-engagement\", \"join\": \"badges.UserId->users\", \"jrn\": 1.3176126707716675, \"best_aggregation\": \"all\"}, {\"task\": \"user-engagement\", \"join\": \"postHistory.UserId->users\", \"jrn\": 1.38090814934586, \"best_aggregation\": \"max\"}, {\"task\": \"user-engagement\", \"join\": \"votes.UserId->users\", \"jrn\": 1.065808240894364, \"best_aggregation\": \"mean\"}, {\"task\": \"user-engagement\", \"join\": \"posts.OwnerUserId->users\", \"jrn\": 1.377456706453518, \"best_aggregation\": \"mean\"}, {\"task\": \"user-badge\", \"join\": \"comments.UserId->users\", \"jrn\": 1.2909014163443715, \"best_aggregation\": \"all\"}, {\"task\": \"user-badge\", \"join\": \"badges.UserId->users\", \"jrn\": 1.4588445589337806, \"best_aggregation\": \"all\"}, {\"task\": \"user-badge\", \"join\": \"postHistory.UserId->users\", \"jrn\": 1.3673631062876326, \"best_aggregation\": \"all\"}, {\"task\": \"user-badge\", \"join\": \"votes.UserId->users\", \"jrn\": 1.0372975296146663, \"best_aggregation\": \"std\"}, {\"task\": \"user-badge\", \"join\": \"posts.OwnerUserId->users\", \"jrn\": 1.3616503645052436, \"best_aggregation\": \"mean\"}, {\"task\": \"post-votes\", \"join\": \"comments.PostId->posts\", \"jrn\": 1.0323722829307354, \"best_aggregation\": \"std\"}, {\"task\": \"post-votes\", \"join\": \"postLinks.PostId->posts\", \"jrn\": 1.0499206433341304, \"best_aggregation\": \"all\"}, {\"task\": \"post-votes\", \"join\": \"postLinks.RelatedPostId->posts\", \"jrn\": 1.164587189472316, \"best_aggregation\": \"all\"}, {\"task\": \"post-votes\", \"join\": \"postHistory.PostId->posts\", \"jrn\": 1.0768368816677214, \"best_aggregation\": \"all\"}, {\"task\": \"post-votes\", \"join\": \"votes.PostId->posts\", \"jrn\": 1.385222141397851, \"best_aggregation\": \"std\"}, {\"task\": \"post-votes\", \"join\": \"posts.ParentId->posts\", \"jrn\": 1.1328793996033435, \"best_aggregation\": \"all\"}]}, \"phase1b_probe_to_full\": {\"spearman_rho\": 1.0, \"spearman_p\": 0.0, \"n_pairs\": 16, \"target\": \"rho > 0.6\"}, \"phase2_aggregation_sensitivity\": {\"n_data_points\": 16, \"quadratic_fit\": {\"coefficients\": [0.06257503057539968, -0.14268311546777035, 0.08607802051595652], \"r2\": 0.12335044083107771, \"inverted_u_confirmed\": false}, \"peak_jrn\": 1.1400962504900773}, \"phase3_compounding\": {\"n_chains_total\": 11, \"n_chains_valid\": 11, \"r2\": -3.1275179478639368, \"mlp_comparison_r2\": 0.83}, \"domain_validation\": {\"votes_PostId_high_jrn_for_post_votes\": 1.385222141397851, \"votes_UserId_low_jrn_for_user_tasks\": {\"user_engagement\": 1.065808240894364, \"user_badge\": 1.0372975296146663}}, \"metrics\": {\"total_models_trained\": 339, \"total_runtime_seconds\": 211.67649507522583}}",
+          "predict_gbm_probe": "Estimated JRN for 80 (join, task, agg) combinations across 3 tasks and 11 FK joins using LightGBM probes. Probe-to-full Spearman rho=1.000. Aggregation sensitivity quadratic R2=0.123, inverted-U not c",
+          "predict_baseline": "No join baseline JRN=1.0",
+          "metadata_phase": "summary"
+        }
+      ]
+    }
+  ]
+}

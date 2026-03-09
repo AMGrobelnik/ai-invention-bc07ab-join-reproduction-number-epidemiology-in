@@ -1,0 +1,13 @@
+{
+  "id": "exp_id4_it2__opus",
+  "type": "code",
+  "title": "Training-Free vs Probe-Based JRN: Diagnostic Comparison on rel-f1",
+  "summary": "Demo notebook comparing 5 training-free statistical proxies (fanout, Pearson correlation, mutual information, conditional entropy reduction, homophily) against probe-based JRN (GBM and MLP) for predicting join utility across FK joins in the RelBench rel-f1 (Formula 1) schema. Uses relbench driver tasks and self-supervised tasks for races/constructors/circuits. Outputs per-join results, Spearman correlation matrix, Steiger's Z-test, and per-task analysis. Mini data includes FK join metadata, fanout statistics, correlation features, and JRN scores across 9 tables and 13 FK relationships.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_2/gen_art/exp_id4_it2__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it2__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id4_it2__opus/method_code_demo.ipynb"
+}

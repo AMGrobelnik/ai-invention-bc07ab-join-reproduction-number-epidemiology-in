@@ -1,0 +1,13 @@
+{
+  "id": "exp_id3_it5__opus",
+  "type": "code",
+  "title": "Training-Free Proxy vs GBM-Probe JRN: Cross-Dataset Diagnostic Reliability on rel-stack and rel-avito",
+  "summary": "Demo notebook analyzing training-free proxy reliability for estimating Join Reproduction Number (JRN) across two relational datasets (rel-stack, rel-avito). Loads 24 pre-computed (join, task) pair results containing GBM-probe JRN and 5 training-free proxies. Computes Spearman rank correlations, ROC-AUC for join selection, and cross-dataset consistency analysis. Visualizes proxy-JRN scatter plots, correlation bar charts, and JRN distributions. Key finding: mutual_information is the strongest proxy (pooled \u03c1=0.747), log_mean_fanout achieves best join-selection AUC (0.941).",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_5/gen_art/exp_id3_it5__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it5__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id3_it5__opus/method_code_demo.ipynb"
+}

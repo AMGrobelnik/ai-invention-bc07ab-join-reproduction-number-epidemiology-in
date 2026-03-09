@@ -1,0 +1,499 @@
+{
+  "metadata": {
+    "evaluation_name": "Definitive Cross-Dataset JRN Evaluation",
+    "description": "Consolidated meta-analysis of 12 experiments across 4 datasets (rel-f1, rel-stack, rel-avito, rel-hm) from iterations 2-4. Computes 7 analyses: probe validity meta-analysis, architecture comparison, compounding status, FK-shuffling, training-free proxies, hypothesis scorecard, and paper contribution reformulation.",
+    "n_experiments": 12,
+    "n_analyses": 7,
+    "datasets_covered": [
+      "rel-f1",
+      "rel-stack",
+      "rel-avito",
+      "rel-hm"
+    ],
+    "iterations_covered": [
+      2,
+      3,
+      4
+    ],
+    "experiments_used": [
+      "exp_id1_it2",
+      "exp_id2_it2",
+      "exp_id3_it2",
+      "exp_id4_it2",
+      "exp_id1_it3",
+      "exp_id2_it3",
+      "exp_id3_it3",
+      "exp_id4_it3",
+      "exp_id1_it4",
+      "exp_id2_it4",
+      "exp_id3_it4",
+      "exp_id4_it4"
+    ]
+  },
+  "metrics_agg": {
+    "pooled_probe_rho": 0.949906,
+    "pooled_probe_rho_ci_low": 0.512523,
+    "pooled_probe_rho_ci_high": 0.995913,
+    "I_squared": 97.6869,
+    "Q_statistic": 129.6944,
+    "tau_squared": 1.618457,
+    "n_meta_analysis_studies": 4,
+    "jrn_guided_overall_win_rate_vs_uniform_mean": 0.272727,
+    "jrn_guided_win_rate_vs_top_k": 0.272727,
+    "jrn_guided_win_rate_vs_uniform_rich": 0.090909,
+    "jrn_guided_sign_test_p": 0.2265625,
+    "avg_oracle_gap": 0.035494,
+    "n_architecture_tasks": 11,
+    "compounding_r2_mlp_stack": 0.828332,
+    "compounding_r2_gbm_f1": -17.9214,
+    "fk_shuffle_cohens_d": 0.6915,
+    "fk_shuffle_p_value": 0.000109,
+    "fk_shuffle_wilcoxon_p": 5.6e-05,
+    "mean_structural_fraction": 0.151197,
+    "structural_dominant_fraction": 0.0513,
+    "n_claims_supported": 2,
+    "n_claims_partial": 1,
+    "n_claims_unsupported": 2,
+    "n_claims_contradictory": 1,
+    "n_claims_total": 6
+  },
+  "datasets": [
+    {
+      "dataset": "cross_dataset_evaluation",
+      "examples": [
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-f1\", \"experiment\": \"exp_id4_it2\", \"probe_type\": \"GBM\", \"n_pairs\": 19}",
+          "output": "{\"rho\": 0.96, \"fisher_z\": 1.94591, \"var_z\": 0.0625, \"description\": \"GBM probe vs ground-truth JRN on rel-f1 (19 join-task pairs, diagnostic comparison)\"}",
+          "eval_spearman_rho": 0.96,
+          "eval_fisher_z": 1.94591,
+          "eval_sample_size": 19.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-f1",
+          "metadata_experiment": "exp_id4_it2"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-f1\", \"experiment\": \"exp_id1_it3\", \"probe_type\": \"GBM\", \"n_pairs\": 65}",
+          "output": "{\"rho\": 0.439661, \"fisher_z\": 0.47181, \"var_z\": 0.016129, \"description\": \"GBM probe vs ground-truth on rel-f1 (65 join-task pairs, Phase 2 agg sensitivity)\"}",
+          "eval_spearman_rho": 0.439661,
+          "eval_fisher_z": 0.47181,
+          "eval_sample_size": 65.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-f1",
+          "metadata_experiment": "exp_id1_it3"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-stack\", \"experiment\": \"exp_id2_it3\", \"probe_type\": \"GBM\", \"n_pairs\": 16}",
+          "output": "{\"rho\": 0.999, \"fisher_z\": 3.800201, \"var_z\": 0.076923, \"description\": \"GBM probe vs full model on rel-stack (16 non-trivial join-task pairs)\"}",
+          "eval_spearman_rho": 0.999,
+          "eval_fisher_z": 3.800201,
+          "eval_sample_size": 16.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-stack",
+          "metadata_experiment": "exp_id2_it3"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"study_dataset\": \"rel-avito\", \"experiment\": \"exp_id3_it3\", \"probe_type\": \"GBM\", \"n_pairs\": 33}",
+          "output": "{\"rho\": 0.825, \"fisher_z\": 1.172275, \"var_z\": 0.033333, \"description\": \"GBM probe vs full model on rel-avito (33 join-task pairs)\"}",
+          "eval_spearman_rho": 0.825,
+          "eval_fisher_z": 1.172275,
+          "eval_sample_size": 33.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_dataset": "rel-avito",
+          "metadata_experiment": "exp_id3_it3"
+        },
+        {
+          "input": "{\"analysis\": \"1_probe_validity_meta_analysis\", \"type\": \"pooled_random_effects_summary\", \"n_studies\": 4}",
+          "output": "{\"pooled_rho\": 0.949906, \"ci_low\": 0.512523, \"ci_high\": 0.995913, \"I_squared\": 97.6869, \"Q\": 129.6944, \"Q_p\": 0.0, \"tau_squared\": 1.618457, \"moderator_analysis\": {\"n_pairs\": {\"slope\": -0.051825, \"intercept\": 3.567385, \"F_statistic\": 3.9672, \"p_value\": 0.184627}}}",
+          "eval_pooled_rho": 0.949906,
+          "eval_I_squared": 97.6869,
+          "eval_Q_p_value": 0.0,
+          "metadata_analysis": "1_probe_validity",
+          "metadata_type": "pooled_summary"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-dnf\"}",
+          "output": "{\"jrn_guided\": 0.7646439909297053, \"uniform_mean\": 0.7770340136054422, \"uniform_rich\": 0.7669115646258503, \"top_k\": 0.7762902494331066, \"oracle\": 0.7815691609977323}",
+          "eval_jrn_guided_score": 0.7646439909297053,
+          "eval_uniform_mean_score": 0.7770340136054422,
+          "eval_oracle_score": 0.7815691609977323,
+          "eval_oracle_gap": 0.021655,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "rel-f1/driver-dnf"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-top3\"}",
+          "output": "{\"jrn_guided\": 0.8468671050509755, \"uniform_mean\": 0.8493576535091648, \"uniform_rich\": 0.8664510580351544, \"top_k\": 0.8439644514522225, \"oracle\": 0.8442690509039436}",
+          "eval_jrn_guided_score": 0.8468671050509755,
+          "eval_uniform_mean_score": 0.8493576535091648,
+          "eval_oracle_score": 0.8442690509039436,
+          "eval_oracle_gap": 0.003077,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "rel-f1/driver-top3"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-f1\", \"task\": \"rel-f1/driver-position\"}",
+          "output": "{\"jrn_guided\": 0.354612739621366, \"uniform_mean\": 0.3534883303546035, \"uniform_rich\": 0.3510665288185624, \"top_k\": 0.353837365345629, \"oracle\": 0.35436867613777157}",
+          "eval_jrn_guided_score": 0.354612739621366,
+          "eval_uniform_mean_score": 0.3534883303546035,
+          "eval_oracle_score": 0.35436867613777157,
+          "eval_oracle_gap": 0.000689,
+          "eval_jrn_beats_uniform_mean": 1.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "rel-f1/driver-position"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-f1\", \"task\": \"rel-f1/qualifying-position\"}",
+          "output": "{\"jrn_guided\": 0.23704227535635755, \"uniform_mean\": 0.2940260007469325, \"uniform_rich\": 0.23704227535635755, \"top_k\": 0.31475072512696817, \"oracle\": 0.3346959887484335}",
+          "eval_jrn_guided_score": 0.23704227535635755,
+          "eval_uniform_mean_score": 0.2940260007469325,
+          "eval_oracle_score": 0.3346959887484335,
+          "eval_oracle_gap": 0.291768,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "rel-f1/qualifying-position"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-f1\", \"task\": \"rel-f1/results-position\"}",
+          "output": "{\"jrn_guided\": 45.43371223780079, \"uniform_mean\": 44.43823304476984, \"uniform_rich\": 45.43371223780079, \"top_k\": 44.89751989865412, \"oracle\": 46.31479374397711}",
+          "eval_jrn_guided_score": 45.43371223780079,
+          "eval_uniform_mean_score": 44.43823304476984,
+          "eval_oracle_score": 46.31479374397711,
+          "eval_oracle_gap": 0.019024,
+          "eval_jrn_beats_uniform_mean": 1.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-f1",
+          "metadata_task": "rel-f1/results-position"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-stack\", \"task\": \"user-engagement\"}",
+          "output": "{\"jrn_guided\": 0.19498022340599586, \"uniform_mean\": 0.19498022340599586, \"uniform_rich\": 0.19517431365384905, \"top_k\": 0.1951049993247387, \"oracle\": 0.19607609965330874}",
+          "eval_jrn_guided_score": 0.19498022340599586,
+          "eval_uniform_mean_score": 0.19498022340599586,
+          "eval_oracle_score": 0.19607609965330874,
+          "eval_oracle_gap": 0.005589,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-engagement"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-stack\", \"task\": \"user-badge\"}",
+          "output": "{\"jrn_guided\": 0.2452361308981528, \"uniform_mean\": 0.2452361308981528, \"uniform_rich\": 0.24618733281411276, \"top_k\": 0.24552138412155525, \"oracle\": 0.24791779968862157}",
+          "eval_jrn_guided_score": 0.2452361308981528,
+          "eval_uniform_mean_score": 0.2452361308981528,
+          "eval_oracle_score": 0.24791779968862157,
+          "eval_oracle_gap": 0.010817,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "user-badge"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-stack\", \"task\": \"post-votes\"}",
+          "output": "{\"jrn_guided\": -0.1043070821780463, \"uniform_mean\": -0.10407543723158695, \"uniform_rich\": -0.10423309148983978, \"top_k\": -0.10414884256010705, \"oracle\": -0.10072213485958363}",
+          "eval_jrn_guided_score": -0.1043070821780463,
+          "eval_uniform_mean_score": -0.10407543723158695,
+          "eval_oracle_score": -0.10072213485958363,
+          "eval_oracle_gap": 0.035592,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-stack",
+          "metadata_task": "post-votes"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-avito\", \"task\": \"rel-avito/ad-ctr\"}",
+          "output": "{\"jrn_guided\": 0.03618285170104051, \"uniform_mean\": 0.03657272559060933, \"uniform_rich\": 0.0361638859963593, \"top_k\": 0.036156098966719896, \"oracle\": 0.03610267510332852}",
+          "eval_jrn_guided_score": 0.03618285170104051,
+          "eval_uniform_mean_score": 0.03657272559060933,
+          "eval_oracle_score": 0.03610267510332852,
+          "eval_oracle_gap": 0.002221,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "rel-avito/ad-ctr"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-avito\", \"task\": \"rel-avito/user-clicks\"}",
+          "output": "{\"jrn_guided\": 0.500659549161944, \"uniform_mean\": 0.500659549161944, \"uniform_rich\": 0.500659549161944, \"top_k\": 0.500659549161944, \"oracle\": 0.500659549161944}",
+          "eval_jrn_guided_score": 0.500659549161944,
+          "eval_uniform_mean_score": 0.500659549161944,
+          "eval_oracle_score": 0.500659549161944,
+          "eval_oracle_gap": 0.0,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "rel-avito/user-clicks"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"dataset\": \"rel-avito\", \"task\": \"rel-avito/user-visits\"}",
+          "output": "{\"jrn_guided\": 0.5001845759394802, \"uniform_mean\": 0.5001845759394802, \"uniform_rich\": 0.5001845759394802, \"top_k\": 0.5001845759394802, \"oracle\": 0.5001845759394802}",
+          "eval_jrn_guided_score": 0.5001845759394802,
+          "eval_uniform_mean_score": 0.5001845759394802,
+          "eval_oracle_score": 0.5001845759394802,
+          "eval_oracle_gap": 0.0,
+          "eval_jrn_beats_uniform_mean": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_dataset": "rel-avito",
+          "metadata_task": "rel-avito/user-visits"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"type\": \"win_rate_summary\", \"baseline\": \"uniform_mean\"}",
+          "output": "{\"wins\": 3, \"total\": 11, \"rate\": 0.272727, \"ci_low\": 0.0, \"ci_high\": 0.545455, \"per_dataset\": {\"rel-f1\": 0.4, \"rel-stack\": 0.0, \"rel-avito\": 0.3333333333333333}}",
+          "eval_win_rate": 0.272727,
+          "eval_n_comparisons": 11.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_type": "win_rate",
+          "metadata_baseline": "uniform_mean"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"type\": \"win_rate_summary\", \"baseline\": \"uniform_rich\"}",
+          "output": "{\"wins\": 1, \"total\": 11, \"rate\": 0.090909, \"ci_low\": 0.0, \"ci_high\": 0.272727, \"per_dataset\": {\"rel-f1\": 0.2, \"rel-stack\": 0.0, \"rel-avito\": 0.0}}",
+          "eval_win_rate": 0.090909,
+          "eval_n_comparisons": 11.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_type": "win_rate",
+          "metadata_baseline": "uniform_rich"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"type\": \"win_rate_summary\", \"baseline\": \"top_k\"}",
+          "output": "{\"wins\": 3, \"total\": 11, \"rate\": 0.272727, \"ci_low\": 0.0, \"ci_high\": 0.545455, \"per_dataset\": {\"rel-f1\": 0.6, \"rel-stack\": 0.0, \"rel-avito\": 0.0}}",
+          "eval_win_rate": 0.272727,
+          "eval_n_comparisons": 11.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_type": "win_rate",
+          "metadata_baseline": "top_k"
+        },
+        {
+          "input": "{\"analysis\": \"2_architecture_comparison\", \"type\": \"sign_test\", \"comparison\": \"jrn_guided_vs_uniform_mean\"}",
+          "output": "{\"wins\": 3, \"total\": 11, \"p_value\": 0.2265625, \"significant\": false}",
+          "eval_sign_test_p": 0.2265625,
+          "eval_significant": 0.0,
+          "metadata_analysis": "2_architecture_comparison",
+          "metadata_type": "sign_test"
+        },
+        {
+          "input": "{\"analysis\": \"3_compounding_status\", \"dataset\": \"rel-stack\", \"probe_type\": \"MLP\"}",
+          "output": "{\"dataset\": \"rel-stack\", \"probe_type\": \"MLP\", \"r_squared\": 0.828332, \"n_chains\": 14, \"mean_absolute_deviation\": 0.012766, \"compounding_holds\": true}",
+          "eval_r_squared": 0.828332,
+          "eval_n_chains": 14.0,
+          "eval_compounding_holds": 1.0,
+          "metadata_analysis": "3_compounding",
+          "metadata_dataset": "rel-stack",
+          "metadata_probe_type": "MLP"
+        },
+        {
+          "input": "{\"analysis\": \"3_compounding_status\", \"dataset\": \"rel-f1\", \"probe_type\": \"GBM\"}",
+          "output": "{\"dataset\": \"rel-f1\", \"probe_type\": \"GBM\", \"r_squared\": -17.9214, \"n_chains\": 21, \"compounding_holds\": false}",
+          "eval_r_squared": -17.9214,
+          "eval_n_chains": 21.0,
+          "eval_compounding_holds": 0.0,
+          "metadata_analysis": "3_compounding",
+          "metadata_dataset": "rel-f1",
+          "metadata_probe_type": "GBM"
+        },
+        {
+          "input": "{\"analysis\": \"3_compounding_divergence_analysis\", \"type\": \"divergence\"}",
+          "output": "{\"mlp_stack_r2\": 0.828332, \"gbm_f1_r2\": -17.9214, \"divergence_summary\": \"Extreme divergence: MLP on rel-stack shows R^2=0.83 (compounding holds), but GBM on rel-f1 shows R^2=-17.9 (compounding catastrophically fails). The multiplicative assumption is dataset/probe-type dependent.\", \"conditional_independence_violated\": true, \"mean_violation_magnitude\": 0.0319, \"explanation\": \"Multiplicative compounding assumes conditional independence of join contributions. This holds for rel-stack (simple schema, clear entity separation) but fails for rel-f1 (complex schema with many correlated driver-centric joins).\"}",
+          "eval_mlp_r2": 0.828332,
+          "eval_gbm_r2": -17.9214,
+          "metadata_analysis": "3_compounding",
+          "metadata_type": "divergence"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"dataset\": \"rel-f1\", \"n_joins\": 13, \"n_tasks\": 3, \"n_pairs\": 39}",
+          "output": "{\"paired_ttest\": {\"t_statistic\": 4.3184, \"p_value\": 0.000109, \"significant\": true}, \"cohens_d\": 0.6915, \"effect_interpretation\": \"medium-large\", \"wilcoxon\": {\"w_statistic\": 9.0, \"p_value\": 5.6e-05, \"significant\": true}, \"structural_fraction\": {\"mean\": 0.151197, \"median\": 0.0599, \"std\": 0.207558, \"structural_dominant_count\": 2, \"structural_dominant_fraction\": 0.0513, \"n_pairs\": 39}, \"mean_normal_jrn\": 1.1494, \"mean_shuffled_jrn\": 1.1033, \"conclusion\": \"Structural component is statistically significant (t=4.32, p=0.000109, Cohen's d=0.69, medium-large) but feature component is larger in magnitude (structural dominant in only 5.1% of pairs). JRN captures both structural and feature signal, with structure being a reliable but secondary contributor.\"}",
+          "eval_t_statistic": 4.3184,
+          "eval_p_value": 0.000109,
+          "eval_cohens_d": 0.6915,
+          "eval_structural_dominant_fraction": 0.0513,
+          "eval_wilcoxon_p": 5.6e-05,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_dataset": "rel-f1"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"type\": \"per_join_structural_ranking\", \"join\": \"standings->drivers\"}",
+          "output": "{\"join_idx\": 4, \"join\": \"standings->drivers\", \"avg_structural_jrn\": 0.1637, \"avg_normal_jrn\": 1.3356}",
+          "eval_structural_jrn": 0.1637,
+          "eval_normal_jrn": 1.3356,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_type": "per_join_ranking",
+          "metadata_join": "standings->drivers"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"type\": \"per_join_structural_ranking\", \"join\": \"qualifying->drivers\"}",
+          "output": "{\"join_idx\": 8, \"join\": \"qualifying->drivers\", \"avg_structural_jrn\": 0.1532, \"avg_normal_jrn\": 1.3564}",
+          "eval_structural_jrn": 0.1532,
+          "eval_normal_jrn": 1.3564,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_type": "per_join_ranking",
+          "metadata_join": "qualifying->drivers"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"type\": \"per_join_structural_ranking\", \"join\": \"results->drivers\"}",
+          "output": "{\"join_idx\": 11, \"join\": \"results->drivers\", \"avg_structural_jrn\": 0.1306, \"avg_normal_jrn\": 1.3658}",
+          "eval_structural_jrn": 0.1306,
+          "eval_normal_jrn": 1.3658,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_type": "per_join_ranking",
+          "metadata_join": "results->drivers"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"type\": \"per_join_structural_ranking\", \"join\": \"standings->races\"}",
+          "output": "{\"join_idx\": 3, \"join\": \"standings->races\", \"avg_structural_jrn\": 0.0531, \"avg_normal_jrn\": 1.2454}",
+          "eval_structural_jrn": 0.0531,
+          "eval_normal_jrn": 1.2454,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_type": "per_join_ranking",
+          "metadata_join": "standings->races"
+        },
+        {
+          "input": "{\"analysis\": \"4_fk_shuffling\", \"type\": \"per_join_structural_ranking\", \"join\": \"qualifying->races\"}",
+          "output": "{\"join_idx\": 7, \"join\": \"qualifying->races\", \"avg_structural_jrn\": 0.0435, \"avg_normal_jrn\": 1.2265}",
+          "eval_structural_jrn": 0.0435,
+          "eval_normal_jrn": 1.2265,
+          "metadata_analysis": "4_fk_shuffling",
+          "metadata_type": "per_join_ranking",
+          "metadata_join": "qualifying->races"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-f1\", \"experiment\": \"exp_id4_it2\", \"proxy\": \"fanout\"}",
+          "output": "{\"spearman_rho\": 0.644, \"source\": \"exp_id4_it2\"}",
+          "eval_spearman_rho": 0.644,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy": "fanout"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-f1\", \"experiment\": \"exp_id4_it2\", \"proxy\": \"mutual_information\"}",
+          "output": "{\"spearman_rho\": 0.491, \"source\": \"exp_id4_it2\"}",
+          "eval_spearman_rho": 0.491,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy": "mutual_information"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-f1\", \"experiment\": \"exp_id4_it2\", \"proxy\": \"conditional_entropy\"}",
+          "output": "{\"spearman_rho\": 0.945, \"source\": \"exp_id4_it2\"}",
+          "eval_spearman_rho": 0.945,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy": "conditional_entropy"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-avito\", \"experiment\": \"exp_id3_it3\", \"proxy\": \"pearson_correlation\"}",
+          "output": "{\"spearman_rho\": 0.926, \"source\": \"exp_id3_it3\"}",
+          "eval_spearman_rho": 0.926,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-avito",
+          "metadata_proxy": "pearson_correlation"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-avito\", \"experiment\": \"exp_id3_it3\", \"proxy\": \"mutual_information\"}",
+          "output": "{\"spearman_rho\": 0.754, \"source\": \"exp_id3_it3\"}",
+          "eval_spearman_rho": 0.754,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-avito",
+          "metadata_proxy": "mutual_information"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-avito\", \"experiment\": \"exp_id3_it3\", \"proxy\": \"conditional_entropy\"}",
+          "output": "{\"spearman_rho\": 0.843, \"source\": \"exp_id3_it3\"}",
+          "eval_spearman_rho": 0.843,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-avito",
+          "metadata_proxy": "conditional_entropy"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"dataset\": \"rel-f1\", \"experiment\": \"exp_id3_it4\", \"proxy\": \"entropy_proxy_alt_impl\"}",
+          "output": "{\"spearman_rho\": -0.07, \"source\": \"exp_id3_it4\"}",
+          "eval_spearman_rho": -0.07,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_dataset": "rel-f1",
+          "metadata_proxy": "entropy_proxy_alt_impl"
+        },
+        {
+          "input": "{\"analysis\": \"5_training_free_proxy\", \"type\": \"consistency_and_best_proxy\"}",
+          "output": "{\"best_proxy\": \"conditional_entropy\", \"justification\": \"Conditional entropy reduction achieves highest correlation on rel-f1 (rho=0.945) and strong correlation on rel-avito (rho=0.843). However, cross-dataset inconsistency (rho=-0.07 on rel-f1 in separate experiment) suggests extreme implementation sensitivity. Mutual information is more consistent (rho=0.491 on rel-f1, rho=0.754 on rel-avito) but achieves lower peak correlation.\", \"consistency_matrix\": {\"fanout\": {\"datasets_with_data\": [\"rel-f1\"], \"values\": {\"rel-f1\": 0.644}, \"n_datasets\": 1, \"all_positive_and_strong\": true, \"consistent\": false}, \"pearson_correlation\": {\"datasets_with_data\": [\"rel-avito\"], \"values\": {\"rel-avito\": 0.926}, \"n_datasets\": 1, \"all_positive_and_strong\": true, \"consistent\": false}, \"mutual_information\": {\"datasets_with_data\": [\"rel-f1\", \"rel-avito\"], \"values\": {\"rel-f1\": 0.491, \"rel-avito\": 0.754}, \"n_datasets\": 2, \"all_positive_and_strong\": true, \"consistent\": true}, \"conditional_entropy\": {\"datasets_with_data\": [\"rel-f1\", \"rel-avito\"], \"values\": {\"rel-f1\": 0.945, \"rel-avito\": 0.843}, \"n_datasets\": 2, \"all_positive_and_strong\": true, \"consistent\": true}}, \"entropy_inconsistency\": {\"rel_f1_exp_id4_it2\": 0.945, \"rel_f1_exp_id3_it4\": -0.07, \"explanation\": \"Conditional entropy reduction achieves rho=0.945 on rel-f1 (exp_id4_it2) but a different implementation yields rho=-0.07 on the same dataset (exp_id3_it4). This extreme sensitivity to implementation details undermines reliability.\"}}",
+          "eval_n_consistent_proxies": 2,
+          "metadata_analysis": "5_training_free_proxy",
+          "metadata_type": "consistency_summary"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"jrn_valid_metric\", \"claim\": \"JRN is a valid per-join metric for measuring join utility\"}",
+          "output": "{\"evidence_rating\": \"SUPPORTED\", \"effect_size\": \"Pooled rho=0.950 [0.513, 0.996]\", \"n_datasets_supporting\": 4, \"n_datasets_tested\": 4, \"key_evidence\": \"Fisher z random-effects meta-analysis across 4 studies yields pooled rho=0.950. All 4 studies show positive correlation (rho=0.960, rho=0.440, rho=0.999, rho=0.825). However, extreme heterogeneity (I^2=97.7%) indicates rho varies substantially across datasets/conditions.\", \"caveats\": \"Extreme heterogeneity (I^2=97.7%) means probe validity is highly context-dependent.\"}",
+          "eval_evidence_score": 1.0,
+          "eval_n_datasets_supporting": 4.0,
+          "eval_n_datasets_tested": 4.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "jrn_valid_metric",
+          "metadata_evidence_rating": "SUPPORTED"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"gbm_probes_effective\", \"claim\": \"GBM probes effectively estimate join utility (better than MLP probes)\"}",
+          "output": "{\"evidence_rating\": \"SUPPORTED\", \"effect_size\": \"GBM rho ranges from 0.440 to 0.960; MLP rho=-0.067 on same dataset\", \"n_datasets_supporting\": 4, \"n_datasets_tested\": 4, \"key_evidence\": \"GBM probes show positive correlation with ground truth across all 4 tested conditions. On rel-f1 (exp_id4_it2), GBM rho=0.960 vs MLP rho=-0.067, demonstrating clear GBM superiority. On rel-avito rho=0.825, on rel-stack rho~1.0.\", \"caveats\": \"Lowest GBM rho=0.440 on rel-f1 Phase 2 (65 pairs) suggests moderate, not perfect, validity.\"}",
+          "eval_evidence_score": 1.0,
+          "eval_n_datasets_supporting": 4.0,
+          "eval_n_datasets_tested": 4.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "gbm_probes_effective",
+          "metadata_evidence_rating": "SUPPORTED"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"inverted_u_threshold\", \"claim\": \"There exists an inverted-U relationship between JRN and aggregation sensitivity\"}",
+          "output": "{\"evidence_rating\": \"UNSUPPORTED\", \"effect_size\": \"beta_2=+0.046 (positive, wrong sign), JRN-sensitivity rho=-0.019 (flat)\", \"n_datasets_supporting\": 0, \"n_datasets_tested\": 2, \"key_evidence\": \"Phase 2 analysis (exp_id1_it3) on 65 join-task pairs finds beta_2=+0.046 (positive, not negative as inverted-U requires), JRN-sensitivity rho=-0.019 (flat). Kruskal-Wallis across JRN tertiles p=0.96 (no difference). Phase 1 (exp_id1_it2) found marginal beta_2=-0.82 (p=0.071) but this was not replicated with more data.\", \"caveats\": \"Original Phase 1 marginal finding was not replicated with larger sample and GBM probes.\"}",
+          "eval_evidence_score": 0.0,
+          "eval_n_datasets_supporting": 0.0,
+          "eval_n_datasets_tested": 2.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "inverted_u_threshold",
+          "metadata_evidence_rating": "UNSUPPORTED"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"multiplicative_compounding\", \"claim\": \"JRN compounds multiplicatively along multi-hop join chains\"}",
+          "output": "{\"evidence_rating\": \"CONTRADICTORY\", \"effect_size\": \"R^2=0.83 (rel-stack MLP) vs R^2=-17.9 (rel-f1 GBM)\", \"n_datasets_supporting\": 1, \"n_datasets_tested\": 2, \"key_evidence\": \"MLP probes on rel-stack (exp_id2_it2) show good compounding (R^2=0.83), but GBM probes on rel-f1 (exp_id3_it4) show catastrophic failure (R^2=-17.9). This contradicts a general multiplicative compounding claim.\", \"caveats\": \"Works for simple schemas but fails for complex ones due to conditional independence violations.\"}",
+          "eval_evidence_score": -0.5,
+          "eval_n_datasets_supporting": 1.0,
+          "eval_n_datasets_tested": 2.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "multiplicative_compounding",
+          "metadata_evidence_rating": "CONTRADICTORY"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"jrn_guided_architecture\", \"claim\": \"JRN-guided heterogeneous architecture outperforms uniform baselines\"}",
+          "output": "{\"evidence_rating\": \"UNSUPPORTED\", \"effect_size\": \"Win rate vs uniform-mean: 27.3% (3/11), vs top-k: 27.3%, sign test p=0.2266, oracle gap=3.5%\", \"n_datasets_supporting\": 0, \"n_datasets_tested\": 3, \"key_evidence\": \"JRN-guided wins 3/11 tasks vs uniform-mean (sign test p=0.2266, not significant). Wins 3/11 vs top-k. Average oracle gap: 3.5%.\", \"caveats\": \"JRN-guided does not consistently beat simpler baselines; benefit is task-dependent.\"}",
+          "eval_evidence_score": 0.0,
+          "eval_n_datasets_supporting": 0.0,
+          "eval_n_datasets_tested": 3.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "jrn_guided_architecture",
+          "metadata_evidence_rating": "UNSUPPORTED"
+        },
+        {
+          "input": "{\"analysis\": \"6_hypothesis_scorecard\", \"claim_id\": \"training_free_estimation\", \"claim\": \"Training-free statistical proxies can estimate join utility\"}",
+          "output": "{\"evidence_rating\": \"PARTIAL\", \"effect_size\": \"Best proxy (conditional_entropy): rho=0.945 on rel-f1, rho=0.843 on rel-avito; but rho=-0.07 in separate experiment\", \"n_datasets_supporting\": 2, \"n_datasets_tested\": 3, \"key_evidence\": \"Conditional entropy achieves rho=0.945 on rel-f1 (exp_id4_it2) and rho=0.843 on rel-avito. However, a different entropy implementation yields rho=-0.07 on rel-f1 (exp_id3_it4), showing extreme sensitivity to implementation. MI is more consistent (rho=0.491 on rel-f1, rho=0.754 on rel-avito) but weaker.\", \"caveats\": \"Results extremely sensitive to proxy implementation. No single proxy is reliably consistent.\"}",
+          "eval_evidence_score": 0.5,
+          "eval_n_datasets_supporting": 2.0,
+          "eval_n_datasets_tested": 3.0,
+          "metadata_analysis": "6_hypothesis_scorecard",
+          "metadata_claim_id": "training_free_estimation",
+          "metadata_evidence_rating": "PARTIAL"
+        },
+        {
+          "input": "{\"analysis\": \"7_paper_contribution_reformulation\", \"type\": \"full_reformulation\"}",
+          "output": "{\"n_supported\": 2, \"n_qualified\": 1, \"n_dropped\": 3, \"supported_contributions\": [{\"claim_id\": \"jrn_valid_metric\", \"contribution\": \"JRN is a valid per-join metric for measuring join utility\", \"evidence\": \"Fisher z random-effects meta-analysis across 4 studies yields pooled rho=0.950. All 4 studies show positive correlation (rho=0.960, rho=0.440, rho=0.999, rho=0.825). However, extreme heterogeneity (I^2=97.7%) indicates rho varies substantially across datasets/conditions.\"}, {\"claim_id\": \"gbm_probes_effective\", \"contribution\": \"GBM probes effectively estimate join utility (better than MLP probes)\", \"evidence\": \"GBM probes show positive correlation with ground truth across all 4 tested conditions. On rel-f1 (exp_id4_it2), GBM rho=0.960 vs MLP rho=-0.067, demonstrating clear GBM superiority. On rel-avito rho=0.825, on rel-stack rho~1.0.\"}], \"qualified_contributions\": [{\"claim_id\": \"training_free_estimation\", \"contribution\": \"Training-free statistical proxies can estimate join utility\", \"qualification\": \"Results extremely sensitive to proxy implementation. No single proxy is reliably consistent.\", \"evidence\": \"Conditional entropy achieves rho=0.945 on rel-f1 (exp_id4_it2) and rho=0.843 on rel-avito. However, a different entropy implementation yields rho=-0.07 on rel-f1 (exp_id3_it4), showing extreme sensitivity to implementation. MI is more consistent (rho=0.491 on rel-f1, rho=0.754 on rel-avito) but weaker.\"}], \"dropped_claims\": [{\"claim_id\": \"inverted_u_threshold\", \"original_claim\": \"There exists an inverted-U relationship between JRN and aggregation sensitivity\", \"reason\": \"Phase 2 analysis (exp_id1_it3) on 65 join-task pairs finds beta_2=+0.046 (positive, not negative as inverted-U requires), JRN-sensitivity rho=-0.019 (flat). Kruskal-Wallis across JRN tertiles p=0.96 (no difference). Phase 1 (exp_id1_it2) found marginal beta_2=-0.82 (p=0.071) but this was not replicated with more data.\", \"rating\": \"UNSUPPORTED\"}, {\"claim_id\": \"multiplicative_compounding\", \"original_claim\": \"JRN compounds multiplicatively along multi-hop join chains\", \"reason\": \"MLP probes on rel-stack (exp_id2_it2) show good compounding (R^2=0.83), but GBM probes on rel-f1 (exp_id3_it4) show catastrophic failure (R^2=-17.9). This contradicts a general multiplicative compounding claim.\", \"rating\": \"CONTRADICTORY\"}, {\"claim_id\": \"jrn_guided_architecture\", \"original_claim\": \"JRN-guided heterogeneous architecture outperforms uniform baselines\", \"reason\": \"JRN-guided wins 3/11 tasks vs uniform-mean (sign test p=0.2266, not significant). Wins 3/11 vs top-k. Average oracle gap: 3.5%.\", \"rating\": \"UNSUPPORTED\"}], \"reframed_narrative\": \"The Join Reproduction Number (JRN) is a valid and useful per-join metric for quantifying the predictive value of FK joins in relational databases. GBM-based probe estimation is the recommended approach, achieving positive correlation with ground truth across all 4 tested settings (pooled rho>0.5). Training-free proxies (particularly conditional entropy and MI) show promise but lack consistent cross-dataset reliability due to implementation sensitivity. JRN-guided architecture selection shows mixed results, sometimes matching but not consistently beating uniform baselines. Two originally hypothesized properties -- the inverted-U relationship between JRN and aggregation sensitivity and the multiplicative compounding of JRN along join chains -- are NOT supported by the evidence. The paper's core contribution is therefore the JRN metric itself and the GBM-probe-based estimation methodology, rather than the originally hypothesized mathematical properties.\", \"recommended_title\": \"Join Reproduction Number: Measuring the Predictive Value of FK Joins in Relational Databases\", \"recommended_framing\": \"Empirical metric + GBM probe estimation methodology (not mathematical theory)\"}",
+          "eval_n_supported": 2.0,
+          "eval_n_qualified": 1.0,
+          "eval_n_dropped": 3.0,
+          "metadata_analysis": "7_paper_contribution",
+          "metadata_type": "reformulation"
+        }
+      ]
+    }
+  ]
+}

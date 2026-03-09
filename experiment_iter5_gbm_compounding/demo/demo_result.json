@@ -1,0 +1,13 @@
+{
+  "id": "exp_id1_it5__opus",
+  "type": "code",
+  "title": "GBM Compounding Validation & FK-Shuffling Confound Control on rel-stack",
+  "summary": "Demo notebook analyzing pre-computed Join Reproduction Number (JRN) results from LightGBM probes on RelBench rel-stack dataset. Loads experiment output with JRN matrix (16 join-task pairs across 3 tasks), multi-hop chain compounding test (14 chains, Spearman r=0.68), and FK-shuffling decomposition into structural vs feature components. Includes bootstrap CI computation, paired t-test, Wilcoxon test, Cohen's d, and three visualizations: JRN heatmap, compounding scatter plot, and decomposition bar chart.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_5/gen_art/exp_id1_it5__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it5__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/exp_id1_it5__opus/method_code_demo.ipynb"
+}

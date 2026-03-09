@@ -1,0 +1,13 @@
+{
+  "id": "data_id5_it2__opus",
+  "type": "code",
+  "title": "RelBench rel-avito Dataset Preparation for JRN Experiments",
+  "summary": "Demo notebook exploring the RelBench rel-avito relational database transformed for Join Reproduction Number (JRN) experiments. Loads a curated mini dataset (mini_demo_data.json) containing 4 item types: dataset metadata, table data (AdsInfo, SearchInfo, Category with sample rows and column statistics), FK join metadata (fanout distributions and coverage for 3 joins), and 4 prediction task splits (regression, binary classification, link prediction). Includes visualizations of table sizes, FK fanout distributions, column dtype composition, task sample sizes, and class balance.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_2/gen_art/data_id5_it2__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id5_it2__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id5_it2__opus/data_code_demo.ipynb"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "data_id4_it1__opus",
+  "type": "code",
+  "title": "RelBench rel-stack Dataset Preparation for JRN Estimation",
+  "summary": "Demo notebook exploring the RelBench rel-stack dataset (Stack Exchange stats-exchange) prepared for Join Reproduction Number (JRN) estimation. Loads pre-computed relational metadata for 7 tables (4.2M rows), analyzes 11 FK join statistics (fan-out distributions, coverage, cardinality ratios), examines 8 multi-hop join chains with cumulative cardinality for JRN compounding analysis, reviews 5 task definitions, and visualizes key relational statistics in a 4-panel figure. Mini demo data includes 35 diverse examples across all 7 tables with full metadata.",
+  "original_path": "/ai-inventor/aii_pipeline/runs/run__20260309_024817/3_invention_loop/iter_1/gen_art/data_id4_it1__opus",
+  "demo_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id4_it1__opus",
+  "out_expected_files": {
+    "notebook": "code_demo.ipynb",
+    "mini_data_file": "mini_demo_data.json"
+  },
+  "notebook_path": "/ai-inventor/aii_pipeline/runs/run__20260309_154206/4_gen_paper_repo/data_id4_it1__opus/data_code_demo.ipynb"
+}
